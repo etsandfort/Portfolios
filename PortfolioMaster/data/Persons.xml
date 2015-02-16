@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Persons>
+  <person>
+    <code>the1</code>
+    <lastName> Harry</lastName>
+    <firstName>Potter</firstName>
+    <address>
+      <street>4 Privet Drive</street>
+      <city>Little Winging</city>
+      <state>Surrey</state>
+      <zipcode>England</zipcode>
+      <country>77777</country>
+    </address>
+    <emails>
+      <string>theboywholived@scar.com</string>
+      <string>lightningboy@darkmark.com</string>
+    </emails>
+    <secIdentifier>sec123</secIdentifier>
+    <type>J</type>
+  </person>
+  <person>
+    <code>not3xp3l</code>
+    <lastName> Hermione</lastName>
+    <firstName>Granger</firstName>
+    <address>
+      <street>234 Perfection Lane</street>
+      <city>Toronto</city>
+      <state>ON</state>
+      <zipcode>Canada</zipcode>
+      <country>M4W 2V3</country>
+    </address>
+    <emails>
+      <string>flitwickfavorite@gmail.com</string>
+      <string>ronsthebomb@levi0sa.com</string>
+    </emails>
+    <secIdentifier>sec998</secIdentifier>
+    <type>E</type>
+  </person>
+  <person>
+    <code>weasley6</code>
+    <lastName> Ron</lastName>
+    <firstName>Weasley</firstName>
+    <address>
+      <street>654 The Burrow</street>
+      <city>Ottery St Catchpole</city>
+      <state>Devon</state>
+      <zipcode>England</zipcode>
+      <country>98654</country>
+    </address>
+    <emails>
+      <string>ratsarentfriends@ouch.com</string>
+    </emails>
+  </person>
+  <person>
+    <code>1pm1ph</code>
+    <lastName> Firenze</lastName>
+    <firstName>Centaur</firstName>
+    <address>
+      <street>333 Forbidden Forest</street>
+      <city>Halifax</city>
+      <state>NS</state>
+      <zipcode>Canada</zipcode>
+      <country>M5N 2W3</country>
+    </address>
+    <emails>
+      <string>notahalfbreed@ownspecies.com</string>
+    </emails>
+    <secIdentifier>sec762</secIdentifier>
+    <type>J</type>
+  </person>
+  <person>
+    <code>durm1</code>
+    <lastName> Viktor</lastName>
+    <firstName>Krum</firstName>
+    <address>
+      <street>607 Durmstrang Institute</street>
+      <city>Sofia</city>
+      <state>Durmstrang</state>
+      <zipcode>Bulgaria</zipcode>
+      <country>34522</country>
+    </address>
+    <emails>
+      
+    </emails>
+  </person>
+  <person>
+    <code>weasley7</code>
+    <lastName> Ginny</lastName>
+    <firstName>Weasley</firstName>
+    <address>
+      <street>706 Hogwarts Residential</street>
+      <city>Hogsmeade</city>
+      <state>MagicLand</state>
+      <zipcode>Scotland</zipcode>
+      <country>78475</country>
+    </address>
+    <emails>
+      <string>num1redhead@hotmail.com</string>
+      <string>DAforlyf3@order.com</string>
+    </emails>
+    <secIdentifier>sec777</secIdentifier>
+    <type>J</type>
+  </person>
+  <person>
+    <code>voldie</code>
+    <lastName> Tom</lastName>
+    <firstName>Riddle</firstName>
+    <address>
+      <street>432 Secret Chamber</street>
+      <city>Dufftown</city>
+      <state>Banffshire</state>
+      <zipcode>Scotland</zipcode>
+      <country>66666</country>
+    </address>
+    <emails>
+      <string>youknowwho@youknowwhere.com</string>
+    </emails>
+  </person>
+  <person>
+    <code>b3sts0n</code>
+    <lastName> Draco</lastName>
+    <firstName>Malfoy</firstName>
+    <address>
+      <street>664 Malfoy Manor</street>
+      <city>Deatheaterville</city>
+      <state>Wiltshire</state>
+      <zipcode>England</zipcode>
+      <country>21422</country>
+    </address>
+    <emails>
+      <string>ilovemydad@help.com</string>
+    </emails>
+  </person>
+  <person>
+    <code>p819</code>
+    <lastName> Bill</lastName>
+    <firstName>O&apos;Reilley</firstName>
+    <address>
+      <street>5748 West America Boulevard</street>
+      <city>Rancho Cucamonga</city>
+      <state>CA</state>
+      <zipcode>USA</zipcode>
+      <country>29670</country>
+    </address>
+    <emails>
+      <string>billy@oreilleyfactor.org</string>
+    </emails>
+  </person>
+  <person>
+    <code>mp1944</code>
+    <lastName> Sean</lastName>
+    <firstName>Hannity</firstName>
+    <address>
+      <street>3827 High Street</street>
+      <city>Fort Meyer</city>
+      <state>FL</state>
+      <zipcode>USA</zipcode>
+      <country>37518</country>
+    </address>
+    <emails>
+      <string>shannity@foxnews.com</string>
+    </emails>
+    <secIdentifier>sec830</secIdentifier>
+    <type>E</type>
+  </person>
+  <person>
+    <code>92ku</code>
+    <lastName> Rush</lastName>
+    <firstName>Limbaugh</firstName>
+    <address>
+      <street>195 North Patriot Avenue</street>
+      <city>Mizzoula</city>
+      <state>MO</state>
+      <zipcode>USA</zipcode>
+      <country>83765</country>
+    </address>
+    <emails>
+      <string>radiofree@therealtruth.net</string>
+    </emails>
+  </person>
+  <person>
+    <code>3w8ss</code>
+    <lastName> Sarah</lastName>
+    <firstName>Palin</firstName>
+    <address>
+      <street>4832 Summers Street</street>
+      <city>Juneau</city>
+      <state>AK</state>
+      <zipcode>USA</zipcode>
+      <country>45893</country>
+    </address>
+    <emails>
+      <string>icanseerussia@myhouse.gov</string>
+    </emails>
+    <secIdentifier>sec554</secIdentifier>
+    <type>J</type>
+  </person>
+  <person>
+    <code>ck69</code>
+    <lastName> Leeanne</lastName>
+    <firstName>Coulter</firstName>
+    <address>
+      <street>1209 Winding Way</street>
+      <city>Westchester</city>
+      <state>PA</state>
+      <zipcode>USA</zipcode>
+      <country>22793</country>
+    </address>
+    <emails>
+      <string>objective@reporting.net</string>
+    </emails>
+  </person>
+  <person>
+    <code>8eqd</code>
+    <lastName> Jim</lastName>
+    <firstName>Pinkerton</firstName>
+    <address>
+      <street>7896 Clifford Street</street>
+      <city>Rockford</city>
+      <state>CT</state>
+      <zipcode>USA</zipcode>
+      <country>10101</country>
+    </address>
+    <emails>
+      <string>michaelj@fox.com</string>
+    </emails>
+    <secIdentifier>sec137</secIdentifier>
+    <type>E</type>
+  </person>
+  <person>
+    <code>8th5</code>
+    <lastName> Trace</lastName>
+    <firstName>Ghallager</firstName>
+    <address>
+      <street>600 Orange Road</street>
+      <city>Bellevue</city>
+      <state>CA</state>
+      <zipcode>USA</zipcode>
+      <country>29777</country>
+    </address>
+    <emails>
+      <string>tghags@enduringfreedom.com</string>
+    </emails>
+  </person>
+  <person>
+    <code>267s</code>
+    <lastName> John</lastName>
+    <firstName>Roberts</firstName>
+    <address>
+      <street>555 A Street</street>
+      <city>Township</city>
+      <state>ND</state>
+      <zipcode>USA</zipcode>
+      <country>55555</country>
+    </address>
+    <emails>
+      <string>mynameis@generic.net</string>
+    </emails>
+    <secIdentifier>sec291</secIdentifier>
+    <type>J</type>
+  </person>
+  <person>
+    <code>9a5</code>
+    <lastName> Jacob</lastName>
+    <firstName>Melcher</firstName>
+    <address>
+      <street> 23708 Walnut Cir</street>
+      <city>Waterloo</city>
+      <state>NE</state>
+      <zipcode>USA</zipcode>
+      <country>68069</country>
+    </address>
+    <emails>
+      <string>Melcher1211@yahoo.com</string>
+    </emails>
+    <secIdentifier>sec915</secIdentifier>
+    <type>E</type>
+  </person>
+  <person>
+    <code>666</code>
+    <lastName> L.</lastName>
+    <firstName>Diablo</firstName>
+    <address>
+      <street>1 Hot Place</street>
+      <city>Las Cruces</city>
+      <state>NM</state>
+      <zipcode>USA</zipcode>
+      <country>88001</country>
+    </address>
+    <emails>
+      <string>Diablo@ComcastSupport.com</string>
+    </emails>
+  </person>
+  <person>
+    <code>tall1</code>
+    <lastName> Ryan</lastName>
+    <firstName>Stiles</firstName>
+    <address>
+      <street>Some Place Cold</street>
+      <city>Ottawa</city>
+      <state>ON</state>
+      <zipcode>Canada</zipcode>
+      <country>K1A 0G9</country>
+    </address>
+    <emails>
+      
+    </emails>
+    <secIdentifier>sec916</secIdentifier>
+    <type>J</type>
+  </person>
+  <person>
+    <code>h0h0</code>
+    <lastName> Santa</lastName>
+    <firstName>Claus</firstName>
+    <address>
+      <street>101 St. Nicholas Drive</street>
+      <city>North Pole</city>
+      <state>AK</state>
+      <zipcode>USA</zipcode>
+      <country>99705</country>
+    </address>
+    <emails>
+      <string>ManInRed@NorthPole.com</string>
+    </emails>
+    <secIdentifier>sec1010</secIdentifier>
+    <type>E</type>
+  </person>
+  <person>
+    <code>d1e</code>
+    <lastName> Grimm</lastName>
+    <firstName>Reaper</firstName>
+    <address>
+      <street>Hells Doors</street>
+      <city>Minneapolis</city>
+      <state>MN</state>
+      <zipcode>USA</zipcode>
+      <country>55401</country>
+    </address>
+    <emails>
+      <string>FunScythe@aol.com</string>
+    </emails>
+  </person>
+  <person>
+    <code>haha</code>
+    <lastName> Drew</lastName>
+    <firstName>Carey</firstName>
+    <address>
+      <street>Funny Joke Lane</street>
+      <city>Cleveland</city>
+      <state>OH</state>
+      <zipcode>USA</zipcode>
+      <country>44101</country>
+    </address>
+    <emails>
+      <string>WhoseLineIsItAnyways@aol.com</string>
+      <string>BaldJokes@yahoo.com</string>
+    </emails>
+    <secIdentifier>sec105</secIdentifier>
+    <type>J</type>
+  </person>
+  <person>
+    <code>bald1</code>
+    <lastName> Colin</lastName>
+    <firstName>Mochrie</firstName>
+    <address>
+      <street>123 Oxford Road</street>
+      <city>Aylesbury</city>
+      <state>Buckinghamshire</state>
+      <zipcode>UK</zipcode>
+      <country>HP19 3EQ</country>
+    </address>
+    <emails>
+      <string>Colin@Bald.com</string>
+    </emails>
+    <secIdentifier>sec156</secIdentifier>
+    <type>E</type>
+  </person>
+  <person>
+    <code>nnee3</code>
+    <lastName> Wayne</lastName>
+    <firstName>Brady</firstName>
+    <address>
+      <street>15454 Rhodes Road</street>
+      <city>Columbus</city>
+      <state>GA</state>
+      <zipcode>USA</zipcode>
+      <country>31917</country>
+    </address>
+    <emails>
+      
+    </emails>
+  </person>
+</Persons>
