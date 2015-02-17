@@ -18,6 +18,13 @@ public class Output {
 	Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	XStream xmlOut = new XStream();
 	
+	public void printSummaryReport(){
+	//TODO	
+	}
+	
+	public void printDetailedReport(){
+	//TODO	
+	}
 	/**
 	 * Outputs a json file of people from a list of people
 	 * @param fileName the output file name
@@ -95,4 +102,5 @@ public class Output {
 		System.out.println("Unable to output xml for  Assets");
 		}
 	}
+
 }

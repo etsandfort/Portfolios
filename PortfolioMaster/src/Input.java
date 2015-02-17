@@ -7,11 +7,57 @@ import java.util.ArrayList;
  * RAIK 184H
  * This class is responsible for reading in and parsing asset and people objects
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
- * @version 1.1
+ * @version 2.0
  *
  */
 public class Input {
+	
+	/**
+	 * Reads in a file of portfolios, located at data/Persons.dat, and creates an arraylist of portfolios
+	 * @return portfolio, a list of portfolios
+	 */
+	public ArrayList<Portfolio> readPortfolios(){
+		ArrayList<Portfolio> portfolios = new ArrayList<Portfolio>();
+		try{
+			File file = new File("data/Persons.dat"); //read in the file
+			BufferedReader read = new BufferedReader(new FileReader(file));
 
+			String line;
+			int numLinesLeft = Integer.parseInt(read.readLine());
+			
+			//Iterate through the file parsing Portfolio objects from the lines
+			while(numLinesLeft > 0){ 					
+				line = read.readLine();
+				portfolios.add(parsePortfolio(line));
+				numLinesLeft--;	
+			}
+			read.close();
+		} catch(Exception e){
+			System.out.println(e);
+		}
+		return portfolios;
+	}
+	
+	/**
+	 * This method parses a portfolio object from a line of text
+	 * @param line
+	 * @return
+	 */
+	public Portfolio parsePortfolio(String line){
+		Portfolio p;
+		String[] portInfo = line.split(";");
+		String code = portInfo[0];
+		String ownerID = portInfo[1];
+		String managerID = portInfo[2];
+		String beneficiaryID = portInfo[3];
+		String assetIDList = portInfo[4];
+		return null;
+	}
+	
+	public Asset searchID(ArrayList<Asset> assets){
+		Asset a;
+		return null;
+	}
 	/**
 	 * Reads in a file of people, located in data/Persons.dat, and adds them into an arraylist of people in the database
 	 * @return persons the list of people
