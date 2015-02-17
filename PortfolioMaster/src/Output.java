@@ -28,7 +28,7 @@ public class Output {
 	/**
 	 * Outputs a json file of people from a list of people
 	 * @param fileName the output file name
-	 * @param people the arraylist of people
+	 * @param people the ArrayList of people
 	 */
 	public void outputJsonPersons(String fileName, ArrayList<Person> people ){
 		File fileOut = new File(fileName);
@@ -47,7 +47,7 @@ public class Output {
 	/**
 	 * Outputs a json file of assets from a list of assets
 	 * @param fileName the output file name
-	 * @param assets the arraylist of assets
+	 * @param assets the ArrayList of assets
 	 */
 	public void outputJsonAssets(String fileName, ArrayList<Asset> assets ){
 		File fileOut = new File(fileName);
@@ -65,7 +65,7 @@ public class Output {
 	/**
 	 * Outputs an xml file of people from a list of people
 	 * @param fileName the output file name
-	 * @param people the arraylist of people
+	 * @param people the ArrayList of people
 	 */
 	public void outputXmlPersons(String fileName, ArrayList<Person> people ){
 		File fileOut = new File(fileName);
@@ -85,7 +85,7 @@ public class Output {
 	/**
 	 * Outputs an xml file of assets from a list of assets
 	 * @param fileName the output file name
-	 * @param assets the arraylist of assets
+	 * @param assets the ArrayList of assets
 	 */
 	public void outputXmlAssets(String fileName, ArrayList<Asset> assets ){
 		File fileOut = new File(fileName);
