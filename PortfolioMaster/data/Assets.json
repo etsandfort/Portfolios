@@ -1,125 +1,124 @@
 {
-"Assets": 
-[
+"assets": [
   {
-    "quarterlyDividend": 2.65,
-    "baseRateOfReturn": 314159.0,
-    "omega": 0.52,
-    "value": 1337357.0,
     "code": "LAMH01",
-    "label": "Lamar\u0027s Home Improvement",
-    "type": "P"
+    "label": "Lamar's Home Improvement",
+    "type": "P",
+    "baseRateOfReturn": 314159,
+    "quarterlyDividend": 2.65,
+    "omega": 0.52,
+    "value": 1337357
   },
   {
-    "apr": 0.73,
     "code": "MHIA32",
     "label": "Savings Account",
-    "type": "D"
+    "type": "D",
+    "apr": 0.73
   },
   {
-    "quarterlyDividend": 1.33,
-    "baseRateOfReturn": 177245.0,
-    "omega": 0.13,
-    "value": 8.2734622E7,
     "code": "UK909",
-    "label": "Jeb\u0027s Ukuleles",
-    "type": "P"
+    "label": "Jeb's Ukuleles",
+    "type": "P",
+    "baseRateOfReturn": 177245,
+    "quarterlyDividend": 1.33,
+    "omega": 0.13,
+    "value": 82734622
   },
   {
-    "baseRateOfReturn": 47.63,
-    "quarterlyDividend": 5.6,
-    "symbol": "GDSF",
-    "sharePrice": 987.65,
-    "beta": 1.69,
     "code": "GDSF11",
     "label": "Good Stuff Inc.",
-    "type": "S"
+    "type": "S",
+    "baseRateOfReturn": 47.63,
+    "quarterlyDividend": 5.6,
+    "sharePrice": 987.65,
+    "symbol": "GDSF",
+    "beta": 1.69
   },
   {
-    "apr": 3.05,
     "code": "ARGSAV",
     "label": "Money Market Savings",
-    "type": "D"
+    "type": "D",
+    "apr": 3.05
   },
   {
-    "baseRateOfReturn": 0.0,
-    "quarterlyDividend": 1.25,
-    "symbol": "RGDO",
-    "sharePrice": 1.23,
-    "beta": 1.1,
     "code": "REG",
     "label": "Regado Biosciences INC",
-    "type": "S"
+    "type": "S",
+    "baseRateOfReturn": 0.0,
+    "quarterlyDividend": 1.25,
+    "sharePrice": 1.23,
+    "symbol": "GDSF",
+    "beta": 1.1
   },
   {
-    "apr": 1.25,
     "code": "DEV",
     "label": "Devils Deposits",
-    "type": "D"
+    "type": "D",
+    "apr": 1.25
   },
   {
-    "quarterlyDividend": 3.5,
-    "baseRateOfReturn": 100000.0,
-    "omega": 1.0,
-    "value": 1.0E8,
     "code": "SOFT102",
     "label": "Upcoming Software Firm",
-    "type": "P"
+    "type": "P",
+    "baseRateOfReturn": 100000.00,
+    "quarterlyDividend": 3.5,
+    "omega": 1.0,
+    "value": 100000000.00
   },
   {
-    "apr": 2.5,
     "code": "KIDC",
     "label": "Kids College Savings",
-    "type": "D"
+    "type": "D",
+    "apr": 2.5
   },
   {
-    "apr": 2.5,
     "code": "ISAVE",
     "label": "Time Deposit",
-    "type": "D"
+    "type": "D",
+    "apr": 2.5
   },
   {
-    "apr": 2.89,
     "code": "65YEAH",
     "label": "Business Investment Account",
-    "type": "D"
+    "type": "D",
+    "apr": 2.89
   },
   {
+    "code": "MCYDS",
+    "label": "McDonald's Corp",
+    "type": "S",
     "baseRateOfReturn": 0.85,
     "quarterlyDividend": 0.35,
-    "symbol": "MCD",
     "sharePrice": 92.7,
-    "beta": 0.38,
-    "code": "MCYDS",
-    "label": "McDonald\u0027s Corp",
-    "type": "S"
+    "symbol": "GDSF",
+    "beta": 0.38
   },
   {
-    "baseRateOfReturn": 0.31,
-    "quarterlyDividend": 1.86,
-    "symbol": "MSFT",
-    "sharePrice": 41.22,
-    "beta": 1.0,
     "code": "RA1K3S",
     "label": "Microsoft Corp",
-    "type": "S"
+    "type": "S",
+    "baseRateOfReturn": 0.31,
+    "quarterlyDividend": 1.86,
+    "sharePrice": 41.22,
+    "symbol": "MSFT",
+    "beta": 1.00
   },
   {
-    "quarterlyDividend": 1.9,
-    "baseRateOfReturn": 9600.0,
-    "omega": 0.2,
-    "value": 6450000.0,
     "code": "LYF3",
     "label": "Ice Machine International",
-    "type": "P"
+    "type": "P",
+    "baseRateOfReturn": 9600.00,
+    "quarterlyDividend": 1.9,
+    "omega": 0.20,
+    "value": 6450000
   },
   {
-    "quarterlyDividend": 2.3,
-    "baseRateOfReturn": 1280.23,
-    "omega": 0.31,
-    "value": 8645002.0,
     "code": "B00",
     "label": "The Mystery Machine",
-    "type": "P"
+    "type": "P",
+    "baseRateOfReturn": 1280.23,
+    "quarterlyDividend": 2.3,
+    "omega": 0.31,
+    "value": 8645002
   }
 ]}
