@@ -50,14 +50,25 @@ public class Input {
 		String ownerID = portInfo[1];
 		String managerID = portInfo[2];
 		String beneficiaryID = portInfo[3];
-		String assetIDList = portInfo[4];
+		String[] assetIDList = portInfo[4].split(",");
+		ArrayList<Asset> assetList = new ArrayList<Asset>();
+		if(!beneficiaryID.equalsIgnoreCase("")){
+//			p = new Portfolio(code, )
+		}
 		return null;
 	}
 	
-	public Asset searchID(ArrayList<Asset> assets){
-		Asset a;
+	public <T> T searchID(ArrayList<T> list, String id){
+		for(T subject: list){
+			if(((Asset) subject).getCode().equalsIgnoreCase(id) ||((Person) subject).getCode().equalsIgnoreCase(id)){
+				
+				return subject;
+			} 
+		}
 		return null;
 	}
+	
+
 	/**
 	 * Reads in a file of people, located in data/Persons.dat, and adds them into an arraylist of people in the database
 	 * @return persons the list of people
