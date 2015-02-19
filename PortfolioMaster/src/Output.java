@@ -7,24 +7,122 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
 /**
  * Output.java
- * This class is responsible for putting out xml and json files of assets and people
+ * This class is responsible for outputting xml and json files of assets
+ * and people, as well as a text file containing a portfolio summary report 
+ * and a detailed report of each portfolio.
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
  * @version 1.0
  */
 public class Output {
-	//Data members
+	// Data members
 	Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	XStream xmlOut = new XStream();
+	ArrayList<Portfolio> portfolio;
+//	ReportCalculation reportCalc = new ReportCalculation(portfolio);
 	
+	/**
+	 * This method prints the Portfolio Summary Report.
+	 */
 	public void printSummaryReport(){
-	//TODO	
+		System.out.println("Portfolio Summary Report");
+		printThickLine();
+		
+		String nameOwner = "";
+		String nameManager = "";
+	
+		// Prints code, owner, manager, fees, commissions, weighted risk, return, total
+		System.out.printf("%-12s %-25s %-25s %-15s %-15s %-20s %-15s %-15s\n", "Portfolio",
+				"Owner", "Manager", "Fees", "Commissions", "Weighted Risk", "Return", "Total");
+//		for(int i = 0; i < portfolio.size(); i++){
+		
+//			nameOwner = portfolio.get(i).getOwner().getLastName() + ", " + portfolio.get(i).getOwner().getFirstName();
+//			nameManager = portfolio.get(i).getManager().getLastName() + ", " + portfolio.get(i).getManager().getFirstName();
+//			
+//			System.out.printf("%-12s %-25s %-25d %-15.2d %-15.2d %-20.2d %-15.2d %-15.2d\n", 
+//					portfolio.get(i).getCode(), nameOwner, nameManager, '$' + portfolio.get(i).getTotalFees(), 
+//					portfolio.get(i).getCommission(), portfolio.get(i).getWeightedRisk(),
+//					portfolio.get(i).getReturns(), portfolio.get(i).getTotalValue());
+//					)
+//		}
+		
+		// prints line under numerical values, acting as a divider between individual values and totals
+		printThinLine(150);
+		// print totals for fees, commissions, return, total
+//		System.out.printf("%40s %-11s %-15d %-15d %20s %-15d %-15d\n", "", "Totals:", reportCalc.getTotalFees(), reportCalc.getTotalCommission(), "", reportCalc.getTotalReturn(), reportCalc.getTotalValue());
 	}
 	
+	/**
+	 * This method prints the Detailed Report for each portfolio, in order alphabetically by Owner's Last Name
+	 */
 	public void printDetailedReport(){
-	//TODO	
+		System.out.println("Portfolio Details");
+		printThickLine();
+		
+		String nameOwner = "";
+		String nameManager = "";
+ 		String nameBeneficiary = "none";
+ 		
+		//for(int i = 0; i < portfolio.size(); i++){
+			// nameOwner = portfolio.get(i).getOwner().getLastName() + ", " + portfolio.get(i).getOwner().getFirstName();
+			// nameManager = portfolio.get(i).getManager().getLastName() + ", " + portfolio.get(i).getManager().getFirstName();
+			// if(portfolio.get(i).getBeneficiary() != null){
+			// 	nameBeneficiary = portfolio.get(i).getBeneficiary().getLastName() + ", " + portfolio.get(i).getBeneficiary().getFirstName();
+			// }
+			//System.out.println("Portfolio" + portfolio.get(i).getCode());
+			printThinLine(40);
+			
+			System.out.printf("%-15s %-25s\n", "Owner:", nameOwner);
+			System.out.printf("%-15s %-25s\n", "Manager:", nameManager);
+			System.out.printf("%-15s %-25s\n", "Beneficiary:", nameBeneficiary);
+			System.out.println("Assets");
+			System.out.printf("%-10s %-43s %20s %-5s %17s %15s\n", "Code", "Asset", "Return Rate", "Risk", "Annual Return", "Value");
+			
+//			int numAssets = portfolio.get(i).getAssets().size();
+//			
+//			for(int j = 0; j < numAssets; j++)
+//			System.out.printf("%-10s %-43s %20.2d %-5.2d %-1s %16.2d %-1s %14.2d\n", portfolio.get(i).getCode(), 
+//					portfolio.get(i).getAssets().get(j).getLabel(), portfolio.get(i).getAssets().get(j).getRate() + "%", 
+//					portfolio.get(i).getAssets().get(j).getRisk(), "$", portfolio.get(i).getAssets().get(j).getAnnualReturn(), 
+//					"$", portfolio.get(i).getAssets().get(j).getValue());
+//			}
+//			System.out.printf("%48s %-7s %-15d %-15d %20d\n", "", "Totals:", portfolio.get(i).getWeightedRisk(), portfolio.get(i).getTotalAnnualReturn(), portfolio.get(i).getTotalValue());
 	}
+	
+	/**
+	 * Prints a thick line; used to better format portfolio reports
+	 */
+	public static void printThickLine(){
+		for(int i = 0; i < 150; i++){
+			if(i != 149){
+				System.out.print('=');				
+			}
+			else{
+				System.out.println('=');
+			}
+		}
+	}
+	
+	/**
+	 * Prints a hyphenated line; used to better format portfolio reports
+	 */
+	public static void printThinLine(int lineLength){
+		for(int i = 0; i < lineLength; i++){
+			if(i < lineLength - 90){ // print blank spaces because can't sum codes, owners or managers
+				System.out.print(" ");
+			}
+			else if(i != (lineLength - 1)){
+				System.out.print('-');				
+			}
+			else{
+				System.out.println('-');
+			}
+		}
+	}
+	
 	/**
 	 * Outputs a json file of people from a list of people
 	 * @param fileName the output file name
@@ -102,5 +200,4 @@ public class Output {
 		System.out.println("Unable to output xml for  Assets");
 		}
 	}
-
 }
