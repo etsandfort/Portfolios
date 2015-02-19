@@ -47,9 +47,11 @@ public class DataConverter {
 	public static void main(String args[]){
 		DataConverter dc = new DataConverter();
 		//Converting the input files to .json and .xml output files
-		dc.getOutput().outputJsonAssets("data/Assets.json", dc.getInput().readAssets());
-		dc.getOutput().outputXmlAssets("data/Assets.xml", dc.getInput().readAssets());
-		dc.getOutput().outputJsonPersons("data/Persons.json", dc.getInput().readPersons());
-		dc.getOutput().outputXmlPersons("data/Persons.xml", dc.getInput().readPersons());
+//		dc.getOutput().outputJsonAssets("data/Assets.json", dc.getInput().readAssets());
+//		dc.getOutput().outputXmlAssets("data/Assets.xml", dc.getInput().readAssets());
+//		dc.getOutput().outputJsonPersons("data/Persons.json", dc.getInput().readPersons());
+//		dc.getOutput().outputXmlPersons("data/Persons.xml", dc.getInput().readPersons());
+		dc.getOutput().printSummaryReport();
+		dc.getOutput().printDetailedReport();
 	}
 }
