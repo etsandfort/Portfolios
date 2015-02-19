@@ -3,7 +3,7 @@
  * RAIK 184H
  * This is the application class for the database, it contains the main method
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
- * @version 1.0
+ * @version 1.0 asldfjasld;faj;
  */
 public class DataConverter {
 	//Data members
