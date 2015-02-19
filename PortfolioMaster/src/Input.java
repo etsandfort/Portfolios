@@ -19,7 +19,7 @@ public class Input {
 	public ArrayList<Portfolio> readPortfolios(){
 		ArrayList<Portfolio> portfolios = new ArrayList<Portfolio>();
 		try{
-			File file = new File("data/Persons.dat"); //read in the file
+			File file = new File("data/Portfolio.dat"); //read in the file
 			BufferedReader read = new BufferedReader(new FileReader(file));
 
 			String line;
@@ -51,24 +51,44 @@ public class Input {
 		String managerID = portInfo[2];
 		String beneficiaryID = portInfo[3];
 		String[] assetIDList = portInfo[4].split(",");
-		ArrayList<Asset> assetList = new ArrayList<Asset>();
+		
 		if(!beneficiaryID.equalsIgnoreCase("")){
-//			p = new Portfolio(code, )
+			p = new Portfolio(code, searchPerson(ownerID), (Broker) searchPerson(managerID), searchAssets(assetIDList));
+			return p;
+		} else {
+			p = new Portfolio(code, searchPerson(ownerID), (Broker) searchPerson(managerID), searchPerson(beneficiaryID), searchAssets(assetIDList));
+			return p;
 		}
-		return null;
+		
 	}
 	
-	public <T> T searchID(ArrayList<T> list, String id){
-		for(T subject: list){
-			if(((Asset) subject).getCode().equalsIgnoreCase(id) ||((Person) subject).getCode().equalsIgnoreCase(id)){
-				
+	public Person searchPerson(String id){
+		Person subject;
+		for(Person p: readPersons()){
+			
+			if(p.getCode().equalsIgnoreCase(id)){
+				subject=p;
 				return subject;
-			} 
+			} else{
+				
+			}
 		}
 		return null;
 	}
 	
-
+	public ArrayList<Asset> searchAssets(String[] idList){
+		ArrayList<Asset> assetList = new ArrayList<Asset>();
+		for(String id: idList){
+			id = id.split(":")[0];
+			
+			for(Asset a: readAssets()){
+				if(a.getCode().equalsIgnoreCase(id)){
+					assetList.add(a);
+				}
+			}
+		}
+		return assetList;
+	}
 	/**
 	 * Reads in a file of people, located in data/Persons.dat, and adds them into an arraylist of people in the database
 	 * @return persons the list of people
@@ -106,8 +126,8 @@ public class Input {
 		
 		//Defining split parts of each line
 		String[] nameComps = info[2].split(",");
-		String lastName = nameComps[0];
-		String firstName = nameComps[1];	
+		String lastName = nameComps[1];
+		String firstName = nameComps[0];	
 		
 		//parsing an address
 		String[] addressComps = info[3].split(",");
