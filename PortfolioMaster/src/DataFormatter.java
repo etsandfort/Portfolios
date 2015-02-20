@@ -19,13 +19,13 @@ public class DataFormatter {
 	// Data members
 	Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	XStream xmlOut = new XStream();
-	ArrayList<Portfolio> portfolio;
-//	ReportCalculation reportCalc = new ReportCalculation(portfolio);
+//	protected final ReportCalculation reportCalc = new ReportCalculation();
+	
 	
 	/**
 	 * This method prints the Portfolio Summary Report.
 	 */
-	public void printSummaryReport(){
+	public void printSummaryReport(ArrayList<Portfolio> portfolios){
 		System.out.println("Portfolio Summary Report");
 		printThickLine();
 		
@@ -35,15 +35,15 @@ public class DataFormatter {
 		// Prints code, owner, manager, fees, commissions, weighted risk, return, total
 		System.out.printf("%-12s %-25s %-25s %-15s %-15s %-20s %-15s %-15s\n", "Portfolio",
 				"Owner", "Manager", "Fees", "Commissions", "Weighted Risk", "Return", "Total");
-//		for(int i = 0; i < portfolio.size(); i++){
+//		for(int i = 0; i < portfolios.size(); i++){
 		
-//			nameOwner = portfolio.get(i).getOwner().getLastName() + ", " + portfolio.get(i).getOwner().getFirstName();
-//			nameManager = portfolio.get(i).getManager().getLastName() + ", " + portfolio.get(i).getManager().getFirstName();
+//			nameOwner = portfolios.get(i).getOwner().getLastName() + ", " + portfolios.get(i).getOwner().getFirstName();
+//			nameManager = portfolios.get(i).getManager().getLastName() + ", " + portfolios.get(i).getManager().getFirstName();
 //			
 //			System.out.printf("%-12s %-25s %-25d %-15.2d %-15.2d %-20.2d %-15.2d %-15.2d\n", 
-//					portfolio.get(i).getCode(), nameOwner, nameManager, '$' + portfolio.get(i).getTotalFees(), 
-//					portfolio.get(i).getCommission(), portfolio.get(i).getWeightedRisk(),
-//					portfolio.get(i).getReturns(), portfolio.get(i).getTotalValue());
+//					portfolios.get(i).getCode(), nameOwner, nameManager, '$' + portfolios.get(i).getTotalFees(), 
+//					portfolios.get(i).getCommission(), portfolios.get(i).getWeightedRisk(),
+//					portfolios.get(i).getReturns(), portfolios.get(i).getTotalValue());
 //					)
 //		}
 		
@@ -56,7 +56,7 @@ public class DataFormatter {
 	/**
 	 * This method prints the Detailed Report for each portfolio, in order alphabetically by Owner's Last Name
 	 */
-	public void printDetailedReport(){
+	public void printDetailedReport(ArrayList<Portfolio> portfolios){
 		System.out.println("Portfolio Details");
 		printThickLine();
 		
@@ -64,13 +64,13 @@ public class DataFormatter {
 		String nameManager = "";
  		String nameBeneficiary = "none";
  		
-		//for(int i = 0; i < portfolio.size(); i++){
-			// nameOwner = portfolio.get(i).getOwner().getLastName() + ", " + portfolio.get(i).getOwner().getFirstName();
-			// nameManager = portfolio.get(i).getManager().getLastName() + ", " + portfolio.get(i).getManager().getFirstName();
-			// if(portfolio.get(i).getBeneficiary() != null){
-			// 	nameBeneficiary = portfolio.get(i).getBeneficiary().getLastName() + ", " + portfolio.get(i).getBeneficiary().getFirstName();
+		//for(int i = 0; i < portfolios.size(); i++){
+			// nameOwner = portfolios.get(i).getOwner().getLastName() + ", " + portfolios.get(i).getOwner().getFirstName();
+			// nameManager = portfolios.get(i).getManager().getLastName() + ", " + portfolios.get(i).getManager().getFirstName();
+			// if(portfolios.get(i).getBeneficiary() != null){
+			// 	nameBeneficiary = portfolios.get(i).getBeneficiary().getLastName() + ", " + portfolios.get(i).getBeneficiary().getFirstName();
 			// }
-			//System.out.println("Portfolio" + portfolio.get(i).getCode());
+			//System.out.println("Portfolio" + portfolios.get(i).getCode());
 			printThinLine(40);
 			
 			System.out.printf("%-15s %-25s\n", "Owner:", nameOwner);
@@ -79,15 +79,15 @@ public class DataFormatter {
 			System.out.println("Assets");
 			System.out.printf("%-10s %-43s %20s %-5s %17s %15s\n", "Code", "Asset", "Return Rate", "Risk", "Annual Return", "Value");
 			
-//			int numAssets = portfolio.get(i).getAssets().size();
+//			int numAssets = portfolios.get(i).getAssets().size();
 //			
 //			for(int j = 0; j < numAssets; j++)
-//			System.out.printf("%-10s %-43s %20.2d %-5.2d %-1s %16.2d %-1s %14.2d\n", portfolio.get(i).getCode(), 
-//					portfolio.get(i).getAssets().get(j).getLabel(), portfolio.get(i).getAssets().get(j).getRate() + "%", 
-//					portfolio.get(i).getAssets().get(j).getRisk(), "$", portfolio.get(i).getAssets().get(j).getAnnualReturn(), 
-//					"$", portfolio.get(i).getAssets().get(j).getValue());
+//			System.out.printf("%-10s %-43s %20.2d %-5.2d %-1s %16.2d %-1s %14.2d\n", portfolios.get(i).getCode(), 
+//					portfolios.get(i).getAssets().get(j).getLabel(), portfolios.get(i).getAssets().get(j).getRate() + "%", 
+//					portfolios.get(i).getAssets().get(j).getRisk(), "$", portfolios.get(i).getAssets().get(j).getAnnualReturn(), 
+//					"$", portfolios.get(i).getAssets().get(j).getValue());
 //			}
-//			System.out.printf("%48s %-7s %-15d %-15d %20d\n", "", "Totals:", portfolio.get(i).getWeightedRisk(), portfolio.get(i).getTotalAnnualReturn(), portfolio.get(i).getTotalValue());
+//			System.out.printf("%48s %-7s %-15d %-15d %20d\n", "", "Totals:", portfolios.get(i).getWeightedRisk(), portfolios.get(i).getTotalAnnualReturn(), portfolios.get(i).getTotalValue());
 	}
 	
 	/**

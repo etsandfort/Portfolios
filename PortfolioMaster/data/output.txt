@@ -132,11 +132,7 @@ Owner:          Palin, Sarah
 Manager:        Carey, Drew
 Beneficiary:    Ghallager, Trace
 Assets 
-<<<<<<< HEAD
 Code       Asset                           Return Rate          Risk  Annual Return          Value   
-=======
-Code       Asset                           Return Rate          Risk  Annual Return          Value
->>>>>>> origin/master
 RA1K3S		Microsoft Corp						1.86%        	.38 	$ 116538.42		$  6265440.00
                                                        --------------------------------------------
 												Totals			.38	    $ 116538.42	   	$  6265440.00
