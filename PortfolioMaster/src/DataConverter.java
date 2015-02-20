@@ -7,21 +7,21 @@
  */
 public class DataConverter {
 	//Data members
-	private Input input = new Input();
+	private DataReader input = new DataReader();
 	private Output output = new Output();
 
 	/**
 	 * Obtains the input
 	 * @return the input
 	 */
-	public Input getInput() {
+	public DataReader getInput() {
 		return input;
 	}
 
 	/**Sets the new input
 	 * @param input the input to set
 	 */
-	public void setInput(Input input) {
+	public void setInput(DataReader input) {
 		this.input = input;
 	}
 
@@ -45,13 +45,14 @@ public class DataConverter {
 	 * @param args the set of arguments provided at runtime
 	 */
 	public static void main(String args[]){
-		DataConverter dc = new DataConverter();
+		DataReader dc = new DataReader();
 		//Converting the input files to .json and .xml output files
 //		dc.getOutput().outputJsonAssets("data/Assets.json", dc.getInput().readAssets());
 //		dc.getOutput().outputXmlAssets("data/Assets.xml", dc.getInput().readAssets());
 //		dc.getOutput().outputJsonPersons("data/Persons.json", dc.getInput().readPersons());
 //		dc.getOutput().outputXmlPersons("data/Persons.xml", dc.getInput().readPersons());
-		dc.getOutput().printSummaryReport();
-		dc.getOutput().printDetailedReport();
+		dc.readPortfolios();
+		System.out.println("Completed");
 	}
 }
+ 

@@ -21,8 +21,22 @@ public class Deposit extends Asset{
 		setLabel(label);
 		setType(type);
 		setApr(apr);
+		setRiskValue(0);
+		//System.out.println("asset " + label + " 's risk value is " + getRiskValue());
 	}
-
+	public double computeAnnualReturns(double given){
+		double anReturns = 0.0;
+		double aPY;
+		aPY = Math.pow(Math.E, this.apr) - 1;
+		anReturns = aPY * given;
+		return anReturns;
+	}
+	
+	public double computeValueOfAsset(double given){
+		double value = 0.0;
+		value = given;
+		return value;
+	}
 	/**
 	 * Obtains the apr
 	 * @return the apr

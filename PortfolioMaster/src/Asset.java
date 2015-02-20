@@ -4,10 +4,37 @@
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
  * @version 1.1
  */
-public class Asset {
+	public  class Asset {
 	private String code;
 	private String label;
 	private String type;
+	private double riskValue;
+	private double valueValue;
+	private double valueOfAsset;
+	
+	public double computeAnnualReturns(double given) {
+		return 0;
+	}
+	
+	 public double computeValueOfAsset(double given) {
+		return 0;
+	}
+	
+	public double getValueValue() {
+		return valueValue;
+	}
+
+	public void setValueValue(double valueValue) {
+		this.valueValue = valueValue;
+	}
+
+	public double getRiskValue() {
+		return riskValue;
+	}
+
+	public void setRiskValue(double riskValue) {
+		this.riskValue = riskValue;
+	}
 
 	/**
 	 * Obtains the code

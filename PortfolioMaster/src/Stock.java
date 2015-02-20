@@ -33,8 +33,21 @@ public class Stock extends Asset {
 		setSharePrice(share);
 		setSymbol(symbol);
 		setBeta(beta);
+		setRiskValue(beta);
+		setValueValue(share);
 	}
-
+	public double computeAnnualReturns(double given){
+		double anReturns = 0.0;
+		anReturns = this.quarterlyDividend * 4 + this.baseRateOfReturn * given;
+		
+		return anReturns;
+	}
+	public double computeValueOfAsset(double given){
+		double value = 0;
+		value = given * sharePrice;
+		return value;
+	}
+	
 	/**
 	 * Obtains the baseRateOfReturn
 	 * @return the baseRateOfReturn

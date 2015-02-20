@@ -30,8 +30,20 @@ public class Investment extends Asset{
 		setQuarterlyDividend(quart);
 		setOmega(omega);
 		setValue(value);
+		setRiskValue(omega);
+		setValueValue(value);
 	}
-
+	public double computeAnnualReturns(double given){
+	double anReturns = 0.0;
+	anReturns = (this.baseRateOfReturn * this.value + this.quarterlyDividend * 4) * given / 100;
+	return anReturns;
+	}
+	
+	public double computeValueOfAsset(double given){
+		double value = 0;
+		value = value * given / 100;
+		return value;
+	}
 	/**
 	 * Obtains the quarterlyDividend
 	 * @return the quarterlyDividend

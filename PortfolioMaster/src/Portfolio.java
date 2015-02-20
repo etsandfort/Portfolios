@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 /**
  * 
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
@@ -10,7 +11,7 @@ public class Portfolio {
 	private Person owner;
 	private Broker manager;
 	private Person beneficiary;
-	private ArrayList<Asset> assets;
+	private HashMap<Asset, Double> assets;
 	
 	/**Portfolio constructor without beneficiary
 	 * @param code
@@ -19,11 +20,28 @@ public class Portfolio {
 	 * @param assets
 	 */
 	public Portfolio(String code, Person owner, Broker manager,
-			ArrayList<Asset> assets) {
+			HashMap<Asset, Double> assets) {
 		super();
 		this.code = code;
 		this.owner = owner;
 		this.manager = manager;
+		this.assets = assets;
+	}
+	
+	/** Portfolio Constructor, overloaded to take in a beneficiary
+	 * @param code
+	 * @param owner
+	 * @param manager
+	 * @param beneficiary
+	 * @param assets
+	 */
+	public Portfolio(String code, Person owner, Broker manager,
+			Person beneficiary, HashMap<Asset, Double> assets) {
+		super();
+		this.code = code;
+		this.owner = owner;
+		this.manager = manager;
+		this.beneficiary = beneficiary;
 		this.assets = assets;
 	}
 
@@ -83,36 +101,9 @@ public class Portfolio {
 		this.beneficiary = beneficiary;
 	}
 
-	/**
-	 * @return the assets
-	 */
-	public ArrayList<Asset> getAssets() {
-		return assets;
-	}
+	
 
-	/**
-	 * @param assets the assets to set
-	 */
-	public void setAssets(ArrayList<Asset> assets) {
-		this.assets = assets;
-	}
-
-	/** Portfolio Constructor, overloaded to take in a beneficiary
-	 * @param code
-	 * @param owner
-	 * @param manager
-	 * @param beneficiary
-	 * @param assets
-	 */
-	public Portfolio(String code, Person owner, Broker manager,
-			Person beneficiary, ArrayList<Asset> assets) {
-		super();
-		this.code = code;
-		this.owner = owner;
-		this.manager = manager;
-		this.beneficiary = beneficiary;
-		this.assets = assets;
-	}
+	
 	
 	
 	
