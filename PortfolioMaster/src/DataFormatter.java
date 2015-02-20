@@ -50,7 +50,7 @@ public class DataFormatter {
 		// prints line under numerical values, acting as a divider between individual values and totals
 		printThinLine(150);
 		// print totals for fees, commissions, return, total
-//		System.out.printf("%40s %-11s %-15d %-15d %20s %-15d %-15d\n", "", "Totals:", reportCalc.getTotalFees(), reportCalc.getTotalCommission(), "", reportCalc.getTotalReturn(), reportCalc.getTotalValue());
+//		System.out.printf("%40s %-11s %-15d %-15d %20s %-15d %-15d\n", "", "Totals:", this.getTotalFees(), this.getTotalCommission(), "", this.getTotalReturn(), this.getTotalValue());
 	}
 	
 	/**
