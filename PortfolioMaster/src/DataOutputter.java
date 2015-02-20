@@ -7,21 +7,21 @@
  */
 public class DataOutputter {
 	//Data members
-	private Input input = new Input();
+	private DataReader input = new DataReader();
 	private DataFormatter format = new DataFormatter();
 
 	/**
 	 * Obtains the input
 	 * @return the input
 	 */
-	public Input getInput() {
+	public DataReader getInput() {
 		return input;
 	}
 
 	/**Sets the new input
 	 * @param input the input to set
 	 */
-	public void setInput(Input input) {
+	public void setInput(DataReader input) {
 		this.input = input;
 	}
 
