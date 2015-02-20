@@ -8,7 +8,7 @@
 	private String code;
 	private String label;
 	private String type;
-	private double riskValue;
+	protected double riskValue;
 	private double valueValue;
 	private double valueOfAsset;
 	

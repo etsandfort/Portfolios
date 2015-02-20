@@ -11,7 +11,14 @@ public class Portfolio {
 	private Person owner;
 	private Broker manager;
 	private Person beneficiary;
-	private HashMap<Asset, Double> assets;
+	private HashMap<Asset, Double> assetNumeric;
+	private HashMap<Asset,Double> risks;
+	private double totalRisks;
+	private HashMap<Asset,Double> values;
+	private double totalValue;
+	private HashMap<Asset,Double>annualReturns;
+	private double brokerFees;
+	private double commissionFees;
 	
 	/**Portfolio constructor without beneficiary
 	 * @param code
@@ -21,13 +28,87 @@ public class Portfolio {
 	 */
 	public Portfolio(String code, Person owner, Broker manager,
 			HashMap<Asset, Double> assets) {
-		super();
 		this.code = code;
 		this.owner = owner;
 		this.manager = manager;
-		this.assets = assets;
+		this.assetNumeric = assets;
+		calculateRisks();
+		calculateValues();
+		calculateTotalValue();
+		calculateTotalRisks();
+		calculateAnnualReturns();
+		calculateBrokerFees();
+		calculateCommissionFee();
 	}
 	
+	
+	
+	private void calculateCommissionFee() {
+		double cFee = 0.0;
+		for(Double value : annualReturns.values()){
+			if(this.manager.getType().equalsIgnoreCase("E")){
+				cFee += (.05 * value);
+			}
+			else{
+				cFee += (.02 * value);
+			}
+		}
+		this.commissionFees = cFee;
+		
+	}
+
+
+
+	private void calculateBrokerFees() {
+			double bFees;
+			if(this.manager.getType().equalsIgnoreCase("E")){
+				 bFees = (10 * annualReturns.size());
+			}
+			else{
+				 bFees = (50 * annualReturns.size());
+			}
+			this.brokerFees = bFees;
+		
+		
+	}
+
+
+
+	private void calculateAnnualReturns() {
+		annualReturns = new HashMap<Asset,Double>();
+		System.out.println("For portfolio : " + this.code);
+		for(Asset asset: assetNumeric.keySet()){
+			annualReturns.put(asset, asset.computeAnnualReturns(assetNumeric.get(asset)));
+			System.out.println("Here is the annual return for "+ asset.getLabel() + " is " + asset.computeAnnualReturns(assetNumeric.get(asset)));
+		}
+		
+		System.out.println();
+		
+	}
+
+
+
+	public double getTotalValue() {
+		return totalValue;
+	}
+
+	public void calculateTotalRisks(){
+		double tRisks = 0;
+		for(Asset asset : risks.keySet()){
+			tRisks += (risks.get(asset) * values.get(asset))/this.totalValue;
+		}
+		//System.out.println(" Here is the portfolio " + this.code + " Here is the total risk " + tRisks);
+		this.totalRisks = tRisks;
+	}
+	public void calculateTotalValue() {
+		double totalVal = 0;
+		for(Double value: values.values()){
+			totalVal += value;
+		}
+		//System.out.println("Total value for portfolio " + this.code + " is " +totalVal);
+		this.totalValue = totalVal;
+	}
+
 	/** Portfolio Constructor, overloaded to take in a beneficiary
 	 * @param code
 	 * @param owner
@@ -37,14 +118,38 @@ public class Portfolio {
 	 */
 	public Portfolio(String code, Person owner, Broker manager,
 			Person beneficiary, HashMap<Asset, Double> assets) {
-		super();
-		this.code = code;
-		this.owner = owner;
-		this.manager = manager;
+		this(code,owner,manager,assets);
 		this.beneficiary = beneficiary;
-		this.assets = assets;
+		
 	}
-
+	
+	
+	private void calculateRisks(){
+		risks = new HashMap<Asset,Double>();
+		
+		for(Asset asset: this.assetNumeric.keySet()){
+//			System.out.println("Here is the asset " + asset.getLabel());
+//			System.out.println("Here is the risk value " + asset.getRiskValue());
+			this.risks.put(asset, asset.getRiskValue());
+		}
+		
+	}
+	
+	private void calculateValues(){
+		values = new HashMap<Asset,Double>();
+		for(Asset asset: this.assetNumeric.keySet()){
+			this.values.put(asset, asset.computeValueOfAsset(assetNumeric.get(asset)));
+		}
+		//System.out.println(values);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * @return the code
 	 */

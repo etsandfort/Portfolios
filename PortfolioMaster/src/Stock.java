@@ -28,23 +28,34 @@ public class Stock extends Asset {
 		setCode(code);
 		setLabel(label);
 		setType(type);
-		setBaseRateOfReturn(rate);
-		setQuarterlyDividend(quart);
+		//setBaseRateOfReturn(rate);
+		//setQuarterlyDividend(quart);//quick fix bad 
+		setBaseRateOfReturn(quart);
+		setQuarterlyDividend(rate);
 		setSharePrice(share);
 		setSymbol(symbol);
 		setBeta(beta);
 		setRiskValue(beta);
 		setValueValue(share);
 	}
+	public void setRiskValue(double risk){
+		this.riskValue = risk;
+	}
+	public double getRiskValue(){
+		return riskValue;
+	}
+	
 	public double computeAnnualReturns(double given){
 		double anReturns = 0.0;
-		anReturns = this.quarterlyDividend * 4 + this.baseRateOfReturn * given;
-		
+		//System.out.println("Here is the share price " + this.sharePrice);
+		//System.out.println("Here is the quartDiv " + this.quarterlyDividend);
+		//System.out.println("Here is the baseR " + this.baseRateOfReturn);
+		//System.out.println("Here is what is given " + given);
+		anReturns = this.quarterlyDividend * 4 + this.baseRateOfReturn/100 * given * this.sharePrice ; //look into this for the decimals
 		return anReturns;
 	}
 	public double computeValueOfAsset(double given){
-		double value = 0;
-		value = given * sharePrice;
+		double value = given * sharePrice;
 		return value;
 	}
 	

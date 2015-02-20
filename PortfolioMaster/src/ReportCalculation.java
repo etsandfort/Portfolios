@@ -23,7 +23,10 @@ public class ReportCalculation {
 //		this.totalValue = this.calculateTotalValue(portfoliosGiven);
 //	}
 //	
-//	
+//	needs to get to arraylist of portfolios from somewhere
+	public ReportCalculation(){
+		
+	}
 //	
 //	
 //	public double getTotalCommission() {

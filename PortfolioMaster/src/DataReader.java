@@ -34,7 +34,7 @@ public class DataReader {
 			}
 			read.close();
 		} catch(Exception e){
-			System.out.println(e);
+			e.printStackTrace();
 		}
 		return portfolios;
 	}

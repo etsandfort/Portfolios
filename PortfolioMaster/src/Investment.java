@@ -33,15 +33,20 @@ public class Investment extends Asset{
 		setRiskValue(omega);
 		setValueValue(value);
 	}
+
+	
 	public double computeAnnualReturns(double given){
-	double anReturns = 0.0;
-	anReturns = (this.baseRateOfReturn * this.value + this.quarterlyDividend * 4) * given / 100;
+	double anReturns = (this.baseRateOfReturn * this.value + this.quarterlyDividend * 4) * given / 10000;
 	return anReturns;
 	}
-	
+	public void setRiskValue(double risk){
+		this.riskValue = risk;
+	}
+	public double getRiskValue(){
+		return riskValue;
+	}
 	public double computeValueOfAsset(double given){
-		double value = 0;
-		value = value * given / 100;
+		double value = this.value * given / 100;
 		return value;
 	}
 	/**

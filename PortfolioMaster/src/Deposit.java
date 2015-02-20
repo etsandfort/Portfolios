@@ -27,14 +27,13 @@ public class Deposit extends Asset{
 	public double computeAnnualReturns(double given){
 		double anReturns = 0.0;
 		double aPY;
-		aPY = Math.pow(Math.E, this.apr) - 1;
-		anReturns = aPY * given;
+		aPY = (Math.pow(Math.E, this.apr/100) - 1);
+		anReturns = aPY * given ;
 		return anReturns;
 	}
 	
 	public double computeValueOfAsset(double given){
-		double value = 0.0;
-		value = given;
+		double value = given;
 		return value;
 	}
 	/**
