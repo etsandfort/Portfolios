@@ -24,7 +24,6 @@ public class Person {
 	 */
 	public Person(String code, String lastName, String firstName,
 			Address address, ArrayList<String> email) {
-		super();
 		this.code = code;
 		this.firstName = firstName;
 		this.lastName = lastName;
