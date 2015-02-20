@@ -3,14 +3,14 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 /**
- * Input.java
+ * DataReader.java
  * RAIK 184H
  * This class is responsible for reading in and parsing asset and people objects
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
  * @version 2.0
  *
  */
-public class Input {
+public class DataReader {
 	
 	/**
 	 * Reads in a file of portfolios, located at data/Persons.dat, and creates an arraylist of portfolios
@@ -52,7 +52,7 @@ public class Input {
 		String beneficiaryID = portInfo[3];
 		String[] assetIDList = portInfo[4].split(",");
 		
-		if(!beneficiaryID.equalsIgnoreCase("")){
+		if(beneficiaryID.equalsIgnoreCase("")){
 			p = new Portfolio(code, searchPerson(ownerID), (Broker) searchPerson(managerID), searchAssets(assetIDList));
 			return p;
 		} else {
@@ -65,12 +65,9 @@ public class Input {
 	public Person searchPerson(String id){
 		Person subject;
 		for(Person p: readPersons()){
-			
 			if(p.getCode().equalsIgnoreCase(id)){
 				subject=p;
 				return subject;
-			} else{
-				
 			}
 		}
 		return null;
@@ -145,7 +142,7 @@ public class Input {
 		//determining what kind of person the person is
 		if(info[1].equalsIgnoreCase("")){
 			p = new Person(info[0],firstName, lastName,a, email);
-			return p;
+			
 		} else{
 			String[] secInfo = info[1].split(",");
 			String sec = secInfo[1];
@@ -156,8 +153,9 @@ public class Input {
 				type = "J";
 			}
 			p = new Broker(info[0], type, sec,firstName, lastName, a, email);
-			return p;
+			
 		}
+		return p;
 	}
 
 	/**
@@ -202,20 +200,21 @@ public class Input {
 		if(info[1].equalsIgnoreCase("D")){
 			type = "D";
 			a = new Deposit(info[0], info[2], type, Double.parseDouble(info[3]));
-			return a;
+			
 		} else if(info[1].equalsIgnoreCase("S")){
 			type = "S";
 			a = new Stock(info[0], info[2], type, Double.parseDouble(info[3]),Double.parseDouble(info[4]),
 					Double.parseDouble(info[7]), info[6],Double.parseDouble(info[5]));
-			return a;
+			
 		} else if(info[1].equalsIgnoreCase("P")){
 			type = "P";
 			a = new Investment(info[0], info[2], type, Double.parseDouble(info[3]), Double.parseDouble(info[4]),
 					Double.parseDouble(info[5]), Double.parseDouble(info[6]));
-			return a;
+			
 		} else{
 			a = new Asset();
-			return a;
+			
 		}
+		return a;
 	}
 }
