@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-
 /**
  * 
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
@@ -13,11 +12,13 @@ public class Portfolio {
 	private Broker manager;
 	private Person beneficiary;
 	private HashMap<Asset, Double> assetNumeric;
+	private HashMap<Asset,double[]> assetList;
 	private HashMap<Asset,Double> risks;
 	private double totalRisks;
 	private HashMap<Asset,Double> values;
 	private double totalValue;
 	private HashMap<Asset,Double>annualReturns;
+	private double totalAnnualReturns;
 	private double brokerFees;
 	private double commissionFees;
 	
@@ -38,27 +39,102 @@ public class Portfolio {
 		calculateTotalValue();
 		calculateTotalRisks();
 		calculateAnnualReturns();
+		calculateTotalAnnualReturns();
 		calculateBrokerFees();
 		calculateCommissionFee();
+		condenseHashMap(risks,values,annualReturns);
 	}
 	
+	/** Portfolio Constructor, overloaded to take in a beneficiary
+	 * @param code
+	 * @param owner
+	 * @param manager
+	 * @param beneficiary
+	 * @param assets
+	 */
+	public Portfolio(String code, Person owner, Broker manager,
+			Person beneficiary, HashMap<Asset, Double> assets) {
+		this(code,owner,manager,assets);
+		this.beneficiary = beneficiary;
+	}
+	
+	private void condenseHashMap(HashMap<Asset, Double> risksGiven,
+			HashMap<Asset, Double> valuesGiven,
+			HashMap<Asset, Double> annualReturnsGiven) {
+		assetList = new HashMap<Asset,double[]>();
+		for(Asset asset: risksGiven.keySet()){
+			assetList.put(asset, new double[]{risksGiven.get(asset),annualReturnsGiven.get(asset),valuesGiven.get(asset)});
+		}
+	}
+
+	/**
+	 * @return the assetList
+	 */
+	public HashMap<Asset, double[]> getAssetList() {
+		return assetList;
+	}
+
+	/**
+	 * @param assetList the assetList to set
+	 */
+	public void setAssetList(HashMap<Asset, double[]> assetList) {
+		this.assetList = assetList;
+	}
+	
+	/**
+	 * calculates the total annual returns for the portfolio
+	 */
+	private void calculateTotalAnnualReturns() {
+		double tAR = 0.0;
+		for(Double annReturn : this.annualReturns.values()){
+			tAR += annReturn;
+		}
+		setTotalAnnualReturns(tAR);
+	}
+	
+	/**
+	 * calculates the individual risks
+	 */
+	 void calculateRisks(){
+		risks = new HashMap<Asset,Double>();
+		for(Asset asset: this.assetNumeric.keySet()){ //for each asset in the asset numeric
+			this.risks.put(asset, asset.getRiskValue()); //gets asset risk value
+		}
+	}
+	
+	 /**
+	  * calculates the values of the asset
+	  */
+	private void calculateValues(){
+		values = new HashMap<Asset,Double>();
+		for(Asset asset: this.assetNumeric.keySet()){ //for each asset
+			this.values.put(asset, asset.computeValueOfAsset(assetNumeric.get(asset)));
+		}
+	}
+	
+	/**
+	 * calculates the commission fees for the portfolio
+	 */
 	private void calculateCommissionFee() {
 		double cFee = 0.0;
-		for(Double value : annualReturns.values()){
-			if(this.manager.getType().equalsIgnoreCase("E")){
-				cFee += (.05 * value);
+		for(Double comValue : annualReturns.values()){
+			if(this.manager.getType().equalsIgnoreCase("E")){ //if manager of portfolio is an expert
+				cFee += (.05 * comValue);// 5% commission
 			}
 			else{
-				cFee += (.02 * value);
+				cFee += (.02 * comValue);//2% commission
 			}
 		}
 		this.commissionFees = cFee;
 	}
 
+	/**
+	 * calculates the broker fees for portfolio
+	 */
 	void calculateBrokerFees() {
 			double bFees;
-			if(this.manager.getType().equalsIgnoreCase("E")){
-				 bFees = (10 * annualReturns.size());
+			if(this.manager.getType().equalsIgnoreCase("E")){ //if the manager is an expert
+				 bFees = (10 * annualReturns.size()); //10 times 
 			}
 			else{
 				 bFees = (50 * annualReturns.size());
@@ -66,17 +142,27 @@ public class Portfolio {
 			this.brokerFees = bFees;
 	}
 
+	/**
+	 * calculates the annual returns for the portfolios
+	 */
 	private void calculateAnnualReturns() {
 		annualReturns = new HashMap<Asset,Double>();
 		for(Asset asset: assetNumeric.keySet()){
 			annualReturns.put(asset, asset.computeAnnualReturns(assetNumeric.get(asset)));
-		}
+		}	
 	}
-
+	
+	/**
+	 * 
+	 * @return totalValue
+	 */
 	public double getTotalValue() {
 		return totalValue;
 	}
-
+	
+	/**
+	 * calculates the total aggregate risk for the portfolio
+	 */
 	public void calculateTotalRisks(){
 		double tRisks = 0;
 		for(Asset asset : risks.keySet()){
@@ -190,43 +276,17 @@ public class Portfolio {
 		this.totalValue = totalValue;
 	}
 
+
+
 	public void calculateTotalValue() {
 		double totalVal = 0;
 		for(Double value: values.values()){
 			totalVal += value;
 		}
+		
 		this.totalValue = totalVal;
 	}
 
-	/** Portfolio Constructor, overloaded to take in a beneficiary
-	 * @param code
-	 * @param owner
-	 * @param manager
-	 * @param beneficiary
-	 * @param assets
-	 */
-	public Portfolio(String code, Person owner, Broker manager,
-			Person beneficiary, HashMap<Asset, Double> assets) {
-		this(code,owner,manager,assets);
-		this.beneficiary = beneficiary;
-	}
-	
-	 void calculateRisks(){
-		risks = new HashMap<Asset,Double>();
-		
-		for(Asset asset: this.assetNumeric.keySet()){
-
-			this.risks.put(asset, asset.getRiskValue());
-		}
-	}
-	
-	private void calculateValues(){
-		values = new HashMap<Asset,Double>();
-		for(Asset asset: this.assetNumeric.keySet()){
-			this.values.put(asset, asset.computeValueOfAsset(assetNumeric.get(asset)));
-		}
-	}
-	
 	/**
 	 * @return the code
 	 */
@@ -281,5 +341,21 @@ public class Portfolio {
 	 */
 	public void setBeneficiary(Person beneficiary) {
 		this.beneficiary = beneficiary;
+	}
+
+
+	/**
+	 * @return the totalAnnualReturns
+	 */
+	public double getTotalAnnualReturns() {
+		return totalAnnualReturns;
+	}
+
+
+	/**
+	 * @param totalAnnualReturns the totalAnnualReturns to set
+	 */
+	public void setTotalAnnualReturns(double totalAnnualReturns) {
+		this.totalAnnualReturns = totalAnnualReturns;
 	}
 }

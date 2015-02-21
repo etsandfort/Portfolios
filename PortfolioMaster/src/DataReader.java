@@ -77,12 +77,14 @@ public class DataReader {
 	public HashMap<Asset, Double> searchAssets(String[] idList){
 		HashMap<Asset,Double> assetList = new HashMap<Asset,Double>();
 		for(String id: idList){
-			double value = Double.parseDouble(id.split(":")[1]);
-			id = id.split(":")[0];
+			if(!id.equalsIgnoreCase(" ")) {
+				double value = Double.parseDouble(id.split(":")[1]);
+				id = id.split(":")[0];
 			
-			for(Asset a: readAssets()){
-				if(a.getCode().equalsIgnoreCase(id)){
-					assetList.put(a,value);
+				for(Asset a: readAssets()){
+					if(a.getCode().equalsIgnoreCase(id)){
+						assetList.put(a,value);
+					}
 				}
 			}
 		}

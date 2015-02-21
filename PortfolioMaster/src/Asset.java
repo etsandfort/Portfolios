@@ -9,32 +9,43 @@
 	private String label;
 	private String type;
 	protected double riskValue;
-	private double valueValue;
-	private double valueOfAsset;
+	protected double baseRate;
 	
+	/**
+	 * 
+	 * @param given
+	 * @return double - returns the double of the annual returns
+	 */
 	public double computeAnnualReturns(double given) {
 		return 0;
 	}
 	
+	/**
+	 * 
+	 * @param given
+	 * @return double- returns the double of the value of the asset
+	 */
 	 public double computeValueOfAsset(double given) {
 		return 0;
 	}
 	
-	public double getValueValue() {
-		return valueValue;
-	}
+	
 
-	public void setValueValue(double valueValue) {
-		this.valueValue = valueValue;
-	}
-
+	/**
+	 * @return the riskValue
+	 */
 	public double getRiskValue() {
 		return riskValue;
 	}
 
+	/**
+	 * @param riskValue the riskValue to set
+	 */
 	public void setRiskValue(double riskValue) {
 		this.riskValue = riskValue;
 	}
+
+	
 
 	/**
 	 * Obtains the code
@@ -79,5 +90,19 @@
 	 */
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	/**
+	 * @return the baseRate
+	 */
+	public double getBaseRate() {
+		return baseRate;
+	}
+
+	/**
+	 * @param baseRate the baseRate to set
+	 */
+	public void setBaseRate(double baseRate) {
+		this.baseRate = baseRate;
 	}
 }
