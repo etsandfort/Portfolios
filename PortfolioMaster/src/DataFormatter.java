@@ -41,7 +41,7 @@ public class DataFormatter {
 //			nameManager = portfolios.get(i).getManager().getLastName() + ", " + portfolios.get(i).getManager().getFirstName();
 //			
 //			System.out.printf("%-12s %-25s %-25d %-15.2d %-15.2d %-20.2d %-15.2d %-15.2d\n", 
-//					portfolios.get(i).getCode(), nameOwner, nameManager, '$' + portfolios.get(i).getTotalFees(), 
+//					portfolios.get(i).getCode(), nameOwner, nameManager, '$' + portfolios.get(i).getBrokerFees(), 
 //					portfolios.get(i).getCommission(), portfolios.get(i).getWeightedRisk(),
 //					portfolios.get(i).getReturns(), portfolios.get(i).getTotalValue());
 //					)
