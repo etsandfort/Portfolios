@@ -24,14 +24,14 @@ public class Stock extends Asset {
 	 * @param symbol stock symbol
 	 * @param beta stock beta measure
 	 */
-	public Stock(String code, String label, String type, double rate, double quart, double share,String symbol, double beta){
+	public Stock(String code, String label, String type, double quart, double rate, double share,String symbol, double beta){
 		setCode(code);
 		setLabel(label);
 		setType(type);
 		//setBaseRateOfReturn(rate);
 		//setQuarterlyDividend(quart);//quick fix bad 
-		setBaseRateOfReturn(quart);
-		setQuarterlyDividend(rate);
+		setBaseRateOfReturn(rate);
+		setQuarterlyDividend(quart);
 		setSharePrice(share);
 		setSymbol(symbol);
 		setBeta(beta);
@@ -47,11 +47,7 @@ public class Stock extends Asset {
 	
 	public double computeAnnualReturns(double given){
 		double anReturns = 0.0;
-		//System.out.println("Here is the share price " + this.sharePrice);
-		//System.out.println("Here is the quartDiv " + this.quarterlyDividend);
-		//System.out.println("Here is the baseR " + this.baseRateOfReturn);
-		//System.out.println("Here is what is given " + given);
-		anReturns = this.quarterlyDividend * 4 + this.baseRateOfReturn/100 * given * this.sharePrice ; //look into this for the decimals
+		anReturns = this.quarterlyDividend * 4 + this.baseRateOfReturn * given * this.sharePrice ; //look into this for the decimals
 		return anReturns;
 	}
 	public double computeValueOfAsset(double given){
@@ -71,7 +67,7 @@ public class Stock extends Asset {
 	 * @param baseRateOfReturn the baseRateOfReturn to set
 	 */
 	public void setBaseRateOfReturn(double baseRateOfReturn) {
-		this.baseRateOfReturn = baseRateOfReturn;
+		this.baseRateOfReturn = baseRateOfReturn/100; //changes it to a percent
 	}
 
 	/**

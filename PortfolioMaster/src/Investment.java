@@ -22,7 +22,7 @@ public class Investment extends Asset{
 	 * @param omega omega measure
 	 * @param value total value
 	 */
-	public Investment(String code, String label, String type, double rate,double quart,  double omega, double value){
+	public Investment(String code, String label, String type, double quart,double rate,  double omega, double value){
 		setCode(code);
 		setLabel(label);
 		setType(type);
@@ -35,8 +35,8 @@ public class Investment extends Asset{
 	}
 
 	
-	public double computeAnnualReturns(double given){
-	double anReturns = (this.baseRateOfReturn * this.value + this.quarterlyDividend * 4) * given / 10000;
+	public double computeAnnualReturns(double PercentageOwned){
+	double anReturns = (this.baseRateOfReturn * this.value + this.quarterlyDividend * 4) * PercentageOwned / 100;
 	return anReturns;
 	}
 	public void setRiskValue(double risk){
@@ -76,7 +76,7 @@ public class Investment extends Asset{
 	 * @param baseRateOfReturn the baseRateOfReturn to set
 	 */
 	public void setBaseRateOfReturn(double baseRateOfReturn) {
-		this.baseRateOfReturn = baseRateOfReturn;
+		this.baseRateOfReturn = baseRateOfReturn/100; //changes to percentage
 	}
 
 	/**
