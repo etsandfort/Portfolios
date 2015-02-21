@@ -15,14 +15,16 @@ public class ReportCalculation {
 	private double totalReturn;
 	private double totalValue;
 	private  ArrayList<Portfolio> portfolioSet;
+	private FileOutputter format;
 	
-	public ReportCalculation(ArrayList<Portfolio>portfoliosGiven) {
+	public ReportCalculation(ArrayList<Portfolio> portfoliosGiven) {
 		this.portfolioSet = portfoliosGiven;
 		sortList(portfoliosGiven);
 		this.totalCommission = this.calculateTotalCommissions(portfoliosGiven);
 		this.totalFees = this.calculateTotalFees(portfoliosGiven);
 		this.totalReturn = this.calculateTotalReturns(portfoliosGiven);
 		this.totalValue = this.calculateTotalValue(portfoliosGiven);
+		format = new FileOutputter();
 	}
 	
 	public ArrayList<Portfolio> sortList(ArrayList<Portfolio> list){
@@ -89,5 +91,4 @@ public class ReportCalculation {
 		return tReturns;
 		
 	}
-
 }
