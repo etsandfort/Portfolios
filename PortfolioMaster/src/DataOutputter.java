@@ -46,8 +46,6 @@ public class DataOutputter {
 	 */
 	public static void main(String args[]){
 		DataOutputter dataOut = new DataOutputter();
-				
-		dataOut.getFormat().printSummaryReport();
-		dataOut.getFormat().printDetailedReport();
+		// do the stuff
 	}
 }
