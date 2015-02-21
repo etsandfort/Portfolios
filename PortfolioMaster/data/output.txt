@@ -1,23 +1,23 @@
 	Portfolio Summary Report
 ===============================================================================================================================
 Portfolio  	Owner					Manager				Fees		Commissions		Weighted Risk         Return          Total
-AK			Brady, Wayne		Claus, Santa		$10.00			405.73			.38					8114.65			2317500.00		
-AG			Coulter, Leanne  	Pinkerton,Jim		$20.00			370000.774		.999999975			7400015.48		200000500.00
-AI			Diablo, L.			Melcher, Jacob		$20.00			13280			0.00				265600			11000000
-AH			Ghallager, Trace	Roberts, John		$100.00			12.58			0.00				628.945			50001.00
-AB			Krum, Viktor		Granger, Hermione	$10.00			89562.8485		.13					1791256.97		81907275.78	
-AM			Limbaugh, Rush		Mochrie,Colin		$20.00			280977.6535		1.638				5619553.07		102312500
-AF			Limbaugh, Rush		Palin, Sarah		$50.00			619.3978		0.00				30969.89		1000000.00			
-AD			Malfoy, Draco		Weasley, Ginny		$100.00			11659.6534		.5157				582982.67		606810.65	
-AE			O'Reilley, Bill		Hannity, Sean		$20.00			138288.2135		1.69				2765764.27		49394800
-AL			Palin, Sarah		Carey, Drew			$50.00			2330.7684		.38					116538.42		6565440	
-AO			Potter, Harry		Claus,Santa			$30.00			904088.7684		.9859				18081775.36		508340686.6
-AJ			Reaper, Grimm		Stiles, Ryan		$50.00			8.79			0.00				439.50			15000.00	
-AC			Riddle, Tom			Centaur, Firenze	$50.00			64.6496			1.69				3232.48			54320.75
-AN			Stiles, Ryan		Mochrie, Colin		$10.00			10197.7985		0.31				203955.97		6450000.00			
-AA			Weasley, Ron		Potter, Harry		$100.00			13179.3946		.5189				658969.73		683552.07			
+AK			Brady, Wayne		Claus, Santa		$10.00			40556.42		.38					811128.40		2317500.00		
+AG			Coulter, Leanne  	Pinkerton,Jim		$20.00			350400.77		.999999975			7008015.48		2000500.00
+AI			Diablo, L.			Melcher, Jacob		$20.00			13286.48		0.00				265729.66		11000000.00
+AH			Ghallager, Trace	Roberts, John		$100.00			12.58			0.00				628.95			50001.00
+AB			Krum, Viktor		Granger, Hermione	$10.00			5481928.35		.13					109638566.99	81907275.78	
+AF			Limbaugh, Rush		Palin, Sarah		$50.00			251.57			0.00				12578.45		1000000.00			
+AM			Limbaugh, Rush		Mochrie,Colin		$20.00			2799227.03		1.638				559845560.52	102312500.00
+AD			Malfoy, Draco		Weasley, Ginny		$100.00			43236.66		.5157				2161832.92		651810.65	
+AE			O'Reilley, Bill		Hannity, Sean		$20.00			13827878.28		1.69				276557565.52	49394800.00
+AL			Palin, Sarah		Carey, Drew			$50.00			233074.39		.38					11653719.64		6265440.00	
+AO			Potter, Harry		Claus,Santa			$30.00			1433931.66		.9859				28678633.25		13340686.62
+AJ			Reaper, Grimm		Stiles, Ryan		$50.00			8.80			0.00				439.82			15000.00	
+AC			Riddle, Tom			Centaur, Firenze	$50.00			6087.73			1.69				304386.72		54320.75
+AN			Stiles, Ryan		Mochrie, Colin		$10.00			994431.28		0.31				19888625.52		8645002.00			
+AA			Weasley, Ron		Potter, Harry		$100.00			48966.67		.5189				2448333.34		683552.07			
 													--------------------------------------------------------------------------------
-										totals: 	$640.00			1834677.02							37529797.41		970698386.9
+										totals: 	$640.00			50466329.66							1019275745.18	279638388.87
 										
 Portfolio Details
 ================================================================================================================
@@ -78,6 +78,17 @@ Code       Asset                           Return Rate          Risk  Annual Ret
 UK909  		Jeb's Ukeleles						2.19%          	.13 	$  1791256.97    $  81907275.78
                                                         --------------------------------------------
                                                 Totals        	.13  	$  1791256.97     $  81907275.78
+
+Portfolio AF
+------------------------------------------
+Owner:          Limbaugh, Rush
+Manager:        Palin, Sarah
+Beneficiary:    none
+Assets 
+Code       Asset                           Return Rate          Risk  Annual Return          Value
+DEV			Devils Deposits						3.10%        	0.0  	$   30969.89		$  1000000.00
+                                                        --------------------------------------------
+												Totals			0.0		$   30969.89		$  1000000.00
 												
 Portfolio AM
 ------------------------------------------
@@ -90,17 +101,6 @@ LYF3 		Ice Machine International			2.5%          	0.20  	$      88522.55  	$  35
 GDSF11		Good Stuff Inc.              		5.6%          	1.69  	$	 5531030.52		$  98765000.00
                                                         --------------------------------------------
 												Totals			1.638	$  	5619553.07		$ 102312500.00												
-
-Portfolio AF
-------------------------------------------
-Owner:          Limbaugh, Rush
-Manager:        Palin, Sarah
-Beneficiary:    none
-Assets 
-Code       Asset                           Return Rate          Risk  Annual Return          Value
-DEV			Devils Deposits						3.10%        	0.0  	$   30969.89		$  1000000.00
-                                                        --------------------------------------------
-												Totals			0.0		$   30969.89		$  1000000.00
 
 Portfolio AD
 ------------------------------------------
@@ -132,11 +132,7 @@ Owner:          Palin, Sarah
 Manager:        Carey, Drew
 Beneficiary:    Ghallager, Trace
 Assets 
-<<<<<<< HEAD
 Code       Asset                           Return Rate          Risk  Annual Return          Value   
-=======
-Code       Asset                           Return Rate          Risk  Annual Return          Value
->>>>>>> origin/master
 RA1K3S		Microsoft Corp						1.86%        	.38 	$ 116538.42		$  6265440.00
                                                        --------------------------------------------
 												Totals			.38	    $ 116538.42	   	$  6265440.00

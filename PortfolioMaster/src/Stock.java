@@ -7,7 +7,6 @@
  */
 public class Stock extends Asset {
 	//Data members
-	private double baseRateOfReturn;
 	private double quarterlyDividend;
 	private String symbol;
 	private double sharePrice;
@@ -24,30 +23,48 @@ public class Stock extends Asset {
 	 * @param symbol stock symbol
 	 * @param beta stock beta measure
 	 */
-	public Stock(String code, String label, String type, double rate, double quart, double share,String symbol, double beta){
+	public Stock(String code, String label, String type, double quart, double rate, double share,String symbol, double beta){
 		setCode(code);
 		setLabel(label);
 		setType(type);
-		setBaseRateOfReturn(rate);
+		setBaseRate(rate);
 		setQuarterlyDividend(quart);
 		setSharePrice(share);
 		setSymbol(symbol);
 		setBeta(beta);
+		setRiskValue(beta);
 	}
-
+	public void setRiskValue(double risk){
+		this.riskValue = risk;
+	}
+	public double getRiskValue(){
+		return riskValue;
+	}
+	
+	public double computeAnnualReturns(double given){
+		double anReturns = 0.0;
+		anReturns = this.quarterlyDividend * 4 + this.baseRate * given * this.sharePrice ; //look into this for the decimals
+		return anReturns;
+	}
+	public double computeValueOfAsset(double given){
+		double value = given * sharePrice;
+		return value;
+	}
+	
 	/**
-	 * Obtains the baseRateOfReturn
-	 * @return the baseRateOfReturn
+	 * obtains the baseRate
+	 * @return the baseRate
 	 */
-	public double getBaseRateOfReturn() {
-		return baseRateOfReturn;
+	public double getBaseRate(){
+		return baseRate;
 	}
-
-	/**Sets the new baseRateOfReturn
-	 * @param baseRateOfReturn the baseRateOfReturn to set
+	
+	/**
+	 * sets the baseRate
+	 * @param baseRate
 	 */
-	public void setBaseRateOfReturn(double baseRateOfReturn) {
-		this.baseRateOfReturn = baseRateOfReturn;
+	public void setBaseRate(double baseRate ){
+		this.baseRate = baseRate;
 	}
 
 	/**

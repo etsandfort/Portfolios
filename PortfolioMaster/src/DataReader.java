@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 /**
  * DataReader.java
  * RAIK 184H
@@ -33,7 +34,7 @@ public class DataReader {
 			}
 			read.close();
 		} catch(Exception e){
-			System.out.println(e);
+			e.printStackTrace();
 		}
 		return portfolios;
 	}
@@ -73,14 +74,17 @@ public class DataReader {
 		return null;
 	}
 	
-	public ArrayList<Asset> searchAssets(String[] idList){
-		ArrayList<Asset> assetList = new ArrayList<Asset>();
+	public HashMap<Asset, Double> searchAssets(String[] idList){
+		HashMap<Asset,Double> assetList = new HashMap<Asset,Double>();
 		for(String id: idList){
-			id = id.split(":")[0];
+			if(!id.equalsIgnoreCase(" ")) {
+				double value = Double.parseDouble(id.split(":")[1]);
+				id = id.split(":")[0];
 			
-			for(Asset a: readAssets()){
-				if(a.getCode().equalsIgnoreCase(id)){
-					assetList.add(a);
+				for(Asset a: readAssets()){
+					if(a.getCode().equalsIgnoreCase(id)){
+						assetList.put(a,value);
+					}
 				}
 			}
 		}

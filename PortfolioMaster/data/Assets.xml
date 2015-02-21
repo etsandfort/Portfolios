@@ -1,124 +1,169 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<assets>
-<asset>
-  <code>LAMH01</code>
-  <label>Lamar's Home Improvement</label>
-  <type>P</type>
-  <baseRateOfReturn>314159</baseRateOfReturn>
-  <quarterlyDividend>2.65</quarterlyDividend>
-  <omega>0.52</omega>
-  <value>1337357</value>
-</asset>
-<asset>
-  <code>MHIA32</code>
-  <label>Savings Account</label>
-  <type>D</type>
-  <apr>0.73</apr>
-</asset>
-<asset>
-  <code>UK909</code>
-  <label>Jeb's Ukuleles</label>
-  <type>P</type>
-  <baseRateOfReturn>177245</baseRateOfReturn>
-  <quarterlyDividend>1.33</quarterlyDividend>
-  <omega>0.13</omega>
-  <value>82734622</value>
-</asset>
-<asset>
-  <code>GDSF11</code>
-  <label>Good Stuff Inc.</label>
-  <type>S</type>
-  <baseRateOfReturn>47.63</baseRateOfReturn>
-  <quarterlyDividend>5.6</quarterlyDividend>
-  <sharePrice>987.65</sharePrice>
-  <symbol>GDSF</symbol>
-  <beta>1.69</beta>
-</asset>
-<asset>
-  <code>ARGSAV</code>
-  <label>Money Market Savings</label>
-  <type>D</type>
-  <apr>3.05</apr>
-</asset>
-<asset>
-  <code>REG</code>
-  <label>Regado Biosciences INC</label>
-  <type>S</type>
-  <baseRateOfReturn>0</baseRateOfReturn>
-  <quarterlyDividend>1.25</quarterlyDividend>
-  <sharePrice>1.23</sharePrice>
-  <symbol>GDSF</symbol>
-  <beta>1.1</beta>
-</asset>
-<asset>
-  <code>DEV</code>
-  <label>Devils Deposits</label>
-  <type>D</type>
-  <apr>1.25</apr>
-</asset>
-<asset>
-  <code>SOFT102</code>
-  <label>Upcoming Software Firm</label>
-  <type>P</type>
-  <baseRateOfReturn>100000</baseRateOfReturn>
-  <quarterlyDividend>3.5</quarterlyDividend>
-  <omega>1</omega>
-  <value>100000000</value>
-</asset>
-<asset>
-  <code>KIDC</code>
-  <label>Kids College Savings</label>
-  <type>D</type>
-  <apr>2.5</apr>
-</asset>
-<asset>
-  <code>ISAVE</code>
-  <label>Time Deposit</label>
-  <type>D</type>
-  <apr>2.5</apr>
-</asset>
-<asset>
-  <code>65YEAH</code>
-  <label>Business Investment Account</label>
-  <type>D</type>
-  <apr>2.89</apr>
-</asset>
-<asset>
-  <code>MCYDS</code>
-  <label>McDonald's Corp</label>
-  <type>S</type>
-  <baseRateOfReturn>0.85</baseRateOfReturn>
-  <quarterlyDividend>0.35</quarterlyDividend>
-  <sharePrice>92.7</sharePrice>
-  <symbol>GDSF</symbol>
-  <beta>0.38</beta>
-</asset>
-<asset>
-  <code>RA1K3S</code>
-  <label>Microsoft Corp</label>
-  <type>S</type>
-  <baseRateOfReturn>0.31</baseRateOfReturn>
-  <quarterlyDividend>1.86</quarterlyDividend>
-  <sharePrice>41.22</sharePrice>
-  <symbol>MSFT</symbol>
-  <beta>1</beta>
-</asset>
-<asset>
-  <code>LYF3</code>
-  <label>Ice Machine International</label>
-  <type>P</type>
-  <baseRateOfReturn>9600</baseRateOfReturn>
-  <quarterlyDividend>1.9</quarterlyDividend>
-  <omega>0.2</omega>
-  <value>6450000</value>
-</asset>
-<asset>
-  <code>B00</code>
-  <label>The Mystery Machine</label>
-  <type>P</type>
-  <baseRateOfReturn>1280.23</baseRateOfReturn>
-  <quarterlyDividend>2.3</quarterlyDividend>
-  <omega>0.31</omega>
-  <value>8645002</value>
-</asset>
-</assets>
+<Assets>
+  <asset>
+    <code>LAMH01</code>
+    <label>Lamar&apos;s Home Improvement</label>
+    <type>P</type>
+    <riskValue>0.52</riskValue>
+    <valueValue>1337357.0</valueValue>
+    <valueOfAsset>0.0</valueOfAsset>
+    <quarterlyDividend>2.65</quarterlyDividend>
+    <baseRateOfReturn>314159.0</baseRateOfReturn>
+    <omega>0.52</omega>
+    <value>1337357.0</value>
+  </asset>
+  <asset>
+    <code>MHIA32</code>
+    <label>Savings Account</label>
+    <type>D</type>
+    <riskValue>0.0</riskValue>
+    <valueValue>0.0</valueValue>
+    <valueOfAsset>0.0</valueOfAsset>
+    <apr>0.73</apr>
+  </asset>
+  <asset>
+    <code>UK909</code>
+    <label>Jeb&apos;s Ukuleles</label>
+    <type>P</type>
+    <riskValue>0.13</riskValue>
+    <valueValue>8.2734622E7</valueValue>
+    <valueOfAsset>0.0</valueOfAsset>
+    <quarterlyDividend>1.33</quarterlyDividend>
+    <baseRateOfReturn>177245.0</baseRateOfReturn>
+    <omega>0.13</omega>
+    <value>8.2734622E7</value>
+  </asset>
+  <asset>
+    <code>GDSF11</code>
+    <label>Good Stuff Inc.</label>
+    <type>S</type>
+    <riskValue>1.69</riskValue>
+    <valueValue>987.65</valueValue>
+    <valueOfAsset>0.0</valueOfAsset>
+    <baseRateOfReturn>47.63</baseRateOfReturn>
+    <quarterlyDividend>5.6</quarterlyDividend>
+    <symbol>GDSF</symbol>
+    <sharePrice>987.65</sharePrice>
+    <beta>1.69</beta>
+  </asset>
+  <asset>
+    <code>ARGSAV</code>
+    <label>Money Market Savings</label>
+    <type>D</type>
+    <riskValue>0.0</riskValue>
+    <valueValue>0.0</valueValue>
+    <valueOfAsset>0.0</valueOfAsset>
+    <apr>3.05</apr>
+  </asset>
+  <asset>
+    <code>REG</code>
+    <label>Regado Biosciences INC</label>
+    <type>S</type>
+    <riskValue>1.1</riskValue>
+    <valueValue>1.23</valueValue>
+    <valueOfAsset>0.0</valueOfAsset>
+    <baseRateOfReturn>0.0</baseRateOfReturn>
+    <quarterlyDividend>1.25</quarterlyDividend>
+    <symbol>RGDO</symbol>
+    <sharePrice>1.23</sharePrice>
+    <beta>1.1</beta>
+  </asset>
+  <asset>
+    <code>DEV</code>
+    <label>Devils Deposits</label>
+    <type>D</type>
+    <riskValue>0.0</riskValue>
+    <valueValue>0.0</valueValue>
+    <valueOfAsset>0.0</valueOfAsset>
+    <apr>1.25</apr>
+  </asset>
+  <asset>
+    <code>SOFT102</code>
+    <label>Upcoming Software Firm</label>
+    <type>P</type>
+    <riskValue>1.0</riskValue>
+    <valueValue>1.0E8</valueValue>
+    <valueOfAsset>0.0</valueOfAsset>
+    <quarterlyDividend>3.5</quarterlyDividend>
+    <baseRateOfReturn>100000.0</baseRateOfReturn>
+    <omega>1.0</omega>
+    <value>1.0E8</value>
+  </asset>
+  <asset>
+    <code>KIDC</code>
+    <label>Kids College Savings</label>
+    <type>D</type>
+    <riskValue>0.0</riskValue>
+    <valueValue>0.0</valueValue>
+    <valueOfAsset>0.0</valueOfAsset>
+    <apr>2.5</apr>
+  </asset>
+  <asset>
+    <code>ISAVE</code>
+    <label>Time Deposit</label>
+    <type>D</type>
+    <riskValue>0.0</riskValue>
+    <valueValue>0.0</valueValue>
+    <valueOfAsset>0.0</valueOfAsset>
+    <apr>2.5</apr>
+  </asset>
+  <asset>
+    <code>65YEAH</code>
+    <label>Business Investment Account</label>
+    <type>D</type>
+    <riskValue>0.0</riskValue>
+    <valueValue>0.0</valueValue>
+    <valueOfAsset>0.0</valueOfAsset>
+    <apr>2.89</apr>
+  </asset>
+  <asset>
+    <code>MCYDS</code>
+    <label>McDonald&apos;s Corp</label>
+    <type>S</type>
+    <riskValue>0.38</riskValue>
+    <valueValue>92.7</valueValue>
+    <valueOfAsset>0.0</valueOfAsset>
+    <baseRateOfReturn>0.85</baseRateOfReturn>
+    <quarterlyDividend>0.35</quarterlyDividend>
+    <symbol>MCD</symbol>
+    <sharePrice>92.7</sharePrice>
+    <beta>0.38</beta>
+  </asset>
+  <asset>
+    <code>RA1K3S</code>
+    <label>Microsoft Corp</label>
+    <type>S</type>
+    <riskValue>1.0</riskValue>
+    <valueValue>41.22</valueValue>
+    <valueOfAsset>0.0</valueOfAsset>
+    <baseRateOfReturn>0.31</baseRateOfReturn>
+    <quarterlyDividend>1.86</quarterlyDividend>
+    <symbol>MSFT</symbol>
+    <sharePrice>41.22</sharePrice>
+    <beta>1.0</beta>
+  </asset>
+  <asset>
+    <code>LYF3</code>
+    <label>Ice Machine International</label>
+    <type>P</type>
+    <riskValue>0.2</riskValue>
+    <valueValue>6450000.0</valueValue>
+    <valueOfAsset>0.0</valueOfAsset>
+    <quarterlyDividend>1.9</quarterlyDividend>
+    <baseRateOfReturn>9600.0</baseRateOfReturn>
+    <omega>0.2</omega>
+    <value>6450000.0</value>
+  </asset>
+  <asset>
+    <code>B00</code>
+    <label>The Mystery Machine</label>
+    <type>P</type>
+    <riskValue>0.31</riskValue>
+    <valueValue>8645002.0</valueValue>
+    <valueOfAsset>0.0</valueOfAsset>
+    <quarterlyDividend>2.3</quarterlyDividend>
+    <baseRateOfReturn>1280.23</baseRateOfReturn>
+    <omega>0.31</omega>
+    <value>8645002.0</value>
+  </asset>
+</Assets>

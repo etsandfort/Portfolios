@@ -7,7 +7,6 @@
  */
 public class Deposit extends Asset{
 	//Data members
-	private double apr;
 	
 	/**
 	 * The constructor for a deposit object
@@ -20,21 +19,37 @@ public class Deposit extends Asset{
 		setCode(code);
 		setLabel(label);
 		setType(type);
-		setApr(apr);
+		setBaseRate(apr);
+		setRiskValue(0);
 	}
-
+	
 	/**
-	 * Obtains the apr
-	 * @return the apr
+	 * computes the annual returns 
 	 */
-	public double getApr() {
-		return apr;
+	public double computeAnnualReturns(double deposit){
+		double anReturns = 0.0;
+		double aPY;
+		aPY = (Math.pow(Math.E, this.baseRate) - 1); //apy = 
+		anReturns = aPY * deposit  ;
+		return anReturns;
 	}
-
-	/**Sets the new apr
-	 * @param apr the apr to set
+	
+	/**
+	 * computes value of asset, equal to what the intitialDeposit is
 	 */
-	public void setApr(double apr) {
-		this.apr = apr;
+	public double computeValueOfAsset(double initialDeposit){
+		double value = initialDeposit;
+		return value;
+	}
+	
+	/**
+	 * 
+	 */
+	public double getBaseRate(){
+		return baseRate;
+	}
+	
+	public void setBaseRate(double baseRate){
+		this.baseRate = baseRate/100;
 	}
 }

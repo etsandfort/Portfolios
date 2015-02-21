@@ -4,10 +4,48 @@
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
  * @version 1.1
  */
-public class Asset {
+	public  class Asset {
 	private String code;
 	private String label;
 	private String type;
+	protected double riskValue;
+	protected double baseRate;
+	
+	/**
+	 * 
+	 * @param given
+	 * @return double - returns the double of the annual returns
+	 */
+	public double computeAnnualReturns(double given) {
+		return 0;
+	}
+	
+	/**
+	 * 
+	 * @param given
+	 * @return double- returns the double of the value of the asset
+	 */
+	 public double computeValueOfAsset(double given) {
+		return 0;
+	}
+	
+	
+
+	/**
+	 * @return the riskValue
+	 */
+	public double getRiskValue() {
+		return riskValue;
+	}
+
+	/**
+	 * @param riskValue the riskValue to set
+	 */
+	public void setRiskValue(double riskValue) {
+		this.riskValue = riskValue;
+	}
+
+	
 
 	/**
 	 * Obtains the code
@@ -52,5 +90,19 @@ public class Asset {
 	 */
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	/**
+	 * @return the baseRate
+	 */
+	public double getBaseRate() {
+		return baseRate;
+	}
+
+	/**
+	 * @param baseRate the baseRate to set
+	 */
+	public void setBaseRate(double baseRate) {
+		this.baseRate = baseRate;
 	}
 }

@@ -8,7 +8,6 @@
 public class Investment extends Asset{
 	//Data Members
 	private double quarterlyDividend;
-	private double baseRateOfReturn;
 	private double omega;
 	private double value;
 	
@@ -22,16 +21,33 @@ public class Investment extends Asset{
 	 * @param omega omega measure
 	 * @param value total value
 	 */
-	public Investment(String code, String label, String type, double rate,double quart,  double omega, double value){
+	public Investment(String code, String label, String type, double quart,double rate,  double omega, double value){
 		setCode(code);
 		setLabel(label);
 		setType(type);
-		setBaseRateOfReturn(rate);
+		setBaseRate(rate);
 		setQuarterlyDividend(quart);
 		setOmega(omega);
 		setValue(value);
+		setRiskValue(omega);
+		
 	}
 
+	
+	public double computeAnnualReturns(double PercentageOwned){
+	double anReturns = (this.baseRate * this.value + this.quarterlyDividend * 4) * PercentageOwned / 100;
+	return anReturns;
+	}
+	public void setRiskValue(double risk){
+		this.riskValue = risk;
+	}
+	public double getRiskValue(){
+		return riskValue;
+	}
+	public double computeValueOfAsset(double given){
+		double value = this.value * given / 100;
+		return value;
+	}
 	/**
 	 * Obtains the quarterlyDividend
 	 * @return the quarterlyDividend
@@ -48,18 +64,19 @@ public class Investment extends Asset{
 	}
 
 	/**
-	 * Obtains the baseRateOfReturn
-	 * @return the baseRateOfReturn
+	 * obtains the baseRate
+	 * @return the baseRate
 	 */
-	public double getBaseRateOfReturn() {
-		return baseRateOfReturn;
+	public double getBaseRate(){
+		return baseRate;
 	}
-
-	/**Sets the new baseRateOfReturn
-	 * @param baseRateOfReturn the baseRateOfReturn to set
+	
+	/**
+	 * sets the baseRate
+	 * @param baseRate
 	 */
-	public void setBaseRateOfReturn(double baseRateOfReturn) {
-		this.baseRateOfReturn = baseRateOfReturn;
+	public void setBaseRate(double baseRate ){
+		this.baseRate = baseRate;
 	}
 
 	/**
