@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+
 /**
  * 
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
@@ -41,8 +42,6 @@ public class Portfolio {
 		calculateCommissionFee();
 	}
 	
-	
-	
 	private void calculateCommissionFee() {
 		double cFee = 0.0;
 		for(Double value : annualReturns.values()){
@@ -54,10 +53,7 @@ public class Portfolio {
 			}
 		}
 		this.commissionFees = cFee;
-		
 	}
-
-
 
 	void calculateBrokerFees() {
 			double bFees;
@@ -68,25 +64,14 @@ public class Portfolio {
 				 bFees = (50 * annualReturns.size());
 			}
 			this.brokerFees = bFees;
-		
-		
 	}
-
-
 
 	private void calculateAnnualReturns() {
 		annualReturns = new HashMap<Asset,Double>();
-		System.out.println("For portfolio : " + this.code);
 		for(Asset asset: assetNumeric.keySet()){
 			annualReturns.put(asset, asset.computeAnnualReturns(assetNumeric.get(asset)));
-			System.out.println("Here is the annual return for "+ asset.getLabel() + " is " + asset.computeAnnualReturns(assetNumeric.get(asset)));
 		}
-		
-		System.out.println();
-		
 	}
-
-
 
 	public double getTotalValue() {
 		return totalValue;
@@ -97,17 +82,15 @@ public class Portfolio {
 		for(Asset asset : risks.keySet()){
 			tRisks += (risks.get(asset) * values.get(asset))/this.totalValue;
 		}
-
 		this.totalRisks = tRisks;
 	}
+	
 	/**
 	 * @return the assetNumeric
 	 */
 	public HashMap<Asset, Double> getAssetNumeric() {
 		return assetNumeric;
 	}
-
-
 
 	/**
 	 * @param assetNumeric the assetNumeric to set
@@ -116,16 +99,12 @@ public class Portfolio {
 		this.assetNumeric = assetNumeric;
 	}
 
-
-
 	/**
 	 * @return the risks
 	 */
 	public HashMap<Asset, Double> getRisks() {
 		return risks;
 	}
-
-
 
 	/**
 	 * @param risks the risks to set
@@ -134,16 +113,12 @@ public class Portfolio {
 		this.risks = risks;
 	}
 
-
-
 	/**
 	 * @return the totalRisks
 	 */
 	public double getTotalRisks() {
 		return totalRisks;
 	}
-
-
 
 	/**
 	 * @param totalRisks the totalRisks to set
@@ -152,16 +127,12 @@ public class Portfolio {
 		this.totalRisks = totalRisks;
 	}
 
-
-
 	/**
 	 * @return the values
 	 */
 	public HashMap<Asset, Double> getValues() {
 		return values;
 	}
-
-
 
 	/**
 	 * @param values the values to set
@@ -170,16 +141,12 @@ public class Portfolio {
 		this.values = values;
 	}
 
-
-
 	/**
 	 * @return the annualReturns
 	 */
 	public HashMap<Asset, Double> getAnnualReturns() {
 		return annualReturns;
 	}
-
-
 
 	/**
 	 * @param annualReturns the annualReturns to set
@@ -188,16 +155,12 @@ public class Portfolio {
 		this.annualReturns = annualReturns;
 	}
 
-
-
 	/**
 	 * @return the brokerFees
 	 */
 	public double getBrokerFees() {
 		return brokerFees;
 	}
-
-
 
 	/**
 	 * @param brokerFees the brokerFees to set
@@ -206,16 +169,12 @@ public class Portfolio {
 		this.brokerFees = brokerFees;
 	}
 
-
-
 	/**
 	 * @return the commissionFees
 	 */
 	public double getCommissionFees() {
 		return commissionFees;
 	}
-
-
 
 	/**
 	 * @param commissionFees the commissionFees to set
@@ -224,8 +183,6 @@ public class Portfolio {
 		this.commissionFees = commissionFees;
 	}
 
-
-
 	/**
 	 * @param totalValue the totalValue to set
 	 */
@@ -233,14 +190,11 @@ public class Portfolio {
 		this.totalValue = totalValue;
 	}
 
-
-
 	public void calculateTotalValue() {
 		double totalVal = 0;
 		for(Double value: values.values()){
 			totalVal += value;
 		}
-		
 		this.totalValue = totalVal;
 	}
 
@@ -255,9 +209,7 @@ public class Portfolio {
 			Person beneficiary, HashMap<Asset, Double> assets) {
 		this(code,owner,manager,assets);
 		this.beneficiary = beneficiary;
-		
 	}
-	
 	
 	 void calculateRisks(){
 		risks = new HashMap<Asset,Double>();
@@ -266,7 +218,6 @@ public class Portfolio {
 
 			this.risks.put(asset, asset.getRiskValue());
 		}
-		
 	}
 	
 	private void calculateValues(){
@@ -274,15 +225,7 @@ public class Portfolio {
 		for(Asset asset: this.assetNumeric.keySet()){
 			this.values.put(asset, asset.computeValueOfAsset(assetNumeric.get(asset)));
 		}
-		
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 	/**
 	 * @return the code
@@ -339,11 +282,4 @@ public class Portfolio {
 	public void setBeneficiary(Person beneficiary) {
 		this.beneficiary = beneficiary;
 	}
-
-	
-
-	
-	
-	
-	
 }

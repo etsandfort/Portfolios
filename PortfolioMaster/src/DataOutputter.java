@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * DataOutputter.java
  * RAIK 184H
@@ -8,7 +10,7 @@
 public class DataOutputter {
 	//Data members
 	private DataReader input = new DataReader();
-	private DataFormatter format = new DataFormatter();
+//	private ArrayList<Portfolio> allPortfolios;
 
 	/**
 	 * Obtains the input
@@ -25,20 +27,21 @@ public class DataOutputter {
 		this.input = input;
 	}
 
-	/**
-	 * Obtains the data output format
-	 * @return the format
-	 */
-	public DataFormatter getFormat() {
-		return format;
-	}
-
-	/**Sets the new data output format
-	 * @param format the format to set
-	 */
-	public void setFormat(DataFormatter format) {
-		this.format = format;
-	}
+//	/**
+//	 * Obtains the ArrayList allPortfolios
+//	 * @return allPortfolios, an ArrayList of Portfolios
+//	 */
+//	public ArrayList<Portfolio> getAllPortfolios() {
+//		return allPortfolios;
+//	}
+//
+//	/**
+//	 * Sets the values of the allPortfolios Portfolio ArrayList
+//	 * @param allPortfolios
+//	 */
+//	public void setAllPortfolios(ArrayList<Portfolio> allPortfolios) {
+//		this.allPortfolios = allPortfolios;
+//	}
 	
 	/**
 	 * This is the main method, it runs the program
@@ -46,6 +49,9 @@ public class DataOutputter {
 	 */
 	public static void main(String args[]){
 		DataOutputter dataOut = new DataOutputter();
-		// do the stuff
+		ArrayList<Portfolio> allPortfolios = dataOut.getInput().readPortfolios();
+//		dataOut.setAllPortfolios(dataOut.getInput().readPortfolios());
+		ReportCalculation reportCalc = new ReportCalculation(allPortfolios);
+		reportCalc.printReports();
 	}
 }
