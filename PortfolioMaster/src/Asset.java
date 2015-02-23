@@ -10,6 +10,12 @@
 	private String type;
 	protected double riskValue;
 	protected double baseRate;
+	protected double returnRate;
+	
+	public void computeReturnRate(double given){
+		
+		
+	}
 	
 	/**
 	 * 
@@ -104,5 +110,10 @@
 	 */
 	public void setBaseRate(double baseRate) {
 		this.baseRate = baseRate;
+	}
+
+	public double getReturnRate() {
+		
+		return returnRate;
 	}
 }

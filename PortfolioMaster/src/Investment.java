@@ -48,7 +48,21 @@ public class Investment extends Asset{
 		double value = this.value * given / 100;
 		return value;
 	}
+	
+	public void computeReturnRate(double given){
+	double returnRate = (computeAnnualReturns(given) / computeValueOfAsset(given))* 100;
+	this.setReturnRate(returnRate); 
+	}
+	
+	public double getReturnRate(){
+		return returnRate;
+	}
+	public void setReturnRate(double returnRate){
+		this.returnRate = returnRate;
+	}
+	
 	/**
+	 *
 	 * Obtains the quarterlyDividend
 	 * @return the quarterlyDividend
 	 */
@@ -76,7 +90,7 @@ public class Investment extends Asset{
 	 * @param baseRate
 	 */
 	public void setBaseRate(double baseRate ){
-		this.baseRate = baseRate;
+		this.baseRate = (baseRate / 100);
 	}
 
 	/**

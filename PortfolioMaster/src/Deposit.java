@@ -52,4 +52,17 @@ public class Deposit extends Asset{
 	public void setBaseRate(double baseRate){
 		this.baseRate = baseRate/100;
 	}
+	public void computeReturnRate(double initialDeposit){
+		
+		double returnRate = computeAnnualReturns(initialDeposit)/initialDeposit * 100;
+		this.setReturnRate(returnRate);
+		
+	}
+	public double getReturnRate(){
+		return returnRate;
+	}
+	public void setReturnRate(double returnRate){
+		this.returnRate = returnRate;
+	}
+	
 }

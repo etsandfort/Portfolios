@@ -42,9 +42,17 @@ public class Portfolio {
 		calculateTotalAnnualReturns();
 		calculateBrokerFees();
 		calculateCommissionFee();
+		calculateReturnRates();
 		condenseHashMap(risks,values,annualReturns);
 	}
 	
+	private void calculateReturnRates() {
+		for(Asset asset: assetNumeric.keySet()){
+			asset.computeReturnRate(assetNumeric.get(asset));
+		}
+		
+	}
+
 	/** Portfolio Constructor, overloaded to take in a beneficiary
 	 * @param code
 	 * @param owner

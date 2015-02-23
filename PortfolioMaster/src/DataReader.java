@@ -20,7 +20,7 @@ public class DataReader {
 	public ArrayList<Portfolio> readPortfolios(){
 		ArrayList<Portfolio> portfolios = new ArrayList<Portfolio>();
 		try{
-			File file = new File("data/Portfolio.dat"); //read in the file
+			File file = new File("data/Portfolios.dat"); //read in the file
 			BufferedReader read = new BufferedReader(new FileReader(file));
 
 			String line;
