@@ -24,10 +24,13 @@ public class DataOutputter {
 	 * @param args the set of arguments provided at runtime
 	 */
 	public static void main(String args[]){
+		long startTime = System.nanoTime();
 		DataOutputter dataOut = new DataOutputter();
 		ArrayList<Portfolio> allPortfolios = dataOut.getInput().readPortfolios();
 		ReportMaker report = new ReportMaker(allPortfolios);
 		report.printSummaryReport();
 		report.printDetailedReport();
+		long endTime = System.nanoTime();
+		System.out.println("Took "+(endTime - startTime)/1000000 + " ms"); 
 	}
 }

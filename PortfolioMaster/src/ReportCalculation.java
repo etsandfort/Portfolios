@@ -82,9 +82,7 @@ public class ReportCalculation {
 	private double calculateTotalReturns(ArrayList<Portfolio>portfolios){
 		double tReturns = 0.0;
 		for(Portfolio portfolio : portfolios){
-			for(Double annualReturns: portfolio.getAnnualReturns().values()){
-				tReturns += annualReturns;
-			}
+			tReturns += portfolio.getTotalAnnualReturns();
 		
 		}
 		
