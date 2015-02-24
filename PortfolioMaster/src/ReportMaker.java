@@ -79,7 +79,7 @@ public class ReportMaker{
 				
 				// prints out information specific to each portfolio
 				System.out.printf("%-10s %-48s %-3.2f%%  %7s %-5s $%15.2f $%15.2f\n", 
-						asset.getCode(), asset.getLabel(), asset.getBaseRate(),"", assetVals[0], assetVals[1], assetVals[2]);
+						asset.getCode(), asset.getLabel(), asset.getReturnRate(),"", assetVals[0], assetVals[1], assetVals[2]);
 			}
 			
 			// prints line under numerical values, acting as a divider between individual values and totals
