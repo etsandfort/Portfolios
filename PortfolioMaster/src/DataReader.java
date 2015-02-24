@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 /**
  * DataReader.java
  * RAIK 184H
@@ -11,7 +12,7 @@ import java.util.HashMap;
  * @version 2.0
  *
  */
-public class DataReader {
+public class DataReader{
 	public static final String PORTFOLIO_FILENAME = "data/Portfolios.dat";
 	public static final String ASSET_FILENAME = "data/Assets.dat";
 	public static final String PERSON_FILENAME = "data/Persons.dat";

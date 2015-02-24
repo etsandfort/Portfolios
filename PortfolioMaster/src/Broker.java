@@ -23,7 +23,7 @@ public class Broker extends Person{
 	 * @param email broker's email(s)
 	 */
 	public Broker(String code, String type, String sec, String lastName, String firstName,
-			Address address, ArrayList<String> email) {
+			Address address, ArrayList<String> email){
 		super(code, lastName, firstName, address, email);
 		this.secIdentifier =sec;
 		this.type = type;
@@ -31,31 +31,33 @@ public class Broker extends Person{
 	
 	/**
 	 * Obtains the secIdentifier
-	 * @return the secIdentifier
+	 * @return secIdentifier
 	 */
-	public String getSecIdentifier() {
+	public String getSecIdentifier(){
 		return secIdentifier;
 	}
 	
-	/**Sets the new secIdentifier
-	 * @param secIdentifier the secIdentifier to set
+	/**
+	 * Sets the new secIdentifier
+	 * @param secIdentifier
 	 */
-	public void setSecIdentifier(String secIdentifier) {
+	public void setSecIdentifier(String secIdentifier){
 		this.secIdentifier = secIdentifier;
 	}
 	
 	/**
 	 * Obtains the type
-	 * @return the type
+	 * @return type
 	 */
-	public String getType() {
+	public String getType(){
 		return type;
 	}
 	
-	/**Sets the new type
-	 * @param type the type to set
+	/**
+	 * Sets the new type
+	 * @param type
 	 */
-	public void setType(String type) {
+	public void setType(String type){
 		this.type = type;
 	}
 }

@@ -1,5 +1,4 @@
 import java.util.HashMap;
-
 /**
  * 
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
@@ -73,7 +72,6 @@ public class Portfolio {
 			asset.computeReturnRate(assetNumeric.get(asset));
 		}
 	}
-
 	/**
 	 * calculates the total annual returns for the portfolio
 	 */
@@ -114,7 +112,6 @@ public class Portfolio {
 		}
 		this.commissionFees = cFee;
 	}
-
 	/**
 	 * calculates the broker fees for portfolio
 	 */
@@ -128,7 +125,6 @@ public class Portfolio {
 			}
 			this.brokerFees = bFees;
 	}
-
 	/**
 	 * calculates the annual returns for the portfolios
 	 * @return annualReturns
@@ -181,7 +177,6 @@ public class Portfolio {
 	public HashMap<Asset, Double> getAssetNumeric() {
 		return assetNumeric;
 	}
-
 	/**
 	 * sets the asset Numeric
 	 * @param assetNumeric the assetNumeric to set
@@ -189,7 +184,6 @@ public class Portfolio {
 	public void setAssetNumeric(HashMap<Asset, Double> assetNumeric) {
 		this.assetNumeric = assetNumeric;
 	}
-
 	/**
 	 * obtains the Total Risks
 	 * @return the totalRisks
@@ -197,7 +191,6 @@ public class Portfolio {
 	public double getTotalRisks() {
 		return totalRisks;
 	}
-
 	/**
 	 * sets the Total Risks
 	 * @param totalRisks the totalRisks to set
@@ -205,7 +198,6 @@ public class Portfolio {
 	public void setTotalRisks(double totalRisks) {
 		this.totalRisks = totalRisks;
 	}
-
 	/**
 	 * obtains the broker fees
 	 * @return the brokerFees
@@ -213,7 +205,6 @@ public class Portfolio {
 	public double getBrokerFees() {
 		return brokerFees;
 	}
-
 	/**
 	 * sets the Broker Fees
 	 * @param brokerFees the brokerFees to set
@@ -221,7 +212,6 @@ public class Portfolio {
 	public void setBrokerFees(double brokerFees) {
 		this.brokerFees = brokerFees;
 	}
-
 	/**
 	 * obtains the total Commission Fees
 	 * @return the commissionFees
@@ -229,7 +219,6 @@ public class Portfolio {
 	public double getCommissionFees() {
 		return commissionFees;
 	}
-
 	/**
 	 * sets the total Commission Fees of the portfolio
 	 * @param commissionFees the commissionFees to set
@@ -237,7 +226,6 @@ public class Portfolio {
 	public void setCommissionFees(double commissionFees) {
 		this.commissionFees = commissionFees;
 	}
-
 	/**
 	 * sets the Total Value of the portfolio
 	 * @param totalValue the totalValue to set
@@ -245,8 +233,6 @@ public class Portfolio {
 	public void setTotalValue(double totalValue) {
 		this.totalValue = totalValue;
 	}
-
-
 	/**
 	 * obtains the code
 	 * @return the code
@@ -254,7 +240,6 @@ public class Portfolio {
 	public String getCode() {
 		return code;
 	}
-
 	/**
 	 * sets the code
 	 * @param code the code to set
@@ -262,7 +247,6 @@ public class Portfolio {
 	public void setCode(String code) {
 		this.code = code;
 	}
-
 	/**
 	 * obtains the owner
 	 * @return the owner
@@ -270,7 +254,6 @@ public class Portfolio {
 	public Person getOwner() {
 		return owner;
 	}
-
 	/**
 	 * sets the owner
 	 * @param owner the owner to set
@@ -278,7 +261,6 @@ public class Portfolio {
 	public void setOwner(Person owner) {
 		this.owner = owner;
 	}
-
 	/**
 	 * obtains the manager
 	 * @return the manager
@@ -286,7 +268,6 @@ public class Portfolio {
 	public Broker getManager() {
 		return manager;
 	}
-
 	/**
 	 * sets the manager
 	 * @param manager the manager to set
@@ -294,7 +275,6 @@ public class Portfolio {
 	public void setManager(Broker manager) {
 		this.manager = manager;
 	}
-
 	/**
 	 * obtains the beneficiary
 	 * @return the beneficiary
@@ -302,7 +282,6 @@ public class Portfolio {
 	public Person getBeneficiary() {
 		return beneficiary;
 	}
-
 	/**
 	 * sets the Beneficiary
 	 * @param beneficiary the beneficiary to set
@@ -310,8 +289,6 @@ public class Portfolio {
 	public void setBeneficiary(Person beneficiary) {
 		this.beneficiary = beneficiary;
 	}
-
-
 	/**
 	 * obtains the total annual Returns
 	 * @return the totalAnnualReturns
@@ -319,8 +296,6 @@ public class Portfolio {
 	public double getTotalAnnualReturns() {
 		return totalAnnualReturns;
 	}
-
-
 	/**
 	 * sets the total Annual Returns
 	 * @param totalAnnualReturns the totalAnnualReturns to set

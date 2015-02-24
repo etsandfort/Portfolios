@@ -6,14 +6,13 @@
  * @version 1.0
  */
 public class Deposit extends Asset{
-	//Data members
 	
 	/**
 	 * The constructor for a deposit object
-	 * @param code deposit code
-	 * @param label deposit label
-	 * @param type deposit type
-	 * @param apr deposit APR
+	 * @param code, the deposit code
+	 * @param label, the deposit label
+	 * @param type, the deposit type
+	 * @param apr, the deposit APR
 	 */
 	public Deposit(String code, String label, String type, double apr){
 		setCode(code);
@@ -24,18 +23,20 @@ public class Deposit extends Asset{
 	}
 	
 	/**
-	 * computes the annual returns 
+	 * Computes the Annual Returns, using APY formula 
+	 * @param anReturns, the annual returns 
 	 */
 	public double computeAnnualReturns(double deposit){
 		double anReturns = 0.0;
 		double aPY;
-		aPY = (Math.pow(Math.E, this.baseRate) - 1); //apy = 
+		aPY = (Math.pow(Math.E, this.baseRate) - 1); //apy = e^(APR) - 1
 		anReturns = aPY * deposit  ;
 		return anReturns;
 	}
 	
 	/**
-	 * computes value of asset, equal to what the intitialDeposit is
+	 * Computes asset's value, which is equal to the intitialDeposit
+	 * @param value, the value of the asset
 	 */
 	public double computeValueOfAsset(double initialDeposit){
 		double value = initialDeposit;
@@ -43,7 +44,7 @@ public class Deposit extends Asset{
 	}
 	
 	/**
-	 *	computes the Return Rate of the Deposit
+	 * Computes the Deposit's Return Rate
 	 * @param initialDeposit - the current amount
 	 */
 	public void computeReturnRate(double initialDeposit){
@@ -52,34 +53,34 @@ public class Deposit extends Asset{
 	}
 
 	/**
+	 * Obtains the Return rate
 	 * @return the returnRate
 	 */
-	public double getReturnRate() {
+	public double getReturnRate(){
 		return returnRate;
 	}
 
 	/**
-	 * @param returnRate the returnRate to set
+	 * Sets the Return rate
+	 * @param returnRate
 	 */
-	public void setReturnRate(double returnRate) {
+	public void setReturnRate(double returnRate){
 		this.returnRate = returnRate;
 	}
 	
 	/**
-	 * @param baseRate the baseRate to set 
-	 */
-	public void setBaseRate(double baseRate){
-		this.baseRate = baseRate/100; //turns it from percent
-	}
-	
-	/**
-	 * @return the baseRate
-	 * 
+	 * Obtains the baseRate
+	 * @return the baseRate, a double
 	 */
 	public double getBaseRate(){
 		return baseRate;
 	}
 	
-	
-	
+	/**
+	 * Sets the baseRate
+	 * @param baseRate 
+	 */
+	public void setBaseRate(double baseRate){
+		this.baseRate = baseRate/100; //turns it from percent to decimal
+	}
 }

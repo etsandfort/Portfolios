@@ -1,23 +1,23 @@
-	Portfolio Summary Report
+Portfolio Summary Report
 ===============================================================================================================================
 Portfolio  	Owner					Manager				Fees		Commissions		Weighted Risk         Return          Total
-AK			Brady, Wayne		Claus, Santa		$10.00			40556.42		.38					811128.40		2317500.00		
-AG			Coulter, Leanne  	Pinkerton,Jim		$20.00			350400.77		.999999975			7008015.48		2000500.00
+AK			Brady, Wayne		Claus, Santa		$10.00			4655.56			0.38				93111.25		2317500.00		
+AG			Coulter, Leanne  	Pinkerton,Jim		$20.00			3900.77			1.00				78015.48		2000500.00
 AI			Diablo, L.			Melcher, Jacob		$20.00			13286.48		0.00				265729.66		11000000.00
 AH			Ghallager, Trace	Roberts, John		$100.00			12.58			0.00				628.95			50001.00
-AB			Krum, Viktor		Granger, Hermione	$10.00			5481928.35		.13					109638566.99	81907275.78	
+AB			Krum, Viktor		Granger, Hermione	$10.00			89562.85		0.13				1791256.97		81907275.78	
 AF			Limbaugh, Rush		Palin, Sarah		$50.00			251.57			0.00				12578.45		1000000.00			
-AM			Limbaugh, Rush		Mochrie,Colin		$20.00			2799227.03		1.638				559845560.52	102312500.00
-AD			Malfoy, Draco		Weasley, Ginny		$100.00			43236.66		.5157				2161832.92		651810.65	
-AE			O'Reilley, Bill		Hannity, Sean		$20.00			13827878.28		1.69				276557565.52	49394800.00
-AL			Palin, Sarah		Carey, Drew			$50.00			233074.39		.38					11653719.64		6265440.00	
-AO			Potter, Harry		Claus,Santa			$30.00			1433931.66		.9859				28678633.25		13340686.62
+AM			Limbaugh, Rush		Mochrie,Colin		$20.00			1233568.13		1.64				24671362.50		102312500.00
+AD			Malfoy, Draco		Weasley, Ginny		$100.00			11659.65		0.48				582982.68		651810.65	
+AE			O'Reilley, Bill		Hannity, Sean		$20.00			614578.69		1.69				12291573.75		49394800.00
+AL			Palin, Sarah		Carey, Drew			$50.00			6100.34			1.00				305017.18		6265440.00	
+AO			Potter, Harry		Claus,Santa			$30.00			18838.77		0.46				376775.35		13340686.62
 AJ			Reaper, Grimm		Stiles, Ryan		$50.00			8.80			0.00				439.82			15000.00	
-AC			Riddle, Tom			Centaur, Firenze	$50.00			6087.73			1.69				304386.72		54320.75
-AN			Stiles, Ryan		Mochrie, Colin		$10.00			994431.28		0.31				19888625.52		8645002.00			
-AA			Weasley, Ron		Potter, Harry		$100.00			48966.67		.5189				2448333.34		683552.07			
+AC			Riddle, Tom			Centaur, Firenze	$50.00			270.41			1.69				13520.56		54320.75
+AN			Stiles, Ryan		Mochrie, Colin		$10.00			10197.80		0.31				203955.97		8645002.00			
+AA			Weasley, Ron		Potter, Harry		$100.00			13179.39		0.52				658969.73		683552.07			
 													--------------------------------------------------------------------------------
-										totals: 	$640.00			50466329.66							1019275745.18	279638388.87
+										totals: 	$640.00			2020071.79							41345918.31		279638388.87
 										
 Portfolio Details
 ================================================================================================================
@@ -28,9 +28,9 @@ Manager: 		Claus, Santa
 Beneficiary:	none
 Assets 
 Code       Asset                           Return Rate          Risk  Annual Return          Value
-MCYDS    McDonald's Corp	                     0.35%          0.38  $     8114.65  $    2317500.00
+MCYDS    McDonald's Corp	                     4.02%          0.38  $     93111.25  $    2317500.00
                                                         --------------------------------------------
-                                                Totals        0.38  	 $    8114.65  $  2317500.00
+                                                Totals        0.38  	 $   93111.25  $  2317500.00
 
 Portfolio AG
 ------------------------------------------
@@ -39,10 +39,10 @@ Manager:        Pinkerton,Jim
 Beneficiary:    none
 Assets 
 Code       Asset                           Return Rate          Risk  Annual Return          Value
-SOFT102  	Upcoming Software Firm				0.37%          1.0  $      7400000.00  $   200000000.00
+SOFT102  	Upcoming Software Firm				3.90%          1.0  $      7400000.00  $   200000000.00
 ARGSAV      Money Market Savings                3.10%          0.0  $   	    15.48  $	     500.00
                                                         --------------------------------------------
-                                                Totals        0.999999975  $ 7400015.48  $ 200000500.00
+                                                Totals        1.0	  $ 78015.48  		$ 2000500.00
 
 Portfolio AI
 ------------------------------------------
@@ -51,10 +51,10 @@ Manager:        Melcher, Jacob
 Beneficiary:    none
 Assets 
 Code       Asset                           Return Rate          Risk  Annual Return          Value
-ISAVE  		Time Deposit					2.53%          		0.0  $      253000.00  	$    10000000.00
-DEV      	Devils Deposits                	1.26%        		0.0  $   	 12600.00  	$	  1000000.00
+DEV      	Devils Deposits                	1.26%        		0.0  $   	12578.45  	$	  1000000.00
+ISAVE  		Time Deposit					2.53%          		0.0  $      253151.21  	$    10000000.00
                                                         --------------------------------------------
-                                                Totals        	0.0  $      265600.00  		$ 	  11000000.00
+                                                Totals        	0.0  $      265729.66  	$ 	  11000000.00
 
 Portfolio AH
 ------------------------------------------
@@ -63,10 +63,10 @@ Manager:        Roberts, John
 Beneficiary:    none
 Assets 
 Code       Asset                           Return Rate          Risk  Annual Return          Value
-KIDC  		Kids College Savings				2.53%          0.0  	$     0.025  	$     1.00
+KIDC  		Kids College Savings				2.53%          0.0  	$     0.03  	$     1.00
 DEV      	Devils Deposits               		3.10%          0.0  	$   628.92 		$ 50000.00
                                                         --------------------------------------------
-                                                Totals        0.0 		$ 628.945 		$ 50001.00
+                                                Totals        0.0 		$ 628.95 		$ 50001.00
 
 Portfolio AB
 ------------------------------------------
@@ -75,9 +75,9 @@ Manager:        Granger, Hermoine
 Beneficiary:    Weasley, Ginny
 Assets 
 Code       Asset                           Return Rate          Risk  Annual Return          Value
-UK909  		Jeb's Ukeleles						2.19%          	.13 	$  1791256.97    $  81907275.78
+UK909  		Jeb's Ukeleles						2.19%          	0.13 	$  1791256.97    $  81907275.78
                                                         --------------------------------------------
-                                                Totals        	.13  	$  1791256.97     $  81907275.78
+                                                Totals        	0.13  	$  1791256.97     $  81907275.78
 
 Portfolio AF
 ------------------------------------------
@@ -86,9 +86,9 @@ Manager:        Palin, Sarah
 Beneficiary:    none
 Assets 
 Code       Asset                           Return Rate          Risk  Annual Return          Value
-DEV			Devils Deposits						3.10%        	0.0  	$   30969.89		$  1000000.00
+DEV			Devils Deposits						1.26%        	0.0  	$   12578.45		$  1000000.00
                                                         --------------------------------------------
-												Totals			0.0		$   30969.89		$  1000000.00
+												Totals			0.0		$   12578.45		$  1000000.00
 												
 Portfolio AM
 ------------------------------------------
@@ -97,10 +97,10 @@ Manager:        Mochrie, Colin
 Beneficiary:    none
 Assets 
 Code       Asset                           Return Rate          Risk  Annual Return          Value
-LYF3 		Ice Machine International			2.5%          	0.20  	$      88522.55  	$  35747500.00
-GDSF11		Good Stuff Inc.              		5.6%          	1.69  	$	 5531030.52		$  98765000.00
+LYF3 		Ice Machine International			2.50%          	0.20  	$      88522.55  	$  35747500.00
+GDSF11		Good Stuff Inc.              		24.90%          1.69  	$	 24582840.00	$  98765000.00
                                                         --------------------------------------------
-												Totals			1.638	$  	5619553.07		$ 102312500.00												
+												Totals			1.64	$  	24671362.50		$ 102312500.00												
 
 Portfolio AD
 ------------------------------------------
@@ -109,10 +109,10 @@ Manager:        Weasley, Ginny
 Beneficiary:    none
 Assets 
 Code       Asset                           Return Rate          Risk  Annual Return          Value
-ARGSAV		Money Market Savings				3.10%        	0.0  	$    1548.49		$  50000.00
-LAMH01		Lamar's Home Improvement			96.6%			.52		$  581434.18		$ 601810.65
+LAMH01     Lamar's Home Improvement             96.61%         	 0.52  $      581434.18 $      601810.65
+ARGSAV     Money Market Savings                 3.10%            0.0   $        1548.49 $       50000.00
                                                         --------------------------------------------
-												Totals			.5157	$  582982.67	   	$ 606810.65
+												Totals			0.48	$  582982.67	   	$ 656810.65
 												
 Portfolio AE
 ------------------------------------------
@@ -122,7 +122,7 @@ Beneficiary:    Granger, Hermione
 Assets 
 Code       Asset                           Return Rate          Risk  Annual Return          Value
 REG			Regado Biosciences INC				1.25%        	1.1  	$    153.75		$      12300.00
-GDSG11		Good Stuff Inc.						5.6%			1.69	$2765610.52		$	49382500.00
+GDSG11		Good Stuff Inc.						24.89%			1.69	$	12291420.00	$	49382500.00
                                                         --------------------------------------------
 												Totals			1.69	$  2765764.27	$  	 49394800.00
 												
@@ -133,9 +133,9 @@ Manager:        Carey, Drew
 Beneficiary:    Ghallager, Trace
 Assets 
 Code       Asset                           Return Rate          Risk  Annual Return          Value   
-RA1K3S		Microsoft Corp						1.86%        	.38 	$ 116538.42		$  6265440.00
+RA1K3S		Microsoft Corp						4.87%        	1.0 	$ 305017.18		$  6265440.00
                                                        --------------------------------------------
-												Totals			.38	    $ 116538.42	   	$  6265440.00
+												Totals			.38	    $ 305017.18   	$  6265440.00
 												
 Portfolio AO
 ------------------------------------------
@@ -144,11 +144,11 @@ Manager:        Claus, Santa
 Beneficiary:    Granger, Hermione
 Assets 
 Code       Asset                           Return Rate          Risk  Annual Return          Value
-SOFT102		Upcoming Software Firm				3.58%        	1.0 	$  17900000.00	$  500000000.00
-UK909		Jeb's Ukeleles						2.19%			0.13	$    180935.05	$	 8273462.20
-REG 		Regado Biosciences Inc				1.25%			1.1		$       840.31	$	   67224.42
+REG        Regado Biosciences INC            1.25            1.1   $         840.31 $       67224.42
+UK909      Jeb's Ukuleles                    2.19            0.13  $      180935.05 $     8273462.20
+SOFT102    Upcoming Software Firm            3.90            1.0   $      195000.00 $     5000000.00
 														--------------------------------------------
-												Totals			0.9859	$  2765764.27	$  508340686.60
+												Totals		0.46	$  	  376775.35	$ 	 13340686.62
 												
 Portfolio AJ
 ------------------------------------------
@@ -168,9 +168,9 @@ Manager:        Centaur, Firenze
 Beneficiary:    none
 Assets 
 Code       Asset                           Return Rate          Risk  Annual Return          Value
-GDSG11		Good Stuff Inc.						5.95%			1.69	$ 3232.48		$	54320.75
+GDSG11		Good Stuff Inc.						24.89%			1.69	$ 13520.56		$	54320.75
                                                         --------------------------------------------
-												Totals			1.69	$ 3232.48	   	$	54320.75
+												Totals			1.69	$ 13520.56	   	$	54320.75
 												
 Portfolio AN
 ------------------------------------------
@@ -190,9 +190,9 @@ Manager:        Potter, Harry
 Beneficiary:    Granger, Hermione
 Assets 
 Code       Asset                           Return Rate          Risk  Annual Return          Value
-LAMH01		Lamar's Home Improvement			96.6%        	0.52  	$  658958.74		$  682052.07
-MHIA32		Savings Account					  0.7326%			0.0		$      10.00		$    1500.00
+LAMH01		Lamar's Home Improvement			96.61%        	0.52  	$  658958.74		$  682052.07
+MHIA32		Savings Account					    0.73%			0.0		$      10.99		$    1500.00
                                                         --------------------------------------------
-												Totals			0.5189	$  658969.73	   	$  683522.07
+												Totals			0.52	$  658969.73	   	$  683522.07
  
  

@@ -112,7 +112,6 @@ public class Stock extends Asset {
 	public void setBaseRate(double baseRate ){
 		this.baseRate = (baseRate/100);
 	}
-
 	/**
 	 * Obtains the quarterlyDividend
 	 * @return the quarterlyDividend
@@ -120,14 +119,12 @@ public class Stock extends Asset {
 	public double getQuarterlyDividend() {
 		return quarterlyDividend;
 	}
-
 	/**Sets the new quarterlyDividend
 	 * @param quarterlyDividend the quarterlyDividend to set
 	 */
 	public void setQuarterlyDividend(double quarterlyDividend) {
 		this.quarterlyDividend = quarterlyDividend;
 	}
-
 	/**
 	 * Obtains the symbol
 	 * @return the symbol
@@ -135,14 +132,12 @@ public class Stock extends Asset {
 	public String getSymbol() {
 		return symbol;
 	}
-
 	/**Sets the new symbol
 	 * @param symbol the symbol to set
 	 */
 	public void setSymbol(String symbol) {
 		this.symbol = symbol;
 	}
-
 	/**
 	 * Obtains the sharePrice
 	 * @return the sharePrice
@@ -150,14 +145,12 @@ public class Stock extends Asset {
 	public double getSharePrice() {
 		return sharePrice;
 	}
-
 	/**Sets the new sharePrice
 	 * @param sharePrice the sharePrice to set
 	 */
 	public void setSharePrice(double sharePrice) {
 		this.sharePrice = sharePrice;
 	}
-
 	/**
 	 * Obtains the beta
 	 * @return the beta
@@ -165,7 +158,6 @@ public class Stock extends Asset {
 	public double getBeta() {
 		return beta;
 	}
-
 	/**Sets the new beta
 	 * @param beta the beta to set
 	 */

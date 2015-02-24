@@ -10,7 +10,7 @@ public class Investment extends Asset{
 	private double quarterlyDividend;
 	private double omega;
 	private double value;
-	
+
 	/**
 	 * Constructor of investments
 	 * @param code investment asset's code
@@ -30,9 +30,8 @@ public class Investment extends Asset{
 		setOmega(omega);
 		setValue(value);
 		setRiskValue(omega);
-		
-	}
 
+	}
 	/**
 	 * computes the Annual Returns for the Investment
 	 * @param percentageOwned - percentage owned of investment
@@ -42,7 +41,7 @@ public class Investment extends Asset{
 		//annualReturns is base rate of returns * value plus quarterly dividend * 4 times percentageOwned as a percent
 		return anReturns;
 	}
-	
+
 	/**
 	 * computes the Value of the Asset
 	 * @param percentageOwned - percentage owned of investment
@@ -51,16 +50,16 @@ public class Investment extends Asset{
 		double value = this.value * percentageOwned / 100;
 		return value;
 	}
-	
+
 	/**
 	 * computes the return rate of given investment
 	 * @param percentageOwned - percentage owned of investment
 	 */
 	public void computeReturnRate(double percentageOwned){
-	double returnRate = (computeAnnualReturns(percentageOwned) / computeValueOfAsset(percentageOwned))* 100;
-	this.setReturnRate(returnRate); 
+		double returnRate = (computeAnnualReturns(percentageOwned) / computeValueOfAsset(percentageOwned))* 100;
+		this.setReturnRate(returnRate); 
 	}
-	
+
 	/**
 	 * sets the risk Value
 	 * @param risk
@@ -68,7 +67,7 @@ public class Investment extends Asset{
 	public void setRiskValue(double risk){
 		this.riskValue = risk;
 	}
-	
+
 	/**
 	 * obtains the risk value
 	 * @returns riskValue
@@ -76,7 +75,7 @@ public class Investment extends Asset{
 	public double getRiskValue(){
 		return riskValue;
 	}
-	
+
 	/**
 	 * obtains the return rate
 	 * @return returnRate
@@ -84,7 +83,7 @@ public class Investment extends Asset{
 	public double getReturnRate(){
 		return returnRate;
 	}
-	
+
 	/**
 	 * sets the Return Rate
 	 * @param returnRate
@@ -92,23 +91,21 @@ public class Investment extends Asset{
 	public void setReturnRate(double returnRate){
 		this.returnRate = returnRate;
 	}
-	
+
 	/**
 	 *
 	 * Obtains the quarterlyDividend
 	 * @return the quarterlyDividend
 	 */
-	public double getQuarterlyDividend() {
+	public double getQuarterlyDividend(){
 		return quarterlyDividend;
 	}
-
 	/**Sets the new quarterlyDividend
 	 * @param quarterlyDividend the quarterlyDividend to set
 	 */
-	public void setQuarterlyDividend(double quarterlyDividend) {
+	public void setQuarterlyDividend(double quarterlyDividend){
 		this.quarterlyDividend = quarterlyDividend;
 	}
-
 	/**
 	 * obtains the baseRate
 	 * @return the baseRate
@@ -116,7 +113,7 @@ public class Investment extends Asset{
 	public double getBaseRate(){
 		return baseRate;
 	}
-	
+
 	/**
 	 * sets the baseRate
 	 * @param baseRate
@@ -124,34 +121,30 @@ public class Investment extends Asset{
 	public void setBaseRate(double baseRate ){
 		this.baseRate = (baseRate / 100);
 	}
-
 	/**
 	 * Obtains the omega
 	 * @return the omega
 	 */
-	public double getOmega() {
+	public double getOmega(){
 		return omega;
 	}
-
 	/**Sets the new omega
 	 * @param omega the omega to set
 	 */
-	public void setOmega(double omega) {
+	public void setOmega(double omega){
 		this.omega = omega;
 	}
-
 	/**
 	 * Obtains the value
 	 * @return the value
 	 */
-	public double getValue() {
+	public double getValue(){
 		return value;
 	}
-
 	/**Sets the new value
 	 * @param value the value to set
 	 */
-	public void setValue(double value) {
+	public void setValue(double value){
 		this.value = value;
 	}
 }

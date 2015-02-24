@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
  * @version 1.0
  */
-public class FileOutputter {
+public class FileOutputter{
 	// Data members
 	Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	XStream xmlOut = new XStream();

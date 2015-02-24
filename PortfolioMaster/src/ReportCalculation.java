@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.*;
-
 /**
  * class used to sum up all the report values 
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
@@ -15,7 +14,6 @@ public class ReportCalculation {
 	private double totalReturn;
 	private double totalValue;
 	private  ArrayList<Portfolio> portfolioSet;
-	private FileOutputter format;
 	
 	/**
 	 * constructor for ReportCalculation class
@@ -28,7 +26,6 @@ public class ReportCalculation {
 		this.totalFees = this.calculateTotalFees(portfoliosGiven); //calculates total broker fees
 		this.totalReturn = this.calculateTotalReturns(portfoliosGiven); //calculates total annual returns
 		this.totalValue = this.calculateTotalValue(portfoliosGiven); //calculates total value
-		format = new FileOutputter();
 	}
 	
 	/**
@@ -104,28 +101,24 @@ public class ReportCalculation {
 		return tReturns;
 		
 	}
-
 	/**
 	 * @return the totalCommission
 	 */
 	public double getTotalCommission() {
 		return totalCommission;
 	}
-
 	/**
 	 * @return the totalFees
 	 */
 	public double getTotalFees() {
 		return totalFees;
 	}
-
 	/**
 	 * @return the totalReturn
 	 */
 	public double getTotalReturn() {
 		return totalReturn;
 	}
-
 	/**
 	 * @return the totalValue
 	 */
