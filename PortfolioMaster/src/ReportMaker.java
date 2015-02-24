@@ -78,7 +78,7 @@ public class ReportMaker{
 				}
 				
 				// prints out information specific to each portfolio
-				System.out.printf("%-10s %-48s %-3.2f%%  %7s %-5s $%15.2f $%15.2f\n", 
+				System.out.printf("%-10s %-48s %-3.2f%%  %7s %-5.2f $%15.2f $%15.2f\n", 
 						asset.getCode(), asset.getLabel(), asset.getReturnRate(),"", assetVals[0], assetVals[1], assetVals[2]);
 			}
 			
@@ -86,7 +86,7 @@ public class ReportMaker{
 			printThinLine(150);
 			
 			// prints the total risk, annual return and value of this portfolio
-			System.out.printf("%58s %20.2f  $%15.2f $%15.2f\n\n", "Totals:",
+			System.out.printf("%58s %20.4f  $%15.2f $%15.2f\n\n", "Totals:",
 								portfolios.get(i).getTotalRisks(),
 								portfolios.get(i).getTotalAnnualReturns(), 
 								portfolios.get(i).getTotalValue());

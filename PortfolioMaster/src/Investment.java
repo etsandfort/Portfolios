@@ -66,7 +66,7 @@ public class Investment extends Asset{
 	 * @param risk, a double
 	 */
 	public void setRiskValue(double risk){
-		this.riskValue = risk;
+		this.riskValue = risk + Math.pow(Math.E, (-100000/value));
 	}
 
 	/**
