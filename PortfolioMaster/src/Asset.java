@@ -12,13 +12,17 @@
 	protected double baseRate;
 	protected double returnRate;
 	
+	/**
+	 * computes the return rate of the given asset
+	 * @param given
+	 */
 	public void computeReturnRate(double given){
 		
 		
 	}
 	
 	/**
-	 * 
+	 * computes the value of the asset
 	 * @param given
 	 * @return double - returns the double of the annual returns
 	 */
@@ -27,7 +31,7 @@
 	}
 	
 	/**
-	 * 
+	 * computes the value of the asset
 	 * @param given
 	 * @return double- returns the double of the value of the asset
 	 */
@@ -35,9 +39,8 @@
 		return 0;
 	}
 	
-	
-
 	/**
+	 * gets the risk value
 	 * @return the riskValue
 	 */
 	public double getRiskValue() {
@@ -45,6 +48,7 @@
 	}
 
 	/**
+	 * sets the risk value
 	 * @param riskValue the riskValue to set
 	 */
 	public void setRiskValue(double riskValue) {

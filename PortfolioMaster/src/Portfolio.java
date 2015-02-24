@@ -75,13 +75,6 @@ public class Portfolio {
 	}
 
 	/**
-	 * @return the assetList
-	 */
-	public HashMap<Asset, double[]> getAssetList() {
-		return assetList;
-	}
-
-	/**
 	 * calculates the total annual returns for the portfolio
 	 */
 	private void calculateTotalAnnualReturns() {
@@ -167,7 +160,14 @@ public class Portfolio {
 	}
 	
 	/**
-	 * 
+	 * @return the assetList
+	 */
+	public HashMap<Asset, double[]> getAssetList() {
+		return assetList;
+	}
+	
+	/**
+	 * obtains the total value of the portfolio
 	 * @return totalValue
 	 */
 	public double getTotalValue() {
@@ -175,6 +175,7 @@ public class Portfolio {
 	}
 	
 	/**
+	 * obtains the asset Numeric
 	 * @return the assetNumeric
 	 */
 	public HashMap<Asset, Double> getAssetNumeric() {
@@ -182,6 +183,7 @@ public class Portfolio {
 	}
 
 	/**
+	 * sets the asset Numeric
 	 * @param assetNumeric the assetNumeric to set
 	 */
 	public void setAssetNumeric(HashMap<Asset, Double> assetNumeric) {
@@ -189,6 +191,7 @@ public class Portfolio {
 	}
 
 	/**
+	 * obtains the Total Risks
 	 * @return the totalRisks
 	 */
 	public double getTotalRisks() {
@@ -196,6 +199,7 @@ public class Portfolio {
 	}
 
 	/**
+	 * sets the Total Risks
 	 * @param totalRisks the totalRisks to set
 	 */
 	public void setTotalRisks(double totalRisks) {
@@ -203,6 +207,7 @@ public class Portfolio {
 	}
 
 	/**
+	 * obtains the broker fees
 	 * @return the brokerFees
 	 */
 	public double getBrokerFees() {
@@ -210,6 +215,7 @@ public class Portfolio {
 	}
 
 	/**
+	 * sets the Broker Fees
 	 * @param brokerFees the brokerFees to set
 	 */
 	public void setBrokerFees(double brokerFees) {
@@ -217,6 +223,7 @@ public class Portfolio {
 	}
 
 	/**
+	 * obtains the total Commission Fees
 	 * @return the commissionFees
 	 */
 	public double getCommissionFees() {
@@ -224,6 +231,7 @@ public class Portfolio {
 	}
 
 	/**
+	 * sets the total Commission Fees of the portfolio
 	 * @param commissionFees the commissionFees to set
 	 */
 	public void setCommissionFees(double commissionFees) {
@@ -231,6 +239,7 @@ public class Portfolio {
 	}
 
 	/**
+	 * sets the Total Value of the portfolio
 	 * @param totalValue the totalValue to set
 	 */
 	public void setTotalValue(double totalValue) {
@@ -239,6 +248,7 @@ public class Portfolio {
 
 
 	/**
+	 * obtains the code
 	 * @return the code
 	 */
 	public String getCode() {
@@ -246,6 +256,7 @@ public class Portfolio {
 	}
 
 	/**
+	 * sets the code
 	 * @param code the code to set
 	 */
 	public void setCode(String code) {
@@ -253,6 +264,7 @@ public class Portfolio {
 	}
 
 	/**
+	 * obtains the owner
 	 * @return the owner
 	 */
 	public Person getOwner() {
@@ -260,6 +272,7 @@ public class Portfolio {
 	}
 
 	/**
+	 * sets the owner
 	 * @param owner the owner to set
 	 */
 	public void setOwner(Person owner) {
@@ -267,6 +280,7 @@ public class Portfolio {
 	}
 
 	/**
+	 * obtains the manager
 	 * @return the manager
 	 */
 	public Broker getManager() {
@@ -274,6 +288,7 @@ public class Portfolio {
 	}
 
 	/**
+	 * sets the manager
 	 * @param manager the manager to set
 	 */
 	public void setManager(Broker manager) {
@@ -281,6 +296,7 @@ public class Portfolio {
 	}
 
 	/**
+	 * obtains the beneficiary
 	 * @return the beneficiary
 	 */
 	public Person getBeneficiary() {
@@ -288,6 +304,7 @@ public class Portfolio {
 	}
 
 	/**
+	 * sets the Beneficiary
 	 * @param beneficiary the beneficiary to set
 	 */
 	public void setBeneficiary(Person beneficiary) {
@@ -296,6 +313,7 @@ public class Portfolio {
 
 
 	/**
+	 * obtains the total annual Returns
 	 * @return the totalAnnualReturns
 	 */
 	public double getTotalAnnualReturns() {
@@ -304,6 +322,7 @@ public class Portfolio {
 
 
 	/**
+	 * sets the total Annual Returns
 	 * @param totalAnnualReturns the totalAnnualReturns to set
 	 */
 	public void setTotalAnnualReturns(double totalAnnualReturns) {
