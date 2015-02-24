@@ -4,9 +4,10 @@ import java.util.*;
 
 /**
  * ReportCalculation.java
+ * RAIK 184H
  * Performs all of the calculations necessary for portfolio reporting
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
- * @version 5.0
+ * @version 3.0
  */
 
 public class ReportCalculation{

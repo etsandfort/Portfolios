@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * This is the application class for the database, it contains the main method
  * which runs the financial management system.
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
- * @version 3.3
+ * @version 3.0
  */
 public class PortfolioManager{
 	//Data member

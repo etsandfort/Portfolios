@@ -3,7 +3,7 @@
  * RAIK 184H
  * This class represents a deposit account asset in the financial database
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
- * @version 1.0
+ * @version 3.0
  */
 public class Deposit extends Asset{
 	

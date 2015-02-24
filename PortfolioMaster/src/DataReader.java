@@ -9,8 +9,7 @@ import java.util.HashMap;
  * RAIK 184H
  * This class is responsible for reading in and parsing asset and people objects
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
- * @version 2.0
- *
+ * @version 3.0
  */
 public class DataReader{
 	public static final String PORTFOLIO_FILENAME = "data/Portfolios.dat";

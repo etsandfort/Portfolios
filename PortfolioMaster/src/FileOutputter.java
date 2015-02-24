@@ -9,11 +9,12 @@ import java.util.ArrayList;
 
 /**
  * FileOutputter.java
+ * RAIK 184H
  * This class is responsible for outputting xml and json files of assets
  * and people, as well as a text file containing a portfolio summary report 
  * and a detailed report of each portfolio.
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
- * @version 1.0
+ * @version 3.0
  */
 public class FileOutputter{
 	// Data members

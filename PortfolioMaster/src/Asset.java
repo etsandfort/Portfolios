@@ -1,8 +1,9 @@
 /**
  * Asset.java
+ * RAIK 184H
  * An class representing an asset in the financial database
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
- * @version 3.8
+ * @version 3.0
  */
 public class Asset{
 	// data members

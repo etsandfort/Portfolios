@@ -2,9 +2,10 @@ import java.util.HashMap;
 
 /**
  * Portfolio.java
+ * RAIK 184H
  * Template for portfolio objects in the financial management system.
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
- * @version 1.0
+ * @version 3.0
  */
 public class Portfolio{
 	//Data Members

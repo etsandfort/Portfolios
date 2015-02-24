@@ -1,5 +1,12 @@
 import java.util.ArrayList;
 
+/**
+ * ReportMaker.java
+ * RAIK 184H
+ * This class contains the methods to print the portfolio summary and detailed reports.
+ * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
+ * @version 3.0
+ */
 public class ReportMaker{
 	// data members
 	private ReportCalculation reportCalc;
