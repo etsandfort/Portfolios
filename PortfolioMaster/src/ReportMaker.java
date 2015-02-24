@@ -30,7 +30,6 @@ public class ReportMaker {
 			nameManager = portfolios.get(i).getManager().getLastName()
 						  + ", " + portfolios.get(i).getManager().getFirstName();
 			
-			//TODO add a $ to broker fees
 			System.out.printf("%-12s %-25s %-25s $%-15.2f %-15.2f %-20.2f %-15.2f %-15.2f\n", 
 					portfolios.get(i).getCode(), nameOwner, nameManager,
 					portfolios.get(i).getBrokerFees(), 
