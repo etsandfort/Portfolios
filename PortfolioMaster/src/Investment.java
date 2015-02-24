@@ -13,13 +13,13 @@ public class Investment extends Asset{
 
 	/**
 	 * Constructor of investments
-	 * @param code investment asset's code
-	 * @param label investment asset's label
-	 * @param type type of investment
-	 * @param rate rate of return
-	 * @param quart quarterly dividend
-	 * @param omega omega measure
-	 * @param value total value
+	 * @param code, the investment asset's code
+	 * @param label, the investment asset's label
+	 * @param type, the type of investment
+	 * @param rate, the investment's rate of return
+	 * @param quart, the investment's quarterly dividend
+	 * @param omega, the investment's omega measure
+	 * @param value, the investment's total value
 	 */
 	public Investment(String code, String label, String type, double quart,double rate,  double omega, double value){
 		setCode(code);
@@ -32,8 +32,9 @@ public class Investment extends Asset{
 		setRiskValue(omega);
 
 	}
+	
 	/**
-	 * computes the Annual Returns for the Investment
+	 * Computes the Annual Returns for the Investment
 	 * @param percentageOwned - percentage owned of investment
 	 */
 	public double computeAnnualReturns(double percentageOwned){
@@ -43,7 +44,7 @@ public class Investment extends Asset{
 	}
 
 	/**
-	 * computes the Value of the Asset
+	 * Computes the Value of the Investment Asset
 	 * @param percentageOwned - percentage owned of investment
 	 */
 	public double computeValueOfAsset(double percentageOwned){
@@ -52,7 +53,7 @@ public class Investment extends Asset{
 	}
 
 	/**
-	 * computes the return rate of given investment
+	 * Computes the return rate of given investment
 	 * @param percentageOwned - percentage owned of investment
 	 */
 	public void computeReturnRate(double percentageOwned){
@@ -61,88 +62,95 @@ public class Investment extends Asset{
 	}
 
 	/**
-	 * sets the risk Value
-	 * @param risk
+	 * Sets the investment's risk value
+	 * @param risk, a double
 	 */
 	public void setRiskValue(double risk){
 		this.riskValue = risk;
 	}
 
 	/**
-	 * obtains the risk value
-	 * @returns riskValue
+	 * Obtains the investment's risk value
+	 * @returns riskValue, a double
 	 */
 	public double getRiskValue(){
 		return riskValue;
 	}
 
 	/**
-	 * obtains the return rate
-	 * @return returnRate
+	 * Obtains the investment's return rate
+	 * @return returnRate, a double
 	 */
 	public double getReturnRate(){
 		return returnRate;
 	}
 
 	/**
-	 * sets the Return Rate
-	 * @param returnRate
+	 * Sets the investment's return rate
+	 * @param returnRate, a double
 	 */
 	public void setReturnRate(double returnRate){
 		this.returnRate = returnRate;
 	}
 
 	/**
-	 *
-	 * Obtains the quarterlyDividend
-	 * @return the quarterlyDividend
+	 * Obtains the investment's quarterly dividend
+	 * @return quarterlyDividend, a double
 	 */
 	public double getQuarterlyDividend(){
 		return quarterlyDividend;
 	}
-	/**Sets the new quarterlyDividend
-	 * @param quarterlyDividend the quarterlyDividend to set
+	
+	/**Sets the investment's quarterly dividend
+	 * @param quarterlyDividend, a double
 	 */
 	public void setQuarterlyDividend(double quarterlyDividend){
 		this.quarterlyDividend = quarterlyDividend;
 	}
+	
 	/**
-	 * obtains the baseRate
-	 * @return the baseRate
+	 * Obtains the investment's base rate of return
+	 * @return baseRate, a double
 	 */
 	public double getBaseRate(){
 		return baseRate;
 	}
 
 	/**
-	 * sets the baseRate
-	 * @param baseRate
+	 * Sets the investment's base rate of return
+	 * @param baseRate, a double
 	 */
 	public void setBaseRate(double baseRate ){
-		this.baseRate = (baseRate / 100);
+		this.baseRate = (baseRate / 100); // converts percentage to its decimal form
 	}
+	
 	/**
-	 * Obtains the omega
-	 * @return the omega
+	 * Obtains the investment's omega measure
+	 * @return omega, a double
 	 */
 	public double getOmega(){
 		return omega;
 	}
-	/**Sets the new omega
-	 * @param omega the omega to set
+	
+	/**
+	 * Sets the investment's omega measure
+	 * @param omega, a double
 	 */
 	public void setOmega(double omega){
 		this.omega = omega;
 	}
+	
 	/**
-	 * Obtains the value
-	 * @return the value
+	 * Obtains the stock's value
+	 * @return value, a double
 	 */
 	public double getValue(){
 		return value;
 	}
-	/**Sets the new value
-	 * @param value the value to set
+	
+	/**
+	 * Sets the investment's value
+	 * @param value, a double
 	 */
 	public void setValue(double value){
 		this.value = value;

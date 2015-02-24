@@ -14,14 +14,14 @@ public class Stock extends Asset{
 	
 	/**
 	 * The constructor of a stock object
-	 * @param code stock code
-	 * @param label stock label
-	 * @param type stock type
-	 * @param rate stock rate of return
-	 * @param quart stock quarterly dividend
-	 * @param share stock share price
-	 * @param symbol stock symbol
-	 * @param beta stock beta measure
+	 * @param code, the stock's code
+	 * @param label, the stock's label
+	 * @param type, the stock's type
+	 * @param rate, the stock's rate of return
+	 * @param quart, the stock's quarterly dividend
+	 * @param share, the stock's share price
+	 * @param symbol, the stock's symbol
+	 * @param beta, the stock's beta measure
 	 */
 	public Stock(String code, String label, String type, double quart, double rate, double share,String symbol, double beta){
 		setCode(code);
