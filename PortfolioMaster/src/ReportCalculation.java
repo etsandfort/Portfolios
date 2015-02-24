@@ -43,9 +43,32 @@ public class ReportCalculation{
 			 * The compare method sorts the portfolios by owner's last name
 			 */
 			public int compare(Portfolio portfolio1, Portfolio portfolio2){
-				return portfolio1.getOwner().getLastName().compareTo(portfolio2.getOwner().getLastName());
-			}
-		}
+				int compareLastName = portfolio1.getOwner().getLastName().compareTo(portfolio2.getOwner().getLastName());
+				
+				if(compareLastName == 0){ // last name is same, so compare first name
+					int compareFirstName = portfolio1.getOwner().getFirstName().compareTo(portfolio2.getOwner().getFirstName());
+					
+					if (compareFirstName == 0){ // first name is same, so compare manager's last name
+						int compareManagerLast =  portfolio1.getManager().getLastName().compareTo(portfolio2.getManager().getLastName());
+						
+						if(compareManagerLast == 0){ // manager last name is same, so compare manager's first name
+							return portfolio1.getManager().getFirstName().compareTo(portfolio2.getManager().getFirstName());
+						}
+						
+						else{ // manager last names are not same and will sort alphabetically
+							return compareManagerLast;
+						}
+					}
+					
+					else{ // first names are not same and will sort alphabetically
+						return compareFirstName;
+					}
+				}
+				
+				else{ // owner's last names are not same and will sort alphabetically
+					return compareLastName;
+				}
+			
 		Collections.sort(list, new PortfolioSorter());
 		return list;
 	}
