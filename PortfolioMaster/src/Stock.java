@@ -34,21 +34,67 @@ public class Stock extends Asset {
 		setBeta(beta);
 		setRiskValue(beta);
 	}
+	
+	/**
+	 * computes the Annual Returns for the Stock asset
+	 * @param stocks - the amount of stocks owned
+	 */
+	public double computeAnnualReturns(double stocks){
+		double anReturns = 0.0;
+		anReturns = (this.quarterlyDividend * 4 * stocks) + (this.baseRate * stocks * this.sharePrice) ; 
+		//annual return is quarterly dividend * 4 * stocks owned plus base Rate of return times sharePrice times stocks
+		return anReturns;
+	}
+	
+	/**
+	 * computes the Value of the Stock
+	 * @param stocks - the amount of stocks owned
+	 */
+	public double computeValueOfAsset(double stocks){
+		double value = stocks * sharePrice; //value is stocks * sharePrice
+		return value;
+	}
+	
+	/**
+	 * computes the returnRate of the Stock
+	 * @param stocks - the amount of stocks owned
+	 */
+	public void computeReturnRate(double stocks){
+		
+		double returnRate = (computeAnnualReturns(stocks) / computeValueOfAsset(stocks)) * 100;
+		this.setReturnRate(returnRate);
+	}
+	
+	/**
+	 * sets the Risk Value
+	 * @param risk
+	 */
 	public void setRiskValue(double risk){
 		this.riskValue = risk;
 	}
+	
+	/**
+	 * obtains the Risk Value
+	 * @return riskValue
+	 */
 	public double getRiskValue(){
 		return riskValue;
 	}
 	
-	public double computeAnnualReturns(double given){
-		double anReturns = 0.0;
-		anReturns = this.quarterlyDividend * 4 + this.baseRate * given * this.sharePrice ; //look into this for the decimals
-		return anReturns;
+	/**
+	 * obtains the returnRate
+	 * @return returnRate
+	 */
+	public double getReturnRate(){
+		return returnRate;
 	}
-	public double computeValueOfAsset(double given){
-		double value = given * sharePrice;
-		return value;
+	
+	/**
+	 * sets the Return Rate
+	 * @param returnRate
+	 */
+	public void setReturnRate(double returnRate){
+		this.returnRate = returnRate;
 	}
 	
 	/**
@@ -64,7 +110,7 @@ public class Stock extends Asset {
 	 * @param baseRate
 	 */
 	public void setBaseRate(double baseRate ){
-		this.baseRate = baseRate;
+		this.baseRate = (baseRate/100);
 	}
 
 	/**

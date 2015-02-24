@@ -33,22 +33,68 @@ public class Investment extends Asset{
 		
 	}
 
-	
-	public double computeAnnualReturns(double PercentageOwned){
-	double anReturns = (this.baseRate * this.value + this.quarterlyDividend * 4) * PercentageOwned / 100;
-	return anReturns;
+	/**
+	 * computes the Annual Returns for the Investment
+	 * @param percentageOwned - percentage owned of investment
+	 */
+	public double computeAnnualReturns(double percentageOwned){
+		double anReturns = (this.baseRate * this.value + this.quarterlyDividend * 4) * percentageOwned / 100;
+		//annualReturns is base rate of returns * value plus quarterly dividend * 4 times percentageOwned as a percent
+		return anReturns;
 	}
+	
+	/**
+	 * computes the Value of the Asset
+	 * @param percentageOwned - percentage owned of investment
+	 */
+	public double computeValueOfAsset(double percentageOwned){
+		double value = this.value * percentageOwned / 100;
+		return value;
+	}
+	
+	/**
+	 * computes the return rate of given investment
+	 * @param percentageOwned - percentage owned of investment
+	 */
+	public void computeReturnRate(double percentageOwned){
+	double returnRate = (computeAnnualReturns(percentageOwned) / computeValueOfAsset(percentageOwned))* 100;
+	this.setReturnRate(returnRate); 
+	}
+	
+	/**
+	 * sets the risk Value
+	 * @param risk
+	 */
 	public void setRiskValue(double risk){
 		this.riskValue = risk;
 	}
+	
+	/**
+	 * obtains the risk value
+	 * @returns riskValue
+	 */
 	public double getRiskValue(){
 		return riskValue;
 	}
-	public double computeValueOfAsset(double given){
-		double value = this.value * given / 100;
-		return value;
-	}
+	
 	/**
+	 * obtains the return rate
+	 * @return returnRate
+	 */
+	public double getReturnRate(){
+		return returnRate;
+	}
+	
+	/**
+	 * sets the Return Rate
+	 * @param returnRate
+	 */
+	public void setReturnRate(double returnRate){
+		this.returnRate = returnRate;
+	}
+	
+	/**
+	 *
 	 * Obtains the quarterlyDividend
 	 * @return the quarterlyDividend
 	 */
@@ -76,7 +122,7 @@ public class Investment extends Asset{
 	 * @param baseRate
 	 */
 	public void setBaseRate(double baseRate ){
-		this.baseRate = baseRate;
+		this.baseRate = (baseRate / 100);
 	}
 
 	/**
