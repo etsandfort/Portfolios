@@ -30,7 +30,7 @@ public class ReportMaker {
 			nameManager = portfolios.get(i).getManager().getLastName()
 						  + ", " + portfolios.get(i).getManager().getFirstName();
 			
-			System.out.printf("%-12s %-25s %-25s $%-15.2f %-15.2f %-20.2f %-15.2f %-15.2f\n", 
+			System.out.printf("%-12s %-25s %-25s $%-14.2f $%-15.2f %-20.2f $%-14.2f $%-15.2f\n", 
 					portfolios.get(i).getCode(), nameOwner, nameManager,
 					portfolios.get(i).getBrokerFees(), 
 					portfolios.get(i).getCommissionFees(), 
@@ -42,7 +42,7 @@ public class ReportMaker {
 		// prints line under numerical values, acting as a divider between individual values and totals
 		printThinLine(150);
 		// print totals for fees, commissions, return, total
-		System.out.printf("%52s %-11s $%-15.2f %-15.2f %20s %-15.2f %-15.2f\n", "", 
+		System.out.printf("%54s %-9s $%-14.2f $%-15.2f %20s $%-15.2f $%-15.2f\n", "", 
 				"Totals:", reportCalc.getTotalFees(), reportCalc.getTotalCommission(), 
 				"", reportCalc.getTotalReturn(), reportCalc.getTotalValue());
 	}
@@ -66,15 +66,14 @@ public class ReportMaker {
 					assetVals[j] = portfolios.get(i).getAssetList().get(asset)[j]; 
 				}
 				
-				// TODO add % to Base Rate
-				System.out.printf("%-10s %-48s %-15.2f %-5s $%15.2f $%15.2f\n", 
-						asset.getCode(), asset.getLabel(), asset.getBaseRate(), assetVals[0], assetVals[1], assetVals[2]);
+				System.out.printf("%-10s %-48s %-3.2f%%  %7s %-5s $%15.2f $%15.2f\n", 
+						asset.getCode(), asset.getLabel(), asset.getBaseRate(),"", assetVals[0], assetVals[1], assetVals[2]);
 			}
 			
 			// prints line under numerical values, acting as a divider between individual values and totals
 			printThinLine(150);
 			
-			System.out.printf("%59s %20.2f  $%15.2f $%15.2f\n\n", "Totals:",
+			System.out.printf("%58s %20.2f  $%15.2f $%15.2f\n\n", "Totals:",
 								portfolios.get(i).getTotalRisks(),
 								portfolios.get(i).getTotalAnnualReturns(), 
 								portfolios.get(i).getTotalValue());
@@ -107,7 +106,7 @@ public class ReportMaker {
 		System.out.printf("%-15s %-25s\n", "Manager:", nameManager);
 		System.out.printf("%-15s %-25s\n", "Beneficiary:", nameBeneficiary);
 		System.out.println("Assets");
-		System.out.printf("%-10s %-48s %-15s %-7s %-15s %-5s\n", "Code", "Asset", 
+		System.out.printf("%-10s %-48s %-14s %-6s %-16s %-5s\n", "Code", "Asset", 
 						  "Return Rate", "Risk", "Annual Return", "Value");
 	}
 	
