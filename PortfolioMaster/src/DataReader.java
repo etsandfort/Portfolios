@@ -52,23 +52,22 @@ public class DataReader{
 	 */
 	public Portfolio parsePortfolio(String line, ArrayList<Asset> assets, ArrayList<Person> persons){
 		Portfolio p;
-
-		line = line + " ";
-		String[] portInfo = line.split(";");
+		
+		String[] portInfo = line.split(";",-1);
 		String code = portInfo[0];
 		String ownerID = portInfo[1];
 		String managerID = portInfo[2];
 		String beneficiaryID = portInfo[3];
 		String[] assetIDList = portInfo[4].split(",");
 		
-		if(beneficiaryID.equalsIgnoreCase("")){
+		if(beneficiaryID.trim().equalsIgnoreCase("")){
 			p = new Portfolio(code, searchPerson(ownerID, persons), (Broker) searchPerson(managerID, persons), searchAssets(assetIDList, assets));
 			return p;
-		} else {
+		} 
+		else{
 			p = new Portfolio(code, searchPerson(ownerID, persons), (Broker) searchPerson(managerID, persons), searchPerson(beneficiaryID, persons), searchAssets(assetIDList,assets));
 			return p;
 		}
-		
 	}
 	
 	public Person searchPerson(String id, ArrayList<Person> persons){
@@ -85,7 +84,7 @@ public class DataReader{
 	public HashMap<Asset, Double> searchAssets(String[] idList, ArrayList<Asset> assets){
 		HashMap<Asset,Double> assetList = new HashMap<Asset,Double>();
 		for(String id: idList){
-			if(!id.equalsIgnoreCase(" ")) {
+			if(!id.equalsIgnoreCase("")) {
 				double value = Double.parseDouble(id.split(":")[1]);
 				id = id.split(":")[0];
 			
