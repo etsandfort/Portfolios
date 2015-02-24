@@ -12,6 +12,9 @@ import java.util.HashMap;
  *
  */
 public class DataReader {
+	public static final String PORTFOLIO_FILENAME = "data/Portfolios.dat";
+	public static final String ASSET_FILENAME = "data/Assets.dat";
+	public static final String PERSON_FILENAME = "data/Persons.dat";
 	
 	/**
 	 * Reads in a file of portfolios, located at data/Persons.dat, and creates an arraylist of portfolios
@@ -20,16 +23,19 @@ public class DataReader {
 	public ArrayList<Portfolio> readPortfolios(){
 		ArrayList<Portfolio> portfolios = new ArrayList<Portfolio>();
 		try{
-			File file = new File("data/Portfolios.dat"); //read in the file
+			File file = new File(PORTFOLIO_FILENAME); //read in the file
+
 			BufferedReader read = new BufferedReader(new FileReader(file));
 
 			String line;
 			int numLinesLeft = Integer.parseInt(read.readLine());
 			
+			ArrayList<Asset> assets = readAssets();
+			ArrayList<Person> persons = readPersons();
 			//Iterate through the file parsing Portfolio objects from the lines
 			while(numLinesLeft > 0){ 					
 				line = read.readLine();
-				portfolios.add(parsePortfolio(line));
+				portfolios.add(parsePortfolio(line, assets, persons));
 				numLinesLeft--;	
 			}
 			read.close();
@@ -44,8 +50,10 @@ public class DataReader {
 	 * @param line
 	 * @return
 	 */
-	public Portfolio parsePortfolio(String line){
+	public Portfolio parsePortfolio(String line, ArrayList<Asset> assets, ArrayList<Person> persons){
 		Portfolio p;
+
+		line = line + " ";
 		String[] portInfo = line.split(";");
 		String code = portInfo[0];
 		String ownerID = portInfo[1];
@@ -54,18 +62,18 @@ public class DataReader {
 		String[] assetIDList = portInfo[4].split(",");
 		
 		if(beneficiaryID.equalsIgnoreCase("")){
-			p = new Portfolio(code, searchPerson(ownerID), (Broker) searchPerson(managerID), searchAssets(assetIDList));
+			p = new Portfolio(code, searchPerson(ownerID, persons), (Broker) searchPerson(managerID, persons), searchAssets(assetIDList, assets));
 			return p;
 		} else {
-			p = new Portfolio(code, searchPerson(ownerID), (Broker) searchPerson(managerID), searchPerson(beneficiaryID), searchAssets(assetIDList));
+			p = new Portfolio(code, searchPerson(ownerID, persons), (Broker) searchPerson(managerID, persons), searchPerson(beneficiaryID, persons), searchAssets(assetIDList,assets));
 			return p;
 		}
 		
 	}
 	
-	public Person searchPerson(String id){
+	public Person searchPerson(String id, ArrayList<Person> persons){
 		Person subject;
-		for(Person p: readPersons()){
+		for(Person p: persons){
 			if(p.getCode().equalsIgnoreCase(id)){
 				subject=p;
 				return subject;
@@ -74,14 +82,14 @@ public class DataReader {
 		return null;
 	}
 	
-	public HashMap<Asset, Double> searchAssets(String[] idList){
+	public HashMap<Asset, Double> searchAssets(String[] idList, ArrayList<Asset> assets){
 		HashMap<Asset,Double> assetList = new HashMap<Asset,Double>();
 		for(String id: idList){
 			if(!id.equalsIgnoreCase(" ")) {
 				double value = Double.parseDouble(id.split(":")[1]);
 				id = id.split(":")[0];
 			
-				for(Asset a: readAssets()){
+				for(Asset a: assets){
 					if(a.getCode().equalsIgnoreCase(id)){
 						assetList.put(a,value);
 					}
@@ -97,7 +105,7 @@ public class DataReader {
 	public ArrayList<Person> readPersons(){
 		ArrayList<Person> persons = new ArrayList<Person>();
 		try{
-			File file = new File("data/Persons.dat"); //read in the file
+			File file = new File(PERSON_FILENAME); //read in the file
 			BufferedReader read = new BufferedReader(new FileReader(file));
 
 			String line;
@@ -127,8 +135,8 @@ public class DataReader {
 		
 		//Defining split parts of each line
 		String[] nameComps = info[2].split(",");
-		String lastName = nameComps[1];
-		String firstName = nameComps[0];	
+		String lastName = nameComps[0];
+		String firstName = nameComps[1];	
 		
 		//parsing an address
 		String[] addressComps = info[3].split(",");
@@ -145,7 +153,7 @@ public class DataReader {
 		
 		//determining what kind of person the person is
 		if(info[1].equalsIgnoreCase("")){
-			p = new Person(info[0],firstName, lastName,a, email);
+			p = new Person(info[0],lastName, firstName,a, email);
 			
 		} else{
 			String[] secInfo = info[1].split(",");
@@ -156,7 +164,7 @@ public class DataReader {
 			} else if(secInfo[0].equalsIgnoreCase("J")){
 				type = "J";
 			}
-			p = new Broker(info[0], type, sec,firstName, lastName, a, email);
+			p = new Broker(info[0], type, sec,lastName, firstName, a, email);
 			
 		}
 		return p;
@@ -169,7 +177,7 @@ public class DataReader {
 	public ArrayList<Asset> readAssets(){
 		ArrayList<Asset> assets = new ArrayList<Asset>();
 		try{
-			File file = new File("data/Assets.dat"); //reading in the file
+			File file = new File(ASSET_FILENAME); //reading in the file
 			BufferedReader read = new BufferedReader(new FileReader(file));
 
 			String line;
