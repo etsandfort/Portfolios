@@ -1,198 +1,206 @@
 Portfolio Summary Report
-===============================================================================================================================
-Portfolio  	Owner					Manager				Fees		Commissions		Weighted Risk         Return          Total
-AK			Brady, Wayne		Claus, Santa		$10.00			4655.56			0.38				93111.25		2317500.00		
-AG			Coulter, Leanne  	Pinkerton,Jim		$20.00			3900.77			1.00				78015.48		2000500.00
-AI			Diablo, L.			Melcher, Jacob		$20.00			13286.48		0.00				265729.66		11000000.00
-AH			Ghallager, Trace	Roberts, John		$100.00			12.58			0.00				628.95			50001.00
-AB			Krum, Viktor		Granger, Hermione	$10.00			89562.85		0.13				1791256.97		81907275.78	
-AF			Limbaugh, Rush		Palin, Sarah		$50.00			251.57			0.00				12578.45		1000000.00			
-AM			Limbaugh, Rush		Mochrie,Colin		$20.00			1233568.13		1.64				24671362.50		102312500.00
-AD			Malfoy, Draco		Weasley, Ginny		$100.00			11659.65		0.48				582982.68		651810.65	
-AE			O'Reilley, Bill		Hannity, Sean		$20.00			614578.69		1.69				12291573.75		49394800.00
-AL			Palin, Sarah		Carey, Drew			$50.00			6100.34			1.00				305017.18		6265440.00	
-AO			Potter, Harry		Claus,Santa			$30.00			18838.77		0.46				376775.35		13340686.62
-AJ			Reaper, Grimm		Stiles, Ryan		$50.00			8.80			0.00				439.82			15000.00	
-AC			Riddle, Tom			Centaur, Firenze	$50.00			270.41			1.69				13520.56		54320.75
-AN			Stiles, Ryan		Mochrie, Colin		$10.00			10197.80		0.31				203955.97		8645002.00			
-AA			Weasley, Ron		Potter, Harry		$100.00			13179.39		0.52				658969.73		683552.07			
-													--------------------------------------------------------------------------------
-										totals: 	$640.00			2020071.79							41345918.31		279638388.87
-										
+======================================================================================================================================================
+Portfolio    Owner                     Manager                   Fees            Commissions      Weighted Risk        Return          Total          
+AK           Brady,  Wayne             Claus,  Santa             $10.00          $4655.56         0.38                 $93111.25       $2317500.00     
+AG           Coulter,  Leeanne         Pinkerton,  Jim           $20.00          $3900.77         2.00                 $78015.48       $2000500.00     
+AI           Diablo,  L.               Melcher,  Jacob           $20.00          $13286.48        0.00                 $265729.66      $11000000.00    
+AH           Ghallager,  Trace         Roberts,  John            $100.00         $12.58           0.00                 $628.95         $50001.00       
+AB           Krum,  Viktor             Granger,  Hermione        $10.00          $89562.85        1.13                 $1791256.97     $81907275.78    
+AM           Limbaugh,  Rush           Mochrie,  Colin           $20.00          $1233568.13      1.67                 $24671362.50    $102312500.00   
+AF           Limbaugh,  Rush           Palin,  Sarah             $50.00          $251.57          0.00                 $12578.45       $1000000.00     
+AD           Malfoy,  Draco            Weasley,  Ginny           $100.00         $11659.65        1.34                 $582982.68      $651810.65      
+AE           O'Reilley,  Bill          Hannity,  Sean            $20.00          $614578.69       1.69                 $12291573.75    $49394800.00    
+AL           Palin,  Sarah             Carey,  Drew              $50.00          $6100.34         1.00                 $305017.18      $6265440.00     
+AO           Potter,  Harry            Claus,  Santa             $30.00          $18838.77        1.45                 $376775.35      $13340686.62    
+AP           Potter,  Harry            Claus,  Santa             $0.00           $0.00            0.00                 $0.00           $0.00           
+AJ           Reaper,  Grimm            Stiles,  Ryan             $50.00          $8.80            0.00                 $439.82         $15000.00       
+AC           Riddle,  Tom              Centaur,  Firenze         $50.00          $270.41          1.69                 $13520.56       $54320.75       
+AN           Stiles,  Ryan             Mochrie,  Colin           $10.00          $10197.80        1.30                 $203955.97      $8645002.00     
+AA           Weasley,  Ron             Potter,  Harry            $100.00         $13179.39        1.44                 $658969.73      $683552.07      
+                                                            ------------------------------------------------------------------------------------------
+                                                       Totals:   $640.00         $2020071.79                           $41345918.31     $279638388.87   
 Portfolio Details
-================================================================================================================
+======================================================================================================================================================
 Portfolio AK
-------------------------------------------
-Owner:			Brady, Wayne
-Manager: 		Claus, Santa
-Beneficiary:	none
-Assets 
-Code       Asset                           Return Rate          Risk  Annual Return          Value
-MCYDS    McDonald's Corp	                     4.02%          0.38  $     93111.25  $    2317500.00
-                                                        --------------------------------------------
-                                                Totals        0.38  	 $   93111.25  $  2317500.00
+----------------------------------------
+Owner:          Brady,  Wayne            
+Manager:        Claus,  Santa            
+Beneficiary:    none                     
+Assets
+Code       Asset                                            Return Rate    Risk   Annual Return    Value
+MCYDS      McDonald's Corp                                  4.02%          0.38  $       93111.25 $     2317500.00
+                                                            ------------------------------------------------------------------------------------------
+                                                   Totals:               0.3800  $       93111.25 $     2317500.00
 
 Portfolio AG
-------------------------------------------
-Owner:          Coutler, Leeane
-Manager:        Pinkerton,Jim
-Beneficiary:    none
-Assets 
-Code       Asset                           Return Rate          Risk  Annual Return          Value
-SOFT102  	Upcoming Software Firm				3.90%          1.0  $      7400000.00  $   200000000.00
-ARGSAV      Money Market Savings                3.10%          0.0  $   	    15.48  $	     500.00
-                                                        --------------------------------------------
-                                                Totals        1.0	  $ 78015.48  		$ 2000500.00
+----------------------------------------
+Owner:          Coulter,  Leeanne        
+Manager:        Pinkerton,  Jim          
+Beneficiary:    none                     
+Assets
+Code       Asset                                            Return Rate    Risk   Annual Return    Value
+ARGSAV     Money Market Savings                             3.10%          0.00  $          15.48 $         500.00
+SOFT102    Upcoming Software Firm                           3.90%          2.00  $       78000.00 $     2000000.00
+                                                            ------------------------------------------------------------------------------------------
+                                                   Totals:               1.9985  $       78015.48 $     2000500.00
 
 Portfolio AI
-------------------------------------------
-Owner:          Diablo, L.
-Manager:        Melcher, Jacob
-Beneficiary:    none
-Assets 
-Code       Asset                           Return Rate          Risk  Annual Return          Value
-DEV      	Devils Deposits                	1.26%        		0.0  $   	12578.45  	$	  1000000.00
-ISAVE  		Time Deposit					2.53%          		0.0  $      253151.21  	$    10000000.00
-                                                        --------------------------------------------
-                                                Totals        	0.0  $      265729.66  	$ 	  11000000.00
+----------------------------------------
+Owner:          Diablo,  L.              
+Manager:        Melcher,  Jacob          
+Beneficiary:    none                     
+Assets
+Code       Asset                                            Return Rate    Risk   Annual Return    Value
+ISAVE      Time Deposit                                     2.53%          0.00  $      253151.21 $    10000000.00
+DEV        Devils Deposits                                  1.26%          0.00  $       12578.45 $     1000000.00
+                                                            ------------------------------------------------------------------------------------------
+                                                   Totals:               0.0000  $      265729.66 $    11000000.00
 
 Portfolio AH
-------------------------------------------
-Owner:          Ghallager, Trace
-Manager:        Roberts, John
-Beneficiary:    none
-Assets 
-Code       Asset                           Return Rate          Risk  Annual Return          Value
-KIDC  		Kids College Savings				2.53%          0.0  	$     0.03  	$     1.00
-DEV      	Devils Deposits               		3.10%          0.0  	$   628.92 		$ 50000.00
-                                                        --------------------------------------------
-                                                Totals        0.0 		$ 628.95 		$ 50001.00
+----------------------------------------
+Owner:          Ghallager,  Trace        
+Manager:        Roberts,  John           
+Beneficiary:    none                     
+Assets
+Code       Asset                                            Return Rate    Risk   Annual Return    Value
+DEV        Devils Deposits                                  1.26%          0.00  $         628.92 $       50000.00
+KIDC       Kids College Savings                             2.53%          0.00  $           0.03 $           1.00
+                                                            ------------------------------------------------------------------------------------------
+                                                   Totals:               0.0000  $         628.95 $       50001.00
 
 Portfolio AB
-------------------------------------------
-Owner:          Krum, Viktor
-Manager:        Granger, Hermoine
-Beneficiary:    Weasley, Ginny
-Assets 
-Code       Asset                           Return Rate          Risk  Annual Return          Value
-UK909  		Jeb's Ukeleles						2.19%          	0.13 	$  1791256.97    $  81907275.78
-                                                        --------------------------------------------
-                                                Totals        	0.13  	$  1791256.97     $  81907275.78
+----------------------------------------
+Owner:          Krum,  Viktor            
+Manager:        Granger,  Hermione       
+Beneficiary:    Weasley,  Ron            
+Assets
+Code       Asset                                            Return Rate    Risk   Annual Return    Value
+UK909      Jeb's Ukuleles                                   2.19%          1.13  $     1791256.97 $    81907275.78
+                                                            ------------------------------------------------------------------------------------------
+                                                   Totals:               1.1288  $     1791256.97 $    81907275.78
+
+Portfolio AM
+----------------------------------------
+Owner:          Limbaugh,  Rush          
+Manager:        Mochrie,  Colin          
+Beneficiary:    none                     
+Assets
+Code       Asset                                            Return Rate    Risk   Annual Return    Value
+GDSF11     Good Stuff Inc.                                  24.89%         1.69  $    24582840.00 $    98765000.00
+LYF3       Ice Machine International                        2.50%          1.18  $       88522.50 $     3547500.00
+                                                            ------------------------------------------------------------------------------------------
+                                                   Totals:               1.6725  $    24671362.50 $   102312500.00
 
 Portfolio AF
-------------------------------------------
-Owner:          Limbaugh, Rush
-Manager:        Palin, Sarah
-Beneficiary:    none
-Assets 
-Code       Asset                           Return Rate          Risk  Annual Return          Value
-DEV			Devils Deposits						1.26%        	0.0  	$   12578.45		$  1000000.00
-                                                        --------------------------------------------
-												Totals			0.0		$   12578.45		$  1000000.00
-												
-Portfolio AM
-------------------------------------------
-Owner:          Limbaugh, Rush
-Manager:        Mochrie, Colin
-Beneficiary:    none
-Assets 
-Code       Asset                           Return Rate          Risk  Annual Return          Value
-LYF3 		Ice Machine International			2.50%          	0.20  	$      88522.55  	$  35747500.00
-GDSF11		Good Stuff Inc.              		24.90%          1.69  	$	 24582840.00	$  98765000.00
-                                                        --------------------------------------------
-												Totals			1.64	$  	24671362.50		$ 102312500.00												
+----------------------------------------
+Owner:          Limbaugh,  Rush          
+Manager:        Palin,  Sarah            
+Beneficiary:    none                     
+Assets
+Code       Asset                                            Return Rate    Risk   Annual Return    Value
+DEV        Devils Deposits                                  1.26%          0.00  $       12578.45 $     1000000.00
+                                                            ------------------------------------------------------------------------------------------
+                                                   Totals:               0.0000  $       12578.45 $     1000000.00
 
 Portfolio AD
-------------------------------------------
-Owner:          Malfoy, Draco
-Manager:        Weasley, Ginny
-Beneficiary:    none
-Assets 
-Code       Asset                           Return Rate          Risk  Annual Return          Value
-LAMH01     Lamar's Home Improvement             96.61%         	 0.52  $      581434.18 $      601810.65
-ARGSAV     Money Market Savings                 3.10%            0.0   $        1548.49 $       50000.00
-                                                        --------------------------------------------
-												Totals			0.48	$  582982.67	   	$ 656810.65
-												
+----------------------------------------
+Owner:          Malfoy,  Draco           
+Manager:        Weasley,  Ginny          
+Beneficiary:    none                     
+Assets
+Code       Asset                                            Return Rate    Risk   Annual Return    Value
+LAMH01     Lamar's Home Improvement                         96.61%         1.45  $      581434.18 $      601810.65
+ARGSAV     Money Market Savings                             3.10%          0.00  $        1548.49 $       50000.00
+                                                            ------------------------------------------------------------------------------------------
+                                                   Totals:               1.3369  $      582982.68 $      651810.65
+
 Portfolio AE
-------------------------------------------
-Owner:          O'Reilley, Bill 
-Manager:        Hannity, Sean
-Beneficiary:    Granger, Hermione
-Assets 
-Code       Asset                           Return Rate          Risk  Annual Return          Value
-REG			Regado Biosciences INC				1.25%        	1.1  	$    153.75		$      12300.00
-GDSG11		Good Stuff Inc.						24.89%			1.69	$	12291420.00	$	49382500.00
-                                                        --------------------------------------------
-												Totals			1.69	$  2765764.27	$  	 49394800.00
-												
+----------------------------------------
+Owner:          O'Reilley,  Bill         
+Manager:        Hannity,  Sean           
+Beneficiary:    Granger,  Hermione       
+Assets
+Code       Asset                                            Return Rate    Risk   Annual Return    Value
+GDSF11     Good Stuff Inc.                                  24.89%         1.69  $    12291420.00 $    49382500.00
+REG        Regado Biosciences INC                           1.25%          1.10  $         153.75 $       12300.00
+                                                            ------------------------------------------------------------------------------------------
+                                                   Totals:               1.6899  $    12291573.75 $    49394800.00
+
 Portfolio AL
-------------------------------------------
-Owner:          Palin, Sarah
-Manager:        Carey, Drew
-Beneficiary:    Ghallager, Trace
-Assets 
-Code       Asset                           Return Rate          Risk  Annual Return          Value   
-RA1K3S		Microsoft Corp						4.87%        	1.0 	$ 305017.18		$  6265440.00
-                                                       --------------------------------------------
-												Totals			.38	    $ 305017.18   	$  6265440.00
-												
+----------------------------------------
+Owner:          Palin,  Sarah            
+Manager:        Carey,  Drew             
+Beneficiary:    Ghallager,  Trace        
+Assets
+Code       Asset                                            Return Rate    Risk   Annual Return    Value
+RA1K3S     Microsoft Corp                                   4.87%          1.00  $      305017.18 $     6265440.00
+                                                            ------------------------------------------------------------------------------------------
+                                                   Totals:               1.0000  $      305017.18 $     6265440.00
+
 Portfolio AO
-------------------------------------------
-Owner:          Potter, Harry
-Manager:        Claus, Santa
-Beneficiary:    Granger, Hermione
-Assets 
-Code       Asset                           Return Rate          Risk  Annual Return          Value
-REG        Regado Biosciences INC            1.25            1.1   $         840.31 $       67224.42
-UK909      Jeb's Ukuleles                    2.19            0.13  $      180935.05 $     8273462.20
-SOFT102    Upcoming Software Firm            3.90            1.0   $      195000.00 $     5000000.00
-														--------------------------------------------
-												Totals		0.46	$  	  376775.35	$ 	 13340686.62
-												
+----------------------------------------
+Owner:          Potter,  Harry           
+Manager:        Claus,  Santa            
+Beneficiary:    none                     
+Assets
+Code       Asset                                            Return Rate    Risk   Annual Return    Value
+UK909      Jeb's Ukuleles                                   2.19%          1.13  $      180935.05 $     8273462.20
+SOFT102    Upcoming Software Firm                           3.90%          2.00  $      195000.00 $     5000000.00
+REG        Regado Biosciences INC                           1.25%          1.10  $         840.31 $       67224.42
+                                                            ------------------------------------------------------------------------------------------
+                                                   Totals:               1.4548  $      376775.35 $    13340686.62
+
+Portfolio AP
+----------------------------------------
+Owner:          Potter,  Harry           
+Manager:        Claus,  Santa            
+Beneficiary:    none                     
+Assets
+Code       Asset                                            Return Rate    Risk   Annual Return    Value
+                                                            ------------------------------------------------------------------------------------------
+                                                   Totals:               0.0000  $           0.00 $           0.00
+
 Portfolio AJ
-------------------------------------------
-Owner:          Reaper, Grimm 
-Manager:        Stiles, Ryan
-Beneficiary:    none
-Assets 
-Code       Asset                           Return Rate          Risk  Annual Return          Value
-65YEAH		Business Investment Account			2.93%	        0.0  	$   439.50		$  15000.00
-                                                    --------------------------------------------
-												Totals			0.0	  	$	439.50	   	$	15000.00
-												
+----------------------------------------
+Owner:          Reaper,  Grimm           
+Manager:        Stiles,  Ryan            
+Beneficiary:    none                     
+Assets
+Code       Asset                                            Return Rate    Risk   Annual Return    Value
+65YEAH     Business Investment Account                      2.93%          0.00  $         439.82 $       15000.00
+                                                            ------------------------------------------------------------------------------------------
+                                                   Totals:               0.0000  $         439.82 $       15000.00
+
 Portfolio AC
-------------------------------------------
-Owner:         	Riddle, Tom
-Manager:        Centaur, Firenze
-Beneficiary:    none
-Assets 
-Code       Asset                           Return Rate          Risk  Annual Return          Value
-GDSG11		Good Stuff Inc.						24.89%			1.69	$ 13520.56		$	54320.75
-                                                        --------------------------------------------
-												Totals			1.69	$ 13520.56	   	$	54320.75
-												
+----------------------------------------
+Owner:          Riddle,  Tom             
+Manager:        Centaur,  Firenze        
+Beneficiary:    none                     
+Assets
+Code       Asset                                            Return Rate    Risk   Annual Return    Value
+GDSF11     Good Stuff Inc.                                  24.89%         1.69  $       13520.56 $       54320.75
+                                                            ------------------------------------------------------------------------------------------
+                                                   Totals:               1.6900  $       13520.56 $       54320.75
+
 Portfolio AN
-------------------------------------------
-Owner:          Stiles, Ryan 
-Manager:        Mochrie, Colin
-Beneficiary:    none
-Assets 
-Code       Asset                           Return Rate          Risk  Annual Return          Value
-B00			The Mystery Machine				2.36%        		0.31  	$   203955.97	$  8645002.00
-                                                       --------------------------------------------
-												Totals			0.31	$   203955.97	$  8645002.00
-												
+----------------------------------------
+Owner:          Stiles,  Ryan            
+Manager:        Mochrie,  Colin          
+Beneficiary:    none                     
+Assets
+Code       Asset                                            Return Rate    Risk   Annual Return    Value
+B00        The Mystery Machine                              2.36%          1.30  $      203955.97 $     8645002.00
+                                                            ------------------------------------------------------------------------------------------
+                                                   Totals:               1.2985  $      203955.97 $     8645002.00
+
 Portfolio AA
-------------------------------------------
-Owner:          Weasley, Ron 
-Manager:        Potter, Harry
-Beneficiary:    Granger, Hermione
-Assets 
-Code       Asset                           Return Rate          Risk  Annual Return          Value
-LAMH01		Lamar's Home Improvement			96.61%        	0.52  	$  658958.74		$  682052.07
-MHIA32		Savings Account					    0.73%			0.0		$      10.99		$    1500.00
-                                                        --------------------------------------------
-												Totals			0.52	$  658969.73	   	$  683522.07
- 
- 
+----------------------------------------
+Owner:          Weasley,  Ron            
+Manager:        Potter,  Harry           
+Beneficiary:    none                     
+Assets
+Code       Asset                                            Return Rate    Risk   Annual Return    Value
+LAMH01     Lamar's Home Improvement                         96.61%         1.45  $      658958.74 $      682052.07
+MHIA32     Savings Account                                  0.73%          0.00  $          10.99 $        1500.00
+                                                            ------------------------------------------------------------------------------------------
+                                                   Totals:               1.4448  $      658969.73 $      683552.07
