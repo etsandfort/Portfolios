@@ -59,12 +59,12 @@ public class Portfolio{
 	
 	/**
 	 * This method condenses the hash map so that it is one hash map of 3 different things
-	 * @param assetN - Hash Map of assets and their given numeric values from Portfolios.dat
+	 * @param assetNumeric - Hash Map of assets and their given numeric values from Portfolios.dat
 	 */
-	private void condenseHashMap(HashMap<Asset,Double> assetN){
+	private void condenseHashMap(HashMap<Asset,Double> assetNumeric){
 		assetList = new HashMap<Asset,double[]>(); //new hashmap of asset, double array
-		for(Asset asset: assetN.keySet()){ //for each asset in the HashMap keySet
-			assetList.put(asset, new double[]{calculateRisks(asset), calculateAnnualReturns(assetN,asset),calculateValues(assetN,asset)});
+		for(Asset asset: assetNumeric.keySet()){ //for each asset in the HashMap keySet
+			assetList.put(asset, new double[]{calculateRisks(asset), calculateAnnualReturns(assetNumeric,asset),calculateValues(assetNumeric,asset)});
 			//calls the calculate methods for each asset to get the Risk,AnnualReturns,Values
 		}
 	}
@@ -82,11 +82,11 @@ public class Portfolio{
 	 * Calculates the total annual returns of a portfolio
 	 */
 	private void calculateTotalAnnualReturns(){
-		double tAR = 0.0;
+		double totalAR = 0.0; // total annual returns
 		for(Asset asset : this.assetList.keySet()){
-			tAR += assetList.get(asset)[1];
+			totalAR += assetList.get(asset)[1];
 		}
-		setTotalAnnualReturns(tAR);
+		setTotalAnnualReturns(totalAR);
 	}
 	
 	/**
@@ -98,39 +98,40 @@ public class Portfolio{
 	
 	/**
 	 * Calculates the values of the asset
+	 * @return the value of the asset
 	 */
 	private double calculateValues(HashMap<Asset,Double>assetNumerics,Asset asset){
-		return asset.computeValueOfAsset(assetNumerics.get(asset));
+		return asset.computeValueOfAsset(assetNumerics.get(asset)); // gets the asset from the hashmap and computes its value
 	}
 	
 	/**
 	 * Calculates the commission fees for a portfolio
 	 */
 	private void calculateCommissionFee(){
-		double cFee = 0.0;
+		double commissionFee = 0.0;
 		for(Asset asset : assetList.keySet()){
-			if(this.manager.getType().equalsIgnoreCase("E")){ //if manager of portfolio is an expert
-				cFee += (.05 * assetList.get(asset)[1]);// 5% commission on annual returns
+			if(this.manager.getType()=='E'){ //if manager of portfolio is an expert
+				commissionFee += (.05 * assetList.get(asset)[1]);// 5% commission on annual returns
 			}
 			else{
-				cFee += (.02 * assetList.get(asset)[1]);//2% commission on annual returns
+				commissionFee += (.02 * assetList.get(asset)[1]);//2% commission on annual returns
 			}
 		}
-		this.commissionFees = cFee;
+		this.commissionFees = commissionFee;
 	}
 	
 	/**
 	 * Calculates the broker fees for a portfolio
 	 */
 	void calculateBrokerFees(){ // package level visibility
-			double bFees;
-			if(this.manager.getType().equalsIgnoreCase("E")){ //if the manager is an expert
-				 bFees = (10 * assetList.size()); //$10 fee per asset
+			double brokerFees;
+			if(this.manager.getType()=='E'){ //if the manager is an expert
+				 brokerFees = (10 * assetList.size()); //$10 fee per asset
 			}
 			else{ //if manager is junior
-				 bFees = (50 * assetList.size()); //$50 fee per asset
+				 brokerFees = (50 * assetList.size()); //$50 fee per asset
 			}
-			this.brokerFees = bFees;
+			this.brokerFees = brokerFees;
 	}
 	
 	/**
@@ -156,11 +157,11 @@ public class Portfolio{
 	 * Calculates the total aggregate risk.
 	 */
 	public void calculateTotalRisks(){
-		double tRisks = 0; // total risk
+		double totalRisks = 0;
 		for(Asset asset : assetList.keySet()){
-			tRisks += ((assetList.get(asset)[0])*(assetList.get(asset)[2]))/this.totalValue;
+			totalRisks += ((assetList.get(asset)[0])*(assetList.get(asset)[2]))/this.totalValue;
 		}
-		this.totalRisks = tRisks;
+		this.totalRisks = totalRisks;
 	}
 	
 	/**
@@ -180,8 +181,8 @@ public class Portfolio{
 	}
 	
 	/**
-	 * Obtains the HashMap asset Numeric
-	 * @return the assetNumeric
+	 * Obtains the HashMap of assets to numeric values
+	 * @return the assetNumeric 
 	 */
 	public HashMap<Asset, Double> getAssetNumeric(){
 		return assetNumeric;

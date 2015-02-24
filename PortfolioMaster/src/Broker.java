@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Broker extends Person{
 	//Data members
 	private String secIdentifier;
-	private String type;
+	private char type;
 	
 	/**
 	 * Constructor of a broker
@@ -22,7 +22,7 @@ public class Broker extends Person{
 	 * @param address broker's address
 	 * @param email broker's email(s)
 	 */
-	public Broker(String code, String type, String sec, String lastName, String firstName,
+	public Broker(String code, char type, String sec, String lastName, String firstName,
 			Address address, ArrayList<String> email){
 		super(code, lastName, firstName, address, email);
 		this.secIdentifier =sec;
@@ -49,7 +49,7 @@ public class Broker extends Person{
 	 * Obtains the type
 	 * @return type
 	 */
-	public String getType(){
+	public char getType(){
 		return type;
 	}
 	
@@ -57,7 +57,7 @@ public class Broker extends Person{
 	 * Sets the new type
 	 * @param type
 	 */
-	public void setType(String type){
+	public void setType(char type){
 		this.type = type;
 	}
 }

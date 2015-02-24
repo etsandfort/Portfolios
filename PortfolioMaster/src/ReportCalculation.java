@@ -56,11 +56,11 @@ public class ReportCalculation{
 	 * @return tComm - total commissions, a double
 	 */
 	private double calculateTotalCommissions(ArrayList<Portfolio> portfolios){
-		double tComm = 0.0; // total commissions
+		double totalCommission = 0.0; 
 		for(Portfolio portfolio : portfolios){ //for each portfolio 
-			tComm += portfolio.getCommissionFees(); //add the total commissions fee
+			totalCommission += portfolio.getCommissionFees(); //add the total commissions fee
 		}
-		return tComm;
+		return totalCommission;
 	}
 	
 	/**
@@ -69,12 +69,12 @@ public class ReportCalculation{
 	 * @return tFees - total broker fees, a double
 	 */
 	private double calculateTotalFees(ArrayList<Portfolio>portfolios){
-		double tFees = 0.0; // total broker fees
+		double totalFees = 0.0; // total broker fees
 		
 		for(Portfolio portfolio : portfolios){ //for each portfolio
-			tFees += portfolio.getBrokerFees(); //add its broker fees to the total
+			totalFees += portfolio.getBrokerFees(); //add its broker fees to the total
 		}
-		return tFees;
+		return totalFees;
 	}
 	
 	/**
@@ -83,11 +83,11 @@ public class ReportCalculation{
 	 * @return tValue - total value, a double
 	 */
 	private double calculateTotalValue(ArrayList<Portfolio>portfolios){
-		double tValue = 0.0; // total value
+		double totalValue = 0.0;
 		for(Portfolio portfolio : portfolios){ //for each portfolio
-			tValue += portfolio.getTotalValue(); //add the total value of the portfolio to the rest
+			totalValue += portfolio.getTotalValue(); //add the total value of the portfolio to the rest
 		}
-		return tValue;
+		return totalValue;
 	}
 	
 	/**
@@ -96,12 +96,12 @@ public class ReportCalculation{
 	 * @return tReturns- total annual returns, a double
 	 */
 	private double calculateTotalReturns(ArrayList<Portfolio>portfolios){
-		double tReturns = 0.0; // total annual returns
+		double totalReturns = 0.0; // total annual returns
 		for(Portfolio portfolio : portfolios){ //for each portfolio
-			tReturns += portfolio.getTotalAnnualReturns(); //add the annual return of the portfolio to the overall total returns
+			totalReturns += portfolio.getTotalAnnualReturns(); //add the annual return of the portfolio to the overall total returns
 		}
 		
-		return tReturns;
+		return totalReturns;
 	}
 	
 	/**

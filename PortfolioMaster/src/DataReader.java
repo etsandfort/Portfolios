@@ -158,11 +158,11 @@ public class DataReader{
 		} else{
 			String[] secInfo = info[1].split(",");
 			String sec = secInfo[1];
-			String type ="";
+			char type =' ';
 			if(secInfo[0].equalsIgnoreCase("E")){
-				type = "E";
+				type = 'E';
 			} else if(secInfo[0].equalsIgnoreCase("J")){
-				type = "J";
+				type = 'J';
 			}
 			p = new Broker(info[0], type, sec,lastName, firstName, a, email);
 			
