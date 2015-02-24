@@ -112,8 +112,19 @@
 		this.baseRate = baseRate;
 	}
 
+	/**
+	 * @return the returnRate
+	 */
 	public double getReturnRate() {
-		
 		return returnRate;
 	}
+
+	/**
+	 * @param returnRate the returnRate to set
+	 */
+	public void setReturnRate(double returnRate) {
+		this.returnRate = returnRate;
+	}
+	
+	
 }

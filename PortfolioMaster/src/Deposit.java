@@ -43,26 +43,43 @@ public class Deposit extends Asset{
 	}
 	
 	/**
+	 *	computes the Return Rate of the Deposit
+	 * @param initialDeposit - the current amount
+	 */
+	public void computeReturnRate(double initialDeposit){
+		double returnRate = computeAnnualReturns(initialDeposit)/initialDeposit * 100;
+		this.setReturnRate(returnRate);
+	}
+
+	/**
+	 * @return the returnRate
+	 */
+	public double getReturnRate() {
+		return returnRate;
+	}
+
+	/**
+	 * @param returnRate the returnRate to set
+	 */
+	public void setReturnRate(double returnRate) {
+		this.returnRate = returnRate;
+	}
+	
+	/**
+	 * @param baseRate the baseRate to set 
+	 */
+	public void setBaseRate(double baseRate){
+		this.baseRate = baseRate/100; //turns it from percent
+	}
+	
+	/**
+	 * @return the baseRate
 	 * 
 	 */
 	public double getBaseRate(){
 		return baseRate;
 	}
 	
-	public void setBaseRate(double baseRate){
-		this.baseRate = baseRate/100;
-	}
-	public void computeReturnRate(double initialDeposit){
-		
-		double returnRate = computeAnnualReturns(initialDeposit)/initialDeposit * 100;
-		this.setReturnRate(returnRate);
-		
-	}
-	public double getReturnRate(){
-		return returnRate;
-	}
-	public void setReturnRate(double returnRate){
-		this.returnRate = returnRate;
-	}
+	
 	
 }
