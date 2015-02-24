@@ -8,6 +8,7 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class Person{
+	// data members
 	private String code;
 	private String lastName;
 	private String firstName;

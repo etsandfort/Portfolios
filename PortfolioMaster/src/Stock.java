@@ -5,7 +5,7 @@
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
  * @version 1.0
  */
-public class Stock extends Asset {
+public class Stock extends Asset{
 	//Data members
 	private double quarterlyDividend;
 	private String symbol;
@@ -47,8 +47,9 @@ public class Stock extends Asset {
 	}
 	
 	/**
-	 * computes the Value of the Stock
+	 * Computes the Value of the Stock
 	 * @param stocks - the amount of stocks owned
+	 * @return value, a double
 	 */
 	public double computeValueOfAsset(double stocks){
 		double value = stocks * sharePrice; //value is stocks * sharePrice
@@ -56,7 +57,7 @@ public class Stock extends Asset {
 	}
 	
 	/**
-	 * computes the returnRate of the Stock
+	 * Computes the returnRate of the Stock
 	 * @param stocks - the amount of stocks owned
 	 */
 	public void computeReturnRate(double stocks){
@@ -66,102 +67,113 @@ public class Stock extends Asset {
 	}
 	
 	/**
-	 * sets the Risk Value
-	 * @param risk
+	 * Sets the Risk Value
+	 * @param risk, a double
 	 */
 	public void setRiskValue(double risk){
 		this.riskValue = risk;
 	}
 	
 	/**
-	 * obtains the Risk Value
-	 * @return riskValue
+	 * Obtains the stock's risk value.
+	 * @return riskValue, a double
 	 */
 	public double getRiskValue(){
 		return riskValue;
 	}
 	
 	/**
-	 * obtains the returnRate
-	 * @return returnRate
+	 * Obtains the stock's return rate.
+	 * @return returnRate, a double
 	 */
 	public double getReturnRate(){
 		return returnRate;
 	}
 	
 	/**
-	 * sets the Return Rate
-	 * @param returnRate
+	 * Sets the stock's return rate.
+	 * @param returnRate, a double
 	 */
 	public void setReturnRate(double returnRate){
 		this.returnRate = returnRate;
 	}
 	
 	/**
-	 * obtains the baseRate
-	 * @return the baseRate
+	 * Obtains the stock's base rate of return
+	 * @return baseRate, a double
 	 */
 	public double getBaseRate(){
 		return baseRate;
 	}
 	
 	/**
-	 * sets the baseRate
+	 * Sets the stock's base rate of return
 	 * @param baseRate
 	 */
 	public void setBaseRate(double baseRate ){
-		this.baseRate = (baseRate/100);
+		this.baseRate = (baseRate/100); // converting the percentage to its decimal version
 	}
+	
 	/**
-	 * Obtains the quarterlyDividend
-	 * @return the quarterlyDividend
+	 * Obtains the stock's quarterly dividend
+	 * @return quarterlyDividend, a double
 	 */
-	public double getQuarterlyDividend() {
+	public double getQuarterlyDividend(){
 		return quarterlyDividend;
 	}
-	/**Sets the new quarterlyDividend
-	 * @param quarterlyDividend the quarterlyDividend to set
+	
+	/**
+	 * Sets the stock's quarterly dividend
+	 * @param quarterlyDividend, a double
 	 */
-	public void setQuarterlyDividend(double quarterlyDividend) {
+	public void setQuarterlyDividend(double quarterlyDividend){
 		this.quarterlyDividend = quarterlyDividend;
 	}
+	
 	/**
-	 * Obtains the symbol
-	 * @return the symbol
+	 * Obtains the stock's symbol
+	 * @return symbol, a String
 	 */
-	public String getSymbol() {
+	public String getSymbol(){
 		return symbol;
 	}
-	/**Sets the new symbol
-	 * @param symbol the symbol to set
+	
+	/**
+	 * Sets the stock's symbol
+	 * @param symbol, a String
 	 */
-	public void setSymbol(String symbol) {
+	public void setSymbol(String symbol){
 		this.symbol = symbol;
 	}
+	
 	/**
-	 * Obtains the sharePrice
-	 * @return the sharePrice
+	 * Obtains the stock's share price
+	 * @return sharePrice, a double
 	 */
-	public double getSharePrice() {
+	public double getSharePrice(){
 		return sharePrice;
 	}
+	
 	/**Sets the new sharePrice
 	 * @param sharePrice the sharePrice to set
 	 */
-	public void setSharePrice(double sharePrice) {
+	public void setSharePrice(double sharePrice){
 		this.sharePrice = sharePrice;
 	}
+	
 	/**
-	 * Obtains the beta
-	 * @return the beta
+	 * Obtains the stock's beta measure
+	 * @return beta, a double
 	 */
-	public double getBeta() {
+	public double getBeta(){
 		return beta;
 	}
-	/**Sets the new beta
-	 * @param beta the beta to set
+	
+	/**
+	 * Sets the stock's beta measure
+	 * @param beta, a double
 	 */
-	public void setBeta(double beta) {
+	public void setBeta(double beta){
 		this.beta = beta;
 	}
 }

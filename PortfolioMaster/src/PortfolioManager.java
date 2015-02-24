@@ -8,15 +8,15 @@ import java.util.ArrayList;
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
  * @version 3.3
  */
-public class PortfolioManager {
+public class PortfolioManager{
 	//Data member
 	private DataReader input = new DataReader();
 
 	/**
 	 * Obtains the input
-	 * @return the input
+	 * @return input, a DataReader object
 	 */
-	public DataReader getInput() {
+	public DataReader getInput(){
 		return input;
 	}
 	

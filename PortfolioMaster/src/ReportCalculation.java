@@ -1,14 +1,16 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.*;
+
 /**
- * class used to sum up all the report values 
+ * ReportCalculation.java
+ * Performs all of the calculations necessary for portfolio reporting
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
- * @version 1.0
- *
+ * @version 5.0
  */
-//make sure to sort the arraylist by owners last name
-public class ReportCalculation {
+
+public class ReportCalculation{
+	// data members
 	private double totalCommission;
 	private double totalFees;
 	private double totalReturn;
@@ -16,7 +18,7 @@ public class ReportCalculation {
 	private  ArrayList<Portfolio> portfolioSet;
 	
 	/**
-	 * constructor for ReportCalculation class
+	 * This is the constructor for the ReportCalculation class
 	 * @param portfoliosGiven
 	 */
 	public ReportCalculation(ArrayList<Portfolio> portfoliosGiven) {
@@ -29,17 +31,17 @@ public class ReportCalculation {
 	}
 	
 	/**
-	 * sorts the list
-	 * @param list
-	 * @return list- the sorted list of all portfolios
+	 * Sorts the ArrayList of portfolios
+	 * @param list, an ArrayList of portfolios
+	 * @return list- the sorted ArrayList of all portfolios
 	 */
 	public ArrayList<Portfolio> sortList(ArrayList<Portfolio> list){
 		
-		class PortfolioSorter implements Comparator<Portfolio> {
+		class PortfolioSorter implements Comparator<Portfolio>{
 			/**
-			 * this is the method used to sort
+			 * The compare method sorts the portfolios by owner's last name
 			 */
-			public int compare(Portfolio portfolio1, Portfolio portfolio2) {
+			public int compare(Portfolio portfolio1, Portfolio portfolio2){
 				return portfolio1.getOwner().getLastName().compareTo(portfolio2.getOwner().getLastName());
 			}
 		}
@@ -48,12 +50,12 @@ public class ReportCalculation {
 	}
 	
 	/**
-	 * calculates the total commissions  for all the portfolios
-	 * @param portfolios
-	 * @return tComm - total commissions
+	 * Calculates the total commissions  for all the portfolios
+	 * @param portfolios, an ArrayList
+	 * @return tComm - total commissions, a double
 	 */
 	private double calculateTotalCommissions(ArrayList<Portfolio> portfolios){
-		double tComm = 0.0;
+		double tComm = 0.0; // total commissions
 		for(Portfolio portfolio : portfolios){ //for each portfolio 
 			tComm += portfolio.getCommissionFees(); //add the total commissions fee
 		}
@@ -62,11 +64,11 @@ public class ReportCalculation {
 	
 	/**
 	 * calculates the total broker fees for all the portfolios
-	 * @param portfolios
-	 * @return tFees - total broker fees
+	 * @param portfolios, an ArrayList
+	 * @return tFees - total broker fees, a double
 	 */
 	private double calculateTotalFees(ArrayList<Portfolio>portfolios){
-		double tFees = 0.0;
+		double tFees = 0.0; // total broker fees
 		
 		for(Portfolio portfolio : portfolios){ //for each portfolio
 			tFees += portfolio.getBrokerFees(); //add its broker fees to the total
@@ -75,12 +77,12 @@ public class ReportCalculation {
 	}
 	
 	/**
-	 * calculates the total values for all the portfolios
-	 * @param portfolios
-	 * @return tValue - total value
+	 * Calculates the total values for all the portfolios
+	 * @param portfolios, an ArrayList
+	 * @return tValue - total value, a double
 	 */
 	private double calculateTotalValue(ArrayList<Portfolio>portfolios){
-		double tValue = 0.0;
+		double tValue = 0.0; // total value
 		for(Portfolio portfolio : portfolios){ //for each portfolio
 			tValue += portfolio.getTotalValue(); //add the total value of the portfolio to the rest
 		}
@@ -88,42 +90,48 @@ public class ReportCalculation {
 	}
 	
 	/**
-	 * calculates the Total annual returns for all the portfolios
-	 * @param portfolios
-	 * @return tReturns- total annual returns
+	 * Calculates the Total annual returns for all the portfolios
+	 * @param portfolios, an ArrayList
+	 * @return tReturns- total annual returns, a double
 	 */
 	private double calculateTotalReturns(ArrayList<Portfolio>portfolios){
-		double tReturns = 0.0;
+		double tReturns = 0.0; // total annual returns
 		for(Portfolio portfolio : portfolios){ //for each portfolio
-			tReturns += portfolio.getTotalAnnualReturns(); //add the annual return of the portfolio to the rest
+			tReturns += portfolio.getTotalAnnualReturns(); //add the annual return of the portfolio to the overall total returns
 		}
 		
 		return tReturns;
-		
-	}
-	/**
-	 * @return the totalCommission
-	 */
-	public double getTotalCommission() {
-		return totalCommission;
-	}
-	/**
-	 * @return the totalFees
-	 */
-	public double getTotalFees() {
-		return totalFees;
-	}
-	/**
-	 * @return the totalReturn
-	 */
-	public double getTotalReturn() {
-		return totalReturn;
-	}
-	/**
-	 * @return the totalValue
-	 */
-	public double getTotalValue() {
-		return totalValue;
 	}
 	
+	/**
+	 * Obtains the total Commissions of all of the portfolios
+	 * @return totalCommission, a double
+	 */
+	public double getTotalCommission(){
+		return totalCommission;
+	}
+	
+	/**
+	 * Obtains the total fees of all of the portfolios
+	 * @return totalFees, a double
+	 */
+	public double getTotalFees(){
+		return totalFees;
+	}
+	
+	/**
+	 * Obtains the total returns of all of the portfolios
+	 * @return totalReturn, a double
+	 */
+	public double getTotalReturn(){
+		return totalReturn;
+	}
+	
+	/**
+	 * Obtains the total value of all of the portfolios
+	 * @return totalValue, a double
+	 */
+	public double getTotalValue(){
+		return totalValue;
+	}
 }
