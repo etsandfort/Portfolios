@@ -16,14 +16,12 @@ public class ReportCalculation{
 	private double totalFees;
 	private double totalReturn;
 	private double totalValue;
-	private  ArrayList<Portfolio> portfolioSet;
 	
 	/**
 	 * This is the constructor for the ReportCalculation class
 	 * @param portfoliosGiven
 	 */
 	public ReportCalculation(ArrayList<Portfolio> portfoliosGiven) {
-		this.portfolioSet = portfoliosGiven;
 		sortList(portfoliosGiven); //sorts the list by last name of owner
 		this.totalCommission = this.calculateTotalCommissions(portfoliosGiven); //calculates total commission
 		this.totalFees = this.calculateTotalFees(portfoliosGiven); //calculates total broker fees
@@ -125,7 +123,6 @@ public class ReportCalculation{
 		for(Portfolio portfolio : portfolios){ //for each portfolio
 			totalReturns += portfolio.getTotalAnnualReturns(); //add the annual return of the portfolio to the overall total returns
 		}
-		
 		return totalReturns;
 	}
 	

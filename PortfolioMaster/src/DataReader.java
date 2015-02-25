@@ -51,9 +51,9 @@ public class DataReader{
 	 * @return
 	 */
 	public Portfolio parsePortfolio(String line, ArrayList<Asset> assets, ArrayList<Person> persons){
-		Portfolio p;
-		
+		Portfolio p;		
 		String[] portInfo = line.split(";",-1);
+
 		String code = portInfo[0];
 		String ownerID = portInfo[1];
 		String managerID = portInfo[2];
@@ -70,6 +70,12 @@ public class DataReader{
 		}
 	}
 	
+	/**
+	 * This method searches a given list of persons to find the specified person
+	 * @param id, the person's id
+	 * @param persons, the ArrayList of persons
+	 * @return the person matching the id, if there is one. Else, returns null
+	 */
 	public Person searchPerson(String id, ArrayList<Person> persons){
 		Person subject;
 		for(Person p: persons){
@@ -81,6 +87,12 @@ public class DataReader{
 		return null;
 	}
 	
+	/**
+	 * Searches for specific assets in a given ArrayList of assets
+	 * @param idList, list of ids to be searched for
+	 * @param assets, arraylist of assets to search through
+	 * @return assetList, a HashMap of assets to values given
+	 */
 	public HashMap<Asset, Double> searchAssets(String[] idList, ArrayList<Asset> assets){
 		HashMap<Asset,Double> assetList = new HashMap<Asset,Double>();
 		for(String id: idList){
@@ -97,6 +109,7 @@ public class DataReader{
 		}
 		return assetList;
 	}
+	
 	/**
 	 * Reads in a file of people, located in data/Persons.dat, and adds them into an arraylist of people in the database
 	 * @return persons the list of people
@@ -164,7 +177,6 @@ public class DataReader{
 				type = 'J';
 			}
 			p = new Broker(info[0], type, sec,lastName, firstName, a, email);
-			
 		}
 		return p;
 	}
