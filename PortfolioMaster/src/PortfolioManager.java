@@ -30,5 +30,13 @@ public class PortfolioManager{
 		ReportMaker report = new ReportMaker(allPortfolios);
 		report.printSummaryReport();
 		report.printDetailedReport();
+		PortfolioData pd = new PortfolioData();
+//		pd.addDepositAccount("TEST!", "THISTEST", 2.52);
+//		System.out.println("Inserted Deposit Account!!");
+//		pd.addStock("LAM", "TESTTEST", 125.0, 5.0, 6.0, "AS", 45.0);
+//		System.out.println("Inserted stock !!");
+//		pd.addPrivateInvestment("AAAS", "te", 65.5, 45.5, 78.5, 5550.0);
+//		System.out.println("Inserted private Investment");
+		
 	}
 }
