@@ -789,6 +789,16 @@ PreparedStatement ps = null;
 					}
 					else{
 						ArrayList<String> email = new ArrayList<String>();
+						ResultSet rsEmail = null;
+						String emailQuery = "SELECT * from Email WHERE 'personID' = ?";
+						PreparedStatement psE = conn.prepareStatement(emailQuery);
+						psE.setString(1, rs.getString("personID"));
+						
+						rsEmail = psE.executeQuery();
+						while(rsEmail.next()){
+							email.add(rsEmail.getString("emailAddress"));
+						}
+						
 						Address ad = null;
 						Person p = new Person(rs.getString("personCode"),rs.getString("lastName"),rs.getString("firstName"),ad,email);
 						allPersons.add(p);
