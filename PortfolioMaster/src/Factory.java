@@ -67,11 +67,12 @@ public class Factory {
 	* Gets a connection with the database
 	*/
 	//TODO change name
-	public static void getConnection(){
+	public static Connection getConnection(){
 		Connection conn = null;
 
 		try {
 			conn = DriverManager.getConnection(DatabaseInfo.URL, DatabaseInfo.USERNAME, DatabaseInfo.PASSWORD);
+			return conn;
 		} catch (SQLException e) {
 			System.out.println("SQLException: ");
 			e.printStackTrace();

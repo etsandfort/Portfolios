@@ -18,24 +18,31 @@ public class PortfolioData {
 	/**
  * Method that removes every person record from the database
  */
-/*public static void removeAllPersons() {
-getDriver();
-getConnection();
-String query1 = "DELETE * FROM PortfolioAsset";
-String query2 = "DELETE * FROM Portfolio";
-String query3 = "DELETE * FROM Email";	
-String query4 = "DELETE * FROM Address";
-String query5 = "DELETE * FROM Person";	
+	
+public static void removeAllPersons() {
+Factory.getDriver();
+Factory.getConnection();
+String query1 = "DELETE  FROM PortfolioAsset";
+String query2 = "DELETE  FROM Portfolio";
+String query3 = "DELETE  FROM Email";	
+String query4 = "DELETE  FROM Address";
+String query5 = "DELETE  FROM Person";	
 		PreparedStatement ps = null;
+		Connection conn = null;
 		try {
+			conn = Factory.getConnection();
 			ps = conn.prepareStatement(query1);
 			ps.executeUpdate();
+			ps.close();
 			ps = conn.prepareStatement(query2);
 			ps.executeUpdate();
+			ps.close();
 			ps = conn.prepareStatement(query3);
 			ps.executeUpdate();
+			ps.close();
 			ps = conn.prepareStatement(query4);
 			ps.executeUpdate();
+			ps.close();
 			ps = conn.prepareStatement(query5);
 			ps.executeUpdate();
 			ps.close();
@@ -45,11 +52,11 @@ String query5 = "DELETE * FROM Person";
 			throw new RuntimeException(e);
 		} finally {
 
-			closeConnection();
+			Factory.closeResources(ps, conn);
 		}
 }
 
-*//**
+/**
 	 * Removes the person record from the database corresponding to the
 	 * provided <code>personCode</code>
 	 * @param personCode
@@ -197,34 +204,41 @@ PreparedStatement ps = null;
 
 	*//**
 	 * Removes all asset records from the database
-	 *//*
-	public static void removeAllAssets() {Factory.getDriver();
+	 */
+	public static void removeAllAssets() {
+		Factory.getDriver();
 		
 		Connection conn = null;
 		PreparedStatement ps = null;
-		ResultSet rs = null;
 		
 		try {
 			//Step 2: instantiate the database connection
-			conn = DriverManager.getConnection(DatabaseInfo.URL, DatabaseInfo.USERNAME, DatabaseInfo.PASSWORD);
+			conn = Factory.getConnection();
 
 			//Step 3-4: formulate, prepare, and execute a query
 			String query = "SET SQL_SAFE_UPDATES=0";
 
 			ps = conn.prepareStatement(query);
 			
-			rs = ps.executeQuery();
+			 ps.executeUpdate();
 			//TODO I don't think anything has to be done with the ResultSet. Confirm? ***********************
 			
 			//close resources when no longer needed
-			rs.close();
+			
+			ps.close();
+			query = "DELETE  FROM PortfolioAsset";
+			ps = conn.prepareStatement(query);
+			ps.executeUpdate();
 			ps.close();
 			
 			query = "DELETE FROM Asset";
 			ps = conn.prepareStatement(query);
-			rs = ps.executeQuery();
-			rs.close();
+			ps.executeUpdate();
 			ps.close();
+			
+			
+			//TODO delete from portfolios
+			
 			
 
 			//close the connection
@@ -235,10 +249,10 @@ PreparedStatement ps = null;
 			throw new RuntimeException(e);
 		} finally {
 			//Step 5: Close your resources!
-			Factory.closeResources(rs, ps, conn);
+			Factory.closeResources( ps, conn);
 		}
 	}
-*/
+
 	/**
 	 * Removes the asset record from the database corresponding to the
 	 * provided <code>assetCode</code>
@@ -253,7 +267,7 @@ PreparedStatement ps = null;
 		
 		try {
 			//Step 2: instantiate the database connection
-			conn = DriverManager.getConnection(DatabaseInfo.URL, DatabaseInfo.USERNAME, DatabaseInfo.PASSWORD);
+			conn = Factory.getConnection();
 
 			//Step 3-4: formulate, prepare, and execute a query
 			String query = "SET SQL_SAFE_UPDATES=0";
@@ -261,11 +275,19 @@ PreparedStatement ps = null;
 			ps = conn.prepareStatement(query);
 			
 			ps.executeUpdate();
-			//TODO I don't think anything has to be done with the ResultSet. Confirm? ***********************
 			
 			//close resources when no longer needed
 			
 			ps.close();
+			//TODO see if this can be done better
+			
+			
+			query = "DELETE FROM PortfolioAsset WHERE assetID = (SELECT assetID FROM Asset WHERE assetCode = ?)";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, assetCode);
+			ps.executeUpdate();
+			ps.close();
+			
 			
 			query = "DELETE FROM Asset WHERE assetCode = ?";
 			ps = conn.prepareStatement(query);
@@ -274,9 +296,7 @@ PreparedStatement ps = null;
 			
 			ps.close();
 			
-			//TODO delete from portfolioAsset and Portfolio if need be
 			
-
 			//close the connection
 			conn.close();
 		} catch(Exception e) {
@@ -309,8 +329,7 @@ PreparedStatement ps = null;
 		
 		try {
 			//Step 2: instantiate the database connection
-			conn = DriverManager.getConnection(DatabaseInfo.URL, DatabaseInfo.USERNAME, DatabaseInfo.PASSWORD);
-
+			conn = Factory.getConnection();
 			//Step 3-4: formulate, prepare, and execute a query
 			String query =  "INSERT INTO Asset(assetCode,label,assetType,baseRate) values (?,?,?,?)";
 			
@@ -364,7 +383,7 @@ PreparedStatement ps = null;
 		
 		try {
 			//Step 2: instantiate the database connection
-			conn = DriverManager.getConnection(DatabaseInfo.URL, DatabaseInfo.USERNAME, DatabaseInfo.PASSWORD);
+			conn = Factory.getConnection();
 
 			//Step 3-4: formulate, prepare, and execute a query
 			String query =  "INSERT INTO Asset(assetCode,label,assetType,baseRate,quarterlyDividend, omega, investmentValue) values (?,?,?,?,?,?,?)";
@@ -423,7 +442,7 @@ PreparedStatement ps = null;
 		
 		try {
 			//Step 2: instantiate the database connection
-			conn = DriverManager.getConnection(DatabaseInfo.URL, DatabaseInfo.USERNAME, DatabaseInfo.PASSWORD);
+			conn = Factory.getConnection();
 
 			//Step 3-4: formulate, prepare, and execute a query
 			String query =  "INSERT INTO Asset(assetCode,label,assetType,baseRate,quarterlyDividend, beta, symbol,sharePrice) values (?,?,?,?,?,?,?,?)";
@@ -470,7 +489,7 @@ PreparedStatement ps = null;
 		
 		try {
 			//Step 2: instantiate the database connection
-			conn = DriverManager.getConnection(DatabaseInfo.URL, DatabaseInfo.USERNAME, DatabaseInfo.PASSWORD);
+			conn = Factory.getConnection();
 
 			//Step 3-4: formulate, prepare, and execute a query
 			String query = "SET SQL_SAFE_UPDATES=0";
@@ -516,39 +535,38 @@ PreparedStatement ps = null;
 		
 		Connection conn = null;
 		PreparedStatement ps = null;
-		ResultSet rs = null;
 		
 		try {
 			//Step 2: instantiate the database connection
-			conn = DriverManager.getConnection(DatabaseInfo.URL, DatabaseInfo.USERNAME, DatabaseInfo.PASSWORD);
+			conn = Factory.getConnection();
 
 			//Step 3-4: formulate, prepare, and execute a query
 			String query = "SET SQL_SAFE_UPDATES=0";
 
 			ps = conn.prepareStatement(query);
-			rs = ps.executeQuery(); // TODO do nothing?
+			 ps.executeUpdate(); // TODO do nothing?
 			
 			//close resources TODO should this be here as well as below? Seems weird.
-			rs.close();
+			
 			ps.close();
 			
 			query = "DELETE FROM PortfolioAsset WHERE portfolioAssetID IN (SELECT portfolioAssetID FROM (SELECT * FROM PortfolioAsset) AS portAsset WHERE portfolioID IN ((SELECT portfolioID FROM Portfolio WHERE portfolioCode = ?)))";
 			ps = conn.prepareStatement(query);
 			ps.setString(1, portfolioCode);
 			
-			rs = ps.executeQuery();
+			ps.executeUpdate();
 			
 			// TODO ditto above closing comment
-			rs.close();
+			
 			ps.close();
 			
 			query = "DELETE FROM Portfolio WHERE portfolioCode = ?";
 			ps = conn.prepareStatement(query);
 			ps.setString(1, portfolioCode);
 			
-			rs = ps.executeQuery();
+			ps.executeUpdate();
 		
-			rs.close();
+			
 			ps.close();
 
 			//close the connection
@@ -559,32 +577,9 @@ PreparedStatement ps = null;
 			throw new RuntimeException(e);
 		} finally {
 			//Step 5: Close your resources!
-			Factory.closeResources(rs, ps, conn);
+			Factory.closeResources( ps, conn);
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	/**
@@ -600,7 +595,6 @@ PreparedStatement ps = null;
 		
 		Connection conn = null;
 		PreparedStatement ps = null;
-		ResultSet rs = null;
 		
 		try {
 			//Step 2: instantiate the database connection
@@ -615,10 +609,10 @@ PreparedStatement ps = null;
 			ps.setString(3, managerCode);
 			ps.setString(4, beneficiaryCode);
 			
-			rs = ps.executeQuery();
+			ps.executeUpdate();
 
 			//close resources when no longer needed
-			rs.close();
+			
 			ps.close();
 
 			//close the connection
@@ -629,7 +623,7 @@ PreparedStatement ps = null;
 			throw new RuntimeException(e);
 		} finally {
 			//Step 5: Close your resources!
-			Factory.closeResources(rs, ps, conn);
+			Factory.closeResources( ps, conn);
 		}
 		
 	}
@@ -651,7 +645,6 @@ PreparedStatement ps = null;
 		
 		Connection conn = null;
 		PreparedStatement ps = null;
-		ResultSet rs = null;
 		
 		try {
 			//Step 2: instantiate the database connection
@@ -664,7 +657,7 @@ PreparedStatement ps = null;
 			ps.setString(1, assetCode);
 			ps.setString(2, portfolioCode);
 			ps.setDouble(3,  value);
-			rs = ps.executeQuery();
+			ps.executeUpdate();
 			//TODO use if here? how to do this part?
 //			if(rs.next()) {
 //				b.setBandId(bandId);
@@ -672,7 +665,7 @@ PreparedStatement ps = null;
 //			}
 			
 			//close resources when no longer needed
-			rs.close();
+			
 			ps.close();
 
 			//close the connection
@@ -683,7 +676,7 @@ PreparedStatement ps = null;
 			throw new RuntimeException(e);
 		} finally {
 			//Step 5: Close your resources!
-			Factory.closeResources(rs, ps, conn);
+			Factory.closeResources( ps, conn);
 		}
 	}
 	
@@ -702,7 +695,7 @@ PreparedStatement ps = null;
 		
 		try {
 			//Step 2: instantiate the database connection
-			conn = DriverManager.getConnection(DatabaseInfo.URL, DatabaseInfo.USERNAME, DatabaseInfo.PASSWORD);
+			conn = Factory.getConnection();
 
 			//Step 3-4: formulate, prepare, and execute a query
 			String query = "Select * from Asset";
@@ -771,8 +764,7 @@ PreparedStatement ps = null;
 			
 			try {
 				//Step 2: instantiate the database connection
-				conn = DriverManager.getConnection(DatabaseInfo.URL, DatabaseInfo.USERNAME, DatabaseInfo.PASSWORD);
-
+				conn = Factory.getConnection();
 				//Step 3-4: formulate, prepare, and execute a query
 				String query = "Select * from Person";
 
@@ -789,6 +781,7 @@ PreparedStatement ps = null;
 					}
 					else{
 						ArrayList<String> email = new ArrayList<String>();
+						Address ad = null;
 						ResultSet rsEmail = null;
 						String emailQuery = "SELECT * from Email WHERE 'personID' = ?";
 						PreparedStatement psE = conn.prepareStatement(emailQuery);
@@ -798,8 +791,22 @@ PreparedStatement ps = null;
 						while(rsEmail.next()){
 							email.add(rsEmail.getString("emailAddress"));
 						}
+						rsEmail.close();
+						psE.close();
 						
-						Address ad = null;
+						
+						ResultSet rsAddress = null;
+						String addressQuery = "Select * from Address  join State on Address.stateID = State.stateID join Country on Address.countryID = Country.countryID Where Address.personID = ?";
+						PreparedStatement psA = conn.prepareStatement(addressQuery);
+						psA.setString(1, rs.getString("personID"));
+						
+						rsAddress = psA.executeQuery();
+						if(rsAddress.next()){
+							 ad = new Address(rsAddress.getString("street"), rsAddress.getString("city"), rsAddress.getString("stateName"),rsAddress.getString("zipcode"), rsAddress.getString("countryName"));
+						}
+						rsAddress.close();
+						psA.close();
+						
 						Person p = new Person(rs.getString("personCode"),rs.getString("lastName"),rs.getString("firstName"),ad,email);
 						allPersons.add(p);
 					}

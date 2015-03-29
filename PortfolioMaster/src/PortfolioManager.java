@@ -26,11 +26,14 @@ public class PortfolioManager{
 	 */
 	public static void main(String args[]){
 		PortfolioManager manager = new PortfolioManager();
+		//PortfolioData pd = new PortfolioData();
+		//pd.removeAllAssets();
+		//PortfolioData.removeAsset("MHIA32");
 		ArrayList<Portfolio> allPortfolios = manager.getInput().readPortfolios();
 		ReportMaker report = new ReportMaker(allPortfolios);
 		report.printSummaryReport();
 		report.printDetailedReport();
-		PortfolioData pd = new PortfolioData();
+		
 //		pd.addDepositAccount("TEST!", "THISTEST", 2.52);
 //		System.out.println("Inserted Deposit Account!!");
 //		pd.addStock("LAM", "TESTTEST", 125.0, 5.0, 6.0, "AS", 45.0);
