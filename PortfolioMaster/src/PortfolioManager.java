@@ -10,13 +10,13 @@ import java.util.ArrayList;
  */
 public class PortfolioManager{
 	//Data member
-	private DataReader input = new DataReader();
+	private PortfolioData input = new PortfolioData();
 
 	/**
 	 * Obtains the input
 	 * @return input, a DataReader object
 	 */
-	public DataReader getInput(){
+	public PortfolioData getInput(){
 		return input;
 	}
 	
@@ -29,7 +29,7 @@ public class PortfolioManager{
 		//PortfolioData pd = new PortfolioData();
 		//pd.removeAllAssets();
 		//PortfolioData.removeAsset("MHIA32");
-		ArrayList<Portfolio> allPortfolios = manager.getInput().readPortfolios();
+		ArrayList<Portfolio> allPortfolios = manager.getInput().getPortfolios();
 		ReportMaker report = new ReportMaker(allPortfolios);
 		report.printSummaryReport();
 		report.printDetailedReport();

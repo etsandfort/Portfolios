@@ -24,14 +24,14 @@ public class DataReader{
 		ArrayList<Portfolio> portfolios = new ArrayList<Portfolio>();
 		try{
 			File file = new File(PORTFOLIO_FILENAME); //read in the file
-
+			PortfolioData pd = new PortfolioData();
 			BufferedReader read = new BufferedReader(new FileReader(file));
 
 			String line;
 			int numLinesLeft = Integer.parseInt(read.readLine());
 			
-			ArrayList<Asset> assets = findAssets();
-			ArrayList<Person> persons = findPersons();
+			ArrayList<Asset> assets = readAssets();
+			ArrayList<Person> persons = readPersons();
 			//Iterate through the file parsing Portfolio objects from the lines
 			while(numLinesLeft > 0){ 					
 				line = read.readLine();
@@ -110,11 +110,7 @@ public class DataReader{
 	}
 	
 	
-	public ArrayList<Person> findPersons(){
-		PortfolioData pd = new PortfolioData();
-		return pd.getPersons();
-		
-	}
+
 	/**
 	 * Reads in a file of people, located in data/Persons.dat, and adds them into an arraylist of people in the database
 	 * @return persons the list of people
@@ -196,7 +192,7 @@ public class DataReader{
 	 * Reads in a file of assets, located in data/Assets.dat, and adds them into an arraylist of assets in the database
 	 * @return assets the list of assets
 	 */
-	/*public ArrayList<Asset> readAssets(){
+	public ArrayList<Asset> readAssets(){
 		ArrayList<Asset> assets = new ArrayList<Asset>();
 		try{
 			File file = new File(ASSET_FILENAME); //reading in the file
@@ -216,7 +212,7 @@ public class DataReader{
 			System.out.println(e);
 		}
 		return assets;
-	}*/
+	}
 
 	/**
 	 * parses an asset from a given line of a .dat file
