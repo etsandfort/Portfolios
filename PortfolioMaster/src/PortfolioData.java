@@ -679,6 +679,15 @@ Factory.getDriver();
 			Factory.closeResources( ps, conn);
 		}
 	}
+	//TODO JAVADOC AND CHECK IF THIS IS NEEDED
+	public boolean checkIfIDIsUnique(String portfolioID, ArrayList<Portfolio> portfoliosGiven){
+		for(Portfolio p : portfoliosGiven){
+			if(p.getCode().equalsIgnoreCase(portfolioID)){
+				return false;
+			}
+		}
+		return true;
+	}
 	
 	
 	public ArrayList<Portfolio> getPortfolios(){
@@ -708,14 +717,29 @@ Factory.getDriver();
 				
 				String queryAsset = "Select assetID, givenValue from PortfolioAsset where portfolioID = ?";
 				psAssets = conn.prepareStatement(queryAsset);
-				psAssets.setString(1, rs.getString("portfolioID"));
+				psAssets.setInt(1, rs.getInt("portfolioID"));
 				
 				rsAssets = psAssets.executeQuery();
 				
+				if(checkIfIDIsUnique(rs.getString("portfolioCode"),portfolios)){ //checks if portfolio with same code exists yet
+				
 				HashMap<String,Double> assetIDList = new HashMap<String,Double>();
 				while(rsAssets.next()){
-					assetIDList.put(rsAssets.getString("assetID"),rsAssets.getDouble("givenValue"));
+					PreparedStatement psAssetCodes = null;
+					ResultSet rsAssetCodes = null;
+					
+					String queryAssetCode = "Select assetCode from Asset where Asset.assetID = ?";
+					psAssetCodes = conn.prepareStatement(queryAssetCode);
+					psAssetCodes.setInt(1	, rsAssets.getInt("assetID"));
+					
+					rsAssetCodes = psAssetCodes.executeQuery();
+					rsAssetCodes.next();
+					assetIDList.put(rsAssetCodes.getString("assetCode"),rsAssets.getDouble("givenValue"));
+					rsAssetCodes.close();
+					psAssetCodes.close();
+					
 				}
+				
 				rsAssets.close();
 				psAssets.close();
 				
@@ -726,6 +750,7 @@ Factory.getDriver();
 					psO = conn.prepareStatement(queryO);
 					psO.setInt(1, rs.getInt("ownerID"));
 					rsO = psO.executeQuery();
+					rsO.next();
 					String ownerCode = rsO.getString("personCode");
 					rsO.close();
 					psO.close();
@@ -736,6 +761,7 @@ Factory.getDriver();
 					psM = conn.prepareStatement(queryM);
 					psM.setInt(1, rs.getInt("managerID"));
 					rsM = psM.executeQuery();
+					rsM.next();
 					String managerCode = rsM.getString("personCode");
 					rsM.close();
 					psM.close();
@@ -746,6 +772,7 @@ Factory.getDriver();
 					psB = conn.prepareStatement(queryB);
 					psB.setInt(1, rs.getInt("beneficiaryID"));
 					rsB = psB.executeQuery();
+					rsB.next();
 					String beneficiaryCode = rsB.getString("personCode");
 					rsB.close();
 					psB.close();
@@ -760,6 +787,7 @@ Factory.getDriver();
 					psO = conn.prepareStatement(queryO);
 					psO.setInt(1, rs.getInt("ownerID"));
 					ResultSet rsO = psO.executeQuery();
+					rsO.next();
 					String ownerCode = rsO.getString("personCode");
 					rsO.close();
 					psO.close();
@@ -770,6 +798,7 @@ Factory.getDriver();
 					psM = conn.prepareStatement(queryM);
 					psM.setInt(1, rs.getInt("managerID"));
 					rsM = psM.executeQuery();
+					rsM.next();
 					String managerCode = rsM.getString("personCode");
 					rsM.close();
 					psM.close();
@@ -777,7 +806,7 @@ Factory.getDriver();
 				}
 				}
 			
-			
+			}
 			return portfolios;
 		} catch(Exception e){
 			e.printStackTrace();
@@ -805,16 +834,16 @@ Factory.getDriver();
 	 */
 	public Person searchPerson(String id, ArrayList<Person> persons){
 		Person subject;
-		System.out.println("person wanted " + id);
+		
 		for(Person p: persons){
-			System.out.println("person code " + p.getCode());
+			
 			if(p.getCode().equalsIgnoreCase(id)){
-				System.out.println("person code" + p.getCode());
+				
 				subject=p;
 				return subject;
 			}
 		}
-		System.out.println("Something broker");
+		
 		return null;
 	}
 	

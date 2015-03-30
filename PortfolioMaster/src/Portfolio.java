@@ -125,15 +125,14 @@ public class Portfolio{
 	 */
 	void calculateBrokerFees(){ // package level visibility
 			double brokerFees;
-			System.out.println("here is the first check");
-			System.out.println("Here is the manager " + this.manager.getCode());
+			
 			
 			if(this.manager.getType()=='E'){ //if the manager is an expert
 				 brokerFees = (10 * assetList.size()); //$10 fee per asset
 			}
 			
 			else{ //if manager is junior
-				System.out.println("else");
+				
 				brokerFees = (50 * assetList.size()); //$50 fee per asset
 			}
 			

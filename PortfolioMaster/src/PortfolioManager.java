@@ -25,6 +25,7 @@ public class PortfolioManager{
 	 * @param args the set of arguments provided at runtime
 	 */
 	public static void main(String args[]){
+		long cTime = System.currentTimeMillis();
 		PortfolioManager manager = new PortfolioManager();
 		//PortfolioData pd = new PortfolioData();
 		//pd.removeAllAssets();
@@ -40,6 +41,8 @@ public class PortfolioManager{
 //		System.out.println("Inserted stock !!");
 //		pd.addPrivateInvestment("AAAS", "te", 65.5, 45.5, 78.5, 5550.0);
 //		System.out.println("Inserted private Investment");
-		
+		long eTime = System.currentTimeMillis();
+		long time = eTime - cTime;
+		System.out.println("It took  " +time  + " milliseconds");
 	}
 }
