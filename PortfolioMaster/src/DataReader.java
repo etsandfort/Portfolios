@@ -24,7 +24,7 @@ public class DataReader{
 		ArrayList<Portfolio> portfolios = new ArrayList<Portfolio>();
 		try{
 			File file = new File(PORTFOLIO_FILENAME); //read in the file
-
+			PortfolioData pd = new PortfolioData();
 			BufferedReader read = new BufferedReader(new FileReader(file));
 
 			String line;
@@ -110,6 +110,8 @@ public class DataReader{
 		return assetList;
 	}
 	
+	
+
 	/**
 	 * Reads in a file of people, located in data/Persons.dat, and adds them into an arraylist of people in the database
 	 * @return persons the list of people
@@ -181,6 +183,12 @@ public class DataReader{
 		return p;
 	}
 
+	
+	//TODO CHeck my stuffs here
+	public ArrayList<Asset> findAssets(){
+		PortfolioData pd =new PortfolioData();
+		return pd.getAssets();
+	}
 	/**
 	 * Reads in a file of assets, located in data/Assets.dat, and adds them into an arraylist of assets in the database
 	 * @return assets the list of assets

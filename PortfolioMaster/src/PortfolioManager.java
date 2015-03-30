@@ -10,13 +10,13 @@ import java.util.ArrayList;
  */
 public class PortfolioManager{
 	//Data member
-	private DataReader input = new DataReader();
+	private PortfolioData input = new PortfolioData();
 
 	/**
 	 * Obtains the input
 	 * @return input, a DataReader object
 	 */
-	public DataReader getInput(){
+	public PortfolioData getInput(){
 		return input;
 	}
 	
@@ -25,10 +25,24 @@ public class PortfolioManager{
 	 * @param args the set of arguments provided at runtime
 	 */
 	public static void main(String args[]){
+		long cTime = System.currentTimeMillis();
 		PortfolioManager manager = new PortfolioManager();
-		ArrayList<Portfolio> allPortfolios = manager.getInput().readPortfolios();
+		//PortfolioData pd = new PortfolioData();
+		//pd.removeAllAssets();
+		//PortfolioData.removeAsset("MHIA32");
+		ArrayList<Portfolio> allPortfolios = manager.getInput().getPortfolios();
 		ReportMaker report = new ReportMaker(allPortfolios);
 		report.printSummaryReport();
 		report.printDetailedReport();
+		
+//		pd.addDepositAccount("TEST!", "THISTEST", 2.52);
+//		System.out.println("Inserted Deposit Account!!");
+//		pd.addStock("LAM", "TESTTEST", 125.0, 5.0, 6.0, "AS", 45.0);
+//		System.out.println("Inserted stock !!");
+//		pd.addPrivateInvestment("AAAS", "te", 65.5, 45.5, 78.5, 5550.0);
+//		System.out.println("Inserted private Investment");
+		long eTime = System.currentTimeMillis();
+		long time = eTime - cTime;
+		System.out.println("It took  " +time  + " milliseconds");
 	}
 }
