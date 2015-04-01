@@ -1,11 +1,5 @@
 package com.sdb;
 
-
-
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -22,9 +16,6 @@ import java.util.HashMap;
 import org.apache.log4j.Logger;
 
 
-
-
-
 /**
  * This is a collection of utility methods that define a general API for
  * interacting with the database supporting this application.
@@ -34,7 +25,7 @@ public class PortfolioData {
 	 * Method that removes every person record from the database
 	 */
 	
-	 //static org.apache.log4j.Logger log = Logger.getLogger(PortfolioData.class.getName());
+	static org.apache.log4j.Logger log = Logger.getLogger(PortfolioData.class.getName());
 	
 	public static void removeAllPersons() {
 		Factory.getDriver();
@@ -73,7 +64,7 @@ public class PortfolioData {
 			conn.close();
 			
 		} catch (SQLException e) {
-			//log.error("SQLException: " + e,new RuntimeException(e));
+			log.error("SQLException: " + e,new RuntimeException(e));
 		} finally {
 			Factory.closeResources(ps, conn);
 		}
@@ -137,7 +128,7 @@ public class PortfolioData {
 			conn.close();
 			
 		} catch (SQLException e) {
-			//log.error("SQLException: " + e,new RuntimeException(e));
+			log.error("SQLException: " + e,new RuntimeException(e));
 		} finally {
 			Factory.closeResources(ps, conn);
 		}
@@ -206,7 +197,7 @@ public class PortfolioData {
 			conn.close();
 			
 		} catch (SQLException e) {
-			//log.error("SQLException: " + e,new RuntimeException(e));
+			log.error("SQLException: " + e,new RuntimeException(e));
 		} finally {
 			Factory.closeResources(ps, conn);
 		}
@@ -236,7 +227,7 @@ public class PortfolioData {
 			conn.close();
 			
 		} catch (SQLException e) {
-			//log.error("SQLException: " + e,new RuntimeException(e));
+			log.error("SQLException: " + e,new RuntimeException(e));
 		} finally {
 			Factory.closeResources(ps, conn);
 		}
@@ -270,7 +261,7 @@ public class PortfolioData {
 			conn.close();
 		
 		} catch(Exception e) {
-			//log.error("SQLException: " + e,new RuntimeException(e));
+			log.error("SQLException: " + e,new RuntimeException(e));
 		} finally {
 			Factory.closeResources( ps, conn);
 		}
@@ -309,7 +300,7 @@ public class PortfolioData {
 			conn.close();
 		
 		} catch(Exception e) {
-			//log.error("SQLException: " + e,new RuntimeException(e));
+			log.error("SQLException: " + e,new RuntimeException(e));
 		} finally {
 			Factory.closeResources(ps, conn);
 		}
@@ -327,7 +318,7 @@ public class PortfolioData {
 		Factory.getDriver();
 		Connection conn = null;
 		PreparedStatement ps = null;
-
+		
 		try {
 			conn = Factory.getConnection();
 
@@ -343,7 +334,7 @@ public class PortfolioData {
 			conn.close();
 
 		} catch(Exception e) {
-			//log.error("SQLException: " + e,new RuntimeException(e));
+			log.error("SQLException: " + e,new RuntimeException(e));
 		} finally {
 			Factory.closeResources( ps, conn);
 		}
@@ -385,7 +376,7 @@ public class PortfolioData {
 			conn.close();
 		
 		} catch(Exception e) {
-			//log.error("SQLException: " + e,new RuntimeException(e));
+			log.error("SQLException: " + e,new RuntimeException(e));
 		} finally {
 			Factory.closeResources( ps, conn);
 		}
@@ -412,16 +403,16 @@ public class PortfolioData {
 		try {
 			conn = Factory.getConnection();
 
-			String query =  "INSERT INTO Asset(code,label,type,baseRate,quarterlyDividend, beta, symbol,sharePrice) values (?,?,?,?,?,?,?,?)";
+			String query =  "INSERT INTO Asset(code,label,type,quarterlyDividend,baseRate, sharePrice, symbol,beta) values (?,?,?,?,?,?,?,?)";
 			ps = conn.prepareStatement(query);
 			ps.setString(1, assetCode);
 			ps.setString(2, label);
 			ps.setString(3, "S");
-			ps.setDouble(4, baseRateOfReturn);
-			ps.setDouble(5,quarterlyDividend);
-			ps.setDouble(6,beta);
+			ps.setDouble(4, quarterlyDividend);
+			ps.setDouble(5,baseRateOfReturn);
+			ps.setDouble(6,sharePrice);
 			ps.setString(7,stockSymbol);
-			ps.setDouble(8,sharePrice);
+			ps.setDouble(8,beta);
 
 			ps.executeUpdate();
 			ps.close();
@@ -429,7 +420,7 @@ public class PortfolioData {
 			conn.close();
 
 		} catch(Exception e) {
-			//log.error("SQLException: " + e,new RuntimeException(e));
+			log.error("SQLException: " + e,new RuntimeException(e));
 		} finally {
 			Factory.closeResources( ps, conn);
 		}
@@ -464,7 +455,7 @@ public class PortfolioData {
 			conn.close();
 		
 		} catch(Exception e) {
-			//log.error("SQLException: " + e,new RuntimeException(e));
+			log.error("SQLException: " + e,new RuntimeException(e));
 		} finally {
 			Factory.closeResources( ps, conn);
 		}
@@ -503,7 +494,7 @@ public class PortfolioData {
 			conn.close();
 
 		} catch(Exception e) {
-			//log.error("SQLException: " + e, new RuntimeException(e));
+			log.error("SQLException: " + e, new RuntimeException(e));
 		} finally {
 			Factory.closeResources( ps, conn);
 		}
@@ -538,7 +529,7 @@ public class PortfolioData {
 			conn.close();
 
 		} catch(Exception e) {
-			//log.error("SQLException: " + e, new RuntimeException(e));
+			log.error("SQLException: " + e, new RuntimeException(e));
 		} finally {
 			Factory.closeResources( ps, conn);
 		}
@@ -558,25 +549,51 @@ public class PortfolioData {
 		Factory.getDriver();
 		Connection conn = null;
 		PreparedStatement ps = null;
+		ResultSet rs = null;
 
 		try {
 			conn = DriverManager.getConnection(DatabaseInfo.URL, DatabaseInfo.USERNAME, DatabaseInfo.PASSWORD);
 
-			String query = "INSERT INTO PortfolioAsset(asset_id, portfolio_id, givenValue) VALUES ((SELECT id FROM Asset WHERE (code = ?)), (SELECT id FROM Portfolio where (code = ?)), ?)";
-			ps = conn.prepareStatement(query);
-			ps.setString(1, assetCode);
-			ps.setString(2, portfolioCode);
-			ps.setDouble(3,  value);
-
-			ps.executeUpdate();
+			String queryCheck = "SELECT code FROM Asset WHERE id IN (SELECT asset_id FROM PortfolioAsset WHERE portfolio_id = (SELECT id FROM Portfolio WHERE code = ?))";
+			ps = conn.prepareStatement(queryCheck);
+			ps.setString(1, portfolioCode);
+			rs = ps.executeQuery();
+			boolean codeMatch = false;
+			while(rs.next()) {
+				String existingCode = rs.getString("code");
+				if(existingCode.equals(assetCode)) {
+					codeMatch = true;
+				}
+			}
+			
+			rs.close();
 			ps.close();
+			
+			if(!codeMatch) {
+			
+				String query = "INSERT INTO PortfolioAsset(asset_id, portfolio_id, givenValue) VALUES ((SELECT id FROM Asset WHERE (code = ?)), (SELECT id FROM Portfolio where (code = ?)), ?)";
+				ps = conn.prepareStatement(query);
+				ps.setString(1, assetCode);
+				ps.setString(2, portfolioCode);
+				ps.setDouble(3,  value);
 
+				ps.executeUpdate();
+				ps.close();
+			} else {
+				String updateValue = "UPDATE PortfolioAsset SET givenValue = (givenValue + ?) WHERE asset_id = (SELECT id FROM Asset WHERE (code = ?))";
+				ps = conn.prepareStatement(updateValue);
+				ps.setDouble(1, value);
+				ps.setString(2, assetCode);
+				ps.executeUpdate();
+				ps.close();
+			}
+			
 			conn.close();
 			
 		} catch(Exception e) {
-			//log.error("SQLException: " + e, new RuntimeException(e));
+			log.error("SQLException: " + e, new RuntimeException(e));
 		} finally {
-			Factory.closeResources( ps, conn);
+			Factory.closeResources(rs, ps, conn);
 		}
 	}
 	
@@ -637,7 +654,6 @@ public class PortfolioData {
 						rsAssetCodes.next();
 						
 						assetIDList.put(rsAssetCodes.getString("code"),rsAssets.getDouble("givenValue"));
-						
 						rsAssetCodes.close();
 						psAssetCodes.close();
 					}
@@ -718,16 +734,11 @@ public class PortfolioData {
 					}
 				}
 			}
-//			System.out.println("The portfolio has: " + portfolios.size());
-//			
-//			System.out.println("Portfolios going now");
-//			for(Portfolio p : portfolios){
-//				System.out.println(p.getCode() + " " + p.getAssetList() + " " + p.getOwner().getCode());
-//			}
+
 			return portfolios;
 			
 		} catch(Exception e){ 
-			//log.error("Portfolios not made", new RuntimeException(e));
+			log.error("Portfolios not made", new RuntimeException(e));
 			return null;	
 		}
 		finally {
@@ -767,7 +778,6 @@ public class PortfolioData {
 		for(String id: idList.keySet()){
 			if(!id.equalsIgnoreCase("")) {
 				double value = idList.get(id);
-				id = id.split(":")[0];
 
 				for(Asset a: assets){
 					if(a.getCode().equalsIgnoreCase(id)){
@@ -799,16 +809,16 @@ public class PortfolioData {
 			rs = ps.executeQuery();
 
 			while(rs.next()){
-				if(rs.getString("type").equalsIgnoreCase("D")){
-					Deposit dep = new Deposit(rs.getString("code"), rs.getString("label"), rs.getString("type"), rs.getDouble("baseRate"));
+				if(rs.getString("type").equalsIgnoreCase("D")){ 
+					Deposit dep = new Deposit(rs.getString("code"), rs.getString("label"), rs.getString("type"), rs.getDouble("baseRate") * 100);
 					allAssets.add(dep);
-				}
+				} 
 				else if(rs.getString("type").equalsIgnoreCase("S")){
-					Stock sto = new Stock(rs.getString("code"), rs.getString("label"), rs.getString("type"),rs.getDouble("quarterlyDividend"), rs.getDouble("baseRate"), rs.getDouble("sharePrice"),rs.getString("symbol"),rs.getDouble("beta"));
+					Stock sto = new Stock(rs.getString("code"), rs.getString("label"), rs.getString("type"),rs.getDouble("quarterlyDividend"), rs.getDouble("baseRate")*100, rs.getDouble("sharePrice"),rs.getString("symbol"),rs.getDouble("beta"));
 					allAssets.add(sto);
 				}
 				else{
-					Investment inv = new Investment(rs.getString("code"), rs.getString("label"), rs.getString("type"),rs.getDouble("quarterlyDividend"), rs.getDouble("baseRate"),rs.getDouble("omega"),rs.getDouble("investmentValue"));
+					Investment inv = new Investment(rs.getString("code"), rs.getString("label"), rs.getString("type"),rs.getDouble("quarterlyDividend"), rs.getDouble("baseRate")*100,rs.getDouble("omega"),rs.getDouble("investmentValue"));
 					allAssets.add(inv);
 				}
 			}
@@ -818,13 +828,10 @@ public class PortfolioData {
 
 			conn.close();
 			
-//			for(Asset a : allAssets){
-//				System.out.println(a.getCode() + " " + a.getLabel());
-//			}
 			return allAssets;
 		
 		} catch(Exception e) {
-			//log.error("SQL Exception : " + e,new RuntimeException(e));
+			log.error("SQL Exception : " + e,new RuntimeException(e));
 			return null; //unreachable code
 		} finally {
 			Factory.closeResources(rs, ps, conn);
@@ -926,117 +933,13 @@ public class PortfolioData {
 			ps.close();
 
 			conn.close();
-//			for(Person p : allPersons){
-//				System.out.println(p.getCode() + " " + p.getFirstName() + " " + p.getLastName());
-//			}
 			return allPersons;
 
 		} catch(Exception e) {
-			//log.error("Error : " + e, new  RuntimeException(e));
+			log.error("Error : " + e, new  RuntimeException(e));
 			return null;
 
 		} finally {
-			Factory.closeResources(rs, ps, conn);
-		}
-	}
-	
-	//TODO take this out
-	public void selectFromPortfolios(){
-		Factory.getDriver();
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		
-		try{
-			conn = Factory.getConnection();
-			String query = "Select * from Portfolio";
-			ps = conn.prepareStatement(query);
-			rs = ps.executeQuery();
-			while(rs.next()){
-				System.out.println(rs.getString("code"));
-			}
-			
-		}
-		catch(Exception e){
-			
-		}
-		finally{
-			Factory.closeResources(rs, ps, conn);
-		}
-	}
-	
-	public void selectFromPeople(){
-		Factory.getDriver();
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		
-		try{
-			conn = Factory.getConnection();
-			String query = "Select * from Person";
-			ps = conn.prepareStatement(query);
-			rs = ps.executeQuery();
-			System.out.println("People wanted");
-			while(rs.next()){
-				System.out.println(rs.getString("firstName") + " " + rs.getString("lastName") + " " + rs.getString("code"));
-			}
-			
-		}
-		catch(Exception e){
-			
-		}
-		finally{
-			Factory.closeResources(rs, ps, conn);
-		}
-	}
-	public void selectFromAsset(){
-		Factory.getDriver();
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		
-		try{
-			conn = Factory.getConnection();
-			String query = "Select * from Asset";
-			ps = conn.prepareStatement(query);
-			rs = ps.executeQuery();
-			System.out.println("Assets wanted");
-			while(rs.next()){
-				System.out.println(rs.getString("code") + " " + rs.getString("type") + " q div : " + rs.getString("quarterlyDividend") + " baseRate " + rs.getString("baseRate"));
-			}
-			
-		}
-		catch(Exception e){
-			System.out.println("Something broke");
-			e.printStackTrace();
-		}
-		finally{
-			Factory.closeResources(rs, ps, conn);
-		}
-	}
-	
-	
-	public void selectFromPortfolioAsset(){
-		Factory.getDriver();
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		
-		try{
-			conn = Factory.getConnection();
-			String query = "Select * from PortfolioAsset";
-			ps = conn.prepareStatement(query);
-			rs = ps.executeQuery();
-			System.out.println("People wanted");
-			while(rs.next()){
-				System.out.println(rs.getString("asset_id") + " " + rs.getString("portfolio_id") + " " + rs.getDouble("givenValue"));
-			}
-			
-		}
-		catch(Exception e){
-			
-		}
-		finally{
 			Factory.closeResources(rs, ps, conn);
 		}
 	}

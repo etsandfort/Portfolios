@@ -41,7 +41,10 @@ public class Investment extends Asset{
 	 * @param percentageOwned - percentage owned of investment
 	 */
 	public double computeAnnualReturns(double percentageOwned){
-		double anReturns = (this.baseRate * this.value + this.quarterlyDividend * 4) * percentageOwned / 100;
+		if(percentageOwned <= 1){
+			percentageOwned *= 100;
+		}
+		double anReturns = ((this.baseRate * this.value) + (this.quarterlyDividend * 4)) * percentageOwned / 100.0;
 		//annualReturns is base rate of returns * value plus quarterly dividend * 4 times percentageOwned as a percent
 		return anReturns;
 	}
@@ -51,7 +54,11 @@ public class Investment extends Asset{
 	 * @param percentageOwned - percentage owned of investment
 	 */
 	public double computeValueOfAsset(double percentageOwned){
-		double value = this.value * percentageOwned / 100;
+		if(percentageOwned <= 1){
+			percentageOwned *= 100;
+		}
+		double value = this.value * percentageOwned / 100.0;
+		//System.out.println("Here is the percentage owned : " + percentageOwned);
 		return value;
 	}
 
@@ -60,6 +67,9 @@ public class Investment extends Asset{
 	 * @param percentageOwned - percentage owned of investment
 	 */
 	public void computeReturnRate(double percentageOwned){
+		if(percentageOwned <= 1){
+			percentageOwned *= 100;
+		}
 		double returnRate = (computeAnnualReturns(percentageOwned) / computeValueOfAsset(percentageOwned))* 100;
 		this.setReturnRate(returnRate); 
 	}
@@ -124,7 +134,7 @@ public class Investment extends Asset{
 	 * @param baseRate, a double
 	 */
 	public void setBaseRate(double baseRate ){
-		this.baseRate = (baseRate / 100); // converts percentage to its decimal form
+		this.baseRate = (baseRate/100 ); // converts percentage to its decimal form
 	}
 	
 	/**

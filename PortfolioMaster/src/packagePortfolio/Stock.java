@@ -30,8 +30,8 @@ public class Stock extends Asset{
 		setCode(code);
 		setLabel(label);
 		setType(type);
-		setBaseRate(rate);
 		setQuarterlyDividend(quart);
+		setBaseRate(rate);
 		setSharePrice(share);
 		setSymbol(symbol);
 		setBeta(beta);
@@ -44,6 +44,7 @@ public class Stock extends Asset{
 	 */
 	public double computeAnnualReturns(double stocks){
 		double anReturns = 0.0;
+		//System.out.println("Here is the name " + this.getLabel() + " here is the amount of stocks " + stocks);
 		anReturns = (this.quarterlyDividend * 4 * stocks) + (this.baseRate * stocks * this.sharePrice) ; 
 		//annual return is quarterly dividend * 4 * stocks owned plus base Rate of return times sharePrice times stocks
 		return anReturns;
@@ -65,7 +66,7 @@ public class Stock extends Asset{
 	 */
 	public void computeReturnRate(double stocks){
 		
-		double returnRate = (computeAnnualReturns(stocks) / computeValueOfAsset(stocks)) * 100;
+		double returnRate = (computeAnnualReturns(stocks) / computeValueOfAsset(stocks)) * 100.0;
 		this.setReturnRate(returnRate);
 	}
 	
@@ -114,7 +115,7 @@ public class Stock extends Asset{
 	 * @param baseRate
 	 */
 	public void setBaseRate(double baseRate ){
-		this.baseRate = (baseRate/100); // converting the percentage to its decimal version
+		this.baseRate = (baseRate/100.0); // converting the percentage to its decimal version
 	}
 	
 	/**

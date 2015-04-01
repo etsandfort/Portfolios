@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.apache.log4j.Logger;
+
 import com.sdb.PortfolioData;
 
 /**
@@ -16,6 +18,8 @@ import com.sdb.PortfolioData;
  * @version 3.0
  */
 public class DataReader{
+	static org.apache.log4j.Logger log = Logger.getLogger(DataReader.class.getName());
+	
 	public static final String PORTFOLIO_FILENAME = "data/Portfolios.dat";
 	public static final String ASSET_FILENAME = "data/Assets.dat";
 	public static final String PERSON_FILENAME = "data/Persons.dat";
@@ -44,7 +48,7 @@ public class DataReader{
 			}
 			read.close();
 		} catch(Exception e){
-			e.printStackTrace();
+			log.error("Error : " + e, new  RuntimeException(e));
 		}
 		return portfolios;
 	}
@@ -186,12 +190,6 @@ public class DataReader{
 		return p;
 	}
 
-	
-	//TODO CHeck my stuffs here
-//	public ArrayList<Asset> findAssets(){
-//		PortfolioData pd =new PortfolioData();
-//		return pd.getAssets();
-//	}
 	/**
 	 * Reads in a file of assets, located in data/Assets.dat, and adds them into an arraylist of assets in the database
 	 * @return assets the list of assets
@@ -213,7 +211,7 @@ public class DataReader{
 			}
 			read.close();
 		} catch(Exception e){
-			System.out.println(e);
+			log.error("Error : " + e, new  RuntimeException(e));
 		}
 		return assets;
 	}

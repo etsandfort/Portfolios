@@ -1,9 +1,3 @@
-
-main INFO  PortfolioManager - Getting portfolios
-main INFO  PortfolioManager - Portfolios retrieved
-main INFO  PortfolioManager - Getting portfolios
-main INFO  PortfolioManager - Portfolios retrieved
-main INFO  PortfolioManager - Getting portfolios
-main INFO  PortfolioManager - Portfolios retrieved
-main INFO  PortfolioManager - Getting portfolios
-main INFO  PortfolioManager - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+955  [main] INFO  PortfolioManager  - Portfolios retrieved
+1013 [main] INFO  PortfolioManager  - Program finished.

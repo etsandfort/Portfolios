@@ -51,7 +51,7 @@ public class Deposit extends Asset{
 	 * @param initialDeposit - the current amount
 	 */
 	public void computeReturnRate(double initialDeposit){
-		double returnRate = computeAnnualReturns(initialDeposit)/initialDeposit * 100;
+		double returnRate = computeAnnualReturns(initialDeposit)/initialDeposit * 100.0;
 		this.setReturnRate(returnRate);
 	}
 
@@ -84,6 +84,6 @@ public class Deposit extends Asset{
 	 * @param baseRate 
 	 */
 	public void setBaseRate(double baseRate){
-		this.baseRate = baseRate/100; //turns it from percent to decimal
+		this.baseRate = baseRate/100.0; //turns it from percent to decimal
 	}
 }
