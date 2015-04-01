@@ -1,8 +1,12 @@
+package packagePortfolio;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import com.sdb.PortfolioData;
 
 /**
  * DataReader.java
@@ -184,10 +188,10 @@ public class DataReader{
 
 	
 	//TODO CHeck my stuffs here
-	public ArrayList<Asset> findAssets(){
-		PortfolioData pd =new PortfolioData();
-		return pd.getAssets();
-	}
+//	public ArrayList<Asset> findAssets(){
+//		PortfolioData pd =new PortfolioData();
+//		return pd.getAssets();
+//	}
 	/**
 	 * Reads in a file of assets, located in data/Assets.dat, and adds them into an arraylist of assets in the database
 	 * @return assets the list of assets

@@ -1,3 +1,6 @@
+package com.sdb;
+
+
 /**
  * DatabaseInfo.java
  * 

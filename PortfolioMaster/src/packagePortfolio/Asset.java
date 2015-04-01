@@ -1,3 +1,5 @@
+package packagePortfolio;
+
 /**
  * Asset.java
  * RAIK 184H
