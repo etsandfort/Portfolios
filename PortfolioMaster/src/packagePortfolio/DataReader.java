@@ -59,19 +59,20 @@ public class DataReader{
 	 * @return
 	 */
 	public Portfolio parsePortfolio(String line, ArrayList<Asset> assets, ArrayList<Person> persons){
-		Portfolio p;
+		Portfolio p;		
+		String[] portInfo = line.split(";",-1);
 
-		String[] portInfo = line.split(";", -1);
 		String code = portInfo[0];
 		String ownerID = portInfo[1];
 		String managerID = portInfo[2];
 		String beneficiaryID = portInfo[3];
 		String[] assetIDList = portInfo[4].split(",");
 		
-		if(beneficiaryID.equalsIgnoreCase("")){
+		if(beneficiaryID.trim().equalsIgnoreCase("")){
 			p = new Portfolio(code, searchPerson(ownerID, persons), (Broker) searchPerson(managerID, persons), searchAssets(assetIDList, assets));
 			return p;
-		} else {
+		} 
+		else{
 			p = new Portfolio(code, searchPerson(ownerID, persons), (Broker) searchPerson(managerID, persons), searchPerson(beneficiaryID, persons), searchAssets(assetIDList,assets));
 			return p;
 		}

@@ -59,6 +59,22 @@ public class Portfolio{
 		this.beneficiary = beneficiary;
 	}
 	
+	public Portfolio(String code, Person owner, Broker manager){
+		this.code = code;
+		this.owner = owner;
+		this.manager = manager;
+		this.setBrokerFees(0);
+		this.setCommissionFees(0);
+		this.setTotalValue(0);
+		this.setTotalAnnualReturns(0);
+		this.setTotalRisks(0);	
+	}
+	
+	public Portfolio(String code, Person owner, Broker manager, Person beneficiary){
+		this(code, owner, manager);
+		this.beneficiary = beneficiary;
+	}
+	
 	/**
 	 * This method condenses the hash map so that it is one hash map of 3 different things
 	 * @param assetNumeric - Hash Map of assets and their given numeric values from Portfolios.dat

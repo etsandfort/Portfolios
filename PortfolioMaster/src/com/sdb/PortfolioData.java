@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.sdb;
 
 import java.sql.Connection;
@@ -15,10 +16,14 @@ import java.util.HashMap;
 
 import org.apache.log4j.Logger;
 
+=======
+package com.sdb; //DO NOT CHANGE THIS
+>>>>>>> 6b95382b573f4c9ea95ca3cd9c1852cde10c83cc
 
 /**
  * This is a collection of utility methods that define a general API for
  * interacting with the database supporting this application.
+<<<<<<< HEAD
  */
 public class PortfolioData {
 	/**
@@ -134,11 +139,33 @@ public class PortfolioData {
 		}
 	}
 
+=======
+ *
+ */
+public class PortfolioData {
+
+	/**
+	 * Method that removes every person record from the database
+	 */
+	public static void removeAllPersons() {}
+	
+	/**
+	 * Removes the person record from the database corresponding to the
+	 * provided <code>personCode</code>
+	 * @param personCode
+	 */
+	public static void removePerson(String personCode) {}
+	
+>>>>>>> 6b95382b573f4c9ea95ca3cd9c1852cde10c83cc
 	/**
 	 * Method to add a person record to the database with the provided data. The
 	 * <code>brokerType</code> will either be "E" or "J" (Expert or Junior) or 
 	 * <code>null</code> if the person is not a broker.
+<<<<<<< HEAD
 	 * @param code
+=======
+	 * @param personCode
+>>>>>>> 6b95382b573f4c9ea95ca3cd9c1852cde10c83cc
 	 * @param firstName
 	 * @param lastName
 	 * @param street
@@ -148,6 +175,7 @@ public class PortfolioData {
 	 * @param country
 	 * @param brokerType
 	 */
+<<<<<<< HEAD
 	public static void addPerson(String code, String firstName, String lastName, String street, 
 			String city, String state, String zip, String country, String brokerType, String secBrokerId) {
 		
@@ -232,10 +260,22 @@ public class PortfolioData {
 			Factory.closeResources(ps, conn);
 		}
 	}
+=======
+	public static void addPerson(String personCode, String firstName, String lastName, String street, String city, String state, String zip, String country, String brokerType, String secBrokerId) {}
+	
+	/**
+	 * Adds an email record corresponding person record corresponding to the
+	 * provided <code>personCode</code>
+	 * @param personCode
+	 * @param email
+	 */
+	public static void addEmail(String personCode, String email) {}
+>>>>>>> 6b95382b573f4c9ea95ca3cd9c1852cde10c83cc
 
 	/**
 	 * Removes all asset records from the database
 	 */
+<<<<<<< HEAD
 	public static void removeAllAssets() {
 		Factory.getDriver();
 		Connection conn = null;
@@ -266,12 +306,16 @@ public class PortfolioData {
 			Factory.closeResources( ps, conn);
 		}
 	}
+=======
+	public static void removeAllAssets() {}
+>>>>>>> 6b95382b573f4c9ea95ca3cd9c1852cde10c83cc
 
 	/**
 	 * Removes the asset record from the database corresponding to the
 	 * provided <code>assetCode</code>
 	 * @param assetCode
 	 */
+<<<<<<< HEAD
 	public static void removeAsset(String assetCode) {
 		Factory.getDriver();
 		Connection conn = null;
@@ -306,6 +350,10 @@ public class PortfolioData {
 		}
 	}
 
+=======
+	public static void removeAsset(String assetCode) {}
+	
+>>>>>>> 6b95382b573f4c9ea95ca3cd9c1852cde10c83cc
 	/**
 	 * Adds a deposit account asset record to the database with the
 	 * provided data. 
@@ -313,6 +361,7 @@ public class PortfolioData {
 	 * @param label
 	 * @param apr
 	 */
+<<<<<<< HEAD
 	public static void addDepositAccount(String assetCode, String label, double apr) {
 
 		Factory.getDriver();
@@ -340,6 +389,10 @@ public class PortfolioData {
 		}
 	}
 
+=======
+	public static void addDepositAccount(String assetCode, String label, double apr) {}
+	
+>>>>>>> 6b95382b573f4c9ea95ca3cd9c1852cde10c83cc
 	/**
 	 * Adds a private investment asset record to the database with the
 	 * provided data. 
@@ -351,6 +404,7 @@ public class PortfolioData {
 	 * @param totalValue
 	 */
 	public static void addPrivateInvestment(String assetCode, String label, Double quarterlyDividend, 
+<<<<<<< HEAD
 			Double baseRateOfReturn, Double baseOmega, Double totalValue) {
 		
 		Factory.getDriver();
@@ -382,6 +436,10 @@ public class PortfolioData {
 		}
 	}
 
+=======
+			Double baseRateOfReturn, Double baseOmega, Double totalValue) {}
+	
+>>>>>>> 6b95382b573f4c9ea95ca3cd9c1852cde10c83cc
 	/**
 	 * Adds a stock asset record to the database with the
 	 * provided data. 
@@ -394,6 +452,7 @@ public class PortfolioData {
 	 * @param sharePrice
 	 */
 	public static void addStock(String assetCode, String label, Double quarterlyDividend, 
+<<<<<<< HEAD
 			Double baseRateOfReturn, Double beta, String stockSymbol, Double sharePrice) {
 
 		Factory.getDriver();
@@ -425,10 +484,14 @@ public class PortfolioData {
 			Factory.closeResources( ps, conn);
 		}
 	}
+=======
+			Double baseRateOfReturn, Double beta, String stockSymbol, Double sharePrice) {}
+>>>>>>> 6b95382b573f4c9ea95ca3cd9c1852cde10c83cc
 
 	/**
 	 * Removes all portfolio records from the database
 	 */
+<<<<<<< HEAD
 	public static void removeAllPortfolios() {
 		Factory.getDriver();
 		Connection conn = null;
@@ -456,11 +519,16 @@ public class PortfolioData {
 		}
 	}
 
+=======
+	public static void removeAllPortfolios() {}
+	
+>>>>>>> 6b95382b573f4c9ea95ca3cd9c1852cde10c83cc
 	/**
 	 * Removes the portfolio record from the database corresponding to the
 	 * provided <code>portfolioCode</code>
 	 * @param portfolioCode
 	 */
+<<<<<<< HEAD
 	public static void removePortfolio(String portfolioCode) {
 		Factory.getDriver();
 		Connection conn = null;
@@ -491,6 +559,10 @@ public class PortfolioData {
 		}
 	}
 
+=======
+	public static void removePortfolio(String portfolioCode) {}
+	
+>>>>>>> 6b95382b573f4c9ea95ca3cd9c1852cde10c83cc
 	/**
 	 * Adds a portfolio records to the database with the given data.  If the portfolio has no
 	 * beneficiary, the <code>beneficiaryCode</code> will be <code>null</code>
@@ -499,6 +571,7 @@ public class PortfolioData {
 	 * @param managerCode
 	 * @param beneficiaryCode
 	 */
+<<<<<<< HEAD
 	public static void addPortfolio(String portfolioCode, String ownerCode, String managerCode, String beneficiaryCode) {
 		Factory.getDriver();
 		Connection conn = null;
@@ -526,6 +599,10 @@ public class PortfolioData {
 		}
 	}
 
+=======
+	public static void addPortfolio(String portfolioCode, String ownerCode, String managerCode, String beneficiaryCode) {}
+	
+>>>>>>> 6b95382b573f4c9ea95ca3cd9c1852cde10c83cc
 	/**
 	 * Associates the asset record corresponding to <code>assetCode</code> with the 
 	 * portfolio corresponding to the provided <code>portfolioCode</code>.  The third 
@@ -536,6 +613,7 @@ public class PortfolioData {
 	 * @param assetCode
 	 * @param value
 	 */
+<<<<<<< HEAD
 	public static void addAsset(String portfolioCode, String assetCode, double value) {
 		Factory.getDriver();
 		Connection conn = null;
@@ -935,3 +1013,9 @@ public class PortfolioData {
 		}
 	}
 }
+=======
+	public static void addAsset(String portfolioCode, String assetCode, double value) {}
+	
+	
+}
+>>>>>>> 6b95382b573f4c9ea95ca3cd9c1852cde10c83cc
