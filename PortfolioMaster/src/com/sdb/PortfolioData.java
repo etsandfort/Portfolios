@@ -437,12 +437,7 @@ public class PortfolioData {
 		try {
 			conn = Factory.getConnection();
 
-			String query = "SET SQL_SAFE_UPDATES=0";
-			ps = conn.prepareStatement(query);
-			ps.executeUpdate();
-			ps.close();
-
-			query = "DELETE FROM PortfolioAsset";
+			String query = "DELETE FROM PortfolioAsset";
 			ps = conn.prepareStatement(query);
 			ps.executeUpdate();
 			ps.close();
@@ -474,12 +469,8 @@ public class PortfolioData {
 		try {
 			conn = DriverManager.getConnection(DatabaseInfo.URL, DatabaseInfo.USERNAME, DatabaseInfo.PASSWORD);
 
-			String query = "SET SQL_SAFE_UPDATES=0";
-			ps = conn.prepareStatement(query);
-			ps.executeUpdate();
-			ps.close();
 
-			query = "DELETE FROM PortfolioAsset WHERE id IN (SELECT id FROM (SELECT * FROM PortfolioAsset) AS portAsset WHERE portfolio_id IN ((SELECT id FROM Portfolio WHERE code = ?)))";
+			String query = "DELETE FROM PortfolioAsset WHERE id IN (SELECT id FROM (SELECT * FROM PortfolioAsset) AS portAsset WHERE portfolio_id IN ((SELECT id FROM Portfolio WHERE code = ?)))";
 			ps = conn.prepareStatement(query);
 			ps.setString(1, portfolioCode);
 			ps.executeUpdate();
