@@ -1,6 +1,7 @@
 package packagePortfolio;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.Comparator;
 
 public class PortfolioList<T> {
 
@@ -15,7 +16,7 @@ private static final int SIZE = 10;
 		this.size = 0;
 	}
 
-	public T getElementAtIndex(int index) {
+	public T get(int index) {
 		if(index < 0 || index >= size) 
 			throw new IllegalArgumentException("index = "+index+" is out of bounds");
 		else
@@ -59,7 +60,7 @@ private static final int SIZE = 10;
 		size++;
 	}
 	
-	public void addElementAtEnd(T element) {
+	public void add(T element) {
 
 		if(size == arr.length) {
 			//resize
@@ -108,9 +109,13 @@ private static final int SIZE = 10;
 			@Override
 			public void remove() {
 				throw new UnsupportedOperationException("not implemented");
-			}};
+			}
+		};
 	}
 	
+	//TODO Insert with owner last name, use String.compareTo()
+	//TODO Insert with portfolio value
+	//TODO Insert with broker type, alphabetize brokers
 	@Override
 	public String toString() {
 		if(this.size == 0) {
