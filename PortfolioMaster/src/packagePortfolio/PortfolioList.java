@@ -2,21 +2,21 @@ package packagePortfolio;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Comparator;
-import java.util.Enumeration;
+
 
 public class PortfolioList<T> {
 
-private static final int SIZE = 10;
-	
+	private static final int SIZE = 10;
+
 	private T arr[];
 	private int size;
-	private CurrentSorting sortType;
-	
+	private Comparator<T> comparator;
+
 	@SuppressWarnings("unchecked")
-	public PortfolioList() {
+	public PortfolioList(Comparator c) {
 		this.arr = (T[]) new Object[SIZE]; 
 		this.size = 0;
-		
+		this.comparator= c;
 	}
 
 	public T get(int index) {
@@ -25,14 +25,14 @@ private static final int SIZE = 10;
 		else
 			return this.arr[index];
 	}
-	
+
 	public boolean isFull(){
 		if(this.size == arr.length){
 			return true;
 		} 
 		return false;
 	}
-	
+
 	public void expand(){
 		@SuppressWarnings("unchecked")
 		T tmp[] = (T[]) new Object[this.arr.length + SIZE];
@@ -41,29 +41,37 @@ private static final int SIZE = 10;
 		}
 		this.arr = tmp;
 	}
-	
-	public void contract(){
-		//TODO Implement
+
+	public boolean hasWastedSpace(){
+		if((arr.length-size)>SIZE){
+			return true;
+		}
+		return false;
 	}
-	
-	
-	public void removeElementAtIndex(int index) {
+	public void contract(){
+		@SuppressWarnings("unchecked")
+		T tmp[] = (T[]) new Object[this.arr.length - SIZE];
+		for(int i=0; i<size; i++) {
+			tmp[i] = this.arr[i];
+		}
+		this.arr = tmp;
+
+	}
+
+
+	private void removeElementAtIndex(int index) {
 
 		if(index < 0 || index >= size) 
 			throw new IllegalArgumentException("index = "+index+" is out of bounds");
-		
+
 		for(int i=index; i<size-1; i++) {
 			this.arr[i] = this.arr[i+1];
 		}
 		this.size--;
-		
-		if(this.isFull()) {
-			this.expand();
-		}
-		
 	}
-	
+
 	private void addElementAtIndex(int index, T element) {
+
 		
 		if(index<0 || index > SIZE){
 			throw new IllegalArgumentException("Invalid index");
@@ -77,58 +85,52 @@ private static final int SIZE = 10;
 		arr[index]=element;
 		size++;
 	}
-	
+
 	public void add(T element) {
-		if(element instanceof Portfolio){
-			if(size==0){
-				addElementAtIndex(0, element);
+
+		if(size==0){
+			addElementAtIndex(0, element);
+		}else{
+			if(this.isFull()) {
+				this.expand();
+			} 
+
+			int currentIndex = 0;
+			while(currentIndex <= this.size && this.comparator.compare(element, this.arr[currentIndex])<0){
+				addElementAtIndex(currentIndex, element);
+				currentIndex++;
 			}
-		switch(sortType){
-		case OWNER:
-			//TODO sort by owner
-			break;
-		case VALUE:
-			//TODO sorty by value
-			break;
-		case MANAGER:
-			//TODO sort by manager
-			break;
-		default:
-			break;
-		}
-		if(this.isFull()) {
-			this.expand();
-		}
-		
-		
-		
-		this.arr[size] = element;
-		this.size++;
-		}
-		else {
-			throw new IllegalArgumentException("Not a portfolio");
+			this.size++;
 		}
 	}
-	
-	private void insertByOwnerName(T element){
-		int currentIndex = 0;
-		Portfolio port = (Portfolio) element;
-		while(currentIndex <= this.size){
-			addElementAtIndex(currentIndex, element);
+
+	public void remove(T element){
+		int index = -1;
+		for(int i = 0; i<this.size; i++){
+			if(this.arr[i].equals(element)){
+				index = i;
+			}
+		}
+		if(size==0 || index != -1){
+			throw new ArrayIndexOutOfBoundsException("Not in the array");
+		} else{
+			removeElementAtIndex(index);
+			if(this.hasWastedSpace()){
+				this.contract();
+			}
 		}
 	}
-	
 	public int size() {
 		return this.size;
 	}
-	
+
 	public boolean isEmpty() {
 		return (size == 0) ? true : false;
 	}
-	
+
 	public Iterator<T> iterator() {
 		return new Iterator<T>() {
-			
+
 			int currentIndex = 0;
 			@Override
 			public boolean hasNext() {
@@ -143,7 +145,7 @@ private static final int SIZE = 10;
 			public T next() {
 				T item = null;
 				if(arr[currentIndex+1]!=null){
-				 item = arr[currentIndex+1];
+					item = arr[currentIndex+1];
 				}
 				return item;
 			}
@@ -154,39 +156,7 @@ private static final int SIZE = 10;
 			}
 		};
 	}
-	
-	public enum CurrentSorting{
-		OWNER,
-		VALUE,
-		MANAGER
-	}
-	
-	public Comparator<T> comparator(){
-		return new Comparator<T>(){
-	
-		public int compare(T a, T b){
-			return 0;
-		}
-		};
-	}
-//	//TODO Insert with owner last name, use String.compareTo()
-//	public static <T extends Comparable<T>> T compareOwner(T[] arr) {
-//		T first = arr[0];
-//		
-//		
-//		return first;
-//		
-//	}
-//	//TODO Insert with portfolio value
-//	public static <T extends Comparable<T>> T comparePortValue() {
-//		
-//	
-//	}
-//	//TODO Insert with broker type, alphabetize brokers
-//	public static <T extends Comparable<T>> T compareManager() {
-//		
-//		
-//	}
+
 	@Override
 	public String toString() {
 		if(this.size == 0) {

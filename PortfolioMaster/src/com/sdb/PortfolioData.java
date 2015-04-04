@@ -23,7 +23,6 @@ import org.apache.log4j.Logger;
 /**
  * This is a collection of utility methods that define a general API for
  * interacting with the database supporting this application.
-<<<<<<< HEAD
  */
 public class PortfolioData {
 	/**
@@ -636,7 +635,7 @@ public class PortfolioData {
 		}
 		return true;
 	}
-
+//TODO edit this method
 	public ArrayList<Portfolio> getPortfolios(){
 		ArrayList<Portfolio> portfolios = new ArrayList<Portfolio>();
 		Factory.getDriver();
