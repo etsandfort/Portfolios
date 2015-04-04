@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.BasicConfigurator;
 
 import packagePortfolio.Portfolio;
+import packagePortfolio.PortfolioList;
 import packagePortfolio.ReportMaker;
 
 import com.sdb.PortfolioData;
@@ -41,15 +42,20 @@ public class PortfolioManager{
 	 */
 	public static void main(String args[]){
 		log.info("Getting portfolios");
-		
+		System.out.println("Program Started");
 		PortfolioManager manager = new PortfolioManager();
-		ArrayList<Portfolio> allPortfolios = manager.getInput().getPortfolios();
-		
+		//ArrayList<Portfolio> allPortfolios = manager.getInput().getPortfolios();
+		PortfolioList pl = new PortfolioList();
+		pl.addAllElements(manager.getInput().getPortfolios());
+		System.out.println("adding elements");
 		log.info("Portfolios retrieved");
-		
-		ReportMaker report = new ReportMaker(allPortfolios);
+		//ReportMaker report = new ReportMaker(allPortfolios);
+		ReportMaker report = new ReportMaker(pl.getArrayList());
+		System.out.println("created Report Object");
 		report.printSummaryReport();
 		report.printDetailedReport();
 		log.info("Program finished.");
 	}
+	
+	
 }
