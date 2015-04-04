@@ -2,6 +2,7 @@ package packagePortfolio;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Comparator;
+import java.util.Enumeration;
 
 public class PortfolioList<T> {
 
@@ -9,11 +10,13 @@ private static final int SIZE = 10;
 	
 	private T arr[];
 	private int size;
+	private CurrentSorting sortType;
 	
 	@SuppressWarnings("unchecked")
 	public PortfolioList() {
 		this.arr = (T[]) new Object[SIZE]; 
 		this.size = 0;
+		
 	}
 
 	public T get(int index) {
@@ -22,6 +25,27 @@ private static final int SIZE = 10;
 		else
 			return this.arr[index];
 	}
+	
+	public boolean isFull(){
+		if(this.size == arr.length){
+			return true;
+		} 
+		return false;
+	}
+	
+	public void expand(){
+		@SuppressWarnings("unchecked")
+		T tmp[] = (T[]) new Object[this.arr.length + SIZE];
+		for(int i=0; i<size; i++) {
+			tmp[i] = this.arr[i];
+		}
+		this.arr = tmp;
+	}
+	
+	public void contract(){
+		//TODO Implement
+	}
+	
 	
 	public void removeElementAtIndex(int index) {
 
@@ -33,19 +57,13 @@ private static final int SIZE = 10;
 		}
 		this.size--;
 		
-		if(size < arr.length - SIZE) {
-			//resize
-			@SuppressWarnings("unchecked")
-			T tmp[] = (T[]) new Object[this.arr.length - SIZE];
-			for(int i=0; i<size; i++) {
-				tmp[i] = this.arr[i];
-			}
-			this.arr = tmp;
+		if(this.isFull()) {
+			this.expand();
 		}
 		
 	}
 	
-	public void addElementAtIndex(int index, T element) {
+	private void addElementAtIndex(int index, T element) {
 		
 		if(index<0 || index > SIZE){
 			throw new IllegalArgumentException("Invalid index");
@@ -61,22 +79,46 @@ private static final int SIZE = 10;
 	}
 	
 	public void add(T element) {
-
-		if(size == arr.length) {
-			//resize
-			@SuppressWarnings("unchecked")
-			T tmp[] = (T[]) new Object[arr.length + SIZE];
-			for(int i=0; i<arr.length; i++) {
-				tmp[i] = arr[i];
+		if(element instanceof Portfolio){
+			if(size==0){
+				addElementAtIndex(0, element);
 			}
-			arr = tmp;
+		switch(sortType){
+		case OWNER:
+			//TODO sort by owner
+			break;
+		case VALUE:
+			//TODO sorty by value
+			break;
+		case MANAGER:
+			//TODO sort by manager
+			break;
+		default:
+			break;
 		}
-
+		if(this.isFull()) {
+			this.expand();
+		}
+		
+		
+		
 		this.arr[size] = element;
 		this.size++;
+		}
+		else {
+			throw new IllegalArgumentException("Not a portfolio");
+		}
 	}
 	
-	public int getSize() {
+	private void insertByOwnerName(T element){
+		int currentIndex = 0;
+		Portfolio port = (Portfolio) element;
+		while(currentIndex <= this.size){
+			addElementAtIndex(currentIndex, element);
+		}
+	}
+	
+	public int size() {
 		return this.size;
 	}
 	
@@ -113,9 +155,38 @@ private static final int SIZE = 10;
 		};
 	}
 	
-	//TODO Insert with owner last name, use String.compareTo()
-	//TODO Insert with portfolio value
-	//TODO Insert with broker type, alphabetize brokers
+	public enum CurrentSorting{
+		OWNER,
+		VALUE,
+		MANAGER
+	}
+	
+	public Comparator<T> comparator(){
+		return new Comparator<T>(){
+	
+		public int compare(T a, T b){
+			return 0;
+		}
+		};
+	}
+//	//TODO Insert with owner last name, use String.compareTo()
+//	public static <T extends Comparable<T>> T compareOwner(T[] arr) {
+//		T first = arr[0];
+//		
+//		
+//		return first;
+//		
+//	}
+//	//TODO Insert with portfolio value
+//	public static <T extends Comparable<T>> T comparePortValue() {
+//		
+//	
+//	}
+//	//TODO Insert with broker type, alphabetize brokers
+//	public static <T extends Comparable<T>> T compareManager() {
+//		
+//		
+//	}
 	@Override
 	public String toString() {
 		if(this.size == 0) {
