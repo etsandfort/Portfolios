@@ -7,3 +7,103 @@
 0    [main] INFO  PortfolioManager  - Getting portfolios
 1145 [main] INFO  PortfolioManager  - Portfolios retrieved
 1196 [main] INFO  PortfolioManager  - Program finished.
+0    [main] INFO  PortfolioManager  - Getting portfolios
+2777 [main] ERROR com.sdb.PortfolioData  - Portfolios not made
+java.lang.RuntimeException: java.lang.NullPointerException
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:766)
+	at PortfolioManager.main(PortfolioManager.java:47)
+Caused by: java.lang.NullPointerException
+	at com.sdb.PortfolioData.checkIfIDIsUnique(PortfolioData.java:633)
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:667)
+	... 1 more
+2777 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+608  [main] ERROR com.sdb.PortfolioData  - Portfolios not made
+java.lang.RuntimeException: java.lang.NullPointerException
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:766)
+	at PortfolioManager.main(PortfolioManager.java:47)
+Caused by: java.lang.NullPointerException
+	at com.sdb.PortfolioData.checkIfIDIsUnique(PortfolioData.java:633)
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:667)
+	... 1 more
+608  [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+608  [main] ERROR com.sdb.PortfolioData  - Portfolios not made
+java.lang.RuntimeException: java.lang.NullPointerException
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:766)
+	at PortfolioManager.main(PortfolioManager.java:47)
+Caused by: java.lang.NullPointerException
+	at com.sdb.PortfolioData.checkIfIDIsUnique(PortfolioData.java:633)
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:667)
+	... 1 more
+608  [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+671  [main] ERROR com.sdb.PortfolioData  - Portfolios not made
+java.lang.RuntimeException: java.lang.NullPointerException
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:766)
+	at PortfolioManager.main(PortfolioManager.java:47)
+Caused by: java.lang.NullPointerException
+	at com.sdb.PortfolioData.checkIfIDIsUnique(PortfolioData.java:633)
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:667)
+	... 1 more
+671  [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+406  [main] ERROR com.sdb.PortfolioData  - Portfolios not made
+java.lang.RuntimeException: java.lang.NullPointerException
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:766)
+	at PortfolioManager.main(PortfolioManager.java:47)
+Caused by: java.lang.NullPointerException
+	at com.sdb.PortfolioData.checkIfIDIsUnique(PortfolioData.java:633)
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:667)
+	... 1 more
+406  [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+605  [main] ERROR com.sdb.PortfolioData  - Portfolios not made
+java.lang.RuntimeException: java.lang.NullPointerException
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:766)
+	at PortfolioManager.main(PortfolioManager.java:47)
+Caused by: java.lang.NullPointerException
+	at com.sdb.PortfolioData.checkIfIDIsUnique(PortfolioData.java:633)
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:667)
+	... 1 more
+605  [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+858  [main] ERROR com.sdb.PortfolioData  - Portfolios not made
+java.lang.RuntimeException: java.lang.NullPointerException
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:766)
+	at PortfolioManager.main(PortfolioManager.java:47)
+Caused by: java.lang.NullPointerException
+	at com.sdb.PortfolioData.checkIfIDIsUnique(PortfolioData.java:633)
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:667)
+	... 1 more
+858  [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+749  [main] ERROR com.sdb.PortfolioData  - Portfolios not made
+java.lang.RuntimeException: java.lang.NullPointerException
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:766)
+	at PortfolioManager.main(PortfolioManager.java:47)
+Caused by: java.lang.NullPointerException
+	at com.sdb.PortfolioData.checkIfIDIsUnique(PortfolioData.java:633)
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:667)
+	... 1 more
+749  [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+624  [main] ERROR com.sdb.PortfolioData  - Portfolios not made
+java.lang.RuntimeException: java.lang.NullPointerException
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:766)
+	at PortfolioManager.main(PortfolioManager.java:47)
+Caused by: java.lang.NullPointerException
+	at com.sdb.PortfolioData.checkIfIDIsUnique(PortfolioData.java:633)
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:667)
+	... 1 more
+639  [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+843  [main] ERROR com.sdb.PortfolioData  - Portfolios not made
+java.lang.RuntimeException: java.lang.NullPointerException
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:766)
+	at PortfolioManager.main(PortfolioManager.java:47)
+Caused by: java.lang.NullPointerException
+	at com.sdb.PortfolioData.checkIfIDIsUnique(PortfolioData.java:633)
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:667)
+	... 1 more
+843  [main] INFO  PortfolioManager  - Portfolios retrieved

@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.Comparator;
 
 
-public class PortfolioList<T> {
+public class PortfolioList<T> implements Iterable<T>{
 
 	private static final int SIZE = 10;
 
@@ -134,20 +134,21 @@ public class PortfolioList<T> {
 			int currentIndex = 0;
 			@Override
 			public boolean hasNext() {
-				T item = arr[currentIndex];
-				currentIndex++;
-				if(item==null){
-					return false;
-				}
-				return true;
+				System.out.println("hasnext works?");
+				return currentIndex<size;
+				
 			}
+			
 			@Override
 			public T next() {
-				T item = null;
-				if(arr[currentIndex+1]!=null){
-					item = arr[currentIndex+1];
+				System.out.println("check program flow");
+				if(!hasNext()){
+					System.out.println("this is awkward");
+					throw new IndexOutOfBoundsException("No next element");
 				}
-				return item;
+				currentIndex++;
+				System.out.println("maybe?");
+				return arr[currentIndex];
 			}
 
 			@Override

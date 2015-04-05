@@ -12,9 +12,9 @@ import java.util.ArrayList;
 public class ReportMaker{
 	// data members
 	private ReportCalculation reportCalc;
-	private ArrayList<Portfolio> portfolios;
+	private PortfolioList<Portfolio> portfolios;
 	
-	public ReportMaker(ArrayList<Portfolio> portfolios){
+	public ReportMaker(PortfolioList<Portfolio> portfolios){
 		reportCalc = new ReportCalculation(portfolios);
 		this.portfolios = portfolios;
 	}

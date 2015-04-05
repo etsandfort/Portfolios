@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 
 import org.apache.log4j.Logger;
@@ -627,7 +628,7 @@ public class PortfolioData {
 	 * @param portfoliosGiven
 	 * @return boolean; true if unique, false if not
 	 */
-	public boolean checkIfIDIsUnique(String portfolioID, ArrayList<Portfolio> portfoliosGiven){
+	public boolean checkIfIDIsUnique(String portfolioID, PortfolioList<Portfolio> portfoliosGiven){
 		for(Portfolio p : portfoliosGiven){
 			if(p.getCode().equalsIgnoreCase(portfolioID)){
 				return false;
@@ -636,8 +637,8 @@ public class PortfolioData {
 		return true;
 	}
 //TODO edit this method
-	public ArrayList<Portfolio> getPortfolios(){
-		ArrayList<Portfolio> portfolios = new ArrayList<Portfolio>();
+	public PortfolioList<Portfolio> getPortfolios(Comparator<Portfolio> c){
+		PortfolioList<Portfolio> portfolios = new PortfolioList<Portfolio>(c);
 		Factory.getDriver();
 		Connection conn = Factory.getConnection();
 		PreparedStatement ps = null;

@@ -3,7 +3,7 @@ import java.util.Comparator;
 
 public class PortfolioComparator {
 
-	public Comparator<Portfolio> ownerComparator(){
+	public static Comparator<Portfolio> ownerComparator(){
 		return new Comparator<Portfolio>(){
 	
 		public int compare(Portfolio a, Portfolio b){
@@ -16,7 +16,7 @@ public class PortfolioComparator {
 		};
 	}
 	
-	public Comparator<Portfolio> valueComparator(){
+	public static Comparator<Portfolio> valueComparator(){
 		return new Comparator<Portfolio>(){
 	
 		public int compare(Portfolio a, Portfolio b){
@@ -32,7 +32,7 @@ public class PortfolioComparator {
 		};
 	}
 	
-	public Comparator<Portfolio> managerComparator(){
+	public static Comparator<Portfolio> managerComparator(){
 		return new Comparator<Portfolio>(){
 	
 			public int compareManagerNames(Portfolio a, Portfolio b){

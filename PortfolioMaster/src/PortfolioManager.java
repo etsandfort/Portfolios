@@ -8,7 +8,8 @@ import org.apache.log4j.BasicConfigurator;
 
 import packagePortfolio.Portfolio;
 import packagePortfolio.ReportMaker;
-
+import packagePortfolio.PortfolioList;
+import packagePortfolio.PortfolioComparator;
 import com.sdb.PortfolioData;
 
 import org.apache.log4j.*;
@@ -43,13 +44,13 @@ public class PortfolioManager{
 		log.info("Getting portfolios");
 		
 		PortfolioManager manager = new PortfolioManager();
-		ArrayList<Portfolio> allPortfolios = manager.getInput().getPortfolios();
+		PortfolioList<Portfolio> allPortfolios = manager.getInput().getPortfolios(PortfolioComparator.ownerComparator());
 		
 		log.info("Portfolios retrieved");
 		
 		ReportMaker report = new ReportMaker(allPortfolios);
 		report.printSummaryReport();
-		report.printDetailedReport();
+		//report.printDetailedReport();
 		log.info("Program finished.");
 	}
 }
