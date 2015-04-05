@@ -34,7 +34,6 @@ public class ReportMaker{
 				"Owner", "Manager", "Fees", "Commissions", "Weighted Risk", "Return", "Total");
 		
 		for(int i = 0; i < portfolios.size(); i++){
-		
 			// formatting the names for owner and manager to follow "lastName, firstName"
 			nameOwner = portfolios.get(i).getOwner().getLastName() 
 						+ ", " + portfolios.get(i).getOwner().getFirstName();

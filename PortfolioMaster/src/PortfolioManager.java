@@ -45,7 +45,7 @@ public class PortfolioManager{
 		
 		PortfolioManager manager = new PortfolioManager();
 		PortfolioList<Portfolio> allPortfolios = manager.getInput().getPortfolios(PortfolioComparator.ownerComparator());
-		
+		System.out.println(allPortfolios.toString());
 		log.info("Portfolios retrieved");
 		
 		ReportMaker report = new ReportMaker(allPortfolios);

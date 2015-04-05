@@ -107,3 +107,125 @@ Caused by: java.lang.NullPointerException
 	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:667)
 	... 1 more
 843  [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1263 [main] ERROR com.sdb.PortfolioData  - Portfolios not made
+java.lang.RuntimeException: java.lang.IndexOutOfBoundsException: No next element
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:766)
+	at PortfolioManager.main(PortfolioManager.java:47)
+Caused by: java.lang.IndexOutOfBoundsException: No next element
+	at packagePortfolio.PortfolioList$1.next(PortfolioList.java:153)
+	at com.sdb.PortfolioData.checkIfIDIsUnique(PortfolioData.java:632)
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:667)
+	... 1 more
+1263 [main] INFO  PortfolioManager  - Portfolios retrieved
+16   [main] INFO  PortfolioManager  - Getting portfolios
+1440 [main] ERROR com.sdb.PortfolioData  - Portfolios not made
+java.lang.RuntimeException: java.lang.IllegalArgumentException: Invalid index
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:766)
+	at PortfolioManager.main(PortfolioManager.java:47)
+Caused by: java.lang.IllegalArgumentException: Invalid index
+	at packagePortfolio.PortfolioList.addElementAtIndex(PortfolioList.java:77)
+	at packagePortfolio.PortfolioList.add(PortfolioList.java:100)
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:730)
+	... 1 more
+1440 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1396 [main] ERROR com.sdb.PortfolioData  - Portfolios not made
+java.lang.RuntimeException: java.lang.IllegalArgumentException: Invalid index
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:766)
+	at PortfolioManager.main(PortfolioManager.java:47)
+Caused by: java.lang.IllegalArgumentException: Invalid index
+	at packagePortfolio.PortfolioList.addElementAtIndex(PortfolioList.java:77)
+	at packagePortfolio.PortfolioList.add(PortfolioList.java:100)
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:730)
+	... 1 more
+1412 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1277 [main] ERROR com.sdb.PortfolioData  - Portfolios not made
+java.lang.RuntimeException: java.lang.IllegalArgumentException: Invalid index
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:766)
+	at PortfolioManager.main(PortfolioManager.java:47)
+Caused by: java.lang.IllegalArgumentException: Invalid index
+	at packagePortfolio.PortfolioList.addElementAtIndex(PortfolioList.java:77)
+	at packagePortfolio.PortfolioList.add(PortfolioList.java:101)
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:730)
+	... 1 more
+1277 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1370 [main] ERROR com.sdb.PortfolioData  - Portfolios not made
+java.lang.RuntimeException: java.lang.IllegalArgumentException: Invalid index
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:766)
+	at PortfolioManager.main(PortfolioManager.java:47)
+Caused by: java.lang.IllegalArgumentException: Invalid index
+	at packagePortfolio.PortfolioList.addElementAtIndex(PortfolioList.java:77)
+	at packagePortfolio.PortfolioList.add(PortfolioList.java:101)
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:730)
+	... 1 more
+1370 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1354 [main] ERROR com.sdb.PortfolioData  - Portfolios not made
+java.lang.RuntimeException: java.lang.IllegalArgumentException: Invalid index
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:766)
+	at PortfolioManager.main(PortfolioManager.java:47)
+Caused by: java.lang.IllegalArgumentException: Invalid index
+	at packagePortfolio.PortfolioList.addElementAtIndex(PortfolioList.java:77)
+	at packagePortfolio.PortfolioList.add(PortfolioList.java:102)
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:730)
+	... 1 more
+1354 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1563 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1712 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1641 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1688 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1641 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1594 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1626 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1626 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1784 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1700 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1606 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1595 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1719 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1313 [main] ERROR com.sdb.PortfolioData  - Portfolios not made
+java.lang.RuntimeException: java.lang.IllegalArgumentException: Invalid index
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:766)
+	at PortfolioManager.main(PortfolioManager.java:47)
+Caused by: java.lang.IllegalArgumentException: Invalid index
+	at packagePortfolio.PortfolioList.addElementAtIndex(PortfolioList.java:76)
+	at packagePortfolio.PortfolioList.add(PortfolioList.java:98)
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:758)
+	... 1 more
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1766 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1760 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1735 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1468 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1645 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1713 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1650 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1735 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1500 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1500 [main] INFO  PortfolioManager  - Portfolios retrieved
