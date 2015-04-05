@@ -229,3 +229,15 @@ Caused by: java.lang.IllegalArgumentException: Invalid index
 1500 [main] INFO  PortfolioManager  - Portfolios retrieved
 0    [main] INFO  PortfolioManager  - Getting portfolios
 1500 [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1333 [main] ERROR com.sdb.PortfolioData  - Portfolios not made
+java.lang.RuntimeException: java.lang.IllegalArgumentException: Invalid index
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:766)
+	at PortfolioManager.main(PortfolioManager.java:47)
+Caused by: java.lang.IllegalArgumentException: Invalid index
+	at packagePortfolio.PortfolioList.addElementAtIndex(PortfolioList.java:117)
+	at packagePortfolio.PortfolioList.add(PortfolioList.java:146)
+	at com.sdb.PortfolioData.getPortfolios(PortfolioData.java:758)
+	... 1 more
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1532 [main] INFO  PortfolioManager  - Portfolios retrieved

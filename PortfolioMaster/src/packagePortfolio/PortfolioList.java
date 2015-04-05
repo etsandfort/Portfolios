@@ -117,7 +117,6 @@ public class PortfolioList<T> implements Iterable<T>{
 			throw new IllegalArgumentException("Invalid index");
 		}
 		if(this.size == arr.length){
-			System.out.println("copy over");
 			this.arr = Arrays.copyOf(this.arr, arr.length + SIZE);
 		}
 		for(int i=size-1; i>=index; i--){
