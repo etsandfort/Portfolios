@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 import org.apache.log4j.Logger;
 
-import com.sdb.PortfolioData;
+
 
 /**
  * DataReader.java
@@ -32,7 +32,7 @@ public class DataReader{
 		ArrayList<Portfolio> portfolios = new ArrayList<Portfolio>();
 		try{
 			File file = new File(PORTFOLIO_FILENAME); //read in the file
-			PortfolioData pd = new PortfolioData();
+
 			BufferedReader read = new BufferedReader(new FileReader(file));
 
 			String line;

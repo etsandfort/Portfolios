@@ -215,23 +215,13 @@ public class PortfolioList<T> implements Iterable<T>{
 			//checks if there is a next element in the array
 			@Override
 			public boolean hasNext() {
-				T item = arr[currentIndex + 1];
-				currentIndex++;
-				if(item==null){
-					return false;
-				}
-				return true;
+				return (currentIndex < size);
 			}
 
 			//returns the next element in the array
 			@Override
 			public T next() {
-				if(!hasNext()){
-					throw new IndexOutOfBoundsException("No next element");
-				}
-				currentIndex++;
-				System.out.println("maybe?");
-				return arr[currentIndex];
+				return arr[currentIndex++];
 			}
 
 			//Not implemented. Unneeded for the team's desired iterator tasks

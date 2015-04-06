@@ -608,15 +608,15 @@ public class PortfolioData {
 	 * @return boolean; true if unique, false if not
 	 */
 	public boolean checkIfIDIsUnique(String portfolioID, PortfolioList<Portfolio> portfoliosGiven){
-		//for(Portfolio p : portfoliosGiven){ //TODO figure out iterable
-		for(int i = 0; i < portfoliosGiven.size(); i++ ){
-			if(portfoliosGiven.get(i).getCode().equalsIgnoreCase(portfolioID)){
+		for(Portfolio p : portfoliosGiven){
+
+			if(p.getCode().equalsIgnoreCase(portfolioID)){
 				return false;
 			}
 		}
 		return true;
 	}
-//TODO edit this method
+	
 	/**
 	 * The getPortfolios method retrieves all portfolios in the database. They are inserted
 	 * into a sorted list ADT using the input comparator
@@ -626,7 +626,6 @@ public class PortfolioData {
 	public PortfolioList<Portfolio> getPortfolios(Comparator<Portfolio> c){
 	
 		PortfolioList<Portfolio> portfolios = new PortfolioList<Portfolio>(c);
-		//ArrayList<Portfolio> portfolios = new ArrayList<Portfolio>();
 		Factory.getDriver();
 		Connection conn = Factory.getConnection();
 		PreparedStatement ps = null;

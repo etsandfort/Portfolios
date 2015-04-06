@@ -33,10 +33,8 @@ public class ReportCalculation{
 	 */
 	private double calculateTotalCommissions(PortfolioList<Portfolio> portfolios){
 		double totalCommission = 0.0; 
-		//TODO fix iterator, change for loop
-		//for(Portfolio portfolio : portfolios){ //for each portfolio 
-		for(int i = 0; i < portfolios.size(); i++){
-			totalCommission += portfolios.get(i).getCommissionFees(); //add the total commissions fee
+		for(Portfolio portfolio : portfolios){ //for each portfolio 
+			totalCommission += portfolio.getCommissionFees(); //add the total commissions fee
 		}
 		return totalCommission;
 	}
@@ -48,10 +46,8 @@ public class ReportCalculation{
 	 */
 	private double calculateTotalFees(PortfolioList<Portfolio>portfolios){
 		double totalFees = 0.0; // total broker fees
-		//TODO fix iterator, change for loop
-		//for(Portfolio portfolio : portfolios){ //for each portfolio
-		for(int i = 0; i < portfolios.size(); i++){	
-		totalFees += portfolios.get(i).getBrokerFees(); //add its broker fees to the total
+		for(Portfolio portfolio : portfolios){ //for each portfolio
+		totalFees += portfolio.getBrokerFees(); //add its broker fees to the total
 		}
 		return totalFees;
 	}
@@ -63,10 +59,8 @@ public class ReportCalculation{
 	 */
 	private double calculateTotalValue(PortfolioList<Portfolio>portfolios){
 		double totalValue = 0.0;
-		//TODO fix iterator, change for loop
-		//for(Portfolio portfolio : portfolios){ //for each portfolio
-		for(int i = 0; i < portfolios.size(); i++){	
-		totalValue += portfolios.get(i).getTotalValue(); //add the total value of the portfolio to the rest
+		for(Portfolio portfolio : portfolios){ //for each portfolio
+		totalValue += portfolio.getTotalValue(); //add the total value of the portfolio to the rest
 		}
 		return totalValue;
 	}
@@ -78,10 +72,8 @@ public class ReportCalculation{
 	 */
 	private double calculateTotalReturns(PortfolioList<Portfolio>portfolios){
 		double totalReturns = 0.0; // total annual returns
-		//TODO fix iterator, change for loop
-		//for(Portfolio portfolio : portfolios){ //for each portfolio
-		for(int i = 0; i < portfolios.size(); i++){	
-		totalReturns += portfolios.get(i).getTotalAnnualReturns(); //add the annual return of the portfolio to the overall total returns
+		for(Portfolio portfolio : portfolios){ //for each portfolio
+		totalReturns += portfolio.getTotalAnnualReturns(); //add the annual return of the portfolio to the overall total returns
 		}
 		return totalReturns;
 	}
