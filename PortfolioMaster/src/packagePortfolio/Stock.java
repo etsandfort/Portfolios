@@ -1,6 +1,5 @@
 package packagePortfolio;
 
-
 /**
  * Stock.java
  * RAIK 184H
@@ -39,12 +38,11 @@ public class Stock extends Asset{
 	}
 	
 	/**
-	 * computes the Annual Returns for the Stock asset
+	 * Computes the Annual Returns for the Stock asset
 	 * @param stocks - the amount of stocks owned
 	 */
 	public double computeAnnualReturns(double stocks){
 		double anReturns = 0.0;
-		//System.out.println("Here is the name " + this.getLabel() + " here is the amount of stocks " + stocks);
 		anReturns = (this.quarterlyDividend * 4 * stocks) + (this.baseRate * stocks * this.sharePrice) ; 
 		//annual return is quarterly dividend * 4 * stocks owned plus base Rate of return times sharePrice times stocks
 		return anReturns;

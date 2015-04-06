@@ -1,7 +1,5 @@
 package packagePortfolio;
 
-import java.util.ArrayList;
-
 /**
  * ReportMaker.java
  * RAIK 184H
@@ -138,8 +136,7 @@ public class ReportMaker{
 		for(int i = 0; i < 150; i++){
 			if(i != 149) {
 				System.out.print('=');				
-			}
-			else {
+			} else {
 				System.out.println('=');
 			}
 		}
@@ -152,11 +149,9 @@ public class ReportMaker{
 		for(int i = 0; i < lineLength; i++) {
 			if(i < lineLength - 90) { // print blank spaces because can't sum codes, owners or managers
 				System.out.print(" ");
-			}
-			else if(i != (lineLength - 1)) {
+			} else if(i != (lineLength - 1)) {
 				System.out.print('-');				
-			}
-			else { // last char to be printed, so start new line after printing
+			} else { // last char to be printed, so start new line after printing
 				System.out.println('-');
 			}
 		}

@@ -1,11 +1,12 @@
 package packagePortfolio;
+
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Comparator;
 
 /**
  * PortfolioList<T> is the class that is the mould for the team's sorted list ADT.
- * 
+ * RAIK 184H
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
  * @version 2.0
  * @param <T>
@@ -23,7 +24,7 @@ public class PortfolioList<T> implements Iterable<T>{
 	 * @param c, the comparator of choice
 	 */
 	@SuppressWarnings("unchecked")
-	public PortfolioList(Comparator c) {
+	public PortfolioList(Comparator<T> c) {
 		this.arr = (T[]) new Object[SIZE]; 
 		this.size = 0;
 		this.comparator= c;
@@ -115,17 +116,15 @@ public class PortfolioList<T> implements Iterable<T>{
 		if(index < 0 || index > this.size){
 			throw new IllegalArgumentException("Invalid index");
 		}
+		
 		if(this.size == arr.length){
 			this.arr = Arrays.copyOf(this.arr, arr.length + SIZE);
-
 		}
+		
 		for(int i=this.size-1; i>=index; i--){
-
 			arr[i+1] = arr[i];
-
 		}
 		arr[index]=element;
-		
 	}
 
 	/**
@@ -150,17 +149,12 @@ public class PortfolioList<T> implements Iterable<T>{
 				}
 				else{
 					if(this.comparator.compare(element, this.arr[currentIndex])>=0){
-
 						addElementAtIndex(currentIndex,element);
-
 						currentIndex = this.size + 1;
 					}
 				}
-
 				currentIndex++;
 			}
-
-
 		}
 		this.size++;
 	}
@@ -185,6 +179,14 @@ public class PortfolioList<T> implements Iterable<T>{
 				this.contract();
 			}
 		}
+	}
+	
+	/**
+	 * This method clears the list.
+	 */
+	@SuppressWarnings("unchecked")
+	public void clear() {
+		this.arr = (T[]) new Object[SIZE]; 
 	}
 
 	/**
@@ -257,13 +259,5 @@ public class PortfolioList<T> implements Iterable<T>{
 		sb.append(this.arr[this.size-1]);
 		sb.append("]");
 		return sb.toString();
-	}
-	
-	/**
-	 * This method clears the list.
-	 */
-	@SuppressWarnings("unchecked")
-	public void clear() {
-		this.arr = (T[]) new Object[SIZE]; 
 	}
 }

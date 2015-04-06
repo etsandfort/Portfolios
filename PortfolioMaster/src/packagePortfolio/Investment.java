@@ -1,6 +1,5 @@
 package packagePortfolio;
 
-
 /**
  * Investment.java
  * RAIK 184H
@@ -33,7 +32,6 @@ public class Investment extends Asset{
 		setOmega(omega);
 		setValue(value);
 		setRiskValue(omega);
-
 	}
 	
 	/**
@@ -58,7 +56,6 @@ public class Investment extends Asset{
 			percentageOwned *= 100;
 		}
 		double value = this.value * percentageOwned / 100.0;
-		//System.out.println("Here is the percentage owned : " + percentageOwned);
 		return value;
 	}
 

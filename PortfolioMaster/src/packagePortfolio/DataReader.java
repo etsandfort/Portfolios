@@ -118,8 +118,6 @@ public class DataReader{
 		return assetList;
 	}
 	
-	
-
 	/**
 	 * Reads in a file of people, located in data/Persons.dat, and adds them into an arraylist of people in the database
 	 * @return persons the list of people
@@ -243,10 +241,8 @@ public class DataReader{
 			type = "P";
 			a = new Investment(info[0], info[2], type, Double.parseDouble(info[3]), Double.parseDouble(info[4]),
 					Double.parseDouble(info[5]), Double.parseDouble(info[6]));
-			
 		} else{
-			a = new Asset();
-			
+			a = new Asset();	
 		}
 		return a;
 	}

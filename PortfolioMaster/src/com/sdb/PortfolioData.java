@@ -1,13 +1,9 @@
-
 package com.sdb; //DO NOT CHANGE THIS
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-
-import com.mysql.jdbc.*;
 
 import packagePortfolio.*;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,21 +13,19 @@ import java.util.HashMap;
 
 import org.apache.log4j.Logger;
 
-
-
-
-
 /**
+ * PortfolioData.java
+ * RAIK 184H
  * This is a collection of utility methods that define a general API for
  * interacting with the database supporting this application.
  */
 public class PortfolioData {
-	/**
-	 * Method that removes every person record from the database
-	 */
 	
 	static org.apache.log4j.Logger log = Logger.getLogger(PortfolioData.class.getName());
 	
+	/**
+	 * Method that removes every person record from the database
+	 */
 	public static void removeAllPersons() {
 		Factory.getDriver();
 		Connection conn = null;
@@ -141,19 +135,12 @@ public class PortfolioData {
 		}
 	}
 
-
-
-
-
 	/**
 	 * Method to add a person record to the database with the provided data. The
 	 * <code>brokerType</code> will either be "E" or "J" (Expert or Junior) or 
 	 * <code>null</code> if the person is not a broker.
-
 	 * @param code
-
 	 * @param personCode
-
 	 * @param firstName
 	 * @param lastName
 	 * @param street
@@ -163,7 +150,6 @@ public class PortfolioData {
 	 * @param country
 	 * @param brokerType
 	 */
-
 	public static void addPerson(String code, String firstName, String lastName, String street, 
 			String city, String state, String zip, String country, String brokerType, String secBrokerId) {
 		
@@ -251,13 +237,9 @@ public class PortfolioData {
 		}
 	}
 
-	
-
-
 	/**
 	 * Removes all asset records from the database
 	 */
-
 	public static void removeAllAssets() {
 		Factory.getDriver();
 		Connection conn = null;
@@ -290,14 +272,11 @@ public class PortfolioData {
 		}
 	}
 
-	
-
 	/**
 	 * Removes the asset record from the database corresponding to the
 	 * provided <code>assetCode</code>
 	 * @param assetCode
 	 */
-
 	public static void removeAsset(String assetCode) {
 		Factory.getDriver();
 		Connection conn = null;
@@ -333,7 +312,6 @@ public class PortfolioData {
 		}
 	}
 
-
 	/**
 	 * Adds a deposit account asset record to the database with the
 	 * provided data. 
@@ -341,7 +319,6 @@ public class PortfolioData {
 	 * @param label
 	 * @param apr
 	 */
-
 	public static void addDepositAccount(String assetCode, String label, double apr) {
 
 		Factory.getDriver();
@@ -369,7 +346,6 @@ public class PortfolioData {
 			Factory.closeResources( ps, conn);
 		}
 	}
-
 
 	/**
 	 * Adds a private investment asset record to the database with the
@@ -414,7 +390,6 @@ public class PortfolioData {
 			Factory.closeResources( ps, conn);
 		}
 	}
-
 
 	/**
 	 * Adds a stock asset record to the database with the
@@ -461,11 +436,9 @@ public class PortfolioData {
 		}
 	}
 
-
 	/**
 	 * Removes all portfolio records from the database
 	 */
-
 	public static void removeAllPortfolios() {
 		Factory.getDriver();
 		Connection conn = null;
@@ -494,13 +467,11 @@ public class PortfolioData {
 		}
 	}
 
-
 	/**
 	 * Removes the portfolio record from the database corresponding to the
 	 * provided <code>portfolioCode</code>
 	 * @param portfolioCode
 	 */
-
 	public static void removePortfolio(String portfolioCode) {
 		Factory.getDriver();
 		Connection conn = null;
@@ -508,7 +479,6 @@ public class PortfolioData {
 
 		try {
 			conn = DriverManager.getConnection(DatabaseInfo.URL, DatabaseInfo.USERNAME, DatabaseInfo.PASSWORD);
-
 
 			String query = "DELETE FROM PortfolioAsset WHERE id IN (SELECT id FROM (SELECT * FROM PortfolioAsset) AS portAsset WHERE portfolio_id IN ((SELECT id FROM Portfolio WHERE code = ?)))";
 			ps = conn.prepareStatement(query);
@@ -532,7 +502,6 @@ public class PortfolioData {
 		}
 	}
 
-
 	/**
 	 * Adds a portfolio records to the database with the given data.  If the portfolio has no
 	 * beneficiary, the <code>beneficiaryCode</code> will be <code>null</code>
@@ -541,7 +510,6 @@ public class PortfolioData {
 	 * @param managerCode
 	 * @param beneficiaryCode
 	 */
-
 	public static void addPortfolio(String portfolioCode, String ownerCode, String managerCode, String beneficiaryCode) {
 		Factory.getDriver();
 		Connection conn = null;
@@ -570,7 +538,6 @@ public class PortfolioData {
 		}
 	}
 
-
 	/**
 	 * Associates the asset record corresponding to <code>assetCode</code> with the 
 	 * portfolio corresponding to the provided <code>portfolioCode</code>.  The third 
@@ -581,7 +548,6 @@ public class PortfolioData {
 	 * @param assetCode
 	 * @param value
 	 */
-
 	public static void addAsset(String portfolioCode, String assetCode, double value) {
 		Factory.getDriver();
 		Connection conn = null;
@@ -595,6 +561,7 @@ public class PortfolioData {
 			ps = conn.prepareStatement(queryCheck);
 			ps.setString(1, portfolioCode);
 			rs = ps.executeQuery();
+			
 			boolean codeMatch = false;
 			while(rs.next()) {
 				String existingCode = rs.getString("code");
@@ -607,7 +574,6 @@ public class PortfolioData {
 			ps.close();
 			
 			if(!codeMatch) {
-			
 				String query = "INSERT INTO PortfolioAsset(asset_id, portfolio_id, givenValue) VALUES ((SELECT id FROM Asset WHERE (code = ?)), (SELECT id FROM Portfolio where (code = ?)), ?)";
 				ps = conn.prepareStatement(query);
 				ps.setString(1, assetCode);
@@ -651,6 +617,12 @@ public class PortfolioData {
 		return true;
 	}
 //TODO edit this method
+	/**
+	 * The getPortfolios method retrieves all portfolios in the database. They are inserted
+	 * into a sorted list ADT using the input comparator
+	 * @param c, the comparator the portfolios will be sorted by
+	 * @return a sorted list of portfolios
+	 */
 	public PortfolioList<Portfolio> getPortfolios(Comparator<Portfolio> c){
 	
 		PortfolioList<Portfolio> portfolios = new PortfolioList<Portfolio>(c);
@@ -660,8 +632,6 @@ public class PortfolioData {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try{
-			
-
 			ArrayList<Asset> assets = getAssets();
 			ArrayList<Person> persons = getPersons();
 			
@@ -774,13 +744,11 @@ public class PortfolioData {
 					}
 				}
 			}
-
 			return portfolios;
 			
 		} catch(Exception e){ 
 			log.error("SQLException: " + e);
-			throw new RuntimeException(e);
-			
+			throw new RuntimeException(e);	
 		}
 		finally {
 			Factory.closeResources(rs, ps, conn);
@@ -799,12 +767,10 @@ public class PortfolioData {
 		for(Person person: persons){
 
 			if(person.getCode().equalsIgnoreCase(id)){
-
 				subject=person;
 				return subject;
 			}
 		}
-
 		return null;
 	}
 
@@ -866,7 +832,6 @@ public class PortfolioData {
 
 			rs.close();
 			ps.close();
-
 			conn.close();
 			
 			return allAssets;
@@ -876,7 +841,6 @@ public class PortfolioData {
 			throw new RuntimeException(e);
 		} finally {
 			Factory.closeResources(rs, ps, conn);
-
 		}
 	}
 
@@ -985,7 +949,3 @@ public class PortfolioData {
 		}
 	}
 }
-
-	
-
-
