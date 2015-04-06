@@ -7,20 +7,21 @@ public class PortfolioComparator {
 		return new Comparator<Portfolio>(){
 	
 		public int compare(Portfolio a, Portfolio b){
-			int compareLastName = a.getOwner().getLastName().compareTo(b.getOwner().getLastName());
+			
+			int compareLastName = b.getOwner().getLastName().compareTo(a.getOwner().getLastName());
 			if(compareLastName==0){
-				return a.getOwner().getFirstName().compareTo(b.getOwner().getFirstName());
+				return b.getOwner().getFirstName().compareTo(a.getOwner().getFirstName());
 			} 
 			return compareLastName;
-		}
+	}
 		};
 	}
 	
-	public static Comparator<Portfolio> valueComparator(){
-		return new Comparator<Portfolio>(){
-	
+	public static Comparator<Portfolio> valueComparator() {
+		return new Comparator<Portfolio>() {
+
 		public int compare(Portfolio a, Portfolio b){
-			double valueDifference = a.getTotalValue()-b.getTotalValue();
+			double valueDifference = b.getTotalValue()-a.getTotalValue();
 			if (valueDifference > 0){
 				return 1;
 			} else if(valueDifference < 0){
@@ -36,14 +37,14 @@ public class PortfolioComparator {
 		return new Comparator<Portfolio>(){
 	
 			public int compareManagerNames(Portfolio a, Portfolio b){
-				int compareLastName = a.getManager().getLastName().compareTo(b.getManager().getLastName());
+				int compareLastName = b.getManager().getLastName().compareTo(a.getManager().getLastName());
 				if(compareLastName==0){
-					return a.getManager().getFirstName().compareTo(b.getManager().getFirstName());
+					return b.getManager().getFirstName().compareTo(a.getManager().getFirstName());
 				} 
 				return compareLastName;
 			}
 			public int compare(Portfolio a, Portfolio b){
-				int compareBrokerType =  (b.getManager().getType())-(a.getManager().getType());
+				int compareBrokerType =  (a.getManager().getType())-(b.getManager().getType());
 				if(compareBrokerType == 0){
 					return compareManagerNames(a,b);
 				}

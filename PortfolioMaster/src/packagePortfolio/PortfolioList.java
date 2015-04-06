@@ -75,7 +75,7 @@ public class PortfolioList<T> implements Iterable<T>{
 		}
 		return false;
 	}
-	
+
 	/**
 	 * The contract() method decreases the number of elements in the array
 	 * by SIZE elements.
@@ -112,18 +112,20 @@ public class PortfolioList<T> implements Iterable<T>{
 	 * @param element
 	 */
 	private void addElementAtIndex(int index, T element) {
-
-		if(index < 0 || index > SIZE){
+		if(index < 0 || index > this.size){
 			throw new IllegalArgumentException("Invalid index");
 		}
 		if(this.size == arr.length){
 			this.arr = Arrays.copyOf(this.arr, arr.length + SIZE);
+
 		}
-		for(int i=size-1; i>=index; i--){
+		for(int i=this.size-1; i>=index; i--){
+
 			arr[i+1] = arr[i];
+
 		}
 		arr[index]=element;
-		size++;
+		
 	}
 
 	/**
@@ -141,12 +143,26 @@ public class PortfolioList<T> implements Iterable<T>{
 			} 
 
 			int currentIndex = 0;
-			while(currentIndex <= this.size && this.comparator.compare(element, this.arr[currentIndex])>0){
-				addElementAtIndex(currentIndex, element);
+
+			while(currentIndex <= this.size ){
+				if(currentIndex == this.size){
+					addElementAtIndex(this.size,element);
+				}
+				else{
+					if(this.comparator.compare(element, this.arr[currentIndex])>=0){
+
+						addElementAtIndex(currentIndex,element);
+
+						currentIndex = this.size + 1;
+					}
+				}
+
 				currentIndex++;
 			}
-			this.size++;
+
+
 		}
+		this.size++;
 	}
 
 	/**
@@ -170,7 +186,7 @@ public class PortfolioList<T> implements Iterable<T>{
 			}
 		}
 	}
-	
+
 	/**
 	 * The size() method returns the PortfolioList size.
 	 * @return size
@@ -204,7 +220,7 @@ public class PortfolioList<T> implements Iterable<T>{
 				}
 				return true;
 			}
-			
+
 			//returns the next element in the array
 			@Override
 			public T next() {
@@ -241,5 +257,13 @@ public class PortfolioList<T> implements Iterable<T>{
 		sb.append(this.arr[this.size-1]);
 		sb.append("]");
 		return sb.toString();
+	}
+	
+	/**
+	 * This method clears the list.
+	 */
+	@SuppressWarnings("unchecked")
+	public void clear() {
+		this.arr = (T[]) new Object[SIZE]; 
 	}
 }

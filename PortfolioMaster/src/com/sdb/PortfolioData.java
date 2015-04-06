@@ -69,7 +69,8 @@ public class PortfolioData {
 			conn.close();
 			
 		} catch (SQLException e) {
-			log.error("SQLException: " + e,new RuntimeException(e));
+			log.error("SQLException: " + e);
+			throw new RuntimeException(e);
 		} finally {
 			Factory.closeResources(ps, conn);
 		}
@@ -133,7 +134,8 @@ public class PortfolioData {
 			conn.close();
 			
 		} catch (SQLException e) {
-			log.error("SQLException: " + e,new RuntimeException(e));
+			log.error("SQLException: " + e);
+			throw new RuntimeException(e);
 		} finally {
 			Factory.closeResources(ps, conn);
 		}
@@ -211,7 +213,8 @@ public class PortfolioData {
 			conn.close();
 			
 		} catch (SQLException e) {
-			log.error("SQLException: " + e,new RuntimeException(e));
+			log.error("SQLException: " + e);
+			throw new RuntimeException(e);
 		} finally {
 			Factory.closeResources(ps, conn);
 		}
@@ -241,7 +244,8 @@ public class PortfolioData {
 			conn.close();
 			
 		} catch (SQLException e) {
-			log.error("SQLException: " + e,new RuntimeException(e));
+			log.error("SQLException: " + e);
+			throw new RuntimeException(e);
 		} finally {
 			Factory.closeResources(ps, conn);
 		}
@@ -279,7 +283,8 @@ public class PortfolioData {
 			conn.close();
 		
 		} catch(Exception e) {
-			log.error("SQLException: " + e,new RuntimeException(e));
+			log.error("SQLException: " + e);
+			throw new RuntimeException(e);
 		} finally {
 			Factory.closeResources( ps, conn);
 		}
@@ -321,7 +326,8 @@ public class PortfolioData {
 			conn.close();
 		
 		} catch(Exception e) {
-			log.error("SQLException: " + e,new RuntimeException(e));
+			log.error("SQLException: " + e);
+			throw new RuntimeException(e);
 		} finally {
 			Factory.closeResources(ps, conn);
 		}
@@ -357,7 +363,8 @@ public class PortfolioData {
 			conn.close();
 
 		} catch(Exception e) {
-			log.error("SQLException: " + e,new RuntimeException(e));
+			log.error("SQLException: " + e);
+			throw new RuntimeException(e);
 		} finally {
 			Factory.closeResources( ps, conn);
 		}
@@ -401,7 +408,8 @@ public class PortfolioData {
 			conn.close();
 		
 		} catch(Exception e) {
-			log.error("SQLException: " + e,new RuntimeException(e));
+			log.error("SQLException: " + e);
+			throw new RuntimeException(e);
 		} finally {
 			Factory.closeResources( ps, conn);
 		}
@@ -446,7 +454,8 @@ public class PortfolioData {
 			conn.close();
 
 		} catch(Exception e) {
-			log.error("SQLException: " + e,new RuntimeException(e));
+			log.error("SQLException: " + e);
+			throw new RuntimeException(e);
 		} finally {
 			Factory.closeResources( ps, conn);
 		}
@@ -478,7 +487,8 @@ public class PortfolioData {
 			conn.close();
 		
 		} catch(Exception e) {
-			log.error("SQLException: " + e,new RuntimeException(e));
+			log.error("SQLException: " + e);
+			throw new RuntimeException(e);
 		} finally {
 			Factory.closeResources( ps, conn);
 		}
@@ -515,7 +525,8 @@ public class PortfolioData {
 			conn.close();
 
 		} catch(Exception e) {
-			log.error("SQLException: " + e, new RuntimeException(e));
+			log.error("SQLException: " + e);
+			throw new RuntimeException(e);
 		} finally {
 			Factory.closeResources( ps, conn);
 		}
@@ -552,7 +563,8 @@ public class PortfolioData {
 			conn.close();
 
 		} catch(Exception e) {
-			log.error("SQLException: " + e, new RuntimeException(e));
+			log.error("SQLException: " + e);
+			throw new RuntimeException(e);
 		} finally {
 			Factory.closeResources( ps, conn);
 		}
@@ -616,7 +628,8 @@ public class PortfolioData {
 			conn.close();
 			
 		} catch(Exception e) {
-			log.error("SQLException: " + e, new RuntimeException(e));
+			log.error("SQLException: " + e);
+			throw new RuntimeException(e);
 		} finally {
 			Factory.closeResources(rs, ps, conn);
 		}
@@ -629,8 +642,9 @@ public class PortfolioData {
 	 * @return boolean; true if unique, false if not
 	 */
 	public boolean checkIfIDIsUnique(String portfolioID, PortfolioList<Portfolio> portfoliosGiven){
-		for(Portfolio p : portfoliosGiven){
-			if(p.getCode().equalsIgnoreCase(portfolioID)){
+		//for(Portfolio p : portfoliosGiven){ //TODO figure out iterable
+		for(int i = 0; i < portfoliosGiven.size(); i++ ){
+			if(portfoliosGiven.get(i).getCode().equalsIgnoreCase(portfolioID)){
 				return false;
 			}
 		}
@@ -638,7 +652,9 @@ public class PortfolioData {
 	}
 //TODO edit this method
 	public PortfolioList<Portfolio> getPortfolios(Comparator<Portfolio> c){
+	
 		PortfolioList<Portfolio> portfolios = new PortfolioList<Portfolio>(c);
+		//ArrayList<Portfolio> portfolios = new ArrayList<Portfolio>();
 		Factory.getDriver();
 		Connection conn = Factory.getConnection();
 		PreparedStatement ps = null;
@@ -726,7 +742,6 @@ public class PortfolioData {
 						
 						rsBeneficiary.close();
 						psBeneficiary.close();
-
 						portfolios.add(new Portfolio(rs.getString("code"), searchPerson(ownerCode,persons), (Broker) searchPerson(managerCode,persons), searchPerson(beneficiaryCode,persons), searchAssets(assetIDList,assets )));
 					}
 					else{
@@ -763,8 +778,9 @@ public class PortfolioData {
 			return portfolios;
 			
 		} catch(Exception e){ 
-			log.error("Portfolios not made", new RuntimeException(e));
-			return null;	
+			log.error("SQLException: " + e);
+			throw new RuntimeException(e);
+			
 		}
 		finally {
 			Factory.closeResources(rs, ps, conn);
@@ -856,8 +872,8 @@ public class PortfolioData {
 			return allAssets;
 		
 		} catch(Exception e) {
-			log.error("SQL Exception : " + e,new RuntimeException(e));
-			return null; //unreachable code
+			log.error("SQL Exception : " + e);
+			throw new RuntimeException(e);
 		} finally {
 			Factory.closeResources(rs, ps, conn);
 
@@ -961,8 +977,8 @@ public class PortfolioData {
 			return allPersons;
 
 		} catch(Exception e) {
-			log.error("Error : " + e, new  RuntimeException(e));
-			return null;
+			log.error("Error : " + e);
+			throw new RuntimeException(e);
 
 		} finally {
 			Factory.closeResources(rs, ps, conn);
