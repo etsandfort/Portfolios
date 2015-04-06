@@ -1,50 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.8" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="com.sdb.DatabaseInfo" project="PortfolioMaster" 
-    file="/PortfolioMaster/src/com/sdb/DatabaseInfo.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1274" y="345"/>    
+  <class id="1" language="java" name="packagePortfolio.PortfolioComparator" project="PortfolioMaster" 
+    file="/PortfolioMaster/src/packagePortfolio/PortfolioComparator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="425" y="737"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="com.sdb.Factory" project="PortfolioMaster" 
-    file="/PortfolioMaster/src/com/sdb/Factory.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1182" y="535"/>    
+  <class id="2" language="java" name="packagePortfolio.PortfolioList" project="PortfolioMaster" 
+    file="/PortfolioMaster/src/packagePortfolio/PortfolioList.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="422" y="446"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="com.sdb.PortfolioData" project="PortfolioMaster" 
-    file="/PortfolioMaster/src/com/sdb/PortfolioData.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="697" y="391"/>    
+  <class id="3" language="java" name="packagePortfolio.FileOutputter" project="PortfolioMaster" 
+    file="/PortfolioMaster/src/packagePortfolio/FileOutputter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="812" y="393"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="PortfolioManager" project="PortfolioMaster" 
-    file="/PortfolioMaster/src/PortfolioManager.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1103" y="246"/>    
+  <class id="4" language="java" name="packagePortfolio.DataReader" project="PortfolioMaster" 
+    file="/PortfolioMaster/src/packagePortfolio/DataReader.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="811" y="653"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="5">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="6" name="input"/>      
-      <multiplicity id="7" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

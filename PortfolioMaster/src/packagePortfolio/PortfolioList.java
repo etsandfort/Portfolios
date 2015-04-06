@@ -23,7 +23,7 @@ public class PortfolioList<T> implements Iterable<T>{
 	 * @param c, the comparator of choice
 	 */
 	@SuppressWarnings("unchecked")
-	public PortfolioList(Comparator c) {
+	public PortfolioList(Comparator<T> c) {
 		this.arr = (T[]) new Object[SIZE]; 
 		this.size = 0;
 		this.comparator= c;
@@ -145,7 +145,6 @@ public class PortfolioList<T> implements Iterable<T>{
 				addElementAtIndex(currentIndex, element);
 				currentIndex++;
 			}
-			this.size++;
 		}
 	}
 
@@ -169,6 +168,14 @@ public class PortfolioList<T> implements Iterable<T>{
 				this.contract();
 			}
 		}
+	}
+	
+	/**
+	 * This method clears the list.
+	 */
+	@SuppressWarnings("unchecked")
+	public void clear() {
+		this.arr = (T[]) new Object[SIZE]; 
 	}
 	
 	/**
@@ -212,7 +219,6 @@ public class PortfolioList<T> implements Iterable<T>{
 					throw new IndexOutOfBoundsException("No next element");
 				}
 				currentIndex++;
-				System.out.println("maybe?");
 				return arr[currentIndex];
 			}
 
