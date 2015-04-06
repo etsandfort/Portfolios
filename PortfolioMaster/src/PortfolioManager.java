@@ -45,7 +45,6 @@ public class PortfolioManager{
 		
 		PortfolioManager manager = new PortfolioManager();
 		PortfolioList<Portfolio> allPortfolios = manager.getInput().getPortfolios(PortfolioComparator.ownerComparator());
-		//System.out.println(allPortfolios.toString());
 		log.info("Portfolios retrieved");
 		
 		ReportMaker report = new ReportMaker(allPortfolios);
@@ -53,7 +52,6 @@ public class PortfolioManager{
 		report.printSummaryReport();
 		allPortfolios.clear();
 		 allPortfolios = manager.getInput().getPortfolios(PortfolioComparator.valueComparator());
-		//System.out.println(allPortfolios.toString());
 		log.info("Portfolios retrieved");
 		
 		
@@ -66,7 +64,6 @@ public class PortfolioManager{
 		ReportMaker report3 = new ReportMaker(allPortfolios);
 		System.out.println("Sorting by Manager: Expert/Junior, then alphabetizing the respective broker type");
 		report3.printSummaryReport();
-		//report.printDetailedReport();
 		log.info("Program finished.");
 	}
 }

@@ -117,12 +117,9 @@ public class PortfolioList<T> implements Iterable<T>{
 		}
 		if(this.size == arr.length){
 			this.arr = Arrays.copyOf(this.arr, arr.length + SIZE);
-
 		}
 		for(int i=this.size-1; i>=index; i--){
-
 			arr[i+1] = arr[i];
-
 		}
 		arr[index]=element;
 		
@@ -141,26 +138,19 @@ public class PortfolioList<T> implements Iterable<T>{
 			if(this.isFull()) {
 				this.expand();
 			} 
-
-			int currentIndex = 0;
-
+		int currentIndex = 0;
 			while(currentIndex <= this.size ){
 				if(currentIndex == this.size){
 					addElementAtIndex(this.size,element);
 				}
 				else{
 					if(this.comparator.compare(element, this.arr[currentIndex])>=0){
-
 						addElementAtIndex(currentIndex,element);
-
-						currentIndex = this.size + 1;
+					currentIndex = this.size + 1; //kicks out
 					}
 				}
-
 				currentIndex++;
 			}
-
-
 		}
 		this.size++;
 	}
