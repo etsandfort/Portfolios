@@ -8,7 +8,7 @@ import java.util.Comparator;
  * This class holds the three assigned comparators by which to sort portfolios.
  * 
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
- * @version 1.2
+ * @version 1.3
  */
 public class PortfolioComparator {
 
@@ -53,7 +53,8 @@ public class PortfolioComparator {
 	/**
 	 * This comparator method compares portfolios by manager's broker
 	 * type (Expert/Junior). Then, those two groups are both compared
-	 * by manager's last name, followed by manager's first name.
+	 * by manager's last name, followed by manager's first name. If 
+	 * that is still the same, owner's last name is compared.
 	 * @return integer value of the comparison
 	 */
 	public static Comparator<Portfolio> managerComparator(){
@@ -62,7 +63,12 @@ public class PortfolioComparator {
 			public int compareManagerNames(Portfolio a, Portfolio b){
 				int compareLastName = b.getManager().getLastName().compareTo(a.getManager().getLastName());
 				if(compareLastName==0){
-					return b.getManager().getFirstName().compareTo(a.getManager().getFirstName());
+					int compareFirstName = b.getManager().getFirstName().compareTo(a.getManager().getFirstName());
+					if(compareFirstName==0){
+						return b.getOwner().getLastName().compareTo(a.getOwner().getLastName());
+					} else{
+						return compareFirstName;
+					}
 				} 
 				return compareLastName;
 			}

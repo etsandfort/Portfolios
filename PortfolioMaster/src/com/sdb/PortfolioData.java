@@ -248,12 +248,7 @@ public class PortfolioData {
 		try {
 			conn = Factory.getConnection();
 
-			String query = "SET SQL_SAFE_UPDATES=0";
-			ps = conn.prepareStatement(query);
-			ps.executeUpdate();
-			ps.close();
-
-			query = "DELETE  FROM PortfolioAsset";
+			String query = "DELETE FROM PortfolioAsset";
 			ps = conn.prepareStatement(query);
 			ps.executeUpdate();
 			ps.close();
@@ -285,12 +280,7 @@ public class PortfolioData {
 		try {
 			conn = Factory.getConnection();
 
-			String query = "SET SQL_SAFE_UPDATES=0";
-			ps = conn.prepareStatement(query);
-			ps.executeUpdate();
-			ps.close();
-
-			query = "DELETE FROM PortfolioAsset WHERE asset_id = (SELECT id FROM Asset WHERE code = ?)";
+			String query = "DELETE FROM PortfolioAsset WHERE asset_id = (SELECT id FROM Asset WHERE code = ?)";
 			ps = conn.prepareStatement(query);
 			ps.setString(1, assetCode);
 			ps.executeUpdate();
@@ -368,7 +358,7 @@ public class PortfolioData {
 		try {
 			conn = Factory.getConnection();
 
-			String query =  "INSERT INTO Asset(code,label,type,baseRate,quarterlyDividend, omega, investmentValue) values (?,?,?,?,?,?,?)";
+			String query = "INSERT INTO Asset(code,label,type,baseRate,quarterlyDividend, omega, investmentValue) values (?,?,?,?,?,?,?)";
 			ps = conn.prepareStatement(query);
 			ps.setString(1, assetCode);
 			ps.setString(2, label);
@@ -412,7 +402,7 @@ public class PortfolioData {
 		try {
 			conn = Factory.getConnection();
 
-			String query =  "INSERT INTO Asset(code,label,type,quarterlyDividend,baseRate, sharePrice, symbol,beta) values (?,?,?,?,?,?,?,?)";
+			String query = "INSERT INTO Asset(code,label,type,quarterlyDividend,baseRate, sharePrice, symbol,beta) values (?,?,?,?,?,?,?,?)";
 			ps = conn.prepareStatement(query);
 			ps.setString(1, assetCode);
 			ps.setString(2, label);
@@ -739,7 +729,7 @@ public class PortfolioData {
 						
 						rsManager.close();
 						psManager.close();
-						portfolios.add(new Portfolio(rs.getString("code"), searchPerson(ownerCode,persons), (Broker) searchPerson(managerCode,persons),  searchAssets(assetIDList,assets )));
+						portfolios.add(new Portfolio(rs.getString("code"), searchPerson(ownerCode,persons), (Broker) searchPerson(managerCode,persons),  searchAssets(assetIDList,assets)));
 					}
 				}
 			}
