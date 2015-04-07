@@ -38,7 +38,7 @@ public class PortfolioComparator {
 		return new Comparator<Portfolio>() {
 
 			public int compare(Portfolio a, Portfolio b){
-				double valueDifference = b.getTotalValue()-a.getTotalValue();
+				double valueDifference = a.getTotalValue()-b.getTotalValue();
 				if (valueDifference > 0){
 					return 1;
 				} else if(valueDifference < 0){
@@ -67,7 +67,7 @@ public class PortfolioComparator {
 				return compareLastName;
 			}
 			public int compare(Portfolio a, Portfolio b){
-				int compareBrokerType =  (a.getManager().getType())-(b.getManager().getType());
+				int compareBrokerType =  (b.getManager().getType())-(a.getManager().getType());
 				if(compareBrokerType == 0){
 					return compareManagerNames(a,b);
 				}

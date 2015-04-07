@@ -49,7 +49,7 @@ public class PortfolioManager{
 		log.info("Portfolios retrieved");
 		
 		ReportMaker report = new ReportMaker(allPortfolios);
-		System.out.println("Sorting by Total Value, in ascending order:\n");
+		System.out.println("Sorting by Total Value, in descending order:\n");
 		report.printSummaryReport();
 		
 		allPortfolios.clear();
@@ -65,7 +65,7 @@ public class PortfolioManager{
 		log.info("Portfolios retrieved");
 		
 		ReportMaker report = new ReportMaker(allPortfolios);
-		System.out.println("Sorting by Manager: Expert/Junior, then ordering by manager last name, first name:\n");
+		System.out.println("Sorting by Manager: Junior/Expert, then ordering by manager last name, first name:\n");
 		report.printSummaryReport();
 		
 		allPortfolios.clear();
