@@ -33,21 +33,22 @@ public class ReportMaker{
 		System.out.printf("%-12s %-25s %-25s %-15s %-16s %-20s %-15s %-15s\n", "Portfolio",
 				"Owner", "Manager", "Fees", "Commissions", "Weighted Risk", "Return", "Total");
 		
-		for(int i = 0; i < portfolios.size(); i++){
+	//	for(int i = 0; i < portfolios.size(); i++){
+		for(Portfolio portfolio : portfolios){
 			// formatting the names for owner and manager to follow "lastName, firstName"
-			nameOwner = portfolios.get(i).getOwner().getLastName() 
-						+ ", " + portfolios.get(i).getOwner().getFirstName();
-			nameManager = portfolios.get(i).getManager().getLastName()
-						  + ", " + portfolios.get(i).getManager().getFirstName();
+			nameOwner = portfolio.getOwner().getLastName() 
+						+ ", " + portfolio.getOwner().getFirstName();
+			nameManager = portfolio.getManager().getLastName()
+						  + ", " + portfolio.getManager().getFirstName();
 			
 			// printing the summary report information unique to each portfolio
 			System.out.printf("%-12s %-25s %-25s $%-14.2f $%-15.2f %-20.2f $%-14.2f $%-15.2f\n", 
-					portfolios.get(i).getCode(), nameOwner, nameManager,
-					portfolios.get(i).getBrokerFees(), 
-					portfolios.get(i).getCommissionFees(), 
-					portfolios.get(i).getTotalRisks(),
-					portfolios.get(i).getTotalAnnualReturns(),
-					portfolios.get(i).getTotalValue());
+					portfolio.getCode(), nameOwner, nameManager,
+					portfolio.getBrokerFees(), 
+					portfolio.getCommissionFees(), 
+					portfolio.getTotalRisks(),
+					portfolio.getTotalAnnualReturns(),
+					portfolio.getTotalValue());
 		}
 		
 		// prints line under numerical values, acting as a divider between individual values and totals

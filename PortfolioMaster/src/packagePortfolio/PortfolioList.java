@@ -204,7 +204,7 @@ public class PortfolioList<T> implements Iterable<T>{
 			@Override
 			public boolean hasNext() {
 				T item = arr[currentIndex + 1];
-				currentIndex++;
+				//currentIndex++;
 				if(item==null){
 					return false;
 				}
@@ -218,7 +218,6 @@ public class PortfolioList<T> implements Iterable<T>{
 					throw new IndexOutOfBoundsException("No next element");
 				}
 				currentIndex++;
-				System.out.println("maybe?");
 				return arr[currentIndex];
 			}
 
