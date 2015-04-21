@@ -1,0 +1,32 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+		http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+	version="1.0">
+
+    <persistence-unit name="jmelcher_database">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <!-- Enumeration of classes is possible, but not necessary in a managed environment or with certain implementations
+             <class>packagePortfolio.Address</class>
+             <class>packagePortfolio.Asset</class>
+             <class>packagePortfolio.Portfolio</class>
+             <class>packagePortfolio.PortfolioAsset</class>
+             <class>packagePortfolio.Stock</class>
+             <class>packagePortfolio.Person</class>
+             <class>packagePortfolio.Investment</class>
+             <class>packagePortfolio.Email</class>
+             <class>packagePortfolio.Deposit</class> -->
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name="hibernate.archive.autodetection" value="class, hbm"/>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://cse.unl.edu/jmelcher"/>
+            <property name="hibernate.connection.username" value="jmelcher"/>
+            <property name="hibernate.connection.password" value="sqlpass"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+        </properties>
+    </persistence-unit>
+
+</persistence>

@@ -1,5 +1,22 @@
 package packagePortfolio;
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.persistence.InheritanceType;
+
 /**
  * Asset.java
  * RAIK 184H
@@ -7,14 +24,41 @@ package packagePortfolio;
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
  * @version 3.0
  */
-public class Asset{
-	// data members
+
+@Entity
+@Table(name="Asset")
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="type")
+public class Asset implements Serializable{
+
+	private static final long serialVersionUID = 3718960773196533638L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	//@ManyToOne(fetch=FetchType.EAGER)
+	//@JoinColumn(name="asset_id")
+	@Column(name="asset_id", nullable=false)
+	private Integer assetId;
+	
+	@Column(name="code", nullable=false)
 	private String code;
+	
+	@Column(name="label", nullable=false)
 	private String label;
-	private String type;
-	protected double riskValue;
+	
+//	@Column(name="type", nullable=false)
+//	private String type;
+	
+	@Transient
+	protected double riskValue; // TODO check this 
+	
+	@Column(name="baseRate", nullable=false)
 	protected double baseRate;
-	protected double returnRate;
+	
+	@Transient
+	protected double returnRate; // TODO check this
+	
+	public Asset() {}
 	
 	/**
 	 * Computes the return rate of the given asset
@@ -88,21 +132,21 @@ public class Asset{
 		this.label = label;
 	}
 	
-	/**
-	 * Obtains the type
-	 * @return the type
-	 */
-	public String getType(){
-		return type;
-	}
-	
-	/**
-	 * Sets the new type
-	 * @param type
-	 */
-	public void setType(String type){
-		this.type = type;
-	}
+//	/**
+//	 * Obtains the type
+//	 * @return the type
+//	 */
+//	public String getType(){
+//		return type;
+//	}
+//	
+//	/**
+//	 * Sets the new type
+//	 * @param type
+//	 */
+//	public void setType(String type){
+//		this.type = type;
+//	}
 	
 	/**
 	 * Obtains the base rate of return
@@ -134,5 +178,21 @@ public class Asset{
 	 */
 	public void setReturnRate(double returnRate){
 		this.returnRate = returnRate;
+	}
+	
+	/**
+	 * Gets the primary key, an Integer
+	 * @return
+	 */
+	public Integer getAssetId() {
+		return assetId;
+	}
+
+	/**
+	 * Sets the primary key
+	 * @param assetId
+	 */
+	public void setAssetId(Integer assetId) {
+		this.assetId = assetId;
 	}
 }

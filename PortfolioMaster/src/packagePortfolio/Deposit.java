@@ -1,5 +1,8 @@
 package packagePortfolio;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 /**
  * Deposit.java
  * RAIK 184H
@@ -7,7 +10,14 @@ package packagePortfolio;
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
  * @version 3.0
  */
+
+@Entity(name="Deposit")
+@DiscriminatorValue(value="D")
 public class Deposit extends Asset{
+	
+	private static final long serialVersionUID = -3775861038675860090L;
+
+	public Deposit() {}	
 	
 	/**
 	 * The constructor for a deposit object
@@ -19,7 +29,7 @@ public class Deposit extends Asset{
 	public Deposit(String code, String label, String type, double apr){
 		setCode(code);
 		setLabel(label);
-		setType(type);
+//		setType(type);
 		setBaseRate(apr);
 		setRiskValue(0);
 	}

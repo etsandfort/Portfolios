@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="config"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="lib" path="lib/gson-2.3.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/xmlpull-1.1.3.1.jar"/>
@@ -8,5 +9,15 @@
 	<classpathentry exported="true" kind="lib" path="lib/xstream-1.4.7.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/mysql-connector-java-5.1.17-bin.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="slf4j-nop-1.6.2.jar"/>
+	<classpathentry kind="lib" path="hibernate/lib/hibernate3.jar"/>
+	<classpathentry kind="lib" path="hibernate/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="hibernate/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="hibernate/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="hibernate/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+	<classpathentry kind="lib" path="hibernate/javassist-3.12.0.GA.jar"/>
+	<classpathentry kind="lib" path="hibernate/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="hibernate/mailapi.jar"/>
+	<classpathentry kind="lib" path="hibernate/slf4j-api-1.6.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

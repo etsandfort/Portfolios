@@ -33,3 +33,8 @@
 2587 [main] INFO  PortfolioManager  - Portfolios retrieved
 3275 [main] INFO  PortfolioManager  - Portfolios retrieved
 3283 [main] INFO  PortfolioManager  - Program finished.
+0    [main] INFO  PortfolioManager  - Getting portfolios
+1784 [main] INFO  PortfolioManager  - Portfolios retrieved
+2520 [main] INFO  PortfolioManager  - Portfolios retrieved
+3552 [main] INFO  PortfolioManager  - Portfolios retrieved
+3574 [main] INFO  PortfolioManager  - Program finished.

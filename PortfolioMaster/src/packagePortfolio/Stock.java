@@ -1,5 +1,9 @@
 package packagePortfolio;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 /**
  * Stock.java
  * RAIK 184H
@@ -7,12 +11,25 @@ package packagePortfolio;
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
  * @version 3.0
  */
+@Entity(name="Stock")
+@DiscriminatorValue(value="S")
 public class Stock extends Asset{
-	//Data members
+
+	private static final long serialVersionUID = 7223620089220171644L;
+
+	@Column(name="quarterlyDividend", nullable=false)
 	private double quarterlyDividend;
+	
+	@Column(name="symbol", nullable=false)
 	private String symbol;
+	
+	@Column(name="sharePrice", nullable=false)
 	private double sharePrice;
+	
+	@Column(name="beta", nullable=false)
 	private double beta;
+	
+	public Stock() {}
 	
 	/**
 	 * The constructor of a stock object
@@ -28,7 +45,7 @@ public class Stock extends Asset{
 	public Stock(String code, String label, String type, double quart, double rate, double share,String symbol, double beta){
 		setCode(code);
 		setLabel(label);
-		setType(type);
+//		setType(type);
 		setQuarterlyDividend(quart);
 		setBaseRate(rate);
 		setSharePrice(share);

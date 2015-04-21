@@ -1,5 +1,9 @@
 package packagePortfolio;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 /**
  * Investment.java
  * RAIK 184H
@@ -7,12 +11,24 @@ package packagePortfolio;
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
  * @version 3.0
  */
+
+@Entity(name="Investment")
+@DiscriminatorValue(value="P")
 public class Investment extends Asset{
-	//Data Members
+
+	private static final long serialVersionUID = 8377480321164617746L;
+
+	@Column(name="quarterlyDividend", nullable=false)
 	private double quarterlyDividend;
+	
+	@Column(name="omega", nullable=false)
 	private double omega;
+	
+	@Column(name="investmentValue", nullable=false)
 	private double value;
 
+	public Investment() {}
+	
 	/**
 	 * Constructor of investments
 	 * @param code, the investment asset's code
@@ -26,7 +42,7 @@ public class Investment extends Asset{
 	public Investment(String code, String label, String type, double quart,double rate,  double omega, double value){
 		setCode(code);
 		setLabel(label);
-		setType(type);
+//		setType(type);
 		setBaseRate(rate);
 		setQuarterlyDividend(quart);
 		setOmega(omega);

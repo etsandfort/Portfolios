@@ -1,6 +1,20 @@
 package packagePortfolio;
 
 import java.util.HashMap;
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * Portfolio.java
@@ -9,19 +23,61 @@ import java.util.HashMap;
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
  * @version 3.0
  */
-public class Portfolio{
-	//Data Members
+@Entity
+@Table(name="Portfolio")
+public class Portfolio implements Serializable {
+
+	private static final long serialVersionUID = 4092377723123588407L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	//@ManyToOne(fetch=FetchType.EAGER)
+	//@JoinColumn(name="portfolio_id", nullable=false)
+	@Column(name="portfolio_id", nullable=false)
+	private Integer portfolioId;
+	
+	@Column(name="code", nullable=false)
 	private String code;
+	
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="owner_id", nullable=false)
+	//private String ownerId;
 	private Person owner;
-	private Broker manager;
+
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="manager_id", nullable=false)
+	//private String managerId;
+	private Person manager; //TODO Broker.....
+	
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="beneficiary_id")
+//	private String beneficiaryId;
 	private Person beneficiary;
+	
+	@Transient
 	private HashMap<Asset, Double> assetNumeric;
+	
+	@Transient
 	private HashMap<Asset,double[]> assetList;
+	
+	@Transient
 	private double totalRisks;
+	
+	@Transient
 	private double totalValue;
+	
+	@Transient
 	private double totalAnnualReturns;
+	
+	@Transient
 	private double brokerFees;
+	
+	
+
+	@Transient
 	private double commissionFees;
+	
+	public Portfolio() {}
 	
 	/**
 	 * Portfolio constructor without beneficiary
@@ -33,8 +89,8 @@ public class Portfolio{
 	public Portfolio(String code, Person owner, Broker manager,
 			HashMap<Asset, Double> assets){
 		this.code = code;
-		this.owner = owner;
-		this.manager = manager;
+		//this.owner = owner;
+		//this.manager = manager;
 		this.assetNumeric = assets;
 		condenseHashMap(assetNumeric);
 		calculateTotalValue();
@@ -56,13 +112,13 @@ public class Portfolio{
 	public Portfolio(String code, Person owner, Broker manager,
 			Person beneficiary, HashMap<Asset, Double> assets){
 		this(code,owner,manager,assets);
-		this.beneficiary = beneficiary;
+		//this.beneficiary = beneficiary;
 	}
 	
 	public Portfolio(String code, Person owner, Broker manager){
 		this.code = code;
-		this.owner = owner;
-		this.manager = manager;
+		//this.owner = owner;
+		//this.manager = manager;
 		this.setBrokerFees(0);
 		this.setCommissionFees(0);
 		this.setTotalValue(0);
@@ -72,7 +128,7 @@ public class Portfolio{
 	
 	public Portfolio(String code, Person owner, Broker manager, Person beneficiary){
 		this(code, owner, manager);
-		this.beneficiary = beneficiary;
+		//this.beneficiary = beneficiary;
 	}
 	
 	/**
@@ -122,37 +178,40 @@ public class Portfolio{
 		return asset.computeValueOfAsset(assetNumerics.get(asset)); // gets the asset from the hashmap and computes its value
 	}
 	
+	//TODO fix implementation
 	/**
 	 * Calculates the commission fees for a portfolio
 	 */
 	private void calculateCommissionFee(){
 		double commissionFee = 0.0;
-		for(Asset asset : assetList.keySet()){
-			if(this.manager.getType()=='E'){ //if manager of portfolio is an expert
-				commissionFee += (.05 * assetList.get(asset)[1]);// 5% commission on annual returns
-			}
-			else{
-				commissionFee += (.02 * assetList.get(asset)[1]);//2% commission on annual returns
-			}
-		}
-		this.commissionFees = commissionFee;
+//		for(Asset asset : assetList.keySet()){
+//			if(this.manager.getType()=='E'){ //if manager of portfolio is an expert
+//				commissionFee += (.05 * assetList.get(asset)[1]);// 5% commission on annual returns
+//			}
+//			else{
+//				commissionFee += (.02 * assetList.get(asset)[1]);//2% commission on annual returns
+//			}
+//		}
+//		this.commissionFees = commissionFee;
 	}
+
 	
+	//TODO fix implementation
 	/**
 	 * Calculates the broker fees for a portfolio
 	 */
 	void calculateBrokerFees(){ // package level visibility
 			double brokerFees;
-			
-			if(this.manager.getType()=='E'){ //if the manager is an expert
-				 brokerFees = (10 * assetList.size()); //$10 fee per asset
-			}
-			
-			else{ //if manager is junior
-				
-				brokerFees = (50 * assetList.size()); //$50 fee per asset
-			}
-			this.brokerFees = brokerFees;
+//			
+//			if(this.manager.getType()=='E'){ //if the manager is an expert
+//				 brokerFees = (10 * assetList.size()); //$10 fee per asset
+//			}
+//			
+//			else{ //if manager is junior
+//				
+//				brokerFees = (50 * assetList.size()); //$50 fee per asset
+//			}
+//			this.brokerFees = brokerFees;
 	}
 	
 	/**
@@ -289,53 +348,53 @@ public class Portfolio{
 		this.code = code;
 	}
 	
-	/**
-	 * Obtains the portfolio's owner
-	 * @return owner, a Person object
-	 */
-	public Person getOwner(){
-		return owner;
-	}
-	
-	/**
-	 * Sets the portfolio's owner
-	 * @param owner, a Person object
-	 */
-	public void setOwner(Person owner){
-		this.owner = owner;
-	}
-	
-	/**
-	 * Obtains the portfolio's manager
-	 * @return manager, a Broker object
-	 */
-	public Broker getManager(){
-		return manager;
-	}
-	
-	/**
-	 * Sets the portfolio's manager
-	 * @param manager, a Broker object
-	 */
-	public void setManager(Broker manager){
-		this.manager = manager;
-	}
-	
-	/**
-	 * Obtains the portfolio's beneficiary
-	 * @return beneficiary, a Person object
-	 */
-	public Person getBeneficiary(){
-		return beneficiary;
-	}
-	
-	/**
-	 * Sets the portfolio's beneficiary
-	 * @param beneficiary
-	 */
-	public void setBeneficiary(Person beneficiary){
-		this.beneficiary = beneficiary;
-	}
+//	/**
+//	 * Obtains the portfolio's owner
+//	 * @return owner, a Person object
+//	 */
+//	public Person getOwner(){
+//		return owner;
+//	}
+//	
+//	/**
+//	 * Sets the portfolio's owner
+//	 * @param owner, a Person object
+//	 */
+//	public void setOwner(Person owner){
+//		this.owner = owner;
+//	}
+//	
+//	/**
+//	 * Obtains the portfolio's manager
+//	 * @return manager, a Broker object
+//	 */
+//	public Broker getManager(){
+//		return manager;
+//	}
+//	
+//	/**
+//	 * Sets the portfolio's manager
+//	 * @param manager, a Broker object
+//	 */
+//	public void setManager(Broker manager){
+//		this.manager = manager;
+//	}
+//	
+//	/**
+//	 * Obtains the portfolio's beneficiary
+//	 * @return beneficiary, a Person object
+//	 */
+//	public Person getBeneficiary(){
+//		return beneficiary;
+//	}
+//	
+//	/**
+//	 * Sets the portfolio's beneficiary
+//	 * @param beneficiary
+//	 */
+//	public void setBeneficiary(Person beneficiary){
+//		this.beneficiary = beneficiary;
+//	}
 	
 	/**
 	 * Obtains the Total Annual Returns
@@ -352,4 +411,48 @@ public class Portfolio{
 	public void setTotalAnnualReturns(double totalAnnualReturns){
 		this.totalAnnualReturns = totalAnnualReturns;
 	}
+	
+	/**
+	 * Gets the primary key of the portfolio
+	 * @return portfolioId, an Integer
+	 */
+	public Integer getPortfolioId() {
+		return portfolioId;
+	}
+
+	/**
+	 * Sets the primary key of the portfolio
+	 * @param portfolioId, an Integer
+	 */
+	public void setPortfolioId(Integer portfolioId) {
+		this.portfolioId = portfolioId;
+	}
+	
+	/**
+	 * Gets the primary key of the owner
+	 * of the portfolio.
+	 * @return ownerId
+	 */
+	public Person getOwnerId() {
+		return owner;
+	}
+	
+	/**
+	 * Gets the primary key of the manager
+	 * of the portfolio.
+	 * @return managerId
+	 */
+	public Person getManagerId() {
+		return manager;
+	}
+
+	/**
+	 * Gets the primary key of the beneficiary
+	 * of the portfolio. Can be null.
+	 * @return beneficiaryId
+	 */
+	public Person getBeneficiaryId() {
+		return beneficiary;
+	}
+	
 }

@@ -1,5 +1,8 @@
 package packagePortfolio;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import java.util.ArrayList;
 /**
  * Broker.java
@@ -10,6 +13,8 @@ import java.util.ArrayList;
  */
 
 public class Broker extends Person{
+
+//	private static final long serialVersionUID = -6370419024780423414L;
 	//Data members
 	private String secIdentifier;
 	private char type;
