@@ -33,13 +33,13 @@ public class PortfolioAsset implements Serializable {
 	private Set<Asset> assetId;
 
 //  @Transient
-	@OneToMany(fetch=FetchType.EAGER)
-	@JoinColumn(name="portfolio_id", nullable=false)
-	private Set<Portfolio> portfolioId;
+//	@OneToMany(fetch=FetchType.EAGER)
+//	@JoinColumn(name="portfolio_id", nullable=false)
+//	private Set<Portfolio> portfolioId;
 	
-	//@OneToMany(fetch=FetchType.EAGER)
-	//, targetEntity = Portfolio.class)
-	//private Set<Portfolio> portfolioId;
+//	@OneToMany(fetch=FetchType.EAGER, targetEntity = Portfolio.class)
+	@OneToMany(targetEntity = Portfolio.class)
+	private Set<Portfolio> portfolioId;
 	
 	@Column(name="givenValue")
 	private double givenValue;

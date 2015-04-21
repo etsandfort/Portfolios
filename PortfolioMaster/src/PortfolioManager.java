@@ -98,12 +98,12 @@ public class PortfolioManager{
 //
 //		log.info("Program finished.");
 		
-		//manager.getAddresses();
-		//manager.getEmails();
-		//manager.getPersons();
-		//manager.getAssets();
-		//manager.getPortfolios();
-		manager.getPortfolioAssets();
+//		manager.getAddresses();
+//		manager.getEmails();
+//		manager.getPersons();
+//		manager.getAssets();
+		manager.getPortfolios();
+//		manager.getPortfolioAssets();
 	}
 	
 	public void getAddresses() {
@@ -298,7 +298,7 @@ public class PortfolioManager{
 			
 			try {
 				portfolios = (List<Portfolio>) em.createQuery(query).getResultList();
-				 		 
+//					 		 
 			} catch(Exception e) {
 				System.out.println("Error loading Portfolio");
 				e.printStackTrace();
@@ -324,53 +324,59 @@ public class PortfolioManager{
 		}
 
 		for(Portfolio port : portfolios) {
-			System.out.println("Portfolio: Code: " + port.getCode() + " Owner ID: " + port.getOwnerId() + " Manager ID: " + port.getManagerId() + " Beneficiary ID: " + port.getBeneficiaryId());
+			if(port.getBeneficiaryId() != null) { 
+				System.out.println("Portfolio: Code: " + port.getCode() + " Owner ID: " + port.getOwnerId().getCode() + " Manager ID: " + port.getManagerId().getCode() + " Beneficiary ID: " + port.getBeneficiaryId().getCode());
+//			System.out.println("Portfolio: " + port);
+			}
+			else {
+				System.out.println("Portfolio: Code: " + port.getCode() + " Owner ID: " + port.getOwnerId().getCode() + " Manager ID: " + port.getManagerId().getCode());
+			}
 		}
 	}
 	
-	public void getPortfolioAssets() {
-		EntityManagerFactory emf = null; 
-		EntityManager em = null;
-		List<PortfolioAsset> portfolioAssets = null;
-		
-		try {
-			emf = Persistence.createEntityManagerFactory("jmelcher_database");
-			em = emf.createEntityManager();
-
-			em.getTransaction().begin();
-			String queryPA = "FROM PortfolioAsset";
-			
-			try {
-				portfolioAssets = (List<PortfolioAsset>) em.createQuery(queryPA).getResultList();
-				 		 
-			} catch(Exception e) {
-				System.out.println("Error loading PortfolioAsset");
-				e.printStackTrace();
-				if (em.getTransaction().isActive()) {
-					em.getTransaction().rollback();
-				}
-				throw new RuntimeException("Error loading PortfolioAsset-2", e);
-			}
-			em.getTransaction().rollback();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			if (em.getTransaction().isActive()) {
-				em.getTransaction().rollback();
-			}
-		} finally {
-			if (em != null && em.isOpen()) {
-				em.close();
-			}
-			if (emf != null && emf.isOpen()) {
-				emf.close();
-			}
-		}
-
-		for(PortfolioAsset portAsset : portfolioAssets) {
-			System.out.println("PortfolioAsset: Portfolio ID: " + portAsset.getPortfolioId());
-			//TODO realizing that the below in its current state would/should break 
-			//+ " Asset ID: " + portAsset.getAssetId() + " Given Value: " + portAsset.getGivenValue());
-		}
-	}
+//	public void getPortfolioAssets() {
+//		EntityManagerFactory emf = null; 
+//		EntityManager em = null;
+//		List<PortfolioAsset> portfolioAssets = null;
+//		
+//		try {
+//			emf = Persistence.createEntityManagerFactory("jmelcher_database");
+//			em = emf.createEntityManager();
+//
+//			em.getTransaction().begin();
+//			String queryPA = "FROM PortfolioAsset";
+//			
+//			try {
+//				portfolioAssets = (List<PortfolioAsset>) em.createQuery(queryPA).getResultList();
+//				 		 
+//			} catch(Exception e) {
+//				System.out.println("Error loading PortfolioAsset");
+//				e.printStackTrace();
+//				if (em.getTransaction().isActive()) {
+//					em.getTransaction().rollback();
+//				}
+//				throw new RuntimeException("Error loading PortfolioAsset-2", e);
+//			}
+//			em.getTransaction().rollback();
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			if (em.getTransaction().isActive()) {
+//				em.getTransaction().rollback();
+//			}
+//		} finally {
+//			if (em != null && em.isOpen()) {
+//				em.close();
+//			}
+//			if (emf != null && emf.isOpen()) {
+//				emf.close();
+//			}
+//		}
+//
+//		for(PortfolioAsset portAsset : portfolioAssets) {
+//			System.out.println("PortfolioAsset: Portfolio ID: " + portAsset.getPortfolioId());
+//			//TODO realizing that the below in its current state would/should break 
+//			//+ " Asset ID: " + portAsset.getAssetId() + " Given Value: " + portAsset.getGivenValue());
+//		}
+//	}
 }

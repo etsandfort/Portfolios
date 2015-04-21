@@ -1,8 +1,10 @@
 package packagePortfolio;
 
+import java.util.Set;
 import java.util.HashMap;
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -29,10 +32,11 @@ public class Portfolio implements Serializable {
 
 	private static final long serialVersionUID = 4092377723123588407L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+
 	//@ManyToOne(fetch=FetchType.EAGER)
 	//@JoinColumn(name="portfolio_id", nullable=false)
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="portfolio_id", nullable=false)
 	private Integer portfolioId;
 	
@@ -54,6 +58,20 @@ public class Portfolio implements Serializable {
 //	private String beneficiaryId;
 	private Person beneficiary;
 	
+	//@OneToMany(mappedBy = "Portfolio")
+//	@JoinTable(name = "PortfolioAsset",
+//			   joinColumns = @JoinColumn(name = "portfolio_id"),
+//			   inverseJoinColumns = @JoinColumn(name = "asset_id"))
+//	private Set<Asset> assets;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(
+			name = "PortfolioAsset",
+			joinColumns = @JoinColumn(name = "portfolio_id"),
+			inverseJoinColumns = @JoinColumn(name = "asset_id"))
+	
+	
+	
 	@Transient
 	private HashMap<Asset, Double> assetNumeric;
 	
@@ -72,8 +90,6 @@ public class Portfolio implements Serializable {
 	@Transient
 	private double brokerFees;
 	
-	
-
 	@Transient
 	private double commissionFees;
 	
@@ -252,6 +268,42 @@ public class Portfolio implements Serializable {
 		return assetList;
 	}
 	
+	public void setAssetList(HashMap<Asset, double[]> assetList) {
+		this.assetList = assetList;
+	}
+	
+	public Person getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Person owner) {
+		this.owner = owner;
+	}
+
+	public Person getManager() {
+		return manager;
+	}
+
+	public void setManager(Person manager) {
+		this.manager = manager;
+	}
+
+	public Person getBeneficiary() {
+		return beneficiary;
+	}
+
+	public void setBeneficiary(Person beneficiary) {
+		this.beneficiary = beneficiary;
+	}
+
+//	public Set<Asset> getAssets() {
+//		return assets;
+//	}
+//
+//	public void setAssets(Set<Asset> assets) {
+//		this.assets = assets;
+//	}
+
 	/**
 	 * Obtains the total value of the portfolio
 	 * @return totalValue
