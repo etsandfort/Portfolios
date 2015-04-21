@@ -4,15 +4,20 @@ import java.io.Serializable;
 //import java.util.HashSet;
 //import java.util.Set;
 import java.util.ArrayList;
+import java.util.Set;
 
 import javax.persistence.Column;
 //import javax.persistence.DiscriminatorColumn;
 //import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 //import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 //import javax.persistence.Inheritance;
 //import javax.persistence.InheritanceType;
 //import javax.persistence.JoinColumn;
@@ -56,12 +61,17 @@ public class Person implements Serializable {
 	@Column(name="brokerType", nullable=true)
 	private String brokerType; 
 	
-	//Needs to be a one-to-one maybe? but bourke didn't really like those...?
-	@Transient
+	
+	//TODO Needs to be a one-to-one maybe? but bourke didn't really like those...?
+
+	@OneToOne
+	@JoinColumn(name="person_id", nullable=false)
 	private Address address;
 	
-	@Transient
-	private ArrayList<String> emails; //TODO change to arraylist of email objects
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="person")
+	//@JoinColumn(name="person_id", nullable=false)
+	private Set<Email> emails;
+	//private ArrayList<Email> emails; //TODO switched from ArrayList<String>
 	
 	public Person() {}
 	
@@ -79,7 +89,7 @@ public class Person implements Serializable {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
-		this.emails = email;
+//		this.emails = email;
 	}
 	
 	/**
@@ -162,14 +172,14 @@ public class Person implements Serializable {
 	 * Obtains the emails
 	 * @return the emails
 	 */
-	public ArrayList<String> getEmails(){
+	public Set<Email> getEmails(){
 		return emails;
 	}
 	
 	/**Sets the new emails
 	 * @param emails the emails to set
 	 */
-	public void setEmails(ArrayList<String> emails){
+	public void setEmails(Set<Email> emails){
 		this.emails = emails;
 	}
 	

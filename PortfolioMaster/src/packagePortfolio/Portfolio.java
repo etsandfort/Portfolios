@@ -53,7 +53,7 @@ public class Portfolio implements Serializable {
 	//private String managerId;
 	private Person manager; //TODO Broker.....
 	
-	@OneToOne(fetch=FetchType.EAGER)
+	@OneToOne(fetch=FetchType.EAGER) //TODO Bourke said this is wrong (probs wrong for other person members, too)
 	@JoinColumn(name="beneficiary_id")
 //	private String beneficiaryId;
 	private Person beneficiary;
@@ -64,13 +64,15 @@ public class Portfolio implements Serializable {
 //			   inverseJoinColumns = @JoinColumn(name = "asset_id"))
 //	private Set<Asset> assets;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(
-			name = "PortfolioAsset",
-			joinColumns = @JoinColumn(name = "portfolio_id"),
-			inverseJoinColumns = @JoinColumn(name = "asset_id"))
+//	@OneToMany(cascade = CascadeType.ALL)
+//	@JoinTable(
+//			name = "PortfolioAsset",
+//			joinColumns = @JoinColumn(name = "portfolio_id"),
+//			inverseJoinColumns = @JoinColumn(name = "asset_id"))
+//	private Set<PortfolioAsset> portAssets;
 	
-	
+	@OneToMany//(mappedBy = "Portfolio")
+	private Set<PortfolioAsset> assets; // TODO Is this what should be in the set?
 	
 	@Transient
 	private HashMap<Asset, Double> assetNumeric;
@@ -507,4 +509,20 @@ public class Portfolio implements Serializable {
 		return beneficiary;
 	}
 	
+	public Set<PortfolioAsset> getPortAssets() {
+		return assets;
+	}
+
+	public void setPortAssets(Set<PortfolioAsset> portAssets) {
+		this.assets = portAssets;
+	}
+
+	public Set<PortfolioAsset> getPortfolios() {
+		return assets;
+	}
+
+	public void setPortfolios(Set<PortfolioAsset> portfolios) {
+		this.assets = portfolios;
+	}
+
 }

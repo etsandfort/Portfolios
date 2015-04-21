@@ -101,7 +101,7 @@ public class PortfolioManager{
 		
 //		manager.getAddresses();
 //		manager.getEmails();
-//		manager.getPersons();
+		manager.getPersons();
 //		manager.getAssets();
 //		manager.getPortfolios();
 //		manager.getPortfolioAssets();
@@ -238,6 +238,8 @@ public class PortfolioManager{
 
 		for(Person person : persons) {
 			System.out.println("Person: Code: " + person.getCode() + ", Last Name: " + person.getLastName() + ", First Name: " + person.getFirstName() + ", Broker Type: " + person.getBrokerType() + ", SEC ID: " + person.getSecIdentifier());
+			System.out.println("Person's address: " + person.getAddress().getStreet());
+			System.out.println("Person's email(s): "  + person.getEmails());
 		}
 	}
 	
@@ -327,9 +329,11 @@ public class PortfolioManager{
 		for(Portfolio port : portfolios) {
 			if(port.getBeneficiaryId() != null) { 
 				System.out.println("Portfolio: Code: " + port.getCode() + " Owner ID: " + port.getOwnerId().getCode() + " Manager ID: " + port.getManagerId().getCode() + " Beneficiary ID: " + port.getBeneficiaryId().getCode() + " Broker Fees: " + port.getBrokerFees());
+				System.out.println("Attempt for assets: " + port.getAssetList());
 			}
 			else {
 				System.out.println("Portfolio: Code: " + port.getCode() + " Owner ID: " + port.getOwnerId().getCode() + " Manager ID: " + port.getManagerId().getCode() +  " Broker Fees: " + port.getBrokerFees());
+				System.out.println("Attempt for assets: " + port.getAssetList());
 			}
 		}
 	}
@@ -337,7 +341,6 @@ public class PortfolioManager{
 	public void getPortfolioAssets() {
 		EntityManagerFactory emf = null; 
 		EntityManager em = null;
-//		List<PortfolioAsset> portfolioAssets = null;
 		List<PortfolioAsset> portAssets = null;
 		try {
 			emf = Persistence.createEntityManagerFactory("jmelcher_database");
@@ -374,9 +377,7 @@ public class PortfolioManager{
 		}
 
 		for(PortfolioAsset portAsset : portAssets) {
-			System.out.println("PortfolioAsset: Portfolio ID: " + portAsset.getAssetId());
-//			//TODO realizing that the below in its current state would/should break 
-//			//+ " Asset ID: " + portAsset.getAssetId() + " Given Value: " + portAsset.getGivenValue());
+			System.out.println("PortfolioAsset ID: " + portAsset.getPortAssetId() + " Asset Code: " + portAsset.getAsset().getCode() + " Portfolio Code: " + portAsset.getPortfolio().getCode() +  " Given Value: "+ portAsset.getGivenValue());
 		}
 	}
 }

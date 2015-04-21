@@ -1,7 +1,9 @@
 package packagePortfolio;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -11,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -48,6 +52,17 @@ public class Asset implements Serializable{
 	
 //	@Column(name="type", nullable=false)
 //	private String type;
+	
+//	@ManyToMany(cascade = CascadeType.ALL)
+//	@JoinTable(
+//			name = "PortfolioAsset",
+//			joinColumns = @JoinColumn(name = "asset_id"),
+//			inverseJoinColumns = @JoinColumn(name = "portfolio_id"))
+//	private Set<PortfolioAsset> portAssets;
+	
+	@OneToMany//(mappedBy = "Asset")
+	private Set<PortfolioAsset> portfolios;
+	
 	
 	@Transient
 	protected double riskValue; // TODO check this 

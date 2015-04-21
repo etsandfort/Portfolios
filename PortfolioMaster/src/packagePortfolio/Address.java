@@ -6,6 +6,7 @@ import java.io.Serializable;
 //import java.util.ArrayList;
 
 
+
 import javax.persistence.Column;
 //import javax.persistence.DiscriminatorColumn;
 //import javax.persistence.DiscriminatorValue;
@@ -17,6 +18,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 //import javax.persistence.Inheritance;
 //import javax.persistence.InheritanceType;
 //import javax.persistence.JoinColumn;
@@ -56,7 +58,7 @@ public class Address implements Serializable{
 	@Column(name="country", nullable=false)
 	private String country;
 
-	@ManyToOne(fetch=FetchType.EAGER)
+	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="person_id", nullable=false)
 	private Person person;
 

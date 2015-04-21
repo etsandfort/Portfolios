@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -26,20 +27,17 @@ public class PortfolioAsset implements Serializable {
 	
 //  @Transient	
 //	@OneToMany(fetch=FetchType.EAGER)
-//	@JoinColumn(name="asset_id")
-//	private Set<Integer> assetId;
 
-	@OneToMany(targetEntity = Asset.class)
-	private Set<Asset> assetId;
+//	@OneToMany(targetEntity = Asset.class)
+	@ManyToOne
+	@JoinColumn(name="asset_id")
+	private Asset asset; //changed from Set<Asset>
 
-//  @Transient
-//	@OneToMany(fetch=FetchType.EAGER)
-//	@JoinColumn(name="portfolio_id", nullable=false)
-//	private Set<Portfolio> portfolioId;
-	
 //	@OneToMany(fetch=FetchType.EAGER, targetEntity = Portfolio.class)
-	@OneToMany(targetEntity = Portfolio.class)
-	private Set<Portfolio> portfolioId;
+//	@OneToMany(targetEntity = Portfolio.class)
+	@ManyToOne
+	@JoinColumn(name="portfolio_id", nullable=false)
+	private Portfolio portfolio; // changed from Set<Portfolio>
 	
 	@Column(name="givenValue")
 	private double givenValue;
@@ -59,17 +57,17 @@ public class PortfolioAsset implements Serializable {
 	 * PortfolioAsset
 	 * @return assetId, an Integer
 	 */
-	public Set<Asset> getAssetId() {
-		return assetId;
+	public Asset getAsset() {
+		return asset;
 	}
 
 	/**
 	 * Gets the primary key of portfolio associated with
 	 * PortfolioAsset
-	 * @return portfolioId, an integer
+	 * @return portfolioId, an integer //TODO update all javadoc
 	 */
-	public Set<Portfolio> getPortfolioId() {
-		return portfolioId;
+	public Portfolio getPortfolio() {
+		return portfolio;
 	}
 
 	/**
