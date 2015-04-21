@@ -298,7 +298,7 @@ public class PortfolioManager{
 			
 			try {
 				portfolios = (List<Portfolio>) em.createQuery(query).getResultList();
-//					 		 
+					 		 
 			} catch(Exception e) {
 				System.out.println("Error loading Portfolio");
 				e.printStackTrace();
@@ -326,7 +326,6 @@ public class PortfolioManager{
 		for(Portfolio port : portfolios) {
 			if(port.getBeneficiaryId() != null) { 
 				System.out.println("Portfolio: Code: " + port.getCode() + " Owner ID: " + port.getOwnerId().getCode() + " Manager ID: " + port.getManagerId().getCode() + " Beneficiary ID: " + port.getBeneficiaryId().getCode());
-//			System.out.println("Portfolio: " + port);
 			}
 			else {
 				System.out.println("Portfolio: Code: " + port.getCode() + " Owner ID: " + port.getOwnerId().getCode() + " Manager ID: " + port.getManagerId().getCode());
