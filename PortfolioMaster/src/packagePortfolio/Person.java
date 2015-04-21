@@ -81,15 +81,15 @@ public class Person implements Serializable {
 	 * @param lastName last name
 	 * @param firstName first name
 	 * @param address address
-	 * @param email email
+	 * @param emails emails
 	 */
 	public Person(String code, String lastName, String firstName,
-			Address address, ArrayList<String> email){
+			Address address, Set<Email> emails){//, ArrayList<String> email){
 		this.code = code;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
-//		this.emails = email;
+		this.emails = emails;
 	}
 	
 	/**

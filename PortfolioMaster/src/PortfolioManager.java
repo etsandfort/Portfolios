@@ -239,7 +239,9 @@ public class PortfolioManager{
 		for(Person person : persons) {
 			System.out.println("Person: Code: " + person.getCode() + ", Last Name: " + person.getLastName() + ", First Name: " + person.getFirstName() + ", Broker Type: " + person.getBrokerType() + ", SEC ID: " + person.getSecIdentifier());
 			System.out.println("Person's address: " + person.getAddress().getStreet());
-			System.out.println("Person's email(s): "  + person.getEmails());
+			for(Email email : person.getEmails()) {
+			System.out.println("Email: "  + email.getEmailAddress());
+			}
 		}
 	}
 	
