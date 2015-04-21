@@ -13,6 +13,7 @@ import com.sdb.PortfolioData;
 
 import packagePortfolio.Address;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -88,7 +89,7 @@ public class PortfolioManager{
 	 * This is the main method; it runs the program
 	 * @param args the set of arguments provided at runtime
 	 */
-	public static void main(String args[]){
+	public static void main(String args[]) {
 //		log.info("Getting portfolios");
 //		
 		PortfolioManager manager = new PortfolioManager();
@@ -102,7 +103,7 @@ public class PortfolioManager{
 //		manager.getEmails();
 //		manager.getPersons();
 //		manager.getAssets();
-		manager.getPortfolios();
+//		manager.getPortfolios();
 //		manager.getPortfolioAssets();
 	}
 	
@@ -254,7 +255,7 @@ public class PortfolioManager{
 			
 			try {
 				assets = (List<Asset>) em.createQuery(query).getResultList();
-				 		 
+		 
 			} catch(Exception e) {
 				System.out.println("Error loading Asset");
 				e.printStackTrace();
@@ -280,7 +281,7 @@ public class PortfolioManager{
 		}
 
 		for(Asset asset : assets) {
-			System.out.println("Asset: Code: " + asset.getCode() + " Label: " + asset.getLabel());
+			System.out.println("Asset: Code: " + asset.getCode() + " Label: " + asset.getLabel() + " Return Rate: " + asset.getReturnRate() + " Risk: " + asset.getRiskValue() + " Base Rate: " + asset.getBaseRate() + " Class: " + asset.getClass());
 		}
 	}
 	
@@ -325,57 +326,57 @@ public class PortfolioManager{
 
 		for(Portfolio port : portfolios) {
 			if(port.getBeneficiaryId() != null) { 
-				System.out.println("Portfolio: Code: " + port.getCode() + " Owner ID: " + port.getOwnerId().getCode() + " Manager ID: " + port.getManagerId().getCode() + " Beneficiary ID: " + port.getBeneficiaryId().getCode());
+				System.out.println("Portfolio: Code: " + port.getCode() + " Owner ID: " + port.getOwnerId().getCode() + " Manager ID: " + port.getManagerId().getCode() + " Beneficiary ID: " + port.getBeneficiaryId().getCode() + " Broker Fees: " + port.getBrokerFees());
 			}
 			else {
-				System.out.println("Portfolio: Code: " + port.getCode() + " Owner ID: " + port.getOwnerId().getCode() + " Manager ID: " + port.getManagerId().getCode());
+				System.out.println("Portfolio: Code: " + port.getCode() + " Owner ID: " + port.getOwnerId().getCode() + " Manager ID: " + port.getManagerId().getCode() +  " Broker Fees: " + port.getBrokerFees());
 			}
 		}
 	}
 	
-//	public void getPortfolioAssets() {
-//		EntityManagerFactory emf = null; 
-//		EntityManager em = null;
+	public void getPortfolioAssets() {
+		EntityManagerFactory emf = null; 
+		EntityManager em = null;
 //		List<PortfolioAsset> portfolioAssets = null;
-//		
-//		try {
-//			emf = Persistence.createEntityManagerFactory("jmelcher_database");
-//			em = emf.createEntityManager();
-//
-//			em.getTransaction().begin();
-//			String queryPA = "FROM PortfolioAsset";
-//			
-//			try {
-//				portfolioAssets = (List<PortfolioAsset>) em.createQuery(queryPA).getResultList();
-//				 		 
-//			} catch(Exception e) {
-//				System.out.println("Error loading PortfolioAsset");
-//				e.printStackTrace();
-//				if (em.getTransaction().isActive()) {
-//					em.getTransaction().rollback();
-//				}
-//				throw new RuntimeException("Error loading PortfolioAsset-2", e);
-//			}
-//			em.getTransaction().rollback();
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			if (em.getTransaction().isActive()) {
-//				em.getTransaction().rollback();
-//			}
-//		} finally {
-//			if (em != null && em.isOpen()) {
-//				em.close();
-//			}
-//			if (emf != null && emf.isOpen()) {
-//				emf.close();
-//			}
-//		}
-//
-//		for(PortfolioAsset portAsset : portfolioAssets) {
-//			System.out.println("PortfolioAsset: Portfolio ID: " + portAsset.getPortfolioId());
+		List<PortfolioAsset> portAssets = null;
+		try {
+			emf = Persistence.createEntityManagerFactory("jmelcher_database");
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+			String queryPA = "FROM PortfolioAsset";
+			
+			try {
+				portAssets = (List<PortfolioAsset>) em.createQuery(queryPA).getResultList();
+				 		 
+			} catch(Exception e) {
+				System.out.println("Error loading PortfolioAsset");
+				e.printStackTrace();
+				if (em.getTransaction().isActive()) {
+					em.getTransaction().rollback();
+				}
+				throw new RuntimeException("Error loading PortfolioAsset-2", e);
+			}
+			em.getTransaction().rollback();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+			}
+		} finally {
+			if (em != null && em.isOpen()) {
+				em.close();
+			}
+			if (emf != null && emf.isOpen()) {
+				emf.close();
+			}
+		}
+
+		for(PortfolioAsset portAsset : portAssets) {
+			System.out.println("PortfolioAsset: Portfolio ID: " + portAsset.getAssetId());
 //			//TODO realizing that the below in its current state would/should break 
 //			//+ " Asset ID: " + portAsset.getAssetId() + " Given Value: " + portAsset.getGivenValue());
-//		}
-//	}
+		}
+	}
 }
