@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
@@ -163,28 +165,30 @@ public class DataReader{
 		Address a = new Address(addressComps[0],addressComps[1],addressComps[2],addressComps[4], addressComps[3]);
 		
 		//parsing a list of emails
-		ArrayList<String> email = new ArrayList<String>();
+//		ArrayList<String> email = new ArrayList<String>();
+		Set<Email> email = new HashSet<Email>();
 		if(info.length==5){
 			String[] emailList = info[4].split(",");
 			for(int i=0; i<emailList.length; i++){
-				email.add(emailList[i]);
+				email.add(new Email(emailList[i]));
 			}
 		}
 		
 		//determining what kind of person the person is
 		if(info[1].equalsIgnoreCase("")){
-			p = new Person(info[0],lastName, firstName,a, email);
+			p = new Person(info[0],null, null, lastName, firstName,a, email);
 			
 		} else{
 			String[] secInfo = info[1].split(",");
 			String sec = secInfo[1];
-			char type =' ';
+			String type =" ";
 			if(secInfo[0].equalsIgnoreCase("E")){
-				type = 'E';
+				type = "E";
 			} else if(secInfo[0].equalsIgnoreCase("J")){
-				type = 'J';
+				type = "J";
 			}
-			p = new Broker(info[0], type, sec,lastName, firstName, a, email);
+//			p = new Broker(info[0], type, sec, lastName, firstName, a, email);
+			p = new Person(info[0], type, sec, lastName, firstName, a, email);
 		}
 		return p;
 	}

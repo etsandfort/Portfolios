@@ -33,6 +33,10 @@ public class Email implements Serializable {
 
 	public Email() {}
 	
+	public Email(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+	
 	/**
 	 * Gets the primary key, an Integer
 	 * @return

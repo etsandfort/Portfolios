@@ -10,6 +10,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+
+import packagePortfolio.Asset;
+import packagePortfolio.Email;
+import packagePortfolio.Person;
+import packagePortfolio.Portfolio;
+import packagePortfolio.GenericList;
+import packagePortfolio.PortfolioAsset;
+
+import com.sdb.PortfolioData;
+
+import packagePortfolio.Address;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 import org.apache.log4j.Logger;
 
@@ -597,7 +617,7 @@ public class PortfolioData {
 	 * @param portfoliosGiven
 	 * @return boolean; true if unique, false if not
 	 */
-	public boolean checkIfIDIsUnique(String portfolioID, PortfolioList<Portfolio> portfoliosGiven){
+	public boolean checkIfIDIsUnique(String portfolioID, GenericList<Portfolio> portfoliosGiven){
 		for(Portfolio p : portfoliosGiven){
 
 			if(p.getCode().equalsIgnoreCase(portfolioID)){
@@ -613,135 +633,190 @@ public class PortfolioData {
 	 * @param c, the comparator the portfolios will be sorted by
 	 * @return a sorted list of portfolios
 	 */
-	public PortfolioList<Portfolio> getPortfolios(Comparator<Portfolio> c){
-	
-		PortfolioList<Portfolio> portfolios = new PortfolioList<Portfolio>(c);
-		Factory.getDriver();
-		Connection conn = Factory.getConnection();
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		try{
-			ArrayList<Asset> assets = getAssets();
-			ArrayList<Person> persons = getPersons();
+//	public GenericList<Portfolio> getPortfolios(Comparator<Portfolio> c){
+	public List<Portfolio> getPortfolios(Comparator<Portfolio> c){
+
+//		GenericList<Portfolio> portfolios = new GenericList<Portfolio>(c);
+		EntityManagerFactory emf = null; 
+		EntityManager em = null;
+		List<Portfolio> portfolios = null;
+		
+		try {
+			emf = Persistence.createEntityManagerFactory("jmelcher_database");
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+			String query = "FROM Portfolio";
 			
-			String query = "SELECT * from Portfolio left JOIN PortfolioAsset ON Portfolio.id = PortfolioAsset.portfolio_id";
-			ps = conn.prepareStatement(query);
-			rs = ps.executeQuery();
-
-			while(rs.next()){
-
-				PreparedStatement psAssets = null;
-				ResultSet rsAssets = null;
-
-				String queryAsset = "Select asset_id, givenValue from PortfolioAsset where PortfolioAsset.portfolio_id = ?";
-				psAssets = conn.prepareStatement(queryAsset);
-				psAssets.setInt(1, rs.getInt("Portfolio.id"));
-
-				rsAssets = psAssets.executeQuery();
-
-				if(checkIfIDIsUnique(rs.getString("code"),portfolios)){ //checks if portfolio with same code exists yet
-
-					HashMap<String,Double> assetIDList = new HashMap<String,Double>();
-					while(rsAssets.next()){
-						PreparedStatement psAssetCodes = null;
-						ResultSet rsAssetCodes = null;
-			
-						String queryAssetCode = "Select code from Asset where Asset.id = ?";
-						psAssetCodes = conn.prepareStatement(queryAssetCode);
-						psAssetCodes.setInt(1, rsAssets.getInt("asset_id"));
-
-						rsAssetCodes = psAssetCodes.executeQuery();
-						rsAssetCodes.next();
-						
-						assetIDList.put(rsAssetCodes.getString("code"),rsAssets.getDouble("givenValue"));
-						rsAssetCodes.close();
-						psAssetCodes.close();
-					}
-
-					rsAssets.close();
-					psAssets.close();
-
-					if(rs.getString("beneficiary_id") != null){
-						
-						PreparedStatement psOwner = null;
-						ResultSet rsOwner = null;
-						
-						String queryOwner = "Select code from Person where Person.id = ?";
-						psOwner = conn.prepareStatement(queryOwner);
-						psOwner.setInt(1, rs.getInt("owner_id"));
-						rsOwner = psOwner.executeQuery();
-						rsOwner.next();
-						String ownerCode = rsOwner.getString("code");
-						
-						rsOwner.close();
-						psOwner.close();
-
-						PreparedStatement psManager = null;
-						ResultSet rsManager = null;
-						
-						String queryManager = "Select code from Person where Person.id = ?";
-						psManager = conn.prepareStatement(queryManager);
-						psManager.setInt(1, rs.getInt("manager_id"));
-						rsManager = psManager.executeQuery();
-						rsManager.next();
-						String managerCode = rsManager.getString("code");
-						
-						rsManager.close();
-						psManager.close();
-
-						PreparedStatement psBeneficiary = null;
-						ResultSet rsBeneficiary = null;
-						
-						String queryB = "Select code from Person where Person.id = ?";
-						psBeneficiary = conn.prepareStatement(queryB);
-						psBeneficiary.setInt(1, rs.getInt("beneficiary_id"));
-						rsBeneficiary = psBeneficiary.executeQuery();
-						rsBeneficiary.next();
-						String beneficiaryCode = rsBeneficiary.getString("code");
-						
-						rsBeneficiary.close();
-						psBeneficiary.close();
-						portfolios.add(new Portfolio(rs.getString("code"), searchPerson(ownerCode,persons), (Broker) searchPerson(managerCode,persons), searchPerson(beneficiaryCode,persons), searchAssets(assetIDList,assets )));
-					}
-					else{
-						PreparedStatement psOwner = null;
-
-						String queryOwner = "Select code from Person where Person.id = ?";
-						psOwner = conn.prepareStatement(queryOwner);
-						psOwner.setInt(1, rs.getInt("owner_id"));
-						
-						ResultSet rsOwner = psOwner.executeQuery();
-						rsOwner.next();
-						String ownerCode = rsOwner.getString("code");
-						
-						rsOwner.close();
-						psOwner.close();
-
-						PreparedStatement psManager = null;
-						ResultSet rsManager = null;
-						
-						String queryM = "Select code from Person where Person.id = ?";
-						psManager = conn.prepareStatement(queryM);
-						psManager.setInt(1, rs.getInt("manager_id"));
-						rsManager = psManager.executeQuery();
-						rsManager.next();
-						String managerCode = rsManager.getString("code");
-						
-						rsManager.close();
-						psManager.close();
-						portfolios.add(new Portfolio(rs.getString("code"), searchPerson(ownerCode,persons), (Broker) searchPerson(managerCode,persons),  searchAssets(assetIDList,assets)));
-					}
+			try {
+				portfolios = (List<Portfolio>) em.createQuery(query).getResultList();
+					 		 
+			} catch(Exception e) {
+				System.out.println("Error loading Portfolio");
+				e.printStackTrace();
+				if (em.getTransaction().isActive()) {
+					em.getTransaction().rollback();
 				}
+				throw new RuntimeException("Error loading Portfolio-2", e);
 			}
-			return portfolios;
+			em.getTransaction().rollback();
 			
-		} catch(Exception e){ 
-			log.error("SQLException: " + e);
-			throw new RuntimeException(e);	
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+			}
+		} finally {
+			if (em != null && em.isOpen()) {
+				em.close();
+			}
+			if (emf != null && emf.isOpen()) {
+				emf.close();
+			}
 		}
-		finally {
-			Factory.closeResources(rs, ps, conn);
-		}
+
+		getAssets();
+		getPortfolioAssets();
+//		for(Portfolio port : portfolios) {
+//			if(port.getBeneficiaryId() != null) { 
+//				System.out.println("Portfolio: Code: " + port.getCode() + " Owner ID: " + port.getOwnerId().getCode() + " Manager ID: " + port.getManagerId().getCode() + " Beneficiary ID: " + port.getBeneficiaryId().getCode() + " Broker Fees: " + port.getBrokerFees());
+//				System.out.println("Attempt for assets: " + port.getAssetList());
+//			}
+//			else {
+//				System.out.println("Portfolio: Code: " + port.getCode() + " Owner ID: " + port.getOwnerId().getCode() + " Manager ID: " + port.getManagerId().getCode() +  " Broker Fees: " + port.getBrokerFees());
+//				System.out.println("Attempt for assets: " + port.getAssetList());
+//			}
+//		}
+		
+		return portfolios;
+//		Factory.getDriver();
+//		Connection conn = Factory.getConnection();
+//		PreparedStatement ps = null;
+//		ResultSet rs = null;
+//		try{
+//			ArrayList<Asset> assets = getAssets();
+//			ArrayList<Person> persons = getPersons();
+//			
+//			String query = "SELECT * from Portfolio left JOIN PortfolioAsset ON Portfolio.id = PortfolioAsset.portfolio_id";
+//			ps = conn.prepareStatement(query);
+//			rs = ps.executeQuery();
+//
+//			while(rs.next()){
+//
+//				PreparedStatement psAssets = null;
+//				ResultSet rsAssets = null;
+//
+//				String queryAsset = "Select asset_id, givenValue from PortfolioAsset where PortfolioAsset.portfolio_id = ?";
+//				psAssets = conn.prepareStatement(queryAsset);
+//				psAssets.setInt(1, rs.getInt("Portfolio.id"));
+//
+//				rsAssets = psAssets.executeQuery();
+//
+//				if(checkIfIDIsUnique(rs.getString("code"),portfolios)){ //checks if portfolio with same code exists yet
+//
+//					HashMap<String,Double> assetIDList = new HashMap<String,Double>();
+//					while(rsAssets.next()){
+//						PreparedStatement psAssetCodes = null;
+//						ResultSet rsAssetCodes = null;
+//			
+//						String queryAssetCode = "Select code from Asset where Asset.id = ?";
+//						psAssetCodes = conn.prepareStatement(queryAssetCode);
+//						psAssetCodes.setInt(1, rsAssets.getInt("asset_id"));
+//
+//						rsAssetCodes = psAssetCodes.executeQuery();
+//						rsAssetCodes.next();
+//						
+//						assetIDList.put(rsAssetCodes.getString("code"),rsAssets.getDouble("givenValue"));
+//						rsAssetCodes.close();
+//						psAssetCodes.close();
+//					}
+//
+//					rsAssets.close();
+//					psAssets.close();
+//
+//					if(rs.getString("beneficiary_id") != null){
+//						
+//						PreparedStatement psOwner = null;
+//						ResultSet rsOwner = null;
+//						
+//						String queryOwner = "Select code from Person where Person.id = ?";
+//						psOwner = conn.prepareStatement(queryOwner);
+//						psOwner.setInt(1, rs.getInt("owner_id"));
+//						rsOwner = psOwner.executeQuery();
+//						rsOwner.next();
+//						String ownerCode = rsOwner.getString("code");
+//						
+//						rsOwner.close();
+//						psOwner.close();
+//
+//						PreparedStatement psManager = null;
+//						ResultSet rsManager = null;
+//						
+//						String queryManager = "Select code from Person where Person.id = ?";
+//						psManager = conn.prepareStatement(queryManager);
+//						psManager.setInt(1, rs.getInt("manager_id"));
+//						rsManager = psManager.executeQuery();
+//						rsManager.next();
+//						String managerCode = rsManager.getString("code");
+//						
+//						rsManager.close();
+//						psManager.close();
+//
+//						PreparedStatement psBeneficiary = null;
+//						ResultSet rsBeneficiary = null;
+//						
+//						String queryB = "Select code from Person where Person.id = ?";
+//						psBeneficiary = conn.prepareStatement(queryB);
+//						psBeneficiary.setInt(1, rs.getInt("beneficiary_id"));
+//						rsBeneficiary = psBeneficiary.executeQuery();
+//						rsBeneficiary.next();
+//						String beneficiaryCode = rsBeneficiary.getString("code");
+//						
+//						rsBeneficiary.close();
+//						psBeneficiary.close();
+////						portfolios.add(new Portfolio(rs.getString("code"), searchPerson(ownerCode,persons), (Broker) searchPerson(managerCode,persons), searchPerson(beneficiaryCode,persons), searchAssets(assetIDList,assets)));
+//						portfolios.add(new Portfolio(rs.getString("code"), searchPerson(ownerCode,persons), searchPerson(managerCode,persons), searchPerson(beneficiaryCode,persons), searchAssets(assetIDList,assets)));
+//
+//					}
+//					else{
+//						PreparedStatement psOwner = null;
+//
+//						String queryOwner = "Select code from Person where Person.id = ?";
+//						psOwner = conn.prepareStatement(queryOwner);
+//						psOwner.setInt(1, rs.getInt("owner_id"));
+//						
+//						ResultSet rsOwner = psOwner.executeQuery();
+//						rsOwner.next();
+//						String ownerCode = rsOwner.getString("code");
+//						
+//						rsOwner.close();
+//						psOwner.close();
+//
+//						PreparedStatement psManager = null;
+//						ResultSet rsManager = null;
+//						
+//						String queryM = "Select code from Person where Person.id = ?";
+//						psManager = conn.prepareStatement(queryM);
+//						psManager.setInt(1, rs.getInt("manager_id"));
+//						rsManager = psManager.executeQuery();
+//						rsManager.next();
+//						String managerCode = rsManager.getString("code");
+//						
+//						rsManager.close();
+//						psManager.close();
+//						portfolios.add(new Portfolio(rs.getString("code"), searchPerson(ownerCode,persons), (Broker) searchPerson(managerCode,persons),  searchAssets(assetIDList,assets)));
+//					}
+//				}
+//			}
+//			return portfolios;
+//			
+//		} catch(Exception e){ 
+//			log.error("SQLException: " + e);
+//			throw new RuntimeException(e);	
+//		}
+//		finally {
+//			Factory.closeResources(rs, ps, conn);
+//		}
 	}
 
 	/**
@@ -789,152 +864,379 @@ public class PortfolioData {
 	 * Gets all the Assets currently in the database
 	 * @return ArrayList<Asset> 
 	 */
-	public ArrayList<Asset> getAssets(){
-		Factory.getDriver();
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
+//	public ArrayList<Asset> getAssets(){
+	public void getAssets(){
+		EntityManagerFactory emf = null; 
+		EntityManager em = null;
+		List<Asset> assets = null;
 		
-		ArrayList<Asset> allAssets = new ArrayList<Asset>();
-
 		try {
-			conn = Factory.getConnection();
+			emf = Persistence.createEntityManagerFactory("jmelcher_database");
+			em = emf.createEntityManager();
 
-			String query = "Select * from Asset";
-			ps = conn.prepareStatement(query);
-			rs = ps.executeQuery();
-
-			while(rs.next()){
-				if(rs.getString("type").equalsIgnoreCase("D")){ 
-					Deposit dep = new Deposit(rs.getString("code"), rs.getString("label"), rs.getString("type"), rs.getDouble("baseRate") * 100);
-					allAssets.add(dep);
-				} 
-				else if(rs.getString("type").equalsIgnoreCase("S")){
-					Stock sto = new Stock(rs.getString("code"), rs.getString("label"), rs.getString("type"),rs.getDouble("quarterlyDividend"), rs.getDouble("baseRate")*100, rs.getDouble("sharePrice"),rs.getString("symbol"),rs.getDouble("beta"));
-					allAssets.add(sto);
-				}
-				else{
-					Investment inv = new Investment(rs.getString("code"), rs.getString("label"), rs.getString("type"),rs.getDouble("quarterlyDividend"), rs.getDouble("baseRate")*100,rs.getDouble("omega"),rs.getDouble("investmentValue"));
-					allAssets.add(inv);
-				}
-			}
-
-			rs.close();
-			ps.close();
-			conn.close();
+			em.getTransaction().begin();
+			String query = "FROM Asset";
 			
-			return allAssets;
-		
-		} catch(Exception e) {
-			log.error("SQL Exception : " + e);
-			throw new RuntimeException(e);
+			try {
+				assets = (List<Asset>) em.createQuery(query).getResultList();
+		 
+			} catch(Exception e) {
+				System.out.println("Error loading Asset");
+				e.printStackTrace();
+				if (em.getTransaction().isActive()) {
+					em.getTransaction().rollback();
+				}
+				throw new RuntimeException("Error loading Asset-2", e);
+			}
+			em.getTransaction().rollback();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+			}
 		} finally {
-			Factory.closeResources(rs, ps, conn);
+			if (em != null && em.isOpen()) {
+				em.close();
+			}
+			if (emf != null && emf.isOpen()) {
+				emf.close();
+			}
 		}
+
+//		for(Asset asset : assets) {
+//			System.out.println("Asset: Code: " + asset.getCode() + " Label: " + asset.getLabel() + " Return Rate: " + asset.getReturnRate() + " Risk: " + asset.getRiskValue() + " Base Rate: " + asset.getBaseRate() + " Class: " + asset.getClass());
+//		}
+		
+		
+//		Factory.getDriver();
+//		Connection conn = null;
+//		PreparedStatement ps = null;
+//		ResultSet rs = null;
+//		
+//		ArrayList<Asset> allAssets = new ArrayList<Asset>();
+//
+//		try {
+//			conn = Factory.getConnection();
+//
+//			String query = "Select * from Asset";
+//			ps = conn.prepareStatement(query);
+//			rs = ps.executeQuery();
+//
+//			while(rs.next()){
+//				if(rs.getString("type").equalsIgnoreCase("D")){ 
+//					Deposit dep = new Deposit(rs.getString("code"), rs.getString("label"), rs.getString("type"), rs.getDouble("baseRate") * 100);
+//					allAssets.add(dep);
+//				} 
+//				else if(rs.getString("type").equalsIgnoreCase("S")){
+//					Stock sto = new Stock(rs.getString("code"), rs.getString("label"), rs.getString("type"),rs.getDouble("quarterlyDividend"), rs.getDouble("baseRate")*100, rs.getDouble("sharePrice"),rs.getString("symbol"),rs.getDouble("beta"));
+//					allAssets.add(sto);
+//				}
+//				else{
+//					Investment inv = new Investment(rs.getString("code"), rs.getString("label"), rs.getString("type"),rs.getDouble("quarterlyDividend"), rs.getDouble("baseRate")*100,rs.getDouble("omega"),rs.getDouble("investmentValue"));
+//					allAssets.add(inv);
+//				}
+//			}
+//
+//			rs.close();
+//			ps.close();
+//			conn.close();
+//			
+//			return allAssets;
+//		
+//		} catch(Exception e) {
+//			log.error("SQL Exception : " + e);
+//			throw new RuntimeException(e);
+//		} finally {
+//			Factory.closeResources(rs, ps, conn);
+//		}
 	}
 
 	/**
 	 * Gets all of the persons in the database and puts them in an ArrayList
 	 * @return ArrayList of persons
 	 */
-	public ArrayList<Person> getPersons(){
-		Factory.getDriver();
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
+	public List<Person> getPersons(){
 
-		ArrayList<Person> allPersons = new ArrayList<Person>();
-
-		try {
-			conn = Factory.getConnection();
-
-			String query = "Select * from Person";
-			ps = conn.prepareStatement(query);
-			rs = ps.executeQuery();
+		EntityManagerFactory emf = null; 
+		EntityManager em = null;
+		List<Person> persons = null;
 		
-			while(rs.next()){
-				if(rs.getString("brokerType") != null){
-					ArrayList<String> email = new ArrayList<String>();
-					Address ad = null;
-					ResultSet rsEmail = null;
-					String emailQuery = "SELECT * from Email WHERE 'Email.person_id' = ?";
-					PreparedStatement psEmail = conn.prepareStatement(emailQuery);
-					psEmail.setString(1, rs.getString("id"));
+		
+		try {
+			emf = Persistence.createEntityManagerFactory("jmelcher_database");
+			em = emf.createEntityManager();
 
-					rsEmail = psEmail.executeQuery();
-					while(rsEmail.next()){
-						email.add(rsEmail.getString("emailAddress"));
-					}
-					rsEmail.close();
-					psEmail.close();
-
-					ResultSet rsAddress = null;
-					String addressQuery = "Select * from Address left join State on Address.state_id = State.id "
-							+ " left join Country on Address.country_id = Country.id Where Address.person_id = ?";
-					PreparedStatement psAddress = conn.prepareStatement(addressQuery);
-					psAddress.setString(1, rs.getString("id"));
-
-					rsAddress = psAddress.executeQuery();
-					if(rsAddress.next()){
-						ad = new Address(rsAddress.getString("street"), rsAddress.getString("city"), 
-								rsAddress.getString("State.name"),rsAddress.getString("zipcode"), 
-								rsAddress.getString("Country.name"));
-					}
-					
-					rsAddress.close();
-					psAddress.close();
-					
-					Broker b = new Broker(rs.getString("code"),rs.getString("brokerType").charAt(0),
-							rs.getString("secID"),rs.getString("lastName"),rs.getString("firstName"),ad,email);
-					
-					allPersons.add(b);
+			em.getTransaction().begin();
+			String query = "FROM Person";
+			
+			try {
+				persons = (List<Person>) em.createQuery(query).getResultList();
+				 		 
+			} catch(Exception e) {
+				System.out.println("Error loading Person");
+				e.printStackTrace();
+				if (em.getTransaction().isActive()) {
+					em.getTransaction().rollback();
 				}
-				else {
-					ArrayList<String> email = new ArrayList<String>();
-					Address ad = null;
-					ResultSet rsEmail = null;
-					String emailQuery = "SELECT * from Email WHERE 'Email.person_id' = ?";
-					PreparedStatement psEmail = conn.prepareStatement(emailQuery);
-					psEmail.setString(1, rs.getString("id"));
-
-					rsEmail = psEmail.executeQuery();
-					while(rsEmail.next()){
-						email.add(rsEmail.getString("emailAddress"));
-					}
-					
-					rsEmail.close();
-					psEmail.close();
-
-					ResultSet rsAddress = null;
-					String addressQuery = "Select * from Address left join State on Address.state_id = State.id join Country on Address.country_id = Country.id Where Address.person_id = ?";
-					PreparedStatement psAddress = conn.prepareStatement(addressQuery);
-					psAddress.setString(1, rs.getString("id"));
-
-					rsAddress = psAddress.executeQuery();
-					if(rsAddress.next()){
-						ad = new Address(rsAddress.getString("street"), rsAddress.getString("city"), rsAddress.getString("State.name"),rsAddress.getString("zipcode"), rsAddress.getString("Country.name"));
-					}
-
-					rsAddress.close();
-					psAddress.close();
-
-					Person p = new Person(rs.getString("code"),rs.getString("lastName"),rs.getString("firstName"),ad,email);
-					allPersons.add(p);
-				}
+				throw new RuntimeException("Error loading Person-2", e);
 			}
-
-			rs.close();
-			ps.close();
-
-			conn.close();
-			return allPersons;
-
-		} catch(Exception e) {
-			log.error("Error : " + e);
-			throw new RuntimeException(e);
-
+			em.getTransaction().rollback();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+			}
 		} finally {
-			Factory.closeResources(rs, ps, conn);
+			if (em != null && em.isOpen()) {
+				em.close();
+			}
+			if (emf != null && emf.isOpen()) {
+				emf.close();
+			}
+		}
+
+//		for(Person person : persons) {
+//			System.out.println("Person: Code: " + person.getCode() + ", Last Name: " + person.getLastName() + ", First Name: " + person.getFirstName() + ", Broker Type: " + person.getBrokerType() + ", SEC ID: " + person.getSecIdentifier());
+//			System.out.println("Person's address: " + person.getAddress().getStreet());
+//			for(Email email : person.getEmails()) {
+//			System.out.println("Email: "  + email.getEmailAddress());
+//			}
+//		}
+		
+		return persons;
+//	}
+//		Factory.getDriver();
+//		Connection conn = null;
+//		PreparedStatement ps = null;
+//		ResultSet rs = null;
+//
+//		ArrayList<Person> allPersons = new ArrayList<Person>();
+//
+//		try {
+//			conn = Factory.getConnection();
+//
+//			String query = "Select * from Person";
+//			ps = conn.prepareStatement(query);
+//			rs = ps.executeQuery();
+//		
+//			while(rs.next()){
+//				if(rs.getString("brokerType") != null){
+//					Set<Email> email = new HashSet<Email>();
+//					Address ad = null;
+//					ResultSet rsEmail = null;
+//					String emailQuery = "SELECT * from Email WHERE 'Email.person_id' = ?";
+//					PreparedStatement psEmail = conn.prepareStatement(emailQuery);
+//					psEmail.setString(1, rs.getString("id"));
+//
+//					rsEmail = psEmail.executeQuery();
+//					while(rsEmail.next()){
+//						email.add(new Email(rsEmail.getString("emailAddress")));
+//					}
+//					rsEmail.close();
+//					psEmail.close();
+//
+//					ResultSet rsAddress = null;
+//					String addressQuery = "Select * from Address left join State on Address.state_id = State.id "
+//							+ " left join Country on Address.country_id = Country.id Where Address.person_id = ?";
+//					PreparedStatement psAddress = conn.prepareStatement(addressQuery);
+//					psAddress.setString(1, rs.getString("id"));
+//
+//					rsAddress = psAddress.executeQuery();
+//					if(rsAddress.next()){
+//						ad = new Address(rsAddress.getString("street"), rsAddress.getString("city"), 
+//								rsAddress.getString("State.name"),rsAddress.getString("zipcode"), 
+//								rsAddress.getString("Country.name"));
+//					}
+//					
+//					rsAddress.close();
+//					psAddress.close();
+//					
+//					Broker b = new Broker(rs.getString("code"),rs.getString("brokerType").charAt(0),
+//							rs.getString("secID"),rs.getString("lastName"),rs.getString("firstName"),ad,email);
+//					
+//					allPersons.add(b);
+//				}
+//				else {
+////					ArrayList<String> email = new ArrayList<String>();
+//					Set<Email> email = new HashSet<Email>();
+//					Address ad = null;
+//					ResultSet rsEmail = null;
+//					String emailQuery = "SELECT * from Email WHERE 'Email.person_id' = ?";
+//					PreparedStatement psEmail = conn.prepareStatement(emailQuery);
+//					psEmail.setString(1, rs.getString("id"));
+//
+//					rsEmail = psEmail.executeQuery();
+//					while(rsEmail.next()){
+//						email.add(new Email(rsEmail.getString("emailAddress")));
+//					}
+//					
+//					rsEmail.close();
+//					psEmail.close();
+//
+//					ResultSet rsAddress = null;
+//					String addressQuery = "Select * from Address left join State on Address.state_id = State.id join Country on Address.country_id = Country.id Where Address.person_id = ?";
+//					PreparedStatement psAddress = conn.prepareStatement(addressQuery);
+//					psAddress.setString(1, rs.getString("id"));
+//
+//					rsAddress = psAddress.executeQuery();
+//					if(rsAddress.next()){
+//						ad = new Address(rsAddress.getString("street"), rsAddress.getString("city"), rsAddress.getString("State.name"),rsAddress.getString("zipcode"), rsAddress.getString("Country.name"));
+//					}
+//
+//					rsAddress.close();
+//					psAddress.close();
+//
+//					Person p = new Person(rs.getString("code"),null, null, rs.getString("lastName"),rs.getString("firstName"),ad,email);
+//					allPersons.add(p);
+//				}
+//			}
+//
+//			rs.close();
+//			ps.close();
+//
+//			conn.close();
+//			return allPersons;
+//
+//		} catch(Exception e) {
+//			log.error("Error : " + e);
+//			throw new RuntimeException(e);
+//
+//		} finally {
+//			Factory.closeResources(rs, ps, conn);
+//		}
+	}
+	
+	public void getPortfolioAssets() {
+		EntityManagerFactory emf = null; 
+		EntityManager em = null;
+		List<PortfolioAsset> portAssets = null;
+		try {
+			emf = Persistence.createEntityManagerFactory("jmelcher_database");
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+			String queryPA = "FROM PortfolioAsset";
+			
+			try {
+				portAssets = (List<PortfolioAsset>) em.createQuery(queryPA).getResultList();
+				 		 
+			} catch(Exception e) {
+				System.out.println("Error loading PortfolioAsset");
+				e.printStackTrace();
+				if (em.getTransaction().isActive()) {
+					em.getTransaction().rollback();
+				}
+				throw new RuntimeException("Error loading PortfolioAsset-2", e);
+			}
+			em.getTransaction().rollback();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+			}
+		} finally {
+			if (em != null && em.isOpen()) {
+				em.close();
+			}
+			if (emf != null && emf.isOpen()) {
+				emf.close();
+			}
+		}
+
+		for(PortfolioAsset portAsset : portAssets) {
+			System.out.println("PortfolioAsset ID: " + portAsset.getPortAssetId() + " Asset Code: " + portAsset.getAsset().getCode() + " Portfolio Code: " + portAsset.getPortfolio().getCode() +  " Given Value: "+ portAsset.getGivenValue());
+		}
+	}
+	
+	public void getEmails() {
+		EntityManagerFactory emf = null; 
+		EntityManager em = null;
+		List<Email> emails = null;
+		
+		
+		try {
+			emf = Persistence.createEntityManagerFactory("jmelcher_database");
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+			String query = "FROM Email";
+			
+			try {
+				emails = (List<Email>) em.createQuery(query).getResultList();
+				 		 
+			} catch(Exception e) {
+				System.out.println("Error loading Email");
+				e.printStackTrace();
+				if (em.getTransaction().isActive()) {
+					em.getTransaction().rollback();
+				}
+				throw new RuntimeException("Error loading Email-2", e);
+			}
+			em.getTransaction().rollback();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+			}
+		} finally {
+			if (em != null && em.isOpen()) {
+				em.close();
+			}
+			if (emf != null && emf.isOpen()) {
+				emf.close();
+			}
+		}
+
+		for(Email email : emails) {
+			System.out.println("Person with code " + email.getPerson().getCode() + " has email: "+ email.getEmailAddress());
+		}
+	}
+	
+	public void getAddresses() {
+		EntityManagerFactory emf = null; 
+		EntityManager em = null;
+		List<Address> addresses = null;
+		
+		try {
+			emf = Persistence.createEntityManagerFactory("jmelcher_database");
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+			String query = "FROM Address";
+			
+			try {
+				addresses = (List<Address>) em.createQuery(query).getResultList();
+				 		 
+			} catch(Exception e) {
+				System.out.println("Error loading Address");
+				e.printStackTrace();
+				if (em.getTransaction().isActive()) {
+					em.getTransaction().rollback();
+				}
+				throw new RuntimeException("Error loading Address-2", e);
+			}
+			em.getTransaction().rollback();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+			}
+		} finally {
+			if (em != null && em.isOpen()) {
+				em.close();
+			}
+			if (emf != null && emf.isOpen()) {
+				emf.close();
+			}
+		}
+
+		for(Address addr : addresses) {
+			System.out.println("Person with code: " + addr.getPerson().getCode() + " has\nAddress: "+ addr.getStreet() + ", " + addr.getCity() + ", " + addr.getState() + ", " + addr.getZipcode() + ", " + addr.getCountry());
 		}
 	}
 }

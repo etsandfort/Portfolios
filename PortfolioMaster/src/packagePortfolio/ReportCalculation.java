@@ -1,5 +1,7 @@
 package packagePortfolio;
 
+import java.util.List;
+
 /**
  * ReportCalculation.java
  * RAIK 184H
@@ -19,7 +21,7 @@ public class ReportCalculation{
 	 * This is the constructor for the ReportCalculation class
 	 * @param portfoliosGiven
 	 */
-	public ReportCalculation(PortfolioList<Portfolio> portfoliosGiven) {
+	public ReportCalculation(List<Portfolio> portfoliosGiven){//GenericList<Portfolio> portfoliosGiven) {
 		this.totalCommission = this.calculateTotalCommissions(portfoliosGiven); //calculates total commission
 		this.totalFees = this.calculateTotalFees(portfoliosGiven); //calculates total broker fees
 		this.totalReturn = this.calculateTotalReturns(portfoliosGiven); //calculates total annual returns
@@ -31,7 +33,7 @@ public class ReportCalculation{
 	 * @param portfolios, an ArrayList
 	 * @return tComm - total commissions, a double
 	 */
-	private double calculateTotalCommissions(PortfolioList<Portfolio> portfolios){
+	private double calculateTotalCommissions(List<Portfolio> portfolios){//GenericList<Portfolio> portfolios){
 		double totalCommission = 0.0; 
 		for(Portfolio portfolio : portfolios){ //for each portfolio 
 			totalCommission += portfolio.getCommissionFees(); //add the total commissions fee
@@ -44,7 +46,7 @@ public class ReportCalculation{
 	 * @param portfolios, an ArrayList
 	 * @return tFees - total broker fees, a double
 	 */
-	private double calculateTotalFees(PortfolioList<Portfolio>portfolios){
+	private double calculateTotalFees(List<Portfolio> portfolios){//GenericList<Portfolio>portfolios){
 		double totalFees = 0.0; // total broker fees
 		for(Portfolio portfolio : portfolios){ //for each portfolio
 		totalFees += portfolio.getBrokerFees(); //add its broker fees to the total
@@ -57,7 +59,7 @@ public class ReportCalculation{
 	 * @param portfolios, an ArrayList
 	 * @return tValue - total value, a double
 	 */
-	private double calculateTotalValue(PortfolioList<Portfolio>portfolios){
+	private double calculateTotalValue(List<Portfolio> portfolios){//GenericList<Portfolio>portfolios){
 		double totalValue = 0.0;
 		for(Portfolio portfolio : portfolios){ //for each portfolio
 		totalValue += portfolio.getTotalValue(); //add the total value of the portfolio to the rest
@@ -70,7 +72,7 @@ public class ReportCalculation{
 	 * @param portfolios, an ArrayList
 	 * @return tReturns- total annual returns, a double
 	 */
-	private double calculateTotalReturns(PortfolioList<Portfolio>portfolios){
+	private double calculateTotalReturns(List<Portfolio> portfolios){//GenericList<Portfolio>portfolios){
 		double totalReturns = 0.0; // total annual returns
 		for(Portfolio portfolio : portfolios){ //for each portfolio
 		totalReturns += portfolio.getTotalAnnualReturns(); //add the annual return of the portfolio to the overall total returns

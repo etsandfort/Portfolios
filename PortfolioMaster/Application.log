@@ -38,3 +38,12 @@
 2520 [main] INFO  PortfolioManager  - Portfolios retrieved
 3552 [main] INFO  PortfolioManager  - Portfolios retrieved
 3574 [main] INFO  PortfolioManager  - Program finished.
+0    [main] ERROR com.sdb.PortfolioData  - SQLException: java.lang.NullPointerException
+0    [main] ERROR com.sdb.PortfolioData  - SQLException: java.lang.NullPointerException
+0    [main] ERROR com.sdb.PortfolioData  - SQLException: java.lang.NullPointerException
+0    [main] INFO  PortfolioManager  - Portfolios retrieved
+531  [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Portfolios retrieved
+766  [main] INFO  PortfolioManager  - Portfolios retrieved
+0    [main] INFO  PortfolioManager  - Portfolios retrieved
+1445 [main] INFO  PortfolioManager  - Portfolios retrieved

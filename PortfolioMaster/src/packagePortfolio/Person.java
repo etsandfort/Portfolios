@@ -61,7 +61,6 @@ public class Person implements Serializable {
 	@Column(name="brokerType", nullable=true)
 	private String brokerType; 
 	
-	
 	//TODO Needs to be a one-to-one maybe? but bourke didn't really like those...?
 
 	@OneToOne
@@ -83,11 +82,13 @@ public class Person implements Serializable {
 	 * @param address address
 	 * @param emails emails
 	 */
-	public Person(String code, String lastName, String firstName,
+	public Person(String code, String brokerType, String sec, String lastName, String firstName,
 			Address address, Set<Email> emails){//, ArrayList<String> email){
 		this.code = code;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.brokerType = brokerType;
+		this.secIdentifier = sec;
 		this.address = address;
 		this.emails = emails;
 	}

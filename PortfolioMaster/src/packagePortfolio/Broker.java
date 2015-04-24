@@ -4,6 +4,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 import java.util.ArrayList;
+import java.util.Set;
 /**
  * Broker.java
  * RAIK 184H
@@ -30,8 +31,8 @@ public class Broker extends Person{
 	 * @param email broker's email(s)
 	 */
 	public Broker(String code, char type, String sec, String lastName, String firstName,
-			Address address, ArrayList<String> email){
-		super(code, lastName, firstName, address, email);
+			Address address, Set<Email> email){
+		super(code, null, null, lastName, firstName, address, email);
 		this.secIdentifier =sec;
 		this.type = type;
 	}

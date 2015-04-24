@@ -1,5 +1,7 @@
 package packagePortfolio;
 
+import java.util.List;
+
 /**
  * ReportMaker.java
  * RAIK 184H
@@ -10,9 +12,10 @@ package packagePortfolio;
 public class ReportMaker{
 	// data members
 	private ReportCalculation reportCalc;
-	private PortfolioList<Portfolio> portfolios;
+	//private GenericList<Portfolio> portfolios;
+	private List<Portfolio> portfolios;
 	
-	public ReportMaker(PortfolioList<Portfolio> portfolios){
+	public ReportMaker(List<Portfolio> portfolios){//GenericList<Portfolio> portfolios){
 		reportCalc = new ReportCalculation(portfolios);
 		this.portfolios = portfolios;
 	}

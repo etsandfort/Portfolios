@@ -104,7 +104,7 @@ public class Portfolio implements Serializable {
 	 * @param manager
 	 * @param assets
 	 */
-	public Portfolio(String code, Person owner, Broker manager,
+	public Portfolio(String code, Person owner, Person manager,
 			HashMap<Asset, Double> assets){
 		this.code = code;
 		//this.owner = owner;
@@ -127,13 +127,13 @@ public class Portfolio implements Serializable {
 	 * @param beneficiary
 	 * @param assets
 	 */
-	public Portfolio(String code, Person owner, Broker manager,
+	public Portfolio(String code, Person owner, Person manager,
 			Person beneficiary, HashMap<Asset, Double> assets){
 		this(code,owner,manager,assets);
 		//this.beneficiary = beneficiary;
 	}
 	
-	public Portfolio(String code, Person owner, Broker manager){
+	public Portfolio(String code, Person owner, Person manager){
 		this.code = code;
 		//this.owner = owner;
 		//this.manager = manager;
@@ -144,7 +144,7 @@ public class Portfolio implements Serializable {
 		this.setTotalRisks(0);	
 	}
 	
-	public Portfolio(String code, Person owner, Broker manager, Person beneficiary){
+	public Portfolio(String code, Person owner, Person manager, Person beneficiary){
 		this(code, owner, manager);
 		//this.beneficiary = beneficiary;
 	}
