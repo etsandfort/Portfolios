@@ -1,24 +1,11 @@
 import org.apache.log4j.Logger;
 
-import packagePortfolio.Asset;
-import packagePortfolio.Email;
-import packagePortfolio.Person;
 import packagePortfolio.Portfolio;
-import packagePortfolio.PortfolioAsset;
 import packagePortfolio.ReportMaker;
-import packagePortfolio.GenericList;
 import packagePortfolio.PortfolioComparator;
-
 import com.sdb.PortfolioData;
 
-import packagePortfolio.Address;
-
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 /**
  * PortfolioManager.java
@@ -48,12 +35,12 @@ public class PortfolioManager{
 //		GenericList<Portfolio> allPortfolios = getInput().getPortfolios(PortfolioComparator.ownerComparator());
 		List<Portfolio> allPortfolios = getInput().getPortfolios(PortfolioComparator.ownerComparator());
 
-//		log.info("Portfolios retrieved");
-//		
+		log.info("Portfolios retrieved");
+
 		ReportMaker report = new ReportMaker(allPortfolios);
 		System.out.println("Sorting by Owner, A-Z:\n");
 		report.printSummaryReport();
-//		
+		
 		allPortfolios.clear();
 	}
 	
@@ -96,18 +83,13 @@ public class PortfolioManager{
 	 * @param args the set of arguments provided at runtime
 	 */
 	public static void main(String args[]) {
-//		log.info("Getting portfolios");
-//		
+		log.info("Getting portfolios");
+		
 		PortfolioManager manager = new PortfolioManager();
 		manager.listByOwner();
-		manager.listByValue();
-		manager.listByBrokerType();
-//
-//		log.info("Program finished.");
-		
-//		manager.getInput().getPortfolios();
-//		manager.getInput().getAssets();
-//		
-//		manager.getInput().getPersons();
+//		manager.listByValue();
+//		manager.listByBrokerType();
+
+		log.info("Program finished.");		
 	}
 }

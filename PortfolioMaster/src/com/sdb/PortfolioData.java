@@ -664,9 +664,13 @@ public class PortfolioData {
 					for(Portfolio port : portfolios) {
 						for(Asset asset : assets) {
 							for(PortfolioAsset portAsset : portAssets) {
-								if(person.getPersonId() == port.getOwner().getPersonId() && port.getPortfolioId() == portAsset.getPortfolio().getPortfolioId() && asset.getCode() == portAsset.getAsset().getCode()) {
-									//							assetIDList.put(port.getCode(), portAsset.getGivenValue());
-									System.out.println(person.getLastName() + ", " + person.getFirstName() + " owns Asset " + asset.getCode() + " in Portfolio " + port.getCode() + " has given value: $" + portAsset.getGivenValue());
+								if(person.getPersonId() == port.getOwner().getPersonId() 
+										&& port.getPortfolioId() == portAsset.getPortfolio().getPortfolioId() 
+										&& asset.getCode() == portAsset.getAsset().getCode()) {
+									
+									System.out.println(person.getLastName() + ", " + person.getFirstName() 
+											+ " owns Asset " + asset.getCode() + " in Portfolio " + port.getCode() 
+											+ " has given value: $" + portAsset.getGivenValue());
 								}
 							}	
 						}
@@ -674,7 +678,7 @@ public class PortfolioData {
 				}
 
 			} catch(Exception e) {
-				System.out.println("Error loading Portfolio or PA or Asset");
+				System.out.println("Error loading Portfolio or PA or Asset or Person");
 				e.printStackTrace();
 				if (em.getTransaction().isActive()) {
 					em.getTransaction().rollback();
@@ -696,23 +700,6 @@ public class PortfolioData {
 				emf.close();
 			}
 		}
-
-
-		//		for(Portfolio port : portfolios) {
-		//			//			System.out.println(port.getTotalAnnualReturns());
-		////			System.out.println(searchAssets(assetIDList, assets));
-		//		}
-
-		//		for(Portfolio port : portfolios) {
-		//			if(port.getBeneficiaryId() != null) { 
-		//				System.out.println("Portfolio: Code: " + port.getCode() + " Owner ID: " + port.getOwnerId().getCode() + " Manager ID: " + port.getManagerId().getCode() + " Beneficiary ID: " + port.getBeneficiaryId().getCode() + " Broker Fees: " + port.getBrokerFees());
-		//				System.out.println("Attempt for assets: " + port.getAssetList());
-		//			}
-		//			else {
-		//				System.out.println("Portfolio: Code: " + port.getCode() + " Owner ID: " + port.getOwnerId().getCode() + " Manager ID: " + port.getManagerId().getCode() +  " Broker Fees: " + port.getBrokerFees());
-		//				System.out.println("Attempt for assets: " + port.getAssetList());
-		//			}
-		//		}
 
 		return portfolios;
 		//		Factory.getDriver();
@@ -930,10 +917,6 @@ public class PortfolioData {
 			}
 		}
 		return assets;
-		//		for(Asset asset : assets) {
-		//			System.out.println("Asset: Code: " + asset.getCode() + " Label: " + asset.getLabel() + " Return Rate: " + asset.getReturnRate() + " Risk: " + asset.getRiskValue() + " Base Rate: " + asset.getBaseRate() + " Class: " + asset.getClass());
-		//		}
-
 
 		//		Factory.getDriver();
 		//		Connection conn = null;
@@ -1022,14 +1005,6 @@ public class PortfolioData {
 				emf.close();
 			}
 		}
-
-		//		for(Person person : persons) {
-		//			System.out.println("Person: Code: " + person.getCode() + ", Last Name: " + person.getLastName() + ", First Name: " + person.getFirstName() + ", Broker Type: " + person.getBrokerType() + ", SEC ID: " + person.getSecIdentifier());
-		//			System.out.println("Person's address: " + person.getAddress().getStreet());
-		//			for(Email email : person.getEmails()) {
-		//			System.out.println("Email: "  + email.getEmailAddress());
-		//			}
-		//		}
 
 		return persons;
 		//	}
@@ -1171,10 +1146,6 @@ public class PortfolioData {
 				emf.close();
 			}
 		}
-
-		//		for(PortfolioAsset portAsset : portAssets) {
-		//			System.out.println("PortfolioAsset ID: " + portAsset.getPortAssetId() + " Asset Code: " + portAsset.getAsset().getCode() + " Portfolio Code: " + portAsset.getPortfolio().getCode() +  " Given Value: "+ portAsset.getGivenValue());
-		//		}
 
 		return portAssets;
 	}

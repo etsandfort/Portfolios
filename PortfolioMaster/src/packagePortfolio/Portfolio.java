@@ -4,7 +4,6 @@ import java.util.Set;
 import java.util.HashMap;
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,10 +30,7 @@ import javax.persistence.Transient;
 public class Portfolio implements Serializable {
 
 	private static final long serialVersionUID = 4092377723123588407L;
-
-
-	//@ManyToOne(fetch=FetchType.EAGER)
-	//@JoinColumn(name="portfolio_id", nullable=false)
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="portfolio_id", nullable=false)
@@ -45,17 +41,14 @@ public class Portfolio implements Serializable {
 	
 	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="owner_id", nullable=false)
-	//private String ownerId;
 	private Person owner;
 
 	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="manager_id", nullable=false)
-	//private String managerId;
-	private Person manager; //TODO Broker.....
+	private Person manager;
 	
-	@OneToOne(fetch=FetchType.EAGER) //TODO Bourke said this is wrong (probs wrong for other person members, too)
+	@OneToOne(fetch=FetchType.EAGER) // TODO Bourke said this is wrong (probs wrong for other person members, too)
 	@JoinColumn(name="beneficiary_id")
-//	private String beneficiaryId;
 	private Person beneficiary;
 	
 	//@OneToMany(mappedBy = "Portfolio")
@@ -72,7 +65,7 @@ public class Portfolio implements Serializable {
 //	private Set<PortfolioAsset> portAssets;
 	
 	@OneToMany//(mappedBy = "Portfolio")
-	private Set<PortfolioAsset> assets; // TODO Is this what should be in the set?
+	private Set<PortfolioAsset> portAssets; // TODO Is this what should be in the set?
 	
 	@Transient
 	private HashMap<Asset, Double> assetNumeric;
@@ -107,8 +100,8 @@ public class Portfolio implements Serializable {
 	public Portfolio(String code, Person owner, Person manager,
 			HashMap<Asset, Double> assets){
 		this.code = code;
-		//this.owner = owner;
-		//this.manager = manager;
+		this.owner = owner;
+		this.manager = manager;
 		this.assetNumeric = assets;
 		condenseHashMap(assetNumeric);
 		calculateTotalValue();
@@ -130,13 +123,13 @@ public class Portfolio implements Serializable {
 	public Portfolio(String code, Person owner, Person manager,
 			Person beneficiary, HashMap<Asset, Double> assets){
 		this(code,owner,manager,assets);
-		//this.beneficiary = beneficiary;
+		this.beneficiary = beneficiary;
 	}
 	
 	public Portfolio(String code, Person owner, Person manager){
 		this.code = code;
-		//this.owner = owner;
-		//this.manager = manager;
+		this.owner = owner;
+		this.manager = manager;
 		this.setBrokerFees(0);
 		this.setCommissionFees(0);
 		this.setTotalValue(0);
@@ -146,7 +139,7 @@ public class Portfolio implements Serializable {
 	
 	public Portfolio(String code, Person owner, Person manager, Person beneficiary){
 		this(code, owner, manager);
-		//this.beneficiary = beneficiary;
+		this.beneficiary = beneficiary;
 	}
 	
 	/**
@@ -298,14 +291,6 @@ public class Portfolio implements Serializable {
 		this.beneficiary = beneficiary;
 	}
 
-//	public Set<Asset> getAssets() {
-//		return assets;
-//	}
-//
-//	public void setAssets(Set<Asset> assets) {
-//		this.assets = assets;
-//	}
-
 	/**
 	 * Obtains the total value of the portfolio
 	 * @return totalValue
@@ -402,54 +387,6 @@ public class Portfolio implements Serializable {
 		this.code = code;
 	}
 	
-//	/**
-//	 * Obtains the portfolio's owner
-//	 * @return owner, a Person object
-//	 */
-//	public Person getOwner(){
-//		return owner;
-//	}
-//	
-//	/**
-//	 * Sets the portfolio's owner
-//	 * @param owner, a Person object
-//	 */
-//	public void setOwner(Person owner){
-//		this.owner = owner;
-//	}
-//	
-//	/**
-//	 * Obtains the portfolio's manager
-//	 * @return manager, a Broker object
-//	 */
-//	public Broker getManager(){
-//		return manager;
-//	}
-//	
-//	/**
-//	 * Sets the portfolio's manager
-//	 * @param manager, a Broker object
-//	 */
-//	public void setManager(Broker manager){
-//		this.manager = manager;
-//	}
-//	
-//	/**
-//	 * Obtains the portfolio's beneficiary
-//	 * @return beneficiary, a Person object
-//	 */
-//	public Person getBeneficiary(){
-//		return beneficiary;
-//	}
-//	
-//	/**
-//	 * Sets the portfolio's beneficiary
-//	 * @param beneficiary
-//	 */
-//	public void setBeneficiary(Person beneficiary){
-//		this.beneficiary = beneficiary;
-//	}
-	
 	/**
 	 * Obtains the Total Annual Returns
 	 * @return totalAnnualReturns, a double
@@ -510,19 +447,18 @@ public class Portfolio implements Serializable {
 	}
 	
 	public Set<PortfolioAsset> getPortAssets() {
-		return assets;
+		return portAssets;
 	}
 
 	public void setPortAssets(Set<PortfolioAsset> portAssets) {
-		this.assets = portAssets;
+		this.portAssets = portAssets;
 	}
 
 	public Set<PortfolioAsset> getPortfolios() {
-		return assets;
+		return portAssets;
 	}
 
 	public void setPortfolios(Set<PortfolioAsset> portfolios) {
-		this.assets = portfolios;
+		this.portAssets = portfolios;
 	}
-
 }
