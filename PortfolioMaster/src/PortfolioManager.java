@@ -37,7 +37,9 @@ public class PortfolioManager{
 	public void printSummary(){
 		List<Portfolio> allPortfolios = getInput().getPortfolios(PortfolioComparator.ownerComparator());
 		log.info("Portfolios retrieved");
-		
+		for(Portfolio p : allPortfolios){
+			p.doSomething();
+		}
 		ReportMaker report = new ReportMaker(allPortfolios);
 		report.printSummaryReport();
 	}
@@ -46,6 +48,9 @@ public class PortfolioManager{
 		List<Portfolio> allPortfolios = getInput().getPortfolios(PortfolioComparator.ownerComparator());
 		log.info("Portfolios retrieved");
 		
+		for(Portfolio p : allPortfolios){
+			p.doSomething();
+		}
 		ReportMaker report = new ReportMaker(allPortfolios);
 		report.printDetailedReport();
 	}
@@ -113,6 +118,8 @@ public class PortfolioManager{
 //		manager.listByBrokerType();
 
 		manager.printSummary();
+		//PortfolioAsset p = new PortfolioAsset();
+		
 		manager.printDetailed();
 		
 		log.info("Program finished.");		

@@ -1,5 +1,6 @@
 package packagePortfolio;
 
+import java.util.List;
 import java.util.Set;
 import java.util.HashMap;
 import java.io.Serializable;
@@ -17,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import com.sdb.PortfolioData;
 
 /**
  * Portfolio.java
@@ -88,22 +91,34 @@ public class Portfolio implements Serializable {
 	@Transient
 	private double commissionFees;
 
-	public Portfolio() {}
+	protected Portfolio() {
+		
+	}
 
 	/**
-	 * Portfolio constructor without beneficiary, but with assets
+	 * Portfolio constructor without beneficiary
 	 * @param code
 	 * @param owner
 	 * @param manager
-	 * @param assets
 	 */
-	public Portfolio(String code, Person owner, Person manager,
-			HashMap<Asset, Double> assets){
+	public Portfolio(String code, Person owner, Person manager){
+		System.out.println("It is in the second constructor");
 		this.code = code;
 		this.owner = owner;
 		this.manager = manager;
-		this.assetNumeric = assets;
-		condenseHashMap(assetNumeric);
+		this.assetNumeric = getHash();
+		condenseHashMap(this.assetNumeric);
+		calculateTotalValue();
+		calculateTotalRisks();
+		calculateTotalAnnualReturns();
+		calculateBrokerFees();
+		calculateCommissionFee();
+		calculateReturnRates();
+	}
+	//TODO rename this
+	public void doSomething(){
+		this.assetNumeric = getHash();
+		condenseHashMap(this.assetNumeric);
 		calculateTotalValue();
 		calculateTotalRisks();
 		calculateTotalAnnualReturns();
@@ -112,18 +127,30 @@ public class Portfolio implements Serializable {
 		calculateReturnRates();
 	}
 
+	private HashMap<Asset,Double> getHash(){
+		 HashMap<Asset,Double> hash = new HashMap<Asset,Double>();
+		 PortfolioData pd = new PortfolioData();
+		 List<PortfolioAsset> portAssets = pd.getPortfolioAssets();
+		 for(PortfolioAsset pa : portAssets){
+			 if(pa.getPortfolio().getCode().equals(this.code)){
+				 hash.put(pa.getAsset(), pa.getGivenValue());
+			 }
+		 }
+		 return hash;
+		 
+	 }
+	
+	
 	/** 
-	 * Portfolio Constructor, overloaded to take in a beneficiary,
-	 * also contains assets
+	 * Portfolio Constructor, overloaded to take in a beneficiary
 	 * @param code
 	 * @param owner
 	 * @param manager
 	 * @param beneficiary
-	 * @param assets
 	 */
 	public Portfolio(String code, Person owner, Person manager,
-			Person beneficiary, HashMap<Asset, Double> assets){
-		this(code,owner,manager,assets);
+			Person beneficiary){
+		this(code,owner,manager);
 		this.beneficiary = beneficiary;
 	}
 
@@ -133,7 +160,7 @@ public class Portfolio implements Serializable {
 	 * @param owner
 	 * @param manager
 	 */
-	public Portfolio(String code, Person owner, Person manager){
+	/*public Portfolio(String code, Person owner, Person manager){
 		this.code = code;
 		this.owner = owner;
 		this.manager = manager;
@@ -142,7 +169,7 @@ public class Portfolio implements Serializable {
 		this.setTotalValue(0);
 		this.setTotalAnnualReturns(0);
 		this.setTotalRisks(0);	
-	}
+	}*/
 
 	/**
 	 * Constructor when Portfolio has no assets, but does have a beneficiary
@@ -151,10 +178,10 @@ public class Portfolio implements Serializable {
 	 * @param manager
 	 * @param beneficiary
 	 */
-	public Portfolio(String code, Person owner, Person manager, Person beneficiary){
+	/*public Portfolio(String code, Person owner, Person manager, Person beneficiary){
 		this(code, owner, manager);
 		this.beneficiary = beneficiary;
-	}
+	}*/
 
 	/**
 	 * This method condenses the hash map so that it is one hash map of 3 different things
@@ -162,7 +189,9 @@ public class Portfolio implements Serializable {
 	 */
 	private void condenseHashMap(HashMap<Asset,Double> assetNumeric){
 		assetList = new HashMap<Asset,double[]>(); //new hashmap of asset, double array
+	//	System.out.println("size of the assetnumeric " + assetNumeric.size());
 		for(Asset asset: assetNumeric.keySet()){ //for each asset in the HashMap keySet
+			//System.out.println("here is the asset " + asset);
 			assetList.put(asset, new double[]{calculateRisks(asset), calculateAnnualReturns(assetNumeric,asset),calculateValues(assetNumeric,asset)});
 			//calls the calculate methods for each asset to get the Risk,AnnualReturns,Values
 		}
