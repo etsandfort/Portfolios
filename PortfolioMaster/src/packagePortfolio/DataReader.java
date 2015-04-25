@@ -71,13 +71,14 @@ public class DataReader{
 		String[] assetIDList = portInfo[4].split(",");
 		
 		if(beneficiaryID.trim().equalsIgnoreCase("")){
-			p = new Portfolio(code, searchPerson(ownerID, persons), (Broker) searchPerson(managerID, persons), searchAssets(assetIDList, assets));
-			return p;
+			//p = new Portfolio(code, searchPerson(ownerID, persons), (Broker) searchPerson(managerID, persons), searchAssets(assetIDList, assets));
+			//return p;
 		} 
 		else{
-			p = new Portfolio(code, searchPerson(ownerID, persons), (Broker) searchPerson(managerID, persons), searchPerson(beneficiaryID, persons), searchAssets(assetIDList,assets));
-			return p;
+			//p = new Portfolio(code, searchPerson(ownerID, persons), (Broker) searchPerson(managerID, persons), searchPerson(beneficiaryID, persons), searchAssets(assetIDList,assets));
+			//return p;
 		}
+		return null;
 	}
 	
 	/**

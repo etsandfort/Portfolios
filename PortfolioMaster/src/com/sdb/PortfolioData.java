@@ -633,10 +633,13 @@ public class PortfolioData {
 		EntityManagerFactory emf = null; 
 		EntityManager em = null;
 		List<Portfolio> portfolios = null;
-		List<Asset> assets = getAssets();
-		List<Person> persons = getPersons(); // ?
-		List<PortfolioAsset> portAssets = getPortfolioAssets();
-		//		HashMap<String,Double> assetIDList = new HashMap<String,Double>();
+//		List<Asset> assets = getAssets();
+//		List<Person> persons = getPersons(); // ?
+//		List<PortfolioAsset> portAssets = getPortfolioAssets();
+		List<Asset> assets = null;
+		List<Person> persons = null; // ?
+		List<PortfolioAsset> portAssets = null;
+		
 
 		try {
 			emf = Persistence.createEntityManagerFactory("jmelcher_database");
@@ -653,50 +656,23 @@ public class PortfolioData {
 				assets = (List<Asset>) em.createQuery(queryA).getResultList();
 				persons = (List<Person>) em.createQuery(queryPer).getResultList();
 
-
-				
-				for(Person person : persons) {
-					for(Portfolio port : portfolios) {
-//						HashMap<Asset,double[]> assetList = new HashMap<Asset,double[]>();
-//						port.setCommissionFees(2000);
-//						port.setTotalValue(5000);
-//						port.setTotalAnnualReturns(4000);
-//						port.setTotalRisks(3000);
-//						port.setBrokerFees(1000);
-						for(Asset asset : assets) {
-							for(PortfolioAsset portAsset : portAssets) {
-								if(person.getPersonId() == port.getOwner().getPersonId() 
-										&& port.getPortfolioId() == portAsset.getPortfolio().getPortfolioId() 
-										&& asset.getCode() == portAsset.getAsset().getCode()) {
-									
-									
-//									System.out.println(person.getLastName() + ", " + person.getFirstName() 
-//											+ " owns Asset " + asset.getCode() + " in Portfolio " + port.getCode() 
-//											+ " has given value: $" + portAsset.getGivenValue());
-									
-									
-//									//Most likely have to do something like the following?
-//									assetList.put(asset, new double[]{calculateRisks(asset), calculateAnnualReturns(assetNumeric,asset),calculateValues(assetNumeric,asset)});
-									
-									//port.getAssetList().put(asset, new double[]{});// TODO how does?
-									
-									
-									
-//									System.out.println("Compute Annual Returns: " + asset.computeAnnualReturns(portAsset.getGivenValue()));
-//									asset.computeReturnRate(portAsset.getGivenValue());
-//									System.out.println("Get Return Rate: " + asset.getReturnRate());
-//									System.out.println("Compute Value of Asset: " + asset.computeValueOfAsset(portAsset.getGivenValue()));
-//									System.out.println("Get Risk Value: " + asset.getRiskValue());
-//									port.calculateTotalRisks();
-//									port.calculateTotalValue();
-//									System.out.println("Port Get Total Annual Returns: " + port.getTotalAnnualReturns());
-//									System.out.println("Port Get Total Risks: " + port.getTotalRisks());
-//									System.out.println("Portfolio Total Value: " + port.getTotalValue());
-								}
-							}	
-						}
-					}
-				}
+//				for(Person person : persons) {
+//					for(Portfolio port : portfolios) {
+//						for(Asset asset : assets) {
+//							for(PortfolioAsset portAsset : portAssets) {
+//								if(person.getPersonId() == port.getOwner().getPersonId() 
+//										&& port.getPortfolioId() == portAsset.getPortfolio().getPortfolioId() 
+//										&& asset.getCode() == portAsset.getAsset().getCode()) {
+//									
+//									System.out.println("Inside creation");
+////									System.out.println(person.getLastName() + ", " + person.getFirstName() 
+////											+ " owns Asset " + asset.getCode() + " in Portfolio " + port.getCode() 
+////											+ " has given value: $" + portAsset.getGivenValue());
+//								}
+//							}	
+//						}
+//					}
+//				}
 
 			} catch(Exception e) {
 				System.out.println("Error loading Portfolio or PA or Asset or Person");

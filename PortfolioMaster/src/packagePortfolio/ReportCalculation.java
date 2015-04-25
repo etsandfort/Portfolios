@@ -1,5 +1,7 @@
 package packagePortfolio;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -21,7 +23,8 @@ public class ReportCalculation{
 	 * This is the constructor for the ReportCalculation class
 	 * @param portfoliosGiven
 	 */
-	public ReportCalculation(List<Portfolio> portfoliosGiven){//GenericList<Portfolio> portfoliosGiven) {
+	public ReportCalculation(List<Portfolio> portfoliosGiven){
+		sortList(portfoliosGiven); //sorts the list by last name of owner
 		this.totalCommission = this.calculateTotalCommissions(portfoliosGiven); //calculates total commission
 		this.totalFees = this.calculateTotalFees(portfoliosGiven); //calculates total broker fees
 		this.totalReturn = this.calculateTotalReturns(portfoliosGiven); //calculates total annual returns
@@ -29,11 +32,55 @@ public class ReportCalculation{
 	}
 	
 	/**
+	 * Sorts the List of portfolios
+	 * @param list, a List of portfolios
+	 * @return list- the sorted List of all portfolios
+	 */
+	public List<Portfolio> sortList(List<Portfolio> list){
+		
+		class PortfolioSorter implements Comparator<Portfolio>{
+			/**
+			 * The compare method sorts the portfolios by owner's last name
+			 */
+			public int compare(Portfolio portfolio1, Portfolio portfolio2){
+				int compareLastName = portfolio1.getOwner().getLastName().compareTo(portfolio2.getOwner().getLastName());
+				
+				if(compareLastName == 0){ // last name is same, so compare first name
+					int compareFirstName = portfolio1.getOwner().getFirstName().compareTo(portfolio2.getOwner().getFirstName());
+					
+					if (compareFirstName == 0){ // first name is same, so compare manager's last name
+						int compareManagerLast =  portfolio1.getManager().getLastName().compareTo(portfolio2.getManager().getLastName());
+						
+						if(compareManagerLast == 0){ // manager last name is same, so compare manager's first name
+							return portfolio1.getManager().getFirstName().compareTo(portfolio2.getManager().getFirstName());
+						}
+						
+						else{ // manager last names are not same and will sort alphabetically
+							return compareManagerLast;
+						}
+					}
+					
+					else{ // first names are not same and will sort alphabetically
+						return compareFirstName;
+					}
+				}
+				
+				else{ // owner's last names are not same and will sort alphabetically
+					return compareLastName;
+				}
+			}
+		}
+		
+		Collections.sort(list, new PortfolioSorter());
+		return list;
+	}
+	
+	/**
 	 * Calculates the total commissions  for all the portfolios
 	 * @param portfolios, an ArrayList
 	 * @return tComm - total commissions, a double
 	 */
-	private double calculateTotalCommissions(List<Portfolio> portfolios){//GenericList<Portfolio> portfolios){
+	private double calculateTotalCommissions(List<Portfolio> portfolios){
 		double totalCommission = 0.0; 
 		for(Portfolio portfolio : portfolios){ //for each portfolio 
 			totalCommission += portfolio.getCommissionFees(); //add the total commissions fee
@@ -46,7 +93,7 @@ public class ReportCalculation{
 	 * @param portfolios, an ArrayList
 	 * @return tFees - total broker fees, a double
 	 */
-	private double calculateTotalFees(List<Portfolio> portfolios){//GenericList<Portfolio>portfolios){
+	private double calculateTotalFees(List<Portfolio> portfolios){
 		double totalFees = 0.0; // total broker fees
 		for(Portfolio portfolio : portfolios){ //for each portfolio
 		totalFees += portfolio.getBrokerFees(); //add its broker fees to the total
@@ -59,7 +106,7 @@ public class ReportCalculation{
 	 * @param portfolios, an ArrayList
 	 * @return tValue - total value, a double
 	 */
-	private double calculateTotalValue(List<Portfolio> portfolios){//GenericList<Portfolio>portfolios){
+	private double calculateTotalValue(List<Portfolio> portfolios){
 		double totalValue = 0.0;
 		for(Portfolio portfolio : portfolios){ //for each portfolio
 		totalValue += portfolio.getTotalValue(); //add the total value of the portfolio to the rest
@@ -72,7 +119,7 @@ public class ReportCalculation{
 	 * @param portfolios, an ArrayList
 	 * @return tReturns- total annual returns, a double
 	 */
-	private double calculateTotalReturns(List<Portfolio> portfolios){//GenericList<Portfolio>portfolios){
+	private double calculateTotalReturns(List<Portfolio> portfolios){
 		double totalReturns = 0.0; // total annual returns
 		for(Portfolio portfolio : portfolios){ //for each portfolio
 		totalReturns += portfolio.getTotalAnnualReturns(); //add the annual return of the portfolio to the overall total returns

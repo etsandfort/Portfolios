@@ -42,6 +42,7 @@ public class PortfolioManager{
 		}
 		ReportMaker report = new ReportMaker(allPortfolios);
 		report.printSummaryReport();
+		allPortfolios.clear();
 	}
 
 	public void printDetailed(){
@@ -53,13 +54,13 @@ public class PortfolioManager{
 		}
 		ReportMaker report = new ReportMaker(allPortfolios);
 		report.printDetailedReport();
+		allPortfolios.clear();
 	}
 	
 	/**
 	 * Runs the summary report to list all portfolios by owner's last name.
 	 */
 	public void listByOwner(){
-////		GenericList<Portfolio> allPortfolios = getInput().getPortfolios(PortfolioComparator.ownerComparator());
 		List<Portfolio> allPortfolios = getInput().getPortfolios(PortfolioComparator.ownerComparator());
 
 		log.info("Portfolios retrieved");
@@ -75,7 +76,6 @@ public class PortfolioManager{
 	 * Runs the summary report to list all portfolios by total value, ascending.
 	 */
 	public void listByValue(){
-////		GenericList<Portfolio> allPortfolios = getInput().getPortfolios(PortfolioComparator.valueComparator());
 		List<Portfolio> allPortfolios = getInput().getPortfolios(PortfolioComparator.valueComparator());
 
 		log.info("Portfolios retrieved");
@@ -93,7 +93,6 @@ public class PortfolioManager{
 	 * last name/first name.
 	 */
 	public void listByBrokerType(){
-////		GenericList<Portfolio> allPortfolios = getInput().getPortfolios(PortfolioComparator.managerComparator());
 		List<Portfolio> allPortfolios = getInput().getPortfolios(PortfolioComparator.managerComparator());
 
 		log.info("Portfolios retrieved");
@@ -111,17 +110,9 @@ public class PortfolioManager{
 	 */
 	public static void main(String args[]) {
 		log.info("Getting portfolios");
-		
 		PortfolioManager manager = new PortfolioManager();
-//		manager.listByOwner();
-//		manager.listByValue();
-//		manager.listByBrokerType();
-
 		manager.printSummary();
-		//PortfolioAsset p = new PortfolioAsset();
-		
 		manager.printDetailed();
-		
 		log.info("Program finished.");		
 	}
 }
