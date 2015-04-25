@@ -77,3 +77,7 @@
 4909 [main] INFO  PortfolioManager  - Portfolios retrieved
 20968 [main] INFO  PortfolioManager  - Portfolios retrieved
 35796 [main] INFO  PortfolioManager  - Program finished.
+0    [main] INFO  PortfolioManager  - Getting portfolios
+4952 [main] INFO  PortfolioManager  - Portfolios retrieved
+21240 [main] INFO  PortfolioManager  - Portfolios retrieved
+32241 [main] INFO  PortfolioManager  - Program finished

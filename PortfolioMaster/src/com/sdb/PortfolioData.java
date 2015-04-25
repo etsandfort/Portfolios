@@ -622,22 +622,16 @@ public class PortfolioData {
 
 	/**
 	 * The getPortfolios method retrieves all portfolios in the database. They are inserted
-	 * into a sorted list ADT using the input comparator
-	 * @param c, the comparator the portfolios will be sorted by
+	 * into a sorted list 
 	 * @return a sorted list of portfolios
 	 */
-	//	public GenericList<Portfolio> getPortfolios(Comparator<Portfolio> c){
-	public List<Portfolio> getPortfolios(Comparator<Portfolio> c){
+	public List<Portfolio> getPortfolios(){//TODO remove Comparator<Portfolio> c){
 
-		//		GenericList<Portfolio> portfolios = new GenericList<Portfolio>(c);
 		EntityManagerFactory emf = null; 
 		EntityManager em = null;
 		List<Portfolio> portfolios = null;
-//		List<Asset> assets = getAssets();
-//		List<Person> persons = getPersons(); // ?
-//		List<PortfolioAsset> portAssets = getPortfolioAssets();
 		List<Asset> assets = null;
-		List<Person> persons = null; // ?
+		List<Person> persons = null;
 		List<PortfolioAsset> portAssets = null;
 		
 
@@ -655,24 +649,6 @@ public class PortfolioData {
 				portAssets = (List<PortfolioAsset>) em.createQuery(queryPA).getResultList();
 				assets = (List<Asset>) em.createQuery(queryA).getResultList();
 				persons = (List<Person>) em.createQuery(queryPer).getResultList();
-
-//				for(Person person : persons) {
-//					for(Portfolio port : portfolios) {
-//						for(Asset asset : assets) {
-//							for(PortfolioAsset portAsset : portAssets) {
-//								if(person.getPersonId() == port.getOwner().getPersonId() 
-//										&& port.getPortfolioId() == portAsset.getPortfolio().getPortfolioId() 
-//										&& asset.getCode() == portAsset.getAsset().getCode()) {
-//									
-//									System.out.println("Inside creation");
-////									System.out.println(person.getLastName() + ", " + person.getFirstName() 
-////											+ " owns Asset " + asset.getCode() + " in Portfolio " + port.getCode() 
-////											+ " has given value: $" + portAsset.getGivenValue());
-//								}
-//							}	
-//						}
-//					}
-//				}
 
 			} catch(Exception e) {
 				System.out.println("Error loading Portfolio or PA or Asset or Person");
@@ -699,143 +675,15 @@ public class PortfolioData {
 		}
 
 		return portfolios;
-		//		Factory.getDriver();
-		//		Connection conn = Factory.getConnection();
-		//		PreparedStatement ps = null;
-		//		ResultSet rs = null;
-		//		try{
-		//			ArrayList<Asset> assets = getAssets();
-		//			ArrayList<Person> persons = getPersons();
-		//			
-		//			String query = "SELECT * from Portfolio left JOIN PortfolioAsset ON Portfolio.id = PortfolioAsset.portfolio_id";
-		//			ps = conn.prepareStatement(query);
-		//			rs = ps.executeQuery();
-		//
-		//			while(rs.next()){
-		//
-		//				PreparedStatement psAssets = null;
-		//				ResultSet rsAssets = null;
-		//
-		//				String queryAsset = "Select asset_id, givenValue from PortfolioAsset where PortfolioAsset.portfolio_id = ?";
-		//				psAssets = conn.prepareStatement(queryAsset);
-		//				psAssets.setInt(1, rs.getInt("Portfolio.id"));
-		//
-		//				rsAssets = psAssets.executeQuery();
-		//
-		//				if(checkIfIDIsUnique(rs.getString("code"),portfolios)){ //checks if portfolio with same code exists yet
-		//
-		//					HashMap<String,Double> assetIDList = new HashMap<String,Double>();
-		//					while(rsAssets.next()){
-		//						PreparedStatement psAssetCodes = null;
-		//						ResultSet rsAssetCodes = null;
-		//			
-		//						String queryAssetCode = "Select code from Asset where Asset.id = ?";
-		//						psAssetCodes = conn.prepareStatement(queryAssetCode);
-		//						psAssetCodes.setInt(1, rsAssets.getInt("asset_id"));
-		//
-		//						rsAssetCodes = psAssetCodes.executeQuery();
-		//						rsAssetCodes.next();
-		//						
-		//						assetIDList.put(rsAssetCodes.getString("code"),rsAssets.getDouble("givenValue"));
-		//						rsAssetCodes.close();
-		//						psAssetCodes.close();
-		//					}
-		//
-		//					rsAssets.close();
-		//					psAssets.close();
-		//
-		//					if(rs.getString("beneficiary_id") != null){
-		//						
-		//						PreparedStatement psOwner = null;
-		//						ResultSet rsOwner = null;
-		//						
-		//						String queryOwner = "Select code from Person where Person.id = ?";
-		//						psOwner = conn.prepareStatement(queryOwner);
-		//						psOwner.setInt(1, rs.getInt("owner_id"));
-		//						rsOwner = psOwner.executeQuery();
-		//						rsOwner.next();
-		//						String ownerCode = rsOwner.getString("code");
-		//						
-		//						rsOwner.close();
-		//						psOwner.close();
-		//
-		//						PreparedStatement psManager = null;
-		//						ResultSet rsManager = null;
-		//						
-		//						String queryManager = "Select code from Person where Person.id = ?";
-		//						psManager = conn.prepareStatement(queryManager);
-		//						psManager.setInt(1, rs.getInt("manager_id"));
-		//						rsManager = psManager.executeQuery();
-		//						rsManager.next();
-		//						String managerCode = rsManager.getString("code");
-		//						
-		//						rsManager.close();
-		//						psManager.close();
-		//
-		//						PreparedStatement psBeneficiary = null;
-		//						ResultSet rsBeneficiary = null;
-		//						
-		//						String queryB = "Select code from Person where Person.id = ?";
-		//						psBeneficiary = conn.prepareStatement(queryB);
-		//						psBeneficiary.setInt(1, rs.getInt("beneficiary_id"));
-		//						rsBeneficiary = psBeneficiary.executeQuery();
-		//						rsBeneficiary.next();
-		//						String beneficiaryCode = rsBeneficiary.getString("code");
-		//						
-		//						rsBeneficiary.close();
-		//						psBeneficiary.close();
-		////						portfolios.add(new Portfolio(rs.getString("code"), searchPerson(ownerCode,persons), (Broker) searchPerson(managerCode,persons), searchPerson(beneficiaryCode,persons), searchAssets(assetIDList,assets)));
-		//						portfolios.add(new Portfolio(rs.getString("code"), searchPerson(ownerCode,persons), searchPerson(managerCode,persons), searchPerson(beneficiaryCode,persons), searchAssets(assetIDList,assets)));
-		//
-		//					}
-		//					else{
-		//						PreparedStatement psOwner = null;
-		//
-		//						String queryOwner = "Select code from Person where Person.id = ?";
-		//						psOwner = conn.prepareStatement(queryOwner);
-		//						psOwner.setInt(1, rs.getInt("owner_id"));
-		//						
-		//						ResultSet rsOwner = psOwner.executeQuery();
-		//						rsOwner.next();
-		//						String ownerCode = rsOwner.getString("code");
-		//						
-		//						rsOwner.close();
-		//						psOwner.close();
-		//
-		//						PreparedStatement psManager = null;
-		//						ResultSet rsManager = null;
-		//						
-		//						String queryM = "Select code from Person where Person.id = ?";
-		//						psManager = conn.prepareStatement(queryM);
-		//						psManager.setInt(1, rs.getInt("manager_id"));
-		//						rsManager = psManager.executeQuery();
-		//						rsManager.next();
-		//						String managerCode = rsManager.getString("code");
-		//						
-		//						rsManager.close();
-		//						psManager.close();
-		//						portfolios.add(new Portfolio(rs.getString("code"), searchPerson(ownerCode,persons), (Broker) searchPerson(managerCode,persons),  searchAssets(assetIDList,assets)));
-		//					}
-		//				}
-		//			}
-		//			return portfolios;
-		//			
-		//		} catch(Exception e){ 
-		//			log.error("SQLException: " + e);
-		//			throw new RuntimeException(e);	
-		//		}
-		//		finally {
-		//			Factory.closeResources(rs, ps, conn);
-		//		}
 	}
 
 	/**
 	 * This method searches a given list of persons to find the specified person
 	 * @param id, the person's id
-	 * @param persons, the ArrayList of persons
+	 * @param persons, the List of persons
 	 * @return the person matching the id, if there is one. Else, returns null
 	 */
-	public Person searchPerson(String id, ArrayList<Person> persons){
+	public Person searchPerson(String id, List<Person> persons){
 		Person subject;
 
 		for(Person person: persons){
@@ -849,12 +697,12 @@ public class PortfolioData {
 	}
 
 	/**
-	 * Searches for specific assets in a given ArrayList of assets
+	 * Searches for specific assets in a List of assets
 	 * @param idList, list of ids to be searched for
 	 * @param assets, list of assets to search through
 	 * @return assetList, a HashMap of assets to values given
 	 */
-	public HashMap<Asset, Double> searchAssets(HashMap<String,Double> idList, List<Asset> assets){//ArrayList<Asset> assets){
+	public HashMap<Asset, Double> searchAssets(HashMap<String,Double> idList, List<Asset> assets){
 		HashMap<Asset,Double> assetList = new HashMap<Asset,Double>();
 		for(String id: idList.keySet()){
 			if(!id.equalsIgnoreCase("")) {
@@ -912,49 +760,8 @@ public class PortfolioData {
 				emf.close();
 			}
 		}
+		
 		return assets;
-
-		//		Factory.getDriver();
-		//		Connection conn = null;
-		//		PreparedStatement ps = null;
-		//		ResultSet rs = null;
-		//		
-		//		ArrayList<Asset> allAssets = new ArrayList<Asset>();
-		//
-		//		try {
-		//			conn = Factory.getConnection();
-		//
-		//			String query = "Select * from Asset";
-		//			ps = conn.prepareStatement(query);
-		//			rs = ps.executeQuery();
-		//
-		//			while(rs.next()){
-		//				if(rs.getString("type").equalsIgnoreCase("D")){ 
-		//					Deposit dep = new Deposit(rs.getString("code"), rs.getString("label"), rs.getString("type"), rs.getDouble("baseRate") * 100);
-		//					allAssets.add(dep);
-		//				} 
-		//				else if(rs.getString("type").equalsIgnoreCase("S")){
-		//					Stock sto = new Stock(rs.getString("code"), rs.getString("label"), rs.getString("type"),rs.getDouble("quarterlyDividend"), rs.getDouble("baseRate")*100, rs.getDouble("sharePrice"),rs.getString("symbol"),rs.getDouble("beta"));
-		//					allAssets.add(sto);
-		//				}
-		//				else{
-		//					Investment inv = new Investment(rs.getString("code"), rs.getString("label"), rs.getString("type"),rs.getDouble("quarterlyDividend"), rs.getDouble("baseRate")*100,rs.getDouble("omega"),rs.getDouble("investmentValue"));
-		//					allAssets.add(inv);
-		//				}
-		//			}
-		//
-		//			rs.close();
-		//			ps.close();
-		//			conn.close();
-		//			
-		//			return allAssets;
-		//		
-		//		} catch(Exception e) {
-		//			log.error("SQL Exception : " + e);
-		//			throw new RuntimeException(e);
-		//		} finally {
-		//			Factory.closeResources(rs, ps, conn);
-		//		}
 	}
 
 	/**
@@ -966,7 +773,6 @@ public class PortfolioData {
 		EntityManagerFactory emf = null; 
 		EntityManager em = null;
 		List<Person> persons = null;
-
 
 		try {
 			emf = Persistence.createEntityManagerFactory("jmelcher_database");
@@ -1003,106 +809,6 @@ public class PortfolioData {
 		}
 
 		return persons;
-		//	}
-		//		Factory.getDriver();
-		//		Connection conn = null;
-		//		PreparedStatement ps = null;
-		//		ResultSet rs = null;
-		//
-		//		ArrayList<Person> allPersons = new ArrayList<Person>();
-		//
-		//		try {
-		//			conn = Factory.getConnection();
-		//
-		//			String query = "Select * from Person";
-		//			ps = conn.prepareStatement(query);
-		//			rs = ps.executeQuery();
-		//		
-		//			while(rs.next()){
-		//				if(rs.getString("brokerType") != null){
-		//					Set<Email> email = new HashSet<Email>();
-		//					Address ad = null;
-		//					ResultSet rsEmail = null;
-		//					String emailQuery = "SELECT * from Email WHERE 'Email.person_id' = ?";
-		//					PreparedStatement psEmail = conn.prepareStatement(emailQuery);
-		//					psEmail.setString(1, rs.getString("id"));
-		//
-		//					rsEmail = psEmail.executeQuery();
-		//					while(rsEmail.next()){
-		//						email.add(new Email(rsEmail.getString("emailAddress")));
-		//					}
-		//					rsEmail.close();
-		//					psEmail.close();
-		//
-		//					ResultSet rsAddress = null;
-		//					String addressQuery = "Select * from Address left join State on Address.state_id = State.id "
-		//							+ " left join Country on Address.country_id = Country.id Where Address.person_id = ?";
-		//					PreparedStatement psAddress = conn.prepareStatement(addressQuery);
-		//					psAddress.setString(1, rs.getString("id"));
-		//
-		//					rsAddress = psAddress.executeQuery();
-		//					if(rsAddress.next()){
-		//						ad = new Address(rsAddress.getString("street"), rsAddress.getString("city"), 
-		//								rsAddress.getString("State.name"),rsAddress.getString("zipcode"), 
-		//								rsAddress.getString("Country.name"));
-		//					}
-		//					
-		//					rsAddress.close();
-		//					psAddress.close();
-		//					
-		//					Broker b = new Broker(rs.getString("code"),rs.getString("brokerType").charAt(0),
-		//							rs.getString("secID"),rs.getString("lastName"),rs.getString("firstName"),ad,email);
-		//					
-		//					allPersons.add(b);
-		//				}
-		//				else {
-		////					ArrayList<String> email = new ArrayList<String>();
-		//					Set<Email> email = new HashSet<Email>();
-		//					Address ad = null;
-		//					ResultSet rsEmail = null;
-		//					String emailQuery = "SELECT * from Email WHERE 'Email.person_id' = ?";
-		//					PreparedStatement psEmail = conn.prepareStatement(emailQuery);
-		//					psEmail.setString(1, rs.getString("id"));
-		//
-		//					rsEmail = psEmail.executeQuery();
-		//					while(rsEmail.next()){
-		//						email.add(new Email(rsEmail.getString("emailAddress")));
-		//					}
-		//					
-		//					rsEmail.close();
-		//					psEmail.close();
-		//
-		//					ResultSet rsAddress = null;
-		//					String addressQuery = "Select * from Address left join State on Address.state_id = State.id join Country on Address.country_id = Country.id Where Address.person_id = ?";
-		//					PreparedStatement psAddress = conn.prepareStatement(addressQuery);
-		//					psAddress.setString(1, rs.getString("id"));
-		//
-		//					rsAddress = psAddress.executeQuery();
-		//					if(rsAddress.next()){
-		//						ad = new Address(rsAddress.getString("street"), rsAddress.getString("city"), rsAddress.getString("State.name"),rsAddress.getString("zipcode"), rsAddress.getString("Country.name"));
-		//					}
-		//
-		//					rsAddress.close();
-		//					psAddress.close();
-		//
-		//					Person p = new Person(rs.getString("code"),null, null, rs.getString("lastName"),rs.getString("firstName"),ad,email);
-		//					allPersons.add(p);
-		//				}
-		//			}
-		//
-		//			rs.close();
-		//			ps.close();
-		//
-		//			conn.close();
-		//			return allPersons;
-		//
-		//		} catch(Exception e) {
-		//			log.error("Error : " + e);
-		//			throw new RuntimeException(e);
-		//
-		//		} finally {
-		//			Factory.closeResources(rs, ps, conn);
-		//		}
 	}
 
 	/**
@@ -1192,10 +898,6 @@ public class PortfolioData {
 				emf.close();
 			}
 		}
-
-		for(Email email : emails) {
-			System.out.println("Person with code " + email.getPerson().getCode() + " has email: "+ email.getEmailAddress());
-		}
 	}
 
 	/**
@@ -1238,10 +940,6 @@ public class PortfolioData {
 			if (emf != null && emf.isOpen()) {
 				emf.close();
 			}
-		}
-
-		for(Address addr : addresses) {
-			System.out.println("Person with code: " + addr.getPerson().getCode() + " has\nAddress: "+ addr.getStreet() + ", " + addr.getCity() + ", " + addr.getState() + ", " + addr.getZipcode() + ", " + addr.getCountry());
 		}
 	}
 }

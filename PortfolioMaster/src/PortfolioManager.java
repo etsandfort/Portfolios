@@ -15,13 +15,16 @@ import java.util.List;
  * This is the application class for the database, it contains the main method
  * which runs the financial management system.
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
- * @version 3.0
+ * @version 5.0
  */
 public class PortfolioManager{
 	//Data members
 	private PortfolioData input;
 	static org.apache.log4j.Logger log = Logger.getLogger(PortfolioManager.class.getName());
 	
+	/**
+	 * Constructor for PortfolioManager
+	 */
 	public PortfolioManager(){
 		input = new PortfolioData();
 	}
@@ -34,10 +37,13 @@ public class PortfolioManager{
 		return input;
 	}
 	
+	/**
+	 * Prints the Summary Report of all portfolios
+	 */
 	public void printSummary(){
-		List<Portfolio> allPortfolios = getInput().getPortfolios(PortfolioComparator.ownerComparator());
+		List<Portfolio> allPortfolios = getInput().getPortfolios();
 		log.info("Portfolios retrieved");
-		for(Portfolio p : allPortfolios){
+		for(Portfolio p : allPortfolios){ //TODO name change
 			p.doSomething();
 		}
 		ReportMaker report = new ReportMaker(allPortfolios);
@@ -45,62 +51,18 @@ public class PortfolioManager{
 		allPortfolios.clear();
 	}
 
+	/**
+	 * Prints the detailed report of each portfolio
+	 */
 	public void printDetailed(){
-		List<Portfolio> allPortfolios = getInput().getPortfolios(PortfolioComparator.ownerComparator());
+		List<Portfolio> allPortfolios = getInput().getPortfolios();
 		log.info("Portfolios retrieved");
 		
-		for(Portfolio p : allPortfolios){
+		for(Portfolio p : allPortfolios){ //TODO name change
 			p.doSomething();
 		}
 		ReportMaker report = new ReportMaker(allPortfolios);
 		report.printDetailedReport();
-		allPortfolios.clear();
-	}
-	
-	/**
-	 * Runs the summary report to list all portfolios by owner's last name.
-	 */
-	public void listByOwner(){
-		List<Portfolio> allPortfolios = getInput().getPortfolios(PortfolioComparator.ownerComparator());
-
-		log.info("Portfolios retrieved");
-
-		ReportMaker report = new ReportMaker(allPortfolios);
-		System.out.println("Sorting by Owner, A-Z:\n");
-		report.printSummaryReport();
-		
-		allPortfolios.clear();
-	}
-	
-	/**
-	 * Runs the summary report to list all portfolios by total value, ascending.
-	 */
-	public void listByValue(){
-		List<Portfolio> allPortfolios = getInput().getPortfolios(PortfolioComparator.valueComparator());
-
-		log.info("Portfolios retrieved");
-		
-		ReportMaker report = new ReportMaker(allPortfolios);
-		System.out.println("Sorting by Total Value, in descending order:\n");
-		report.printSummaryReport();
-		
-		allPortfolios.clear();
-	}
-	
-	/**
-	 * Runs the summary report to list all portfolios by their managers, 
-	 * first by the broker type of manager (Junior or Expert) then by 
-	 * last name/first name.
-	 */
-	public void listByBrokerType(){
-		List<Portfolio> allPortfolios = getInput().getPortfolios(PortfolioComparator.managerComparator());
-
-		log.info("Portfolios retrieved");
-		
-		ReportMaker report = new ReportMaker(allPortfolios);
-		System.out.println("Sorting by Manager: Junior/Expert, then ordering by manager last name, first name:\n");
-		report.printSummaryReport();
-		
 		allPortfolios.clear();
 	}
 	
@@ -113,6 +75,6 @@ public class PortfolioManager{
 		PortfolioManager manager = new PortfolioManager();
 		manager.printSummary();
 		manager.printDetailed();
-		log.info("Program finished.");		
+		log.info("Program finished");		
 	}
 }
