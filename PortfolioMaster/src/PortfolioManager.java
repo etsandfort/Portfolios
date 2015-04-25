@@ -87,8 +87,8 @@ public class PortfolioManager{
 		
 		PortfolioManager manager = new PortfolioManager();
 		manager.listByOwner();
-//		manager.listByValue();
-//		manager.listByBrokerType();
+		manager.listByValue();
+		manager.listByBrokerType();
 
 		log.info("Program finished.");		
 	}

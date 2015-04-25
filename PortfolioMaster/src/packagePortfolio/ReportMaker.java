@@ -15,6 +15,10 @@ public class ReportMaker{
 	//private GenericList<Portfolio> portfolios;
 	private List<Portfolio> portfolios;
 	
+	/**
+	 * Constructor for ReportMaker objects
+	 * @param portfolios
+	 */
 	public ReportMaker(List<Portfolio> portfolios){//GenericList<Portfolio> portfolios){
 		reportCalc = new ReportCalculation(portfolios);
 		this.portfolios = portfolios;

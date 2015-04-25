@@ -1,7 +1,5 @@
 package com.sdb; //DO NOT CHANGE THIS
 
-import packagePortfolio.*;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,9 +8,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
+import packagePortfolio.Address;
 import packagePortfolio.Asset;
 import packagePortfolio.Email;
 import packagePortfolio.Person;
@@ -21,11 +19,6 @@ import packagePortfolio.GenericList;
 import packagePortfolio.PortfolioAsset;
 
 import com.sdb.PortfolioData;
-
-import packagePortfolio.Address;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -660,17 +653,45 @@ public class PortfolioData {
 				assets = (List<Asset>) em.createQuery(queryA).getResultList();
 				persons = (List<Person>) em.createQuery(queryPer).getResultList();
 
+
+				
 				for(Person person : persons) {
 					for(Portfolio port : portfolios) {
+//						HashMap<Asset,double[]> assetList = new HashMap<Asset,double[]>();
+						port.setCommissionFees(2000);
+						port.setTotalValue(5000);
+						port.setTotalAnnualReturns(4000);
+						port.setTotalRisks(3000);
+						port.setBrokerFees(1000);
 						for(Asset asset : assets) {
 							for(PortfolioAsset portAsset : portAssets) {
 								if(person.getPersonId() == port.getOwner().getPersonId() 
 										&& port.getPortfolioId() == portAsset.getPortfolio().getPortfolioId() 
 										&& asset.getCode() == portAsset.getAsset().getCode()) {
 									
-									System.out.println(person.getLastName() + ", " + person.getFirstName() 
-											+ " owns Asset " + asset.getCode() + " in Portfolio " + port.getCode() 
-											+ " has given value: $" + portAsset.getGivenValue());
+									
+//									System.out.println(person.getLastName() + ", " + person.getFirstName() 
+//											+ " owns Asset " + asset.getCode() + " in Portfolio " + port.getCode() 
+//											+ " has given value: $" + portAsset.getGivenValue());
+									
+									
+//									//Most likely have to do something like the following?
+//									assetList.put(asset, new double[]{calculateRisks(asset), calculateAnnualReturns(assetNumeric,asset),calculateValues(assetNumeric,asset)});
+									
+									port.getAssetList().put(asset, new double[]{});// TODO how does?
+									
+									
+									
+//									System.out.println("Compute Annual Returns: " + asset.computeAnnualReturns(portAsset.getGivenValue()));
+//									asset.computeReturnRate(portAsset.getGivenValue());
+//									System.out.println("Get Return Rate: " + asset.getReturnRate());
+//									System.out.println("Compute Value of Asset: " + asset.computeValueOfAsset(portAsset.getGivenValue()));
+//									System.out.println("Get Risk Value: " + asset.getRiskValue());
+//									port.calculateTotalRisks();
+//									port.calculateTotalValue();
+//									System.out.println("Port Get Total Annual Returns: " + port.getTotalAnnualReturns());
+//									System.out.println("Port Get Total Risks: " + port.getTotalRisks());
+//									System.out.println("Portfolio Total Value: " + port.getTotalValue());
 								}
 							}	
 						}
@@ -854,7 +875,7 @@ public class PortfolioData {
 	/**
 	 * Searches for specific assets in a given ArrayList of assets
 	 * @param idList, list of ids to be searched for
-	 * @param assets, arraylist of assets to search through
+	 * @param assets, list of assets to search through
 	 * @return assetList, a HashMap of assets to values given
 	 */
 	public HashMap<Asset, Double> searchAssets(HashMap<String,Double> idList, List<Asset> assets){//ArrayList<Asset> assets){
@@ -875,9 +896,8 @@ public class PortfolioData {
 
 	/**
 	 * Gets all the Assets currently in the database
-	 * @return ArrayList<Asset> 
+	 * @return List<Asset> 
 	 */
-	//	public ArrayList<Asset> getAssets(){
 	public List<Asset> getAssets(){
 		EntityManagerFactory emf = null; 
 		EntityManager em = null;
@@ -962,8 +982,8 @@ public class PortfolioData {
 	}
 
 	/**
-	 * Gets all of the persons in the database and puts them in an ArrayList
-	 * @return ArrayList of persons
+	 * Gets all of the persons in the database and puts them in a List
+	 * @return List of persons
 	 */
 	public List<Person> getPersons(){
 
@@ -1109,6 +1129,10 @@ public class PortfolioData {
 		//		}
 	}
 
+	/**
+	 * Retrieves all PortfolioAssets from the database.
+	 * @return
+	 */
 	public List<PortfolioAsset> getPortfolioAssets() {
 		EntityManagerFactory emf = null; 
 		EntityManager em = null;
@@ -1150,6 +1174,9 @@ public class PortfolioData {
 		return portAssets;
 	}
 
+	/**
+	 * Retrieves all emails from the database.
+	 */
 	public void getEmails() {
 		EntityManagerFactory emf = null; 
 		EntityManager em = null;
@@ -1195,6 +1222,9 @@ public class PortfolioData {
 		}
 	}
 
+	/**
+	 * Retrieves all addresses from the database.
+	 */
 	public void getAddresses() {
 		EntityManagerFactory emf = null; 
 		EntityManager em = null;

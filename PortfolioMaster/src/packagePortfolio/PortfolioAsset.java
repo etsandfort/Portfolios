@@ -1,17 +1,14 @@
 package packagePortfolio;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,19 +22,13 @@ public class PortfolioAsset implements Serializable {
 	@Column(name="portAsset_id", nullable=false)
 	private Integer portAssetId;
 	
-//  @Transient	
-//	@OneToMany(fetch=FetchType.EAGER)
-
-//	@OneToMany(targetEntity = Asset.class)
 	@ManyToOne
 	@JoinColumn(name="asset_id")
-	private Asset asset; //changed from Set<Asset>
+	private Asset asset;
 
-//	@OneToMany(fetch=FetchType.EAGER, targetEntity = Portfolio.class)
-//	@OneToMany(targetEntity = Portfolio.class)
 	@ManyToOne
 	@JoinColumn(name="portfolio_id", nullable=false)
-	private Portfolio portfolio; // changed from Set<Portfolio>
+	private Portfolio portfolio;
 	
 	@Column(name="givenValue")
 	private double givenValue;
