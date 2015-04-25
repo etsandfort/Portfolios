@@ -40,6 +40,7 @@ public class Investment extends Asset{
 	 * @param value, the investment's total value
 	 */
 	public Investment(String code, String label, String type, double quart,double rate,  double omega, double value){
+		System.out.println("It is in the investment");
 		setCode(code);
 		setLabel(label);
 //		setType(type);
@@ -58,7 +59,7 @@ public class Investment extends Asset{
 		if(percentageOwned <= 1){
 			percentageOwned *= 100;
 		}
-		double anReturns = ((this.baseRate * this.value) + (this.quarterlyDividend * 4)) * percentageOwned / 100.0;
+		double anReturns = ((this.baseRate /100* this.value) + (this.quarterlyDividend * 4)) * percentageOwned / 100.0;
 		//annualReturns is base rate of returns * value plus quarterly dividend * 4 times percentageOwned as a percent
 		return anReturns;
 	}
@@ -83,7 +84,7 @@ public class Investment extends Asset{
 		if(percentageOwned <= 1){
 			percentageOwned *= 100;
 		}
-		double returnRate = (computeAnnualReturns(percentageOwned) / computeValueOfAsset(percentageOwned))* 100;
+		double returnRate = (computeAnnualReturns(percentageOwned) / computeValueOfAsset(percentageOwned)) *100;
 		this.setReturnRate(returnRate); 
 	}
 
@@ -100,7 +101,7 @@ public class Investment extends Asset{
 	 * @returns riskValue, a double
 	 */
 	public double getRiskValue(){
-		return riskValue;
+		return omega + Math.pow(Math.E,(-100000/this.value));
 	}
 
 	/**

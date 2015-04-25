@@ -60,7 +60,7 @@ public class Stock extends Asset{
 	 */
 	public double computeAnnualReturns(double stocks){
 		double anReturns = 0.0;
-		anReturns = (this.quarterlyDividend * 4 * stocks) + (this.baseRate * stocks * this.sharePrice) ; 
+		anReturns = (this.quarterlyDividend * 4 * stocks) + (this.baseRate / 100 * stocks * this.sharePrice) ; 
 		//annual return is quarterly dividend * 4 * stocks owned plus base Rate of return times sharePrice times stocks
 		return anReturns;
 	}
@@ -98,7 +98,7 @@ public class Stock extends Asset{
 	 * @return riskValue, a double
 	 */
 	public double getRiskValue(){
-		return riskValue;
+		return beta;
 	}
 	
 	/**

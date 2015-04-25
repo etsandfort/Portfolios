@@ -41,7 +41,7 @@ public class Deposit extends Asset{
 	public double computeAnnualReturns(double deposit){
 		double anReturns = 0.0;
 		double aPY;
-		aPY = (Math.pow(Math.E, this.baseRate) - 1); //apy = e^(APR) - 1
+		aPY = (Math.pow(Math.E, this.baseRate/100) - 1); //apy = e^(APR) - 1
 		anReturns = aPY * deposit  ;
 		return anReturns;
 	}
