@@ -658,11 +658,11 @@ public class PortfolioData {
 				for(Person person : persons) {
 					for(Portfolio port : portfolios) {
 //						HashMap<Asset,double[]> assetList = new HashMap<Asset,double[]>();
-						port.setCommissionFees(2000);
-						port.setTotalValue(5000);
-						port.setTotalAnnualReturns(4000);
-						port.setTotalRisks(3000);
-						port.setBrokerFees(1000);
+//						port.setCommissionFees(2000);
+//						port.setTotalValue(5000);
+//						port.setTotalAnnualReturns(4000);
+//						port.setTotalRisks(3000);
+//						port.setBrokerFees(1000);
 						for(Asset asset : assets) {
 							for(PortfolioAsset portAsset : portAssets) {
 								if(person.getPersonId() == port.getOwner().getPersonId() 
@@ -678,7 +678,7 @@ public class PortfolioData {
 //									//Most likely have to do something like the following?
 //									assetList.put(asset, new double[]{calculateRisks(asset), calculateAnnualReturns(assetNumeric,asset),calculateValues(assetNumeric,asset)});
 									
-									port.getAssetList().put(asset, new double[]{});// TODO how does?
+									//port.getAssetList().put(asset, new double[]{});// TODO how does?
 									
 									
 									

@@ -14,6 +14,7 @@ public class ReportMaker{
 	private ReportCalculation reportCalc;
 	//private GenericList<Portfolio> portfolios;
 	private List<Portfolio> portfolios;
+//	private List<PortfolioAsset> portAssets;
 	
 	/**
 	 * Constructor for ReportMaker objects
@@ -22,6 +23,7 @@ public class ReportMaker{
 	public ReportMaker(List<Portfolio> portfolios){//GenericList<Portfolio> portfolios){
 		reportCalc = new ReportCalculation(portfolios);
 		this.portfolios = portfolios;
+//		this.portAssets = portAssets;
 	}
 	
 	/**

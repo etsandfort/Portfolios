@@ -1,8 +1,10 @@
 import org.apache.log4j.Logger;
 
 import packagePortfolio.Portfolio;
+import packagePortfolio.PortfolioAsset;
 import packagePortfolio.ReportMaker;
 import packagePortfolio.PortfolioComparator;
+
 import com.sdb.PortfolioData;
 
 import java.util.List;
@@ -17,9 +19,13 @@ import java.util.List;
  */
 public class PortfolioManager{
 	//Data members
-	private PortfolioData input = new PortfolioData();
+	private PortfolioData input;
 	static org.apache.log4j.Logger log = Logger.getLogger(PortfolioManager.class.getName());
-
+	
+	public PortfolioManager(){
+		input = new PortfolioData();
+	}
+	
 	/**
 	 * Obtains the input
 	 * @return input, a DataReader object
@@ -28,11 +34,27 @@ public class PortfolioManager{
 		return input;
 	}
 	
+	public void printSummary(){
+		List<Portfolio> allPortfolios = getInput().getPortfolios(PortfolioComparator.ownerComparator());
+		log.info("Portfolios retrieved");
+		
+		ReportMaker report = new ReportMaker(allPortfolios);
+		report.printSummaryReport();
+	}
+
+	public void printDetailed(){
+		List<Portfolio> allPortfolios = getInput().getPortfolios(PortfolioComparator.ownerComparator());
+		log.info("Portfolios retrieved");
+		
+		ReportMaker report = new ReportMaker(allPortfolios);
+		report.printDetailedReport();
+	}
+	
 	/**
 	 * Runs the summary report to list all portfolios by owner's last name.
 	 */
 	public void listByOwner(){
-//		GenericList<Portfolio> allPortfolios = getInput().getPortfolios(PortfolioComparator.ownerComparator());
+////		GenericList<Portfolio> allPortfolios = getInput().getPortfolios(PortfolioComparator.ownerComparator());
 		List<Portfolio> allPortfolios = getInput().getPortfolios(PortfolioComparator.ownerComparator());
 
 		log.info("Portfolios retrieved");
@@ -48,7 +70,7 @@ public class PortfolioManager{
 	 * Runs the summary report to list all portfolios by total value, ascending.
 	 */
 	public void listByValue(){
-//		GenericList<Portfolio> allPortfolios = getInput().getPortfolios(PortfolioComparator.valueComparator());
+////		GenericList<Portfolio> allPortfolios = getInput().getPortfolios(PortfolioComparator.valueComparator());
 		List<Portfolio> allPortfolios = getInput().getPortfolios(PortfolioComparator.valueComparator());
 
 		log.info("Portfolios retrieved");
@@ -66,7 +88,7 @@ public class PortfolioManager{
 	 * last name/first name.
 	 */
 	public void listByBrokerType(){
-//		GenericList<Portfolio> allPortfolios = getInput().getPortfolios(PortfolioComparator.managerComparator());
+////		GenericList<Portfolio> allPortfolios = getInput().getPortfolios(PortfolioComparator.managerComparator());
 		List<Portfolio> allPortfolios = getInput().getPortfolios(PortfolioComparator.managerComparator());
 
 		log.info("Portfolios retrieved");
@@ -86,10 +108,13 @@ public class PortfolioManager{
 		log.info("Getting portfolios");
 		
 		PortfolioManager manager = new PortfolioManager();
-		manager.listByOwner();
-		manager.listByValue();
-		manager.listByBrokerType();
+//		manager.listByOwner();
+//		manager.listByValue();
+//		manager.listByBrokerType();
 
+		manager.printSummary();
+		manager.printDetailed();
+		
 		log.info("Program finished.");		
 	}
 }
