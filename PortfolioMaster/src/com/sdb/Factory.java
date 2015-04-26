@@ -66,7 +66,6 @@ public class Factory {
 	 */
 	public static void closeResources(PreparedStatement ps, Connection conn){
 		try {
-			
 			if(ps != null && !ps.isClosed())
 				ps.close();
 			if(conn != null && !conn.isClosed())

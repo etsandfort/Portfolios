@@ -5,8 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -171,8 +169,6 @@ public class PortfolioData {
 		PreparedStatement ps = null;
 
 		String addPersonQuery= "INSERT INTO Person(code, lastName, firstName, secID, brokerType) VALUES (?, ?, ?, ?, ?)";
-//		String addStateQuery = "INSERT IGNORE INTO State(name) VALUES(?)";
-//		String addCountryQuery = "INSERT IGNORE INTO Country(name) VALUES(?)";
 		String addAddressQuery = "INSERT INTO Address(street,city,state,zipcode,country,person_id) VALUES " 
 				+ "(?,?,?,?,?,"
 				+ "(SELECT person_id FROM Person WHERE (code = ?)))";
@@ -187,16 +183,6 @@ public class PortfolioData {
 			ps.setString(5, brokerType);
 			ps.executeUpdate();
 			ps.close();
-
-//			ps = conn.prepareStatement(addStateQuery);
-//			ps.setString(1, state);
-//			ps.executeUpdate();
-//			ps.close();
-//
-//			ps = conn.prepareStatement(addCountryQuery);
-//			ps.setString(1, country);
-//			ps.executeUpdate();
-//			ps.close();
 
 			ps = conn.prepareStatement(addAddressQuery);
 			ps.setString(1, street);
@@ -866,7 +852,6 @@ public class PortfolioData {
 		EntityManagerFactory emf = null; 
 		EntityManager em = null;
 		List<Email> emails = null;
-
 
 		try {
 			emf = Persistence.createEntityManagerFactory("jmelcher_database");

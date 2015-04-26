@@ -43,8 +43,8 @@ public class PortfolioManager{
 	public void printSummary(){
 		List<Portfolio> allPortfolios = getInput().getPortfolios();
 		log.info("Portfolios retrieved");
-		for(Portfolio p : allPortfolios){ //TODO name change
-			p.doSomething();
+		for(Portfolio p : allPortfolios){
+			p.compileData();
 		}
 		ReportMaker report = new ReportMaker(allPortfolios);
 		report.printSummaryReport();
@@ -58,8 +58,8 @@ public class PortfolioManager{
 		List<Portfolio> allPortfolios = getInput().getPortfolios();
 		log.info("Portfolios retrieved");
 		
-		for(Portfolio p : allPortfolios){ //TODO name change
-			p.doSomething();
+		for(Portfolio p : allPortfolios){
+			p.compileData();
 		}
 		ReportMaker report = new ReportMaker(allPortfolios);
 		report.printDetailedReport();

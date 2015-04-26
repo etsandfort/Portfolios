@@ -1,29 +1,18 @@
 package packagePortfolio;
 
 import java.io.Serializable;
-//import java.util.HashSet;
-//import java.util.Set;
-import java.util.ArrayList;
 import java.util.Set;
 
 import javax.persistence.Column;
-//import javax.persistence.DiscriminatorColumn;
-//import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-//import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-//import javax.persistence.Inheritance;
-//import javax.persistence.InheritanceType;
-//import javax.persistence.JoinColumn;
-//import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 /**
  * Person.java
@@ -32,11 +21,8 @@ import javax.persistence.Transient;
  * @author Libby Gentry, Jacob Melcher, Elliot Sandfort
  * @version 3.0
  */
-//TODO Discriminator things?
 @Entity
 @Table(name="Person")
-//@DiscriminatorColumn(name="brokerType")
-//@DiscriminatorValue(value="null")
 public class Person implements Serializable {
 
 	private static final long serialVersionUID = -814095199153603476L;
@@ -61,16 +47,12 @@ public class Person implements Serializable {
 	@Column(name="brokerType", nullable=true)
 	private String brokerType; 
 	
-	//TODO Needs to be a one-to-one maybe? but bourke didn't really like those...?
-
 	@OneToOne
 	@JoinColumn(name="person_id", nullable=false)
 	private Address address;
 	
 	@OneToMany(fetch=FetchType.EAGER, mappedBy="person")
-	//@JoinColumn(name="person_id", nullable=false)
 	private Set<Email> emails;
-	//private ArrayList<Email> emails; //TODO switched from ArrayList<String>
 	
 	public Person() {}
 	
@@ -83,7 +65,7 @@ public class Person implements Serializable {
 	 * @param emails emails
 	 */
 	public Person(String code, String brokerType, String sec, String lastName, String firstName,
-			Address address, Set<Email> emails){//, ArrayList<String> email){
+			Address address, Set<Email> emails){
 		this.code = code;
 		this.firstName = firstName;
 		this.lastName = lastName;

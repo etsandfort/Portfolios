@@ -10,8 +10,6 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
-
-
 /**
  * DataReader.java
  * RAIK 184H
@@ -166,7 +164,6 @@ public class DataReader{
 		Address a = new Address(addressComps[0],addressComps[1],addressComps[2],addressComps[4], addressComps[3]);
 		
 		//parsing a list of emails
-//		ArrayList<String> email = new ArrayList<String>();
 		Set<Email> email = new HashSet<Email>();
 		if(info.length==5){
 			String[] emailList = info[4].split(",");

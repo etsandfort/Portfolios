@@ -74,7 +74,6 @@ public class PortfolioComparator {
 			}
 			public int compare(Portfolio a, Portfolio b){
 				int compareBrokerType = b.getManager().getBrokerType().compareTo(a.getManager().getBrokerType());
-//				int compareBrokerType =  (b.getManager().getType())-(a.getManager().getType()); //TODO implement this
 				if(compareBrokerType == 0){
 					return compareManagerNames(a,b);
 				}

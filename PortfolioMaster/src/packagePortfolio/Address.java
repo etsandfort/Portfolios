@@ -1,28 +1,15 @@
 package packagePortfolio;
 
 import java.io.Serializable;
-//import java.util.HashSet;
-//import java.util.Set;
-//import java.util.ArrayList;
-
-
 
 import javax.persistence.Column;
-//import javax.persistence.DiscriminatorColumn;
-//import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-//import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-//import javax.persistence.Inheritance;
-//import javax.persistence.InheritanceType;
-//import javax.persistence.JoinColumn;
-//import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**

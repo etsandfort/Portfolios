@@ -3,19 +3,13 @@ package packagePortfolio;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -39,8 +33,6 @@ public class Asset implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	//@ManyToOne(fetch=FetchType.EAGER)
-	//@JoinColumn(name="asset_id")
 	@Column(name="asset_id", nullable=false)
 	private Integer assetId;
 	
@@ -50,27 +42,17 @@ public class Asset implements Serializable{
 	@Column(name="label", nullable=false)
 	private String label;
 	
-//	@Column(name="type", nullable=false)
-//	private String type;
-	
-//	@ManyToMany(cascade = CascadeType.ALL)
-//	@JoinTable(
-//			name = "PortfolioAsset",
-//			joinColumns = @JoinColumn(name = "asset_id"),
-//			inverseJoinColumns = @JoinColumn(name = "portfolio_id"))
-//	private Set<PortfolioAsset> portAssets;
-	
-	@OneToMany//(mappedBy = "Asset")
+	@OneToMany
 	private Set<PortfolioAsset> portfolios;
 	
 	@Transient
-	protected double riskValue; // TODO check this 
+	protected double riskValue;
 	
 	@Column(name="baseRate", nullable=false)
 	protected double baseRate;
 	
 	@Transient
-	protected double returnRate; // TODO check this
+	protected double returnRate;
 	
 	public Asset() {}
 	
@@ -145,22 +127,6 @@ public class Asset implements Serializable{
 	public void setLabel(String label){
 		this.label = label;
 	}
-	
-//	/**
-//	 * Obtains the type
-//	 * @return the type
-//	 */
-//	public String getType(){
-//		return type;
-//	}
-//	
-//	/**
-//	 * Sets the new type
-//	 * @param type
-//	 */
-//	public void setType(String type){
-//		this.type = type;
-//	}
 	
 	/**
 	 * Obtains the base rate of return

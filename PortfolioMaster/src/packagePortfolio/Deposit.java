@@ -29,7 +29,6 @@ public class Deposit extends Asset{
 	public Deposit(String code, String label, String type, double apr){
 		setCode(code);
 		setLabel(label);
-//		setType(type);
 		setBaseRate(apr);
 		setRiskValue(0);
 	}
@@ -41,6 +40,7 @@ public class Deposit extends Asset{
 	public double computeAnnualReturns(double deposit){
 		double anReturns = 0.0;
 		double aPY;
+		
 		aPY = (Math.pow(Math.E, this.baseRate) - 1); //apy = e^(APR) - 1
 		anReturns = aPY * deposit;
 		
@@ -61,11 +61,8 @@ public class Deposit extends Asset{
 	 * @param initialDeposit - the current amount
 	 */
 	public void computeReturnRate(double initialDeposit){
-//		System.out.println("In return rate - deposit");
 		double returnRate = (computeAnnualReturns(initialDeposit)/initialDeposit) * 100.0;
 		this.setReturnRate(returnRate);
-//		System.out.println("Return rate: " + returnRate);
-//		System.out.println("Return rate with get: " + getReturnRate());
 	}
 
 	/**
@@ -97,7 +94,6 @@ public class Deposit extends Asset{
 	 * @param baseRate 
 	 */
 	public void setBaseRate(double baseRate){
-//		this.baseRate = baseRate/100.0; //turns it from percent to decimal
-		this.baseRate = baseRate*100.0;
+		this.baseRate = baseRate/100.0; //turns it from percent to decimal
 	}
 }

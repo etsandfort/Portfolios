@@ -77,7 +77,7 @@ public class ReportCalculation{
 	
 	/**
 	 * Calculates the total commissions  for all the portfolios
-	 * @param portfolios, an ArrayList
+	 * @param portfolios, a List
 	 * @return tComm - total commissions, a double
 	 */
 	private double calculateTotalCommissions(List<Portfolio> portfolios){
@@ -90,7 +90,7 @@ public class ReportCalculation{
 	
 	/**
 	 * calculates the total broker fees for all the portfolios
-	 * @param portfolios, an ArrayList
+	 * @param portfolios, a List
 	 * @return tFees - total broker fees, a double
 	 */
 	private double calculateTotalFees(List<Portfolio> portfolios){
@@ -103,7 +103,7 @@ public class ReportCalculation{
 	
 	/**
 	 * Calculates the total values for all the portfolios
-	 * @param portfolios, an ArrayList
+	 * @param portfolios, a List
 	 * @return tValue - total value, a double
 	 */
 	private double calculateTotalValue(List<Portfolio> portfolios){
@@ -116,7 +116,7 @@ public class ReportCalculation{
 	
 	/**
 	 * Calculates the Total annual returns for all the portfolios
-	 * @param portfolios, an ArrayList
+	 * @param portfolios, a List
 	 * @return tReturns- total annual returns, a double
 	 */
 	private double calculateTotalReturns(List<Portfolio> portfolios){

@@ -42,7 +42,6 @@ public class Investment extends Asset{
 	public Investment(String code, String label, String type, double quart, double rate, double omega, double value){
 		setCode(code);
 		setLabel(label);
-//		setType(type);
 		setBaseRate(rate);
 		setQuarterlyDividend(quart);
 		setOmega(omega);
@@ -58,6 +57,7 @@ public class Investment extends Asset{
 		if(percentageOwned <= 1){
 			percentageOwned *= 100;
 		}
+		
 		double anReturns = ((this.baseRate * this.value) + (this.quarterlyDividend * 4)) * percentageOwned / 100.0;
 		//annualReturns is base rate of returns * value plus quarterly dividend * 4 times percentageOwned as a percent
 		
@@ -81,16 +81,11 @@ public class Investment extends Asset{
 	 * @param percentageOwned - percentage owned of investment
 	 */
 	public void computeReturnRate(double percentageOwned){
-//		System.out.println("In compute return rate - investment");
-//		System.out.println("% owned: " + percentageOwned);
 		if(percentageOwned <= 1){
 			percentageOwned *= 100;
 		}
-//		System.out.println("% owned: " + percentageOwned);
 		double returnRate = (computeAnnualReturns(percentageOwned) / computeValueOfAsset(percentageOwned)) *100;
 		this.setReturnRate(returnRate); 
-//		System.out.println("Return rate: " + returnRate);
-//		System.out.println("Return rate with get: " + getReturnRate());
 	}
 
 	/**
@@ -153,8 +148,7 @@ public class Investment extends Asset{
 	 * @param baseRate, a double
 	 */
 	public void setBaseRate(double baseRate ){
-//		this.baseRate = (baseRate/100); // converts percentage to its decimal form
-		this.baseRate = (baseRate*100.0); // converts percentage to its decimal form
+		this.baseRate = (baseRate/100); // converts percentage to its decimal form
 		}
 	
 	/**

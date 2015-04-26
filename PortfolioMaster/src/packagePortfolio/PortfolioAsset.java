@@ -44,18 +44,18 @@ public class PortfolioAsset implements Serializable {
 	}
 
 	/**
-	 * Gets the primary key of asset associated with
+	 * Gets the asset associated with
 	 * PortfolioAsset
-	 * @return assetId, an Integer
+	 * @return asset, an Asset
 	 */
 	public Asset getAsset() {
 		return asset;
 	}
 
 	/**
-	 * Gets the primary key of portfolio associated with
+	 * Gets the portfolio associated with
 	 * PortfolioAsset
-	 * @return portfolioId, an integer //TODO update all javadoc
+	 * @return portfolio, a Portfolio
 	 */
 	public Portfolio getPortfolio() {
 		return portfolio;

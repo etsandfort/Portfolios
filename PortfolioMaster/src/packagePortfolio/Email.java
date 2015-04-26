@@ -33,6 +33,10 @@ public class Email implements Serializable {
 
 	public Email() {}
 	
+	/**
+	 * Constructor for Email
+	 * @param emailAddress
+	 */
 	public Email(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}

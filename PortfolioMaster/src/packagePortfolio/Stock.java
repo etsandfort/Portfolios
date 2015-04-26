@@ -59,12 +59,9 @@ public class Stock extends Asset{
 	 */
 	public double computeAnnualReturns(double stocks){
 		double anReturns = 0.0;
-//		anReturns = (this.quarterlyDividend * 4 * stocks) + (this.baseRate / 100 * stocks * this.sharePrice);
+		
 		anReturns = (this.quarterlyDividend * 4 * stocks) + (this.baseRate * stocks * this.sharePrice); 
 		//annual return is quarterly dividend * 4 * stocks owned plus base Rate of return times sharePrice times stocks
-	
-		//TODO checking
-//		anReturns = anReturns*100;
 		return anReturns;
 	}
 	
@@ -132,8 +129,7 @@ public class Stock extends Asset{
 	 * @param baseRate
 	 */
 	public void setBaseRate(double baseRate){
-//		this.baseRate = (baseRate/100.0); // converting the percentage to its decimal version
-		this.baseRate = (baseRate*100.0);
+		this.baseRate = (baseRate/100.0); // converting the percentage to its decimal version
 	}
 	
 	/**

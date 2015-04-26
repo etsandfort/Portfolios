@@ -50,25 +50,12 @@ public class Portfolio implements Serializable {
 	@JoinColumn(name="manager_id", nullable=false)
 	private Person manager;
 
-	@OneToOne(fetch=FetchType.EAGER) // TODO Bourke said this is wrong (probs wrong for other person members, too)
+	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="beneficiary_id")
 	private Person beneficiary;
 
-	//@OneToMany(mappedBy = "Portfolio")
-	//	@JoinTable(name = "PortfolioAsset",
-	//			   joinColumns = @JoinColumn(name = "portfolio_id"),
-	//			   inverseJoinColumns = @JoinColumn(name = "asset_id"))
-	//	private Set<Asset> assets;
-
-	//	@OneToMany(cascade = CascadeType.ALL)
-	//	@JoinTable(
-	//			name = "PortfolioAsset",
-	//			joinColumns = @JoinColumn(name = "portfolio_id"),
-	//			inverseJoinColumns = @JoinColumn(name = "asset_id"))
-	//	private Set<PortfolioAsset> portAssets;
-
-	@OneToMany//(mappedBy = "Portfolio")
-	private Set<PortfolioAsset> portAssets; // TODO Is this what should be in the set?
+	@OneToMany
+	private Set<PortfolioAsset> portAssets;
 
 	@Transient
 	private HashMap<Asset, Double> assetNumeric;
@@ -91,9 +78,7 @@ public class Portfolio implements Serializable {
 	@Transient
 	private double commissionFees;
 
-	protected Portfolio() {
-		
-	}
+	protected Portfolio() {}
 
 	/**
 	 * Portfolio constructor without beneficiary
@@ -115,8 +100,13 @@ public class Portfolio implements Serializable {
 		calculateCommissionFee();
 		calculateReturnRates();
 	}
-	//TODO rename this
-	public void doSomething(){
+
+	/**
+	 * This method runs the computations necessary for a Portfolio
+	 * object. In JPA, the desired constructor is not reached, so 
+	 * these methods are called here to alleviate that concern.
+	 */
+	public void compileData(){
 		this.assetNumeric = getHash();
 		condenseHashMap(this.assetNumeric);
 		calculateTotalValue();
@@ -127,20 +117,24 @@ public class Portfolio implements Serializable {
 		calculateReturnRates();
 	}
 
+	/**
+	 * This method creates the hashMap of Assets in a Portfolio
+	 * to their given values
+	 * @return HashMap
+	 */
 	private HashMap<Asset,Double> getHash(){
-		 HashMap<Asset,Double> hash = new HashMap<Asset,Double>();
-		 PortfolioData pd = new PortfolioData();
-		 List<PortfolioAsset> portAssets = pd.getPortfolioAssets();
-		 for(PortfolioAsset pa : portAssets){
-			 if(pa.getPortfolio().getCode().equals(this.code)){
-				 hash.put(pa.getAsset(), pa.getGivenValue());
-			 }
-		 }
-		 return hash;
-		 
-	 }
-	
-	
+		HashMap<Asset,Double> hash = new HashMap<Asset,Double>();
+		PortfolioData pd = new PortfolioData();
+		List<PortfolioAsset> portAssets = pd.getPortfolioAssets();
+		for(PortfolioAsset pa : portAssets){
+			if(pa.getPortfolio().getCode().equals(this.code)){
+				hash.put(pa.getAsset(), pa.getGivenValue());
+			}
+		}
+
+		return hash;
+	}
+
 	/** 
 	 * Portfolio Constructor, overloaded to take in a beneficiary
 	 * @param code
@@ -155,43 +149,12 @@ public class Portfolio implements Serializable {
 	}
 
 	/**
-	 * Constructor when Portfolio has no assets and no beneficiary
-	 * @param code
-	 * @param owner
-	 * @param manager
-	 */
-	/*public Portfolio(String code, Person owner, Person manager){
-		this.code = code;
-		this.owner = owner;
-		this.manager = manager;
-		this.setBrokerFees(0);
-		this.setCommissionFees(0);
-		this.setTotalValue(0);
-		this.setTotalAnnualReturns(0);
-		this.setTotalRisks(0);	
-	}*/
-
-	/**
-	 * Constructor when Portfolio has no assets, but does have a beneficiary
-	 * @param code
-	 * @param owner
-	 * @param manager
-	 * @param beneficiary
-	 */
-	/*public Portfolio(String code, Person owner, Person manager, Person beneficiary){
-		this(code, owner, manager);
-		this.beneficiary = beneficiary;
-	}*/
-
-	/**
 	 * This method condenses the hash map so that it is one hash map of 3 different things
 	 * @param assetNumeric - Hash Map of assets and their given numeric values from Portfolios.dat
 	 */
 	private void condenseHashMap(HashMap<Asset,Double> assetNumeric){
 		assetList = new HashMap<Asset,double[]>(); //new hashmap of asset, double array
-	//	System.out.println("size of the assetnumeric " + assetNumeric.size());
 		for(Asset asset: assetNumeric.keySet()){ //for each asset in the HashMap keySet
-			//System.out.println("here is the asset " + asset);
 			assetList.put(asset, new double[]{calculateRisks(asset), calculateAnnualReturns(assetNumeric,asset),calculateValues(assetNumeric,asset)});
 			//calls the calculate methods for each asset to get the Risk,AnnualReturns,Values
 		}
@@ -265,14 +228,11 @@ public class Portfolio implements Serializable {
 		this.brokerFees = brokerFees;
 	}
 
-	//TODO these were different assetNumerics/assetNumeric. Totally could have messed up values
 	/**
 	 * Calculates the annual returns for the portfolios
 	 * @return annualReturns
 	 */
-//	private double calculateAnnualReturns(HashMap<Asset,Double>assetNumerics,Asset asset){
-		private double calculateAnnualReturns(HashMap<Asset,Double>assetNumerics,Asset asset){
-
+	private double calculateAnnualReturns(HashMap<Asset,Double>assetNumerics,Asset asset){
 		return asset.computeAnnualReturns(assetNumerics.get(asset));
 	}
 
