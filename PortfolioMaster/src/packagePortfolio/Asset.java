@@ -63,7 +63,6 @@ public class Asset implements Serializable{
 	@OneToMany//(mappedBy = "Asset")
 	private Set<PortfolioAsset> portfolios;
 	
-	
 	@Transient
 	protected double riskValue; // TODO check this 
 	

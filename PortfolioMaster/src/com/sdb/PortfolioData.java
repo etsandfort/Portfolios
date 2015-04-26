@@ -94,15 +94,15 @@ public class PortfolioData {
 		PreparedStatement ps = null;
 
 		String safeUpdatesOff = "SET SQL_SAFE_UPDATES=0";
-		String deletePA= "DELETE FROM PortfolioAsset WHERE id IN (SELECT id FROM (SELECT * FROM PortfolioAsset) AS pa" 
-				+ " WHERE portfolio_id IN ((SELECT Portfolio.id FROM Portfolio WHERE (owner_id IN (" 
-				+ " SELECT Person.id FROM Person WHERE code = ?) OR manager_id IN ( " 
-				+ " SELECT Person.id FROM Person WHERE code = ?)))))";
-		String deletePort= "DELETE FROM Portfolio WHERE (owner_id = (SELECT id FROM Person WHERE code = ?) OR " 
-				+ "manager_id = (SELECT id FROM Person WHERE code = ?))";
-		String deleteEmail="DELETE FROM Email WHERE person_id = (SELECT Person.id FROM Person WHERE code = ?)";
-		String deleteAddress="DELETE FROM Address WHERE person_id = (SELECT Person.id FROM Person WHERE code = ?)";
-		String deletePerson="DELETE FROM Person WHERE id = (SELECT id FROM (SELECT * FROM Person) AS p WHERE code = ?)";
+		String deletePA= "DELETE FROM PortfolioAsset WHERE portAsset_id IN (SELECT portAsset_id FROM (SELECT * FROM PortfolioAsset) AS pa" 
+				+ " WHERE portfolio_id IN ((SELECT Portfolio.portfolio_id FROM Portfolio WHERE (owner_id IN (" 
+				+ " SELECT Person.person_id FROM Person WHERE code = ?) OR manager_id IN ( " 
+				+ " SELECT Person.person_id FROM Person WHERE code = ?)))))";
+		String deletePort= "DELETE FROM Portfolio WHERE (owner_id = (SELECT person_id FROM Person WHERE code = ?) OR " 
+				+ "manager_id = (SELECT person_id FROM Person WHERE code = ?))";
+		String deleteEmail="DELETE FROM Email WHERE person_id = (SELECT Person.person_id FROM Person WHERE code = ?)";
+		String deleteAddress="DELETE FROM Address WHERE person_id = (SELECT Person.person_id FROM Person WHERE code = ?)";
+		String deletePerson="DELETE FROM Person WHERE person_id = (SELECT person_id FROM (SELECT * FROM Person) AS p WHERE code = ?)";
 
 		try {
 			conn = Factory.getConnection();
@@ -171,12 +171,11 @@ public class PortfolioData {
 		PreparedStatement ps = null;
 
 		String addPersonQuery= "INSERT INTO Person(code, lastName, firstName, secID, brokerType) VALUES (?, ?, ?, ?, ?)";
-		String addStateQuery = "INSERT IGNORE INTO State(name) VALUES(?)";
-		String addCountryQuery = "INSERT IGNORE INTO Country(name) VALUES(?)";
-		String addAddressQuery = "INSERT INTO Address(street,city,state_id,zipcode,country_id,person_id) VALUES " 
-				+ "(?, ?,(SELECT id FROM State WHERE (name = ?)),?," 
-				+ "(SELECT id FROM Country WHERE (name = ?)),"
-				+ "(SELECT id FROM Person WHERE (code = ?)))";
+//		String addStateQuery = "INSERT IGNORE INTO State(name) VALUES(?)";
+//		String addCountryQuery = "INSERT IGNORE INTO Country(name) VALUES(?)";
+		String addAddressQuery = "INSERT INTO Address(street,city,state,zipcode,country,person_id) VALUES " 
+				+ "(?,?,?,?,?,"
+				+ "(SELECT person_id FROM Person WHERE (code = ?)))";
 
 		try {
 			conn = Factory.getConnection();
@@ -189,15 +188,15 @@ public class PortfolioData {
 			ps.executeUpdate();
 			ps.close();
 
-			ps = conn.prepareStatement(addStateQuery);
-			ps.setString(1, state);
-			ps.executeUpdate();
-			ps.close();
-
-			ps = conn.prepareStatement(addCountryQuery);
-			ps.setString(1, country);
-			ps.executeUpdate();
-			ps.close();
+//			ps = conn.prepareStatement(addStateQuery);
+//			ps.setString(1, state);
+//			ps.executeUpdate();
+//			ps.close();
+//
+//			ps = conn.prepareStatement(addCountryQuery);
+//			ps.setString(1, country);
+//			ps.executeUpdate();
+//			ps.close();
 
 			ps = conn.prepareStatement(addAddressQuery);
 			ps.setString(1, street);
@@ -230,7 +229,7 @@ public class PortfolioData {
 		Connection conn = null;
 		PreparedStatement ps = null;
 
-		String query = "INSERT INTO Email(emailAddress,person_id) VALUES (?,(SELECT id FROM Person WHERE (code = ?)))";
+		String query = "INSERT INTO Email(emailAddress,person_id) VALUES (?,(SELECT person_id FROM Person WHERE (code = ?)))";
 
 		try {
 			conn = Factory.getConnection();
@@ -293,7 +292,7 @@ public class PortfolioData {
 		try {
 			conn = Factory.getConnection();
 
-			String query = "DELETE FROM PortfolioAsset WHERE asset_id = (SELECT id FROM Asset WHERE code = ?)";
+			String query = "DELETE FROM PortfolioAsset WHERE asset_id = (SELECT asset_id FROM Asset WHERE code = ?)";
 			ps = conn.prepareStatement(query);
 			ps.setString(1, assetCode);
 			ps.executeUpdate();
@@ -483,7 +482,7 @@ public class PortfolioData {
 		try {
 			conn = DriverManager.getConnection(DatabaseInfo.URL, DatabaseInfo.USERNAME, DatabaseInfo.PASSWORD);
 
-			String query = "DELETE FROM PortfolioAsset WHERE id IN (SELECT id FROM (SELECT * FROM PortfolioAsset) AS portAsset WHERE portfolio_id IN ((SELECT id FROM Portfolio WHERE code = ?)))";
+			String query = "DELETE FROM PortfolioAsset WHERE portAsset_id IN (SELECT portAsset_id FROM (SELECT * FROM PortfolioAsset) AS portAsset WHERE portfolio_id IN ((SELECT portfolio_id FROM Portfolio WHERE code = ?)))";
 			ps = conn.prepareStatement(query);
 			ps.setString(1, portfolioCode);
 			ps.executeUpdate();
@@ -521,7 +520,7 @@ public class PortfolioData {
 		try {
 			conn = DriverManager.getConnection(DatabaseInfo.URL, DatabaseInfo.USERNAME, DatabaseInfo.PASSWORD);
 
-			String query = "INSERT INTO Portfolio(code, owner_id, manager_id, beneficiary_id) VALUES (?, (SELECT id FROM Person WHERE (code = ?)), (SELECT id from Person WHERE (code = ?)), (select id FROM Person WHERE (code = ?)))";
+			String query = "INSERT INTO Portfolio(code, owner_id, manager_id, beneficiary_id) VALUES (?, (SELECT person_id FROM Person WHERE (code = ?)), (SELECT person_id from Person WHERE (code = ?)), (select person_id FROM Person WHERE (code = ?)))";
 			ps = conn.prepareStatement(query);
 			ps.setString(1, portfolioCode);
 			ps.setString(2, ownerCode);
@@ -537,7 +536,7 @@ public class PortfolioData {
 			log.error("SQLException: " + e);
 			throw new RuntimeException(e);
 		} finally {
-			Factory.closeResources( ps, conn);
+			Factory.closeResources(ps, conn);
 		}
 	}
 
@@ -560,7 +559,7 @@ public class PortfolioData {
 		try {
 			conn = DriverManager.getConnection(DatabaseInfo.URL, DatabaseInfo.USERNAME, DatabaseInfo.PASSWORD);
 
-			String queryCheck = "SELECT code FROM Asset WHERE id IN (SELECT asset_id FROM PortfolioAsset WHERE portfolio_id = (SELECT id FROM Portfolio WHERE code = ?))";
+			String queryCheck = "SELECT code FROM Asset WHERE asset_id IN (SELECT asset_id FROM PortfolioAsset WHERE portfolio_id = (SELECT portfolio_id FROM Portfolio WHERE code = ?))";
 			ps = conn.prepareStatement(queryCheck);
 			ps.setString(1, portfolioCode);
 			rs = ps.executeQuery();
@@ -577,7 +576,7 @@ public class PortfolioData {
 			ps.close();
 
 			if(!codeMatch) {
-				String query = "INSERT INTO PortfolioAsset(asset_id, portfolio_id, givenValue) VALUES ((SELECT id FROM Asset WHERE (code = ?)), (SELECT id FROM Portfolio where (code = ?)), ?)";
+				String query = "INSERT INTO PortfolioAsset(asset_id, portfolio_id, givenValue) VALUES ((SELECT asset_id FROM Asset WHERE (code = ?)), (SELECT portfolio_id FROM Portfolio where (code = ?)), ?)";
 				ps = conn.prepareStatement(query);
 				ps.setString(1, assetCode);
 				ps.setString(2, portfolioCode);
@@ -586,7 +585,7 @@ public class PortfolioData {
 				ps.executeUpdate();
 				ps.close();
 			} else {
-				String updateValue = "UPDATE PortfolioAsset SET givenValue = (givenValue + ?) WHERE asset_id = (SELECT id FROM Asset WHERE (code = ?))";
+				String updateValue = "UPDATE PortfolioAsset SET givenValue = (givenValue + ?) WHERE asset_id = (SELECT asset_id FROM Asset WHERE (code = ?))";
 				ps = conn.prepareStatement(updateValue);
 				ps.setDouble(1, value);
 				ps.setString(2, assetCode);
@@ -622,10 +621,10 @@ public class PortfolioData {
 
 	/**
 	 * The getPortfolios method retrieves all portfolios in the database. They are inserted
-	 * into a sorted list 
+	 * into a sorted list.
 	 * @return a sorted list of portfolios
 	 */
-	public List<Portfolio> getPortfolios(){//TODO remove Comparator<Portfolio> c){
+	public List<Portfolio> getPortfolios(){
 
 		EntityManagerFactory emf = null; 
 		EntityManager em = null;
@@ -649,7 +648,11 @@ public class PortfolioData {
 				portAssets = (List<PortfolioAsset>) em.createQuery(queryPA).getResultList();
 				assets = (List<Asset>) em.createQuery(queryA).getResultList();
 				persons = (List<Person>) em.createQuery(queryPer).getResultList();
-
+				
+				for(PortfolioAsset portAsset : portAssets) {
+						portAsset.getAsset().computeReturnRate(portAsset.getGivenValue());
+				}
+				
 			} catch(Exception e) {
 				System.out.println("Error loading Portfolio or PA or Asset or Person");
 				e.printStackTrace();

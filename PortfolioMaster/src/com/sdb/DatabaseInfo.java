@@ -8,7 +8,7 @@ package com.sdb;
  * @version 1.0
  */
 public class DatabaseInfo {
-	public static final String URL = "jdbc:mysql://cse.unl.edu/egentry";
-	public static final String USERNAME = "egentry";
-	public static final String PASSWORD = "ZR<vJd";
+	public static final String URL = "jdbc:mysql://cse.unl.edu/jmelcher";
+	public static final String USERNAME = "jmelcher";
+	public static final String PASSWORD = "sqlpass";
 }

@@ -42,7 +42,10 @@ public class Deposit extends Asset{
 		double anReturns = 0.0;
 		double aPY;
 		aPY = (Math.pow(Math.E, this.baseRate/100) - 1); //apy = e^(APR) - 1
-		anReturns = aPY * deposit  ;
+		anReturns = aPY * deposit;
+		
+		//TODO checking 
+//		anReturns = anReturns * 100;
 		return anReturns;
 	}
 	
@@ -60,8 +63,11 @@ public class Deposit extends Asset{
 	 * @param initialDeposit - the current amount
 	 */
 	public void computeReturnRate(double initialDeposit){
-		double returnRate = computeAnnualReturns(initialDeposit)/initialDeposit * 100.0;
+//		System.out.println("In return rate - deposit");
+		double returnRate = (computeAnnualReturns(initialDeposit)/initialDeposit) * 100.0;
 		this.setReturnRate(returnRate);
+//		System.out.println("Return rate: " + returnRate);
+//		System.out.println("Return rate with get: " + getReturnRate());
 	}
 
 	/**
@@ -93,6 +99,7 @@ public class Deposit extends Asset{
 	 * @param baseRate 
 	 */
 	public void setBaseRate(double baseRate){
-		this.baseRate = baseRate/100.0; //turns it from percent to decimal
+//		this.baseRate = baseRate/100.0; //turns it from percent to decimal
+		this.baseRate = baseRate*100.0;
 	}
 }
