@@ -60,7 +60,7 @@ public class Stock extends Asset{
 	public double computeAnnualReturns(double stocks){
 		double anReturns = 0.0;
 //		anReturns = (this.quarterlyDividend * 4 * stocks) + (this.baseRate / 100 * stocks * this.sharePrice);
-		anReturns = (this.quarterlyDividend * 4 * stocks) + (this.baseRate / 100 * stocks * this.sharePrice); 
+		anReturns = (this.quarterlyDividend * 4 * stocks) + (this.baseRate * stocks * this.sharePrice); 
 		//annual return is quarterly dividend * 4 * stocks owned plus base Rate of return times sharePrice times stocks
 	
 		//TODO checking
@@ -83,11 +83,8 @@ public class Stock extends Asset{
 	 * @param stocks - the amount of stocks owned
 	 */
 	public void computeReturnRate(double stocks){
-//		System.out.println("in compute annual returns - stock");
 		double returnRate = (computeAnnualReturns(stocks) / computeValueOfAsset(stocks)) * 100.0;
 		this.setReturnRate(returnRate);
-//		System.out.println("Return rate: " + returnRate);
-//		System.out.println("Return rate with get: " + getReturnRate());
 	}
 	
 	/**

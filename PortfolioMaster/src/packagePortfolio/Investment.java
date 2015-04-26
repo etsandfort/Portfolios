@@ -39,7 +39,7 @@ public class Investment extends Asset{
 	 * @param omega, the investment's omega measure
 	 * @param value, the investment's total value
 	 */
-	public Investment(String code, String label, String type, double quart,double rate,  double omega, double value){
+	public Investment(String code, String label, String type, double quart, double rate, double omega, double value){
 		setCode(code);
 		setLabel(label);
 //		setType(type);
@@ -58,11 +58,9 @@ public class Investment extends Asset{
 		if(percentageOwned <= 1){
 			percentageOwned *= 100;
 		}
-		double anReturns = ((this.baseRate /100* this.value) + (this.quarterlyDividend * 4)) * percentageOwned / 100.0;
+		double anReturns = ((this.baseRate * this.value) + (this.quarterlyDividend * 4)) * percentageOwned / 100.0;
 		//annualReturns is base rate of returns * value plus quarterly dividend * 4 times percentageOwned as a percent
 		
-		//TODO checking
-//		anReturns = anReturns * 100;
 		return anReturns;
 	}
 
